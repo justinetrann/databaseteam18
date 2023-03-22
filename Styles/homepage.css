@@ -4,10 +4,6 @@
     font-family: 'Poppins', sans-serif;
 }
 
-.body {
-    background-img: url("img/background.png");
-}
-
 .content {
     position: relative;
     display: flex;

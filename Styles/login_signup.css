@@ -34,3 +34,19 @@
     float: left;
     margin: 0 0 0 15px;
 }
+
+.form-inline .form-group {
+    display: inline-block;
+    margin-bottom: 0;
+    vertical-align: middle;
+}
+
+.form-inline .form-control {
+    display: inline-block;
+    margin-bottom: 0;
+    vertical-align: middle;
+}
+
+.form-inline .form-group {
+    margin-right: 20px;
+}

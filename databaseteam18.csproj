@@ -124,6 +124,7 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Project_Form.aspx" />
     <Content Include="Signup.aspx" />
     <Content Include="Styles\homepage.css" />
     <Content Include="Projects_Database.aspx" />
@@ -185,6 +186,7 @@
     <Content Include="Site.Master" />
     <Content Include="Styles\login_signup.css" />
     <Content Include="Styles\project.css" />
+    <Content Include="Styles\project_form.css" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -223,6 +225,13 @@
     </Compile>
     <Compile Include="Projects_Database.aspx.designer.cs">
       <DependentUpon>Projects_Database.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Project_Form.aspx.cs">
+      <DependentUpon>Project_Form.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Project_Form.aspx.designer.cs">
+      <DependentUpon>Project_Form.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Signup.aspx.cs">

@@ -10,14 +10,10 @@
                     <h1>Control Your Business<br> <span>Project Management System</span></h1>
                     <p>Manage projects accross departments, tracking the hours of efforts by each member in projects, project status, and reporting on effort and cost.
                     </p>
-                    <button class="btn3">Sign Up</button>
                    </div>
-                <div class="homeimg">
-                <img src="img/homepage_img.png" alt="">
-                </div>
+                    <img src="img/homepage_img.png" alt="">
                </div>
            </div>
         </body>
     </main>
-
 </asp:Content>

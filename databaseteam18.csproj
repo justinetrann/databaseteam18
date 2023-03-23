@@ -126,7 +126,7 @@
     <Content Include="Global.asax" />
     <Content Include="Signup.aspx" />
     <Content Include="Styles\homepage.css" />
-    <Content Include="Projects.aspx" />
+    <Content Include="Projects_Database.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -184,6 +184,7 @@
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
     <Content Include="Styles\login_signup.css" />
+    <Content Include="Styles\project.css" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -216,12 +217,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Projects.aspx.cs">
-      <DependentUpon>Projects.aspx</DependentUpon>
+    <Compile Include="Projects_Database.aspx.cs">
+      <DependentUpon>Projects_Database.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Projects.aspx.designer.cs">
-      <DependentUpon>Projects.aspx</DependentUpon>
+    <Compile Include="Projects_Database.aspx.designer.cs">
+      <DependentUpon>Projects_Database.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Signup.aspx.cs">

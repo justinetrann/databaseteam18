@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Project Management System" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Projects_Database.aspx.cs" Inherits="databaseteam18.About"%>
+﻿<%@ Page Title="Project Management System" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Projects_Database.aspx.cs" Inherits="databaseteam18.Projects"%>
 
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">

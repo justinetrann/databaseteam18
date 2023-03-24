@@ -1,4 +1,5 @@
-﻿<%@ Page Title="Project Management System" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Signup.aspx.cs" Inherits="databaseteam18.About"%>
+﻿
+<%@ Page Title="Project Management System" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Signup.aspx.cs" Inherits="databaseteam18.signup"%>
 
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
@@ -14,27 +15,29 @@
                 <form>
                   <!-- Email input -->
                   <div class="form-outline mb-4">
-                    <input type="email" id="users_email" class="form-control form-control-lg"/>
+                    <input type="email" id="users_email" runat ="server" class="form-control form-control-lg"/>
                     <label class="form-label">Email address</label>
                   </div>
 
                   <!-- Password input -->
                   <div class="form-outline mb-4">
-                    <input type="password" id="user_password" class="form-control form-control-lg"/>
+                    <input type="password" id="user_password" runat ="server" class="form-control form-control-lg"/>
                     <label class="form-label">Password</label>
                   </div>
 
-                  <!-- Password input -->
+                  <%--<!-- Password input -->
                   <div class="form-outline mb-4">
-                    <input type="password" id="user_password_reenter" class="form-control form-control-lg"/>
+                    <input type="password" id="user_password_reenter" runat ="server" class="form-control form-control-lg"/>
                     <label class="form-label">Verify Password</label>
-                  </div>
+                  </div>--%>
 
                   <!-- Submit button -->
-                  <button type="submit" class="btn3">Sign Up</button>
+                <%-- <button type="submit" class="btn3" runat="server" onlick="submitButton_Click">Sign Up</button>--%>
+                    <button id="submitButton" type="submit" class="btn3" runat="server">Sign Up</button>
                 </form>
             </div>
         </div>
     </main>
 </asp:Content>
+
 

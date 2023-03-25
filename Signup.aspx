@@ -13,6 +13,33 @@
             <div class="form_signup">
                 <h3>Register</h3>
                 <form>
+
+                <!-- first name input -->
+                    <div class="form-outline mb-4">
+                    <input type="text" id="first_name" runat ="server" class="form-control form-control-lg" required/>
+                    <label class="form-label">First name</label>
+                  </div>
+
+                  <!-- last name input -->
+                    <div class="form-outline mb-4">
+                    <input type="text" id="last_name" runat ="server" class="form-control form-control-lg" required/>
+                    <label class="form-label">Last name</label>
+                  </div>
+
+                <!-- ssn input -->
+                    <div class="form-outline mb-4">
+                    <input type="text" id="ssn" runat ="server" class="form-control form-control-lg" required/>
+                    <label class="form-label">Social Security #</label>
+                  </div>
+
+
+                <!-- Phone number input -->
+                    <div class="form-outline mb-4">
+                    <input type="text" id="phone_number" runat ="server" class="form-control form-control-lg" required/>
+                    <label class="form-label">Phone Number</label>
+                  </div>
+
+
                   <!-- Email input -->
                   <div class="form-outline mb-4">
                     <input type="email" id="users_email" runat ="server" class="form-control form-control-lg" required/>
@@ -29,6 +56,8 @@
                     <input type="password" id="confirm_password" runat ="server" class="form-control form-control-lg" required/>
                     <label class="form-label">Confirm Password</label>
                  </div>
+
+               
 
 
 

@@ -33,6 +33,15 @@ namespace databaseteam18
         protected global::System.Web.UI.HtmlControls.HtmlInputPassword user_password;
 
         /// <summary>
+        /// confirm_password control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputPassword confirm_password;
+
+        /// <summary>
         /// submitButton control.
         /// </summary>
         /// <remarks>
@@ -40,5 +49,14 @@ namespace databaseteam18
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlButton submitButton;
+
+        /// <summary>
+        /// errorMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl errorMessage;
     }
 }

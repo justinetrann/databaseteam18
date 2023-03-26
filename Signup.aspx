@@ -35,7 +35,7 @@
 
                 <!-- Phone number input -->
                     <div class="form-outline mb-4">
-                    <input type="text" id="phone_number" runat ="server" class="form-control form-control-lg" required/>
+                    <input type="text" id="phone_number" runat ="server" class="form-control form-control-lg" />
                     <label class="form-label">Phone Number</label>
                   </div>
 

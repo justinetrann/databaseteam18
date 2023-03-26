@@ -115,11 +115,11 @@ namespace databaseteam18
                 SqlConnection connection = new SqlConnection(connectionString);
 
 
+                Random rand = new Random();
 
+                int login_ID = rand.Next(50000, 90000);
 
-                int login_ID = new Random().Next(50000, 90000);
-
-                int employee_ID = new Random().Next(50000, 90000);
+                int employee_ID = rand.Next(50000, 90000);
 
 
 

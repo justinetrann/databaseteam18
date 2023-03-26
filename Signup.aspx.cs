@@ -155,6 +155,7 @@ namespace databaseteam18
 
                 Session["user_login_id"] = login_ID;
                 Session["employee_id"] = employee_ID;
+                Session["role_id"] = default_role;
 
                 Response.Redirect("~/Default.aspx");
 

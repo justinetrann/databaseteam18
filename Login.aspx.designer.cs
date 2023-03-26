@@ -42,6 +42,15 @@ namespace databaseteam18
         protected global::System.Web.UI.HtmlControls.HtmlButton loginButton;
 
         /// <summary>
+        /// signupButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton signupButton;
+
+        /// <summary>
         /// errorMessage control.
         /// </summary>
         /// <remarks>

@@ -1,74 +1,199 @@
 ﻿using System;
+
 using System.Collections.Generic;
+
 using System.Configuration;
+
 using System.Data.SqlClient;
+
 using System.Data;
+
 using System.Linq;
+
 using System.Web;
+
 using System.Web.UI;
+
 using System.Web.UI.WebControls;
+
 using System.Diagnostics;
 
+
+
+
 namespace databaseteam18
+
 {
+
     public partial class signup : System.Web.UI.Page
+
     {
+
         protected void Page_Load(object sender, EventArgs e)
+
         {
+
             submitButton.ServerClick += new EventHandler(submitButton_Click);
+
         }
 
+
+
+
         protected void submitButton_Click(object sender, EventArgs e)
+
         {
+
             //check if all required fields are filled
+
+
             if (string.IsNullOrEmpty(users_email.Value) || string.IsNullOrEmpty(user_password.Value) || string.IsNullOrEmpty(confirm_password.Value))
+
             {
-                // Display error message
-                errorMessage.InnerHtml = "Please fill in all fields.";
+
+                // Display error message
+
+                errorMessage.InnerHtml = "Please fill in all fields.";
+
                 errorMessage.Style.Remove("display");
+
                 return;
-            }
-            // Check if passwords match
-            if (user_password.Value != confirm_password.Value)
-            {
-                // Display error message
-                errorMessage.InnerHtml = "Passwords do not match!";
-                errorMessage.Style.Remove("display");
-                return;
+
             }
 
-            try
+            // Check if passwords match
+
+            if (user_password.Value != confirm_password.Value)
+
             {
+
+                // Display error message
+
+                errorMessage.InnerHtml = "Passwords do not match!";
+
+                errorMessage.Style.Remove("display");
+
+                return;
+
+            }
+            if (phone_number.Value.Length < 10)
+
+            {
+
+                // Display error message
+
+                errorMessage.InnerHtml = "Please enter a valid phone number!";
+
+                errorMessage.Style.Remove("display");
+
+                return;
+
+            }
+            if (ssn.Value.Length != 9)
+
+            {
+
+                // Display error message
+
+                errorMessage.InnerHtml = "Please enter a valid SSN!(Do not include dashes)";
+
+                errorMessage.Style.Remove("display");
+
+                return;
+
+            }
+
+
+
+
+            try
+
+            {
+
                 string connectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
+
                 SqlConnection connection = new SqlConnection(connectionString);
+
+
+
 
                 int login_ID = new Random().Next(50000, 90000);
 
-                string query = "INSERT INTO COMPANY.User_Login (login_ID, user_email, user_password) VALUES (@login_id, @Email, @Password)";
+                int employee_ID = new Random().Next(50000, 90000);
+
+
+
+
+                string query = "INSERT INTO COMPANY.User_Login (login_ID, user_email, user_password) VALUES (@login_id_log_table, @Email, @Password);";
+
+                query += "INSERT INTO COMPANY.employees (employee_ID, employee_first_name, employee_last_name, SSN, phoneNUM, login_ID) VALUES (@employee_id, @employee_fname,@employee_lname, @ssn, @phone_num, @login_id_emp_table);";
+
+
+                
+
                 SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@login_id", login_ID);
+
+
+
+                command.Parameters.AddWithValue("@employee_id", employee_ID);
+
+                command.Parameters.AddWithValue("@employee_fname", first_name.Value);
+
+                command.Parameters.AddWithValue("@employee_lname", last_name.Value);
+
+                command.Parameters.AddWithValue("@ssn", ssn.Value);
+
+                command.Parameters.AddWithValue("@phone_num", phone_number.Value);
+
+                command.Parameters.AddWithValue("@login_id_emp_table", login_ID);
+
+                command.Parameters.AddWithValue("@login_id_log_table", login_ID);
+
                 command.Parameters.AddWithValue("@Email", users_email.Value);
+
                 command.Parameters.AddWithValue("@Password", user_password.Value);
 
+
+
+
                 connection.Open();
+
                 command.ExecuteNonQuery();
+
                 connection.Close();
 
+
+
+
                 errorMessage.Style.Add("display", "none");
+
             }
+
             catch (Exception ex)
+
             {
-                // Handle the error in some way, such as displaying an error message to the user or logging the error for later analysis
-                Console.WriteLine("An error occurred: " + ex.Message);
+
+                // Handle the error in some way, such as displaying an error message to the user or logging the error for later analysis
+
+                Console.WriteLine("An error occurred: " + ex.Message);
+                errorMessage.InnerHtml = "A Database error occurred: " + ex.Message;
+                errorMessage.Style.Remove("display");
+
             }
+
         }
+
+
+
 
 
 
     }
 
-}
 
+
+
+}
 
 
 

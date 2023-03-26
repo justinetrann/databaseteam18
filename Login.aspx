@@ -26,6 +26,10 @@
                   <!-- Submit button -->
                     <button id="loginButton" type="submit" class="btn3" runat="server">Login</button>
 
+
+                    <!-- Submit button -->
+                    <button id="signupButton" type="submit" class="btn3" runat="server">Sign Up</button>
+
                      <!-- Error message display -->
                 <div id="errorMessage" class="alert alert-danger" runat ="server" style="display:none;">
                     Passwords do not match!

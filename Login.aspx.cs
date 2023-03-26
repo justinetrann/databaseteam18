@@ -85,7 +85,8 @@ namespace databaseteam18
                     {
                         Session["user_login_id"] = reader.GetInt32(0);
                         Session["employee_id"] = reader.GetInt32(7);
-                       
+                        Session["role_id"] = reader.GetInt32(6);
+                        
                     }
 
                     Response.Redirect("~/Default.aspx");

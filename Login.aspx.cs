@@ -25,6 +25,7 @@ namespace databaseteam18
         protected void Page_Load(object sender, EventArgs e)
         {
             loginButton.ServerClick += new EventHandler(loginButton_Click);
+            signupButton.ServerClick += new EventHandler(signupButton_Click);
         }
 
         protected void loginButton_Click(object sender, EventArgs e)
@@ -107,15 +108,6 @@ namespace databaseteam18
 
 
 
-
-
-
-
-
-
-
-
-
                 connection.Close();
                
 
@@ -157,7 +149,16 @@ namespace databaseteam18
             }
 
         }
-    }
+
+
+        protected void signupButton_Click(object sender, EventArgs e)
+
+        {
+            Response.Redirect("~/Default.aspx");
+        }
+
+
+        }
 
     
 }

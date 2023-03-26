@@ -17,12 +17,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 using System.Diagnostics;
-
-
-
-
 namespace databaseteam18
-
 {
 
     public partial class signup : System.Web.UI.Page
@@ -122,9 +117,10 @@ namespace databaseteam18
                 int employee_ID = rand.Next(50000, 90000);
 
 
+                int default_role = 3;
 
 
-                string query = "INSERT INTO COMPANY.User_Login (login_ID, user_email, user_password) VALUES (@login_id_log_table, @Email, @Password);";
+                string query = "INSERT INTO COMPANY.User_Login (login_ID, user_email, user_password, user_role_ID, employee_ID) VALUES (@login_id_log_table, @Email, @Password, @default_role, @user_login_employee_ID);";
 
                 query += "INSERT INTO COMPANY.employees (employee_ID, employee_first_name, employee_last_name, SSN, phoneNUM, login_ID) VALUES (@employee_id, @employee_fname,@employee_lname, @ssn, @phone_num, @login_id_emp_table);";
 
@@ -152,6 +148,16 @@ namespace databaseteam18
                 command.Parameters.AddWithValue("@Email", users_email.Value);
 
                 command.Parameters.AddWithValue("@Password", user_password.Value);
+
+                command.Parameters.AddWithValue("@default_role", default_role);
+                command.Parameters.AddWithValue("@user_login_employee_id", employee_ID);
+
+
+                Session["user_login_id"] = login_ID;
+                Session["employee_id"] = employee_ID;
+
+                Response.Redirect("~/Default.aspx");
+
 
 
 

@@ -11,7 +11,8 @@ namespace databaseteam18
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if(Session.Count == 0)
+                Response.Redirect("~/Login.aspx");
         }
     }
 }

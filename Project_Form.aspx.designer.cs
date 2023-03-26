@@ -11,7 +11,7 @@ namespace databaseteam18
 {
 
 
-    public partial class About
+    public partial class Project_Form
     {
     }
 }

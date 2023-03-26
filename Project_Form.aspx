@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Project Management System" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Project_Form.aspx.cs" Inherits="databaseteam18.About"%>
+﻿<%@ Page Title="Project Management System" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Project_Form.aspx.cs" Inherits="databaseteam18.Project_Form"%>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -7,18 +7,6 @@
     <main aria-labelledby="project_form">
         <div className="container">
             <form>
-             <div class="form-group row">
-                <label for="inputClientID" class="col-sm-2 col-form-label">Client UID</label>
-                <div class="col-sm-6">
-                  <input type="text" class="form-control" id="inputClientID">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="projectID" class="col-sm-2 col-form-label">Project ID</label>
-                <div class="col-sm-6">
-                  <input type="text" class="form-control" id="projectID">
-                </div>
-              </div>
               <div class="form-group row">
                 <label for="projectName" class="col-sm-2 col-form-label">Project Name</label>
                 <div class="col-sm-6">
@@ -38,21 +26,21 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label for="inputDepartment" class="col-sm-2 col-form-label">Department ID</label>
+                <label for="estimatedCost" class="col-sm-2 col-form-label">Estimated Cost</label>
                 <div class="col-sm-6">
-                  <input type="text" class="form-control" id="inputDepartment">
+                  <input type="number" class="form-control" id="estimated_cost">
                 </div>
               </div>
               <div class="form-group row">
-                <label for="numberOfManagers" class="col-sm-2 col-form-label">Number of Managers</label>
+                <label for="estimatedEffort" class="col-sm-2 col-form-label">Estimated Effort</label>
                 <div class="col-sm-6">
-                  <input type="number" class="form-control" id="numManager">
+                  <input type="number" class="form-control" id="estimated_effort">
                 </div>
               </div>
-              <div class="form-group row">
+              <!--<div class="form-group row">
                 <label for="inputManager">Managers</label>
                 <textarea class="form-control" id="inputManager" rows="3" placeholder="Full Name 1,Full Name 2,Full Name 3"></textarea>
-              </div>
+              </div>-->
                 <button type="submit" class="btn3">Submit</button>
             </form>
         </div>

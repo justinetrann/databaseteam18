@@ -53,7 +53,7 @@
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Projects_Database">Projects Report</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Login">Login</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Signup">Signup</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Signout">Sign out</a></li>
+                        <li class="nav-item"><button id="signoutButton" class="nav-link" runat="server">Sign out</button></li>
                         
                     </ul>
                 </div>

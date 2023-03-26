@@ -11,7 +11,15 @@ namespace databaseteam18
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            signoutButton.ServerClick += new EventHandler(signoutButton_Click);
 
+        }
+
+        protected void signoutButton_Click(object sender, EventArgs e)
+
+        {
+            Session.Abandon();
+            Response.Redirect("~/Default.aspx");
         }
     }
 }

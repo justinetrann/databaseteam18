@@ -154,7 +154,7 @@ namespace databaseteam18
         protected void signupButton_Click(object sender, EventArgs e)
 
         {
-            Response.Redirect("~/Default.aspx");
+            Response.Redirect("~/Signup.aspx");
         }
 
 

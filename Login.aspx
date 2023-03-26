@@ -27,7 +27,7 @@
                     <button id="loginButton" type="submit" class="btn3" runat="server">Login</button>
 
 
-                    <!-- Submit button -->
+                    <!-- Sign Up button -->
                     <button id="signupButton" type="submit" class="btn3" runat="server">Sign Up</button>
 
                      <!-- Error message display -->

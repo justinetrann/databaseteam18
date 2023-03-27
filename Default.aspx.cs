@@ -32,7 +32,7 @@ namespace databaseteam18
                 }
                 else if (role_ID == 1)
                 {
-                    this.MasterPageFile = "~/Site.Master";
+                    Response.Redirect("~/admin_home_page.aspx");
                 }
 
             }

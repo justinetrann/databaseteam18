@@ -38,7 +38,7 @@
             </form>
             <div class="container">
                 <h2>User Roles Descriptions</h2>
-                    <ul>
+                    <ul style="list-style-type:none">
                         <li>EMPLOYEE ROLE: Default role assigned to users after signup. Basic permission to view tasks and profile information.</li>
                         <li>MANAGER ROLE: Manager role assigned to Project Managers. Permission to manage project, tasks, and profile information.</li>
                         <li>ADMIN ROLE: System administrator role.</li>

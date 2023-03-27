@@ -110,9 +110,20 @@ namespace databaseteam18
                     SqlCommand update_command = new SqlCommand(update_query, connection);
                     update_command.Parameters.AddWithValue("@Email", email);
                     update_command.Parameters.AddWithValue("@roleID", roleID);
+                    //update_command.ExecuteNonQuery();
 
-                    SuccessMessage.InnerHtml = "User Role Updated Successfully";
-                    SuccessMessage.Style.Remove("display");
+                    if (update_command.ExecuteNonQuery() == 1)
+                    {
+                        SuccessMessage.InnerHtml = "User Role Updated Successfully";
+                        SuccessMessage.Style.Remove("display");
+                    }
+                    else
+                    {
+                        // Display an error message
+                        errorMessage.InnerHtml = "Error while updating user role!";
+                        errorMessage.Style.Remove("display");
+                    }
+
                     reader.Close();
 
                 }
@@ -125,8 +136,7 @@ namespace databaseteam18
                
 
                 reader.Close();
-                command.Dispose();
-
+              
                 connection.Close();
 
 

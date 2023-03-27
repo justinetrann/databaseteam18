@@ -62,6 +62,8 @@ namespace databaseteam18
             try
 
             {
+                SuccessMessage.Style.Add("display", "none");
+                errorMessage.Style.Add("display", "none");
 
                 string connectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
 
@@ -120,6 +122,7 @@ namespace databaseteam18
                     errorMessage.InnerHtml = "This user login email does not exist in the database!";
                     errorMessage.Style.Remove("display");
                 }
+               
 
                 reader.Close();
                 command.Dispose();

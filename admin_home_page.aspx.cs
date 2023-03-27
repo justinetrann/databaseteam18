@@ -176,9 +176,9 @@ namespace databaseteam18
 
                 // Display error message
 
-                errorMessage.InnerHtml = "Please fill in all fields.";
+                errorMessage1.InnerHtml = "Please fill in all fields.";
 
-                errorMessage.Style.Remove("display");
+                errorMessage1.Style.Remove("display");
 
                 return;
 
@@ -221,8 +221,8 @@ namespace databaseteam18
 
                     if (rowCount != 1)
                     {
-                        errorMessage.InnerHtml = "Something unexpected happened. Please try again later.(more than 1 row returned by user_login table";
-                        errorMessage.Style.Remove("display");
+                        errorMessage1.InnerHtml = "Something unexpected happened. Please try again later.(more than 1 row returned by user_login table";
+                        errorMessage1.Style.Remove("display");
                         return;
                     }
 
@@ -240,22 +240,22 @@ namespace databaseteam18
 
                     if (update_command.ExecuteNonQuery() == 1)
                     {
-                        SuccessMessage.InnerHtml = "User Department Set Successfully";
-                        SuccessMessage.Style.Remove("display");
+                        SuccessMessage1.InnerHtml = "User Department Set Successfully";
+                        SuccessMessage1.Style.Remove("display");
                     }
                     else
                     {
                         // Display an error message
-                        errorMessage.InnerHtml = "Error while setting user department!";
-                        errorMessage.Style.Remove("display");
+                        errorMessage1.InnerHtml = "Error while setting user department!";
+                        errorMessage1.Style.Remove("display");
                     }
                     reader.Close();
                 }
                 else
                 {
                     // Display an error message
-                    errorMessage.InnerHtml = "This user login email does not exist in the database!";
-                    errorMessage.Style.Remove("display");
+                    errorMessage1.InnerHtml = "This user login email does not exist in the database!";
+                    errorMessage1.Style.Remove("display");
                 }
 
                 reader.Close();
@@ -273,8 +273,8 @@ namespace databaseteam18
                 // Handle the error in some way, such as displaying an error message to the user or logging the error for later analysis
 
                 Console.WriteLine("An error occurred: " + ex.Message);
-                errorMessage.InnerHtml = "A Database error occurred: " + ex.Message;
-                errorMessage.Style.Remove("display");
+                errorMessage1.InnerHtml = "A Database error occurred: " + ex.Message;
+                errorMessage1.Style.Remove("display");
 
             }
 

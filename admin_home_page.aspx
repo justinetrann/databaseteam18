@@ -4,8 +4,22 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link href="Styles/project_form.css" rel="stylesheet" type="text/css"/>
 <main aria-labelledby="admin_home_forms">
-        <div className="container">
-            <form>
+        <%--<div className="container">
+           
+        </div>--%>
+    <%--<div className="container">
+           
+        </div>--%>
+
+
+    <ul class="tabs" data-responsive-accordion-tabs="tabs medium-accordion large-tabs" id="example-tabs">
+  <li class="tabs-title is-active"><a href="#panel1" aria-selected="true">User Role Assignment</a></li>
+  <li class="tabs-title"><a href="#panel2">Department Assigment</a></li>
+    </ul>
+
+    <div class="tabs-content" data-tabs-content="example-tabs">
+        <div class="tabs-panel is-active" id="panel1">
+             <form>
               <div class="form-group row">
                 <label for="userLoginEmail" class="col-sm-2 col-form-label">User Login Email*</label>
                 <div class="col-sm-6">
@@ -42,8 +56,8 @@
                 
               </div>
         </div>
-    <div className="container">
-            <form>
+        <div class="tabs-panel" id="panel2">
+             <form>
               <div class="form-group row">
                 <label for="user_login_email_dept" class="col-sm-2 col-form-label">User Login Email*</label>
                 <div class="col-sm-6">
@@ -70,15 +84,7 @@
                     
                 </div>
             </form>
-            <!--<div class="container">
-                <h2>Current User Departments</h2>
-                    <ul style="list-style-type:none">
-                        <li>Executive Department</li>
-                        <li></li>
-                        <li></li>
-                    </ul>
-                
-              </div>-->
+        </div>
         </div>
     </main>
 

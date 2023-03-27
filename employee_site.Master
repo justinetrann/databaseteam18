@@ -49,7 +49,7 @@
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/">Home</a></li>
                         <%--<li class="nav-item"><a class="nav-link" runat="server" href="~/Contact">Contact</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Project_Form">Projects Form</a></li>--%>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Projects_Database">Projects Report</a></li>
+                        <%--<li class="nav-item"><a class="nav-link" runat="server" href="~/Projects_Database">Projects Report</a></li>--%>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Tasks_Database">Tasks Report</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Login">Login</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Signup">Signup</a></li>

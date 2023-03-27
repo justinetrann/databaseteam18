@@ -16,9 +16,9 @@
                 <label for="roleType" class="col-sm-2 col-form-label">Role Type</label>
                 <div class="col-sm-6">
                   <select name="taskPredecessor" id="role_id" runat="server">
-                      <option value='MANAGER'>Manager Role</option>
-                      <option value='EMPLOYEE' selected>Employee Role</option>
-                      <option value='ADMIN' selected>Admin Role</option>
+                      <option value=2>Manager Role</option>
+                      <option value=3 selected>Employee Role</option>
+                      <option value=1>Admin Role</option>
                   </select>
                 </div>
               </div>

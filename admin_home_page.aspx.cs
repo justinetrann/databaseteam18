@@ -58,19 +58,6 @@ namespace databaseteam18
 
             // Check if user email exists in database
 
-            if (user_password.Value != confirm_password.Value)
-
-            {
-
-                // Display error message
-
-                errorMessage.InnerHtml = "Passwords do not match!";
-
-                errorMessage.Style.Remove("display");
-
-                return;
-
-            }
 
             try
 
@@ -82,6 +69,7 @@ namespace databaseteam18
 
 
                 string email = user_login_email.Value;
+                string roleID = role_id.Value;
 
                 string query = "SELECT * FROM COMPANY.User_Login WHERE user_email=@Email";
                 SqlCommand command = new SqlCommand(query, connection);
@@ -110,26 +98,26 @@ namespace databaseteam18
                         return;
                     }
 
+
+
+                    
+
+
+
+                    string query = " UPDATE COMPANY.User_Login SET user_role_ID = @roleID WHERE user_email=@Email;";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@Email", email);
+                    command.Parameters.AddWithValue("@roleID", roleID);
+
                     successMessage.InnerHtml = "User Role Updated Successfully";
                     successMessage.Style.Remove("display");
                     reader.Close();
-
-
-
-
-                    //Redirect the user to the home page
-
-                    string query = "SELECT * FROM COMPANY.User_Login WHERE user_email=@Email";
-                    SqlCommand command = new SqlCommand(query, connection);
-                    command.Parameters.AddWithValue("@Email", email);
-
-
 
                 }
                 else
                 {
                     // Display an error message
-                    errorMessage.InnerHtml = "Your Email or Password is incorrect!";
+                    errorMessage.InnerHtml = "This user login email does not exist in the database!";
                     errorMessage.Style.Remove("display");
                 }
 

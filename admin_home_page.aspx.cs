@@ -69,7 +69,7 @@ namespace databaseteam18
 
 
                 string email = user_login_email.Value;
-                string roleID = role_id.Value;
+                int roleID = int.Parse(role_id.Value);
 
                 string query = "SELECT * FROM COMPANY.User_Login WHERE user_email=@Email";
                 SqlCommand command = new SqlCommand(query, connection);

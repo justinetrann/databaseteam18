@@ -237,10 +237,19 @@ namespace databaseteam18
                     update_command.Parameters.AddWithValue("@Email", email);
                     update_command.Parameters.AddWithValue("@deptID", departmentID);
 
-                    SuccessMessage.InnerHtml = "User Department Set Successfully";
-                    SuccessMessage.Style.Remove("display");
-                    reader.Close();
 
+                    if (update_command.ExecuteNonQuery() == 1)
+                    {
+                        SuccessMessage.InnerHtml = "User Department Set Successfully";
+                        SuccessMessage.Style.Remove("display");
+                    }
+                    else
+                    {
+                        // Display an error message
+                        errorMessage.InnerHtml = "Error while setting user department!";
+                        errorMessage.Style.Remove("display");
+                    }
+                    reader.Close();
                 }
                 else
                 {

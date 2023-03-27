@@ -29,6 +29,7 @@ namespace databaseteam18
         {
 
             userRoleAssignmentSubmitButton.ServerClick += new EventHandler(userRoleAssignmentSubmitButton_Click);
+            userDepartmentAssignmentSubmitButton.ServerClick += new EventHandler(userDepartmentAssignmentSubmitButton_Click);
 
         }
 
@@ -149,7 +150,230 @@ namespace databaseteam18
         }
 
 
+        protected void userDepartmentAssignmentSubmitButton_Click(object sender, EventArgs e)
 
+        {
+
+            //check if all required fields are filled
+
+
+            if (string.IsNullOrEmpty(user_login_email_dept.Value) || string.IsNullOrEmpty(department_id.Value))
+
+            {
+
+                // Display error message
+
+                errorMessage.InnerHtml = "Please fill in all fields.";
+
+                errorMessage.Style.Remove("display");
+
+                return;
+
+            }
+
+            // Check if user email exists in database
+
+
+            try
+
+            {
+
+                string connectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
+
+                SqlConnection connection = new SqlConnection(connectionString);
+
+
+                string email = user_login_email_dept.Value;
+                int departmenID = int.Parse(department_id.Value);
+
+                string query = "SELECT * FROM COMPANY.User_Login WHERE user_email=@Email";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Email", email);
+
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    // if email exist in database, update user role
+
+
+                    int rowCount = 0;
+
+                    while (reader.Read())
+                    {
+                        rowCount++;
+                    }
+
+
+                    if (rowCount != 1)
+                    {
+                        errorMessage.InnerHtml = "Something unexpected happened. Please try again later.(more than 1 row returned by user_login table";
+                        errorMessage.Style.Remove("display");
+                        return;
+                    }
+
+
+
+
+
+
+
+                    string update_query = " UPDATE COMPANY.Employee SET dept_ID = @deptID WHERE user_email=@Email;";
+                    SqlCommand update_command = new SqlCommand(update_query, connection);
+                    update_command.Parameters.AddWithValue("@Email", email);
+                    update_command.Parameters.AddWithValue("@deptID", departmentID);
+
+                    SuccessMessage.InnerHtml = "User Department Set Successfully";
+                    SuccessMessage.Style.Remove("display");
+                    reader.Close();
+
+                }
+                else
+                {
+                    // Display an error message
+                    errorMessage.InnerHtml = "This user login email does not exist in the database!";
+                    errorMessage.Style.Remove("display");
+                }
+
+                reader.Close();
+                command.Dispose();
+
+                connection.Close();
+
+
+            }
+
+            catch (Exception ex)
+
+            {
+
+                // Handle the error in some way, such as displaying an error message to the user or logging the error for later analysis
+
+                Console.WriteLine("An error occurred: " + ex.Message);
+                errorMessage.InnerHtml = "A Database error occurred: " + ex.Message;
+                errorMessage.Style.Remove("display");
+
+            }
+
+
+
+
+
+
+        }
+        protected void userRoleAssignmentSubmitButton_Click(object sender, EventArgs e)
+
+        {
+
+            //check if all required fields are filled
+
+
+            if (string.IsNullOrEmpty(user_login_email.Value) || string.IsNullOrEmpty(role_id.Value))
+
+            {
+
+                // Display error message
+
+                errorMessage.InnerHtml = "Please fill in all fields.";
+
+                errorMessage.Style.Remove("display");
+
+                return;
+
+            }
+
+            // Check if user email exists in database
+
+
+            try
+
+            {
+
+                string connectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
+
+                SqlConnection connection = new SqlConnection(connectionString);
+
+
+                string email = user_login_email.Value;
+                int roleID = int.Parse(role_id.Value);
+
+                string query = "SELECT * FROM COMPANY.User_Login WHERE user_email=@Email";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Email", email);
+
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    // if email exist in database, update user role
+
+
+                    int rowCount = 0;
+
+                    while (reader.Read())
+                    {
+                        rowCount++;
+                    }
+
+
+                    if (rowCount != 1)
+                    {
+                        errorMessage.InnerHtml = "Something unexpected happened. Please try again later.(more than 1 row returned by user_login table";
+                        errorMessage.Style.Remove("display");
+                        return;
+                    }
+
+
+
+
+
+
+
+                    string update_query = " UPDATE COMPANY.User_Login SET user_role_ID = @roleID WHERE user_email=@Email;";
+                    SqlCommand update_command = new SqlCommand(update_query, connection);
+                    update_command.Parameters.AddWithValue("@Email", email);
+                    update_command.Parameters.AddWithValue("@roleID", roleID);
+
+                    SuccessMessage.InnerHtml = "User Role Updated Successfully";
+                    SuccessMessage.Style.Remove("display");
+                    reader.Close();
+
+                }
+                else
+                {
+                    // Display an error message
+                    errorMessage.InnerHtml = "This user login email does not exist in the database!";
+                    errorMessage.Style.Remove("display");
+                }
+
+                reader.Close();
+                command.Dispose();
+
+                connection.Close();
+
+
+            }
+
+            catch (Exception ex)
+
+            {
+
+                // Handle the error in some way, such as displaying an error message to the user or logging the error for later analysis
+
+                Console.WriteLine("An error occurred: " + ex.Message);
+                errorMessage.InnerHtml = "A Database error occurred: " + ex.Message;
+                errorMessage.Style.Remove("display");
+
+            }
+
+
+
+
+
+
+        }
 
 
 

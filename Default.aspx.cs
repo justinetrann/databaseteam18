@@ -28,7 +28,7 @@ namespace databaseteam18
                 else if (role_ID == 2)
                 {
                     this.MasterPageFile = "~/Site.Master";
-                    Response.Redirect("~/signup.aspx"); // path to common site master
+                  
                 }
                 else if (role_ID == 1)
                 {

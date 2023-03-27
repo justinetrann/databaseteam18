@@ -185,6 +185,7 @@
     <Content Include="Styles\login_signup.css" />
     <Content Include="Styles\project.css" />
     <Content Include="Styles\project_form.css" />
+    <Content Include="Tasks_Database.aspx" />
     <Content Include="Task_Form.aspx" />
     <Content Include="test.aspx" />
     <Content Include="ViewSwitcher.ascx" />
@@ -275,6 +276,13 @@
     </Compile>
     <Compile Include="default_site.Master.designer.cs">
       <DependentUpon>default_site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Tasks_Database.aspx.cs">
+      <DependentUpon>Tasks_Database.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Tasks_Database.aspx.designer.cs">
+      <DependentUpon>Tasks_Database.aspx</DependentUpon>
     </Compile>
     <Compile Include="Task_Form.aspx.cs">
       <DependentUpon>Task_Form.aspx</DependentUpon>

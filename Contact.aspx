@@ -12,8 +12,7 @@
         </address>
 
         <address>
-            <strong>Support:</strong><a href="mailto:uhdatabase@gmail.com">Support@example.com</a><br />
-            
+            <strong>Support:</strong><a href="mailto:uhdatabase@gmail.com">uhdatabase@gmail.com</a><br/>
         </address>
     </main>
 </asp:Content>

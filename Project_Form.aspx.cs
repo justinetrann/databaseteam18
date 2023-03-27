@@ -44,35 +44,7 @@ namespace databaseteam18
 
             }
 
-            // Check if date are in correct format
-
             
-            //if (phone_number.Value.Length < 10)
-
-            //{
-
-            //    // Display error message
-
-            //    errorMessage.InnerHtml = "Please enter a valid phone number!";
-
-            //    errorMessage.Style.Remove("display");
-
-            //    return;
-
-            //}
-            //if (ssn.Value.Length != 9)
-
-            //{
-
-            //    // Display error message
-
-            //    errorMessage.InnerHtml = "Please enter a valid SSN!(Do not include dashes)";
-
-            //    errorMessage.Style.Remove("display");
-
-            //    return;
-
-            //}
 
 
 
@@ -102,21 +74,27 @@ namespace databaseteam18
 
 
                 //Get current employee Department ID
-                int employee_id= Session["employee_id"]
+                int employee_id = Convert.ToInt32(Session["employee_id"]);
                 int department_id = -1;
-                string query = "SELECT dept_ID FROM COMPANY.employees WHERE employee_id = @employee_id ;";
-                SqlCommand read_command = new SqlCommand(query, connection);
+                string read_query = "SELECT dept_ID FROM COMPANY.employees WHERE employee_id = @employee_id ;";
+                SqlCommand read_command = new SqlCommand(read_query, connection);
                 read_command.Parameters.AddWithValue("@employee_id", employee_id);
                 connection.Open();
 
-                read_command.ExecuteNonQuery();
+                //read_command.ExecuteNonQuery();
 
                 SqlDataReader reader = read_command.ExecuteReader();
+
+                
+
 
                 //check if dept_id was returned
                 if (reader.HasRows)
                 {
-                    
+                    //errorMessage.InnerHtml = "Something unexpected happened. Please try again later.(more than 1 row returned by user_login table";
+                    //errorMessage.Style.Remove("display");
+                    //return;
+
                     int rowCount = 0;
 
                     while (reader.Read())
@@ -144,7 +122,6 @@ namespace databaseteam18
                     {
                         department_id = Convert.ToInt32(reader["dept_ID"]);
                         
-
                     }
 
 
@@ -198,7 +175,7 @@ namespace databaseteam18
 
                     }
 
-                   
+                }
 
 
             }
@@ -221,29 +198,29 @@ namespace databaseteam18
             /// </summary>
             /// <param name="date"></param>
             /// <returns></returns>
-            private bool ValidateDate(string date)
-            {
-                try
-                {
-                    // for US, alter to suit if splitting on hyphen, comma, etc.
-                    string[] dateParts = date.Split('/');
+            //private bool ValidateDate(string date)
+            //{
+            //    try
+            //    {
+            //        // for US, alter to suit if splitting on hyphen, comma, etc.
+            //        string[] dateParts = date.Split('/');
 
-                    // create new date from the parts; if this does not fail
-                    // the method will return true and the date is valid
-                    DateTime testDate = new
-                        DateTime(Convert.ToInt32(dateParts[2]),
-                        Convert.ToInt32(dateParts[0]),
-                        Convert.ToInt32(dateParts[1]));
+            //        // create new date from the parts; if this does not fail
+            //        // the method will return true and the date is valid
+            //        DateTime testDate = new
+            //            DateTime(Convert.ToInt32(dateParts[2]),
+            //            Convert.ToInt32(dateParts[0]),
+            //            Convert.ToInt32(dateParts[1]));
 
-                    return true;
-                }
-                catch
-                {
-                    // if a test date cannot be created, the
-                    // method will return false
-                    return false;
-                }
-            }
+            //        return true;
+            //    }
+            //    catch
+            //    {
+            //        // if a test date cannot be created, the
+            //        // method will return false
+            //        return false;
+            //    }
+            //}
 
         }
 

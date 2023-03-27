@@ -100,6 +100,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="admin_home_page.aspx" />
     <Content Include="Employee_Profile_Page.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Contact.aspx" />
@@ -195,6 +196,13 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="admin_home_page.aspx.cs">
+      <DependentUpon>admin_home_page.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin_home_page.aspx.designer.cs">
+      <DependentUpon>admin_home_page.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="Employee_Profile_Page.aspx.cs">
       <DependentUpon>Employee_Profile_Page.aspx</DependentUpon>

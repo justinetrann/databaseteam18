@@ -9,13 +9,13 @@
               <div class="form-group row">
                 <label for="userLoginID" class="col-sm-2 col-form-label">User Login Email*</label>
                 <div class="col-sm-6">
-                  <input type="email" class="form-control" id="user_login_email" required>
+                  <input type="email" class="form-control" id="user_login_email" runat ="server" required>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="roleType" class="col-sm-2 col-form-label">Role Type</label>
                 <div class="col-sm-6">
-                  <select name="taskPredecessor" id="role_id" >
+                  <select name="taskPredecessor" id="role_id" runat="server">
                       <option value='MANAGER'>Manager Role</option>
                       <option value='EMPLOYEE' selected>Employee Role</option>
                       <option value='ADMIN' selected>Admin Role</option>

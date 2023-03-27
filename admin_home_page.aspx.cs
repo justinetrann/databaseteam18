@@ -46,9 +46,9 @@ namespace databaseteam18
 
             {
 
-                // Display error message
+                // Display error message
 
-                errorMessage.InnerHtml = "Please fill in all fields.";
+                errorMessage.InnerHtml = "Please fill in all fields.";
 
                 errorMessage.Style.Remove("display");
 
@@ -56,15 +56,15 @@ namespace databaseteam18
 
             }
 
-            // Check if user email exists in database
+            // Check if user email exists in database
 
-            if (user_password.Value != confirm_password.Value)
+            if (user_password.Value != confirm_password.Value)
 
             {
 
-                // Display error message
+                // Display error message
 
-                errorMessage.InnerHtml = "Passwords do not match!";
+                errorMessage.InnerHtml = "Passwords do not match!";
 
                 errorMessage.Style.Remove("display");
 
@@ -122,7 +122,7 @@ namespace databaseteam18
                     string query = "SELECT * FROM COMPANY.User_Login WHERE user_email=@Email";
                     SqlCommand command = new SqlCommand(query, connection);
                     command.Parameters.AddWithValue("@Email", email);
-                    
+
 
 
                 }
@@ -234,9 +234,9 @@ namespace databaseteam18
 
             {
 
-                // Handle the error in some way, such as displaying an error message to the user or logging the error for later analysis
+                // Handle the error in some way, such as displaying an error message to the user or logging the error for later analysis
 
-                Console.WriteLine("An error occurred: " + ex.Message);
+                Console.WriteLine("An error occurred: " + ex.Message);
                 errorMessage.InnerHtml = "A Database error occurred: " + ex.Message;
                 errorMessage.Style.Remove("display");
 
@@ -255,6 +255,4 @@ namespace databaseteam18
 
 
 }
-
-
 

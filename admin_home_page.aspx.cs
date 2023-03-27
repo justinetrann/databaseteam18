@@ -42,7 +42,7 @@ namespace databaseteam18
             //check if all required fields are filled
 
 
-            if (string.IsNullOrEmpty(user_login_id.Value) || string.IsNullOrEmpty(role_id.Value))
+            if (string.IsNullOrEmpty(user_login_email.Value) || string.IsNullOrEmpty(role_id.Value))
 
             {
 

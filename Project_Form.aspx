@@ -10,39 +10,47 @@
               <div class="form-group row">
                 <label for="projectName" class="col-sm-2 col-form-label">Project Name</label>
                 <div class="col-sm-6">
-                  <input type="text" class="form-control" id="projectName">
+                  <input type="text" class="form-control" id="project_name" runat="server">
                 </div>
               </div>
               <div class="form-group row">
                 <label for="inputProjectStartDate" class="col-sm-2 col-form-label">Start Date</label>
                 <div class="col-sm-6">
-                  <input type="date" class="form-control" id="projectStartDate">
+                  <input type="date" class="form-control" id="project_start_date" runat="server">
                 </div>
               </div>
               <div class="form-group row">
                 <label for="inputProjectEndDate" class="col-sm-2 col-form-label">End Date</label>
                 <div class="col-sm-6">
-                  <input type="date" class="form-control" id="projectEndDate">
+                  <input type="date" class="form-control" id="project_end_date" runat="server">
                 </div>
               </div>
               <div class="form-group row">
                 <label for="estimatedCost" class="col-sm-2 col-form-label">Estimated Cost</label>
                 <div class="col-sm-6">
-                  <input type="number" class="form-control" id="estimated_cost">
+                  <input type="number" class="form-control" id="estimated_cost" runat="server">
                 </div>
               </div>
               <div class="form-group row">
                 <label for="estimatedEffort" class="col-sm-2 col-form-label">Estimated Effort</label>
                 <div class="col-sm-6">
-                  <input type="number" class="form-control" id="estimated_effort">
+                  <input type="number" class="form-control" id="estimated_effort" runat="server">
                 </div>
               </div>
               <!--<div class="form-group row">
                 <label for="inputManager">Managers</label>
                 <textarea class="form-control" id="inputManager" rows="3" placeholder="Full Name 1,Full Name 2,Full Name 3"></textarea>
               </div>-->
-                <button type="submit" class="btn3">Submit</button>
+               
+                
+                <button type="submit" id="submitButton" class="btn3" runat="server">Submit</button>
+
+                <%--!-- Error message display -->--%>
+                <div id="errorMessage" class="alert alert-danger" runat ="server" style="display:none;">
+                    Passwords do not match!
+                </div>
             </form>
         </div>
     </main>
 </asp:Content>
+

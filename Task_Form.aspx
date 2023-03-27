@@ -10,7 +10,7 @@
               <div class="form-group row">
                 <label for="taskName" class="col-sm-2 col-form-label">Task Name</label>
                 <div class="col-sm-6">
-                  <input type="text" class="form-control" id="task_Name">
+                  <input type="text" class="form-control" id="task_Name", runat ="server">
                 </div>
               </div>
               <div class="form-group row">
@@ -22,7 +22,7 @@
               <div class="form-group row">
                 <label for="taskDescription" class="col-sm-2 col-form-label">Task Description</label>
                 <div class="col-sm-6">
-                  <input type="text" class="form-control" id="task_Description">
+                  <input type="text" class="form-control" id="task_Description", runat ="server">
                 </div>
               </div>
               <div class="form-group row">
@@ -38,10 +38,10 @@
               <div class="form-group row">
                 <label for="estimatedDuration" class="col-sm-2 col-form-label">Estimated Duration</label>
                 <div class="col-sm-6">
-                  <input type="number" class="form-control" id="estimated_Duration">
+                  <input type="number" class="form-control" id="estimated_Duration", runat ="server">
                 </div>
               </div>
-                <button type="submit" class="btn3">Submit</button>
+                <button type="submit" id ="submitButton", runat ="server" class="btn3">Submit</button>
             </form>
         </div>
     </main>

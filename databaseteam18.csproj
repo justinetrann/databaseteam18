@@ -102,6 +102,7 @@
   <ItemGroup>
     <Content Include="admin_home_page.aspx" />
     <Content Include="departmentReport.aspx" />
+    <Content Include="department_assign.aspx" />
     <Content Include="employeeReport.aspx" />
     <Content Include="Employee_Profile_Page.aspx" />
     <Content Include="Login.aspx" />
@@ -212,6 +213,13 @@
     </Compile>
     <Compile Include="departmentReport.aspx.designer.cs">
       <DependentUpon>departmentReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="department_assign.aspx.cs">
+      <DependentUpon>department_assign.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="department_assign.aspx.designer.cs">
+      <DependentUpon>department_assign.aspx</DependentUpon>
     </Compile>
     <Compile Include="employeeReport.aspx.cs">
       <DependentUpon>employeeReport.aspx</DependentUpon>

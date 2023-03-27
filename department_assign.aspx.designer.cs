@@ -11,52 +11,52 @@ namespace databaseteam18
 {
 
 
-    public partial class admin_home_page
+    public partial class department_assign
     {
 
         /// <summary>
-        /// user_login_email control.
+        /// user_login_email_dept control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl user_login_email;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl user_login_email_dept;
 
         /// <summary>
-        /// role_id control.
+        /// department_id control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect role_id;
+        protected global::System.Web.UI.HtmlControls.HtmlSelect department_id;
 
         /// <summary>
-        /// userRoleAssignmentSubmitButton control.
+        /// userDepartmentAssignmentSubmitButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton userRoleAssignmentSubmitButton;
+        protected global::System.Web.UI.HtmlControls.HtmlButton userDepartmentAssignmentSubmitButton;
 
         /// <summary>
-        /// errorMessage control.
+        /// errorMessage1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl errorMessage;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl errorMessage1;
 
         /// <summary>
-        /// SuccessMessage control.
+        /// SuccessMessage1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SuccessMessage;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SuccessMessage1;
     }
 }

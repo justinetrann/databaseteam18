@@ -11,25 +11,16 @@ namespace databaseteam18
 {
 
 
-    public partial class Task_Form
+    public partial class default_site
     {
 
         /// <summary>
-        /// task_employee control.
+        /// MainContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList task_employee;
-
-        /// <summary>
-        /// task_results control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList task_results;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
     }
 }

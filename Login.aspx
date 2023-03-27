@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Project Management System" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="login.aspx.cs" Inherits="databaseteam18.login"%>
+﻿<%@ Page Title="Project Management System" Language="C#" MasterPageFile="~/default_site.Master" AutoEventWireup="true" CodeBehind="login.aspx.cs" Inherits="databaseteam18.login"%>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">

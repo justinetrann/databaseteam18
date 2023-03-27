@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -100,10 +101,16 @@ namespace databaseteam18
                 Random rand = new Random();
 
                 int project_id = rand.Next(50000, 90000);
-                string status = "STARTED";
+                string status = "";
 
 
-                
+                DateTime projectEndDate = DateTime.ParseExact(project_end_date.Value, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                DateTime today = DateTime.Now;
+
+                if (projectEndDate <= today)
+                    status = "COMPLETED";
+                else if (projectEndDate > today)
+                    status = "ONGOING";
 
 
                 string query = "INSERT INTO COMPANY.projects (ID, Name, Start_Date, End_Date, Status, Estimated_Cost, Effort) VALUES (@project_id, @project_name, @start_date, @end_date, @status, @estimated_cost, @estimated_effort);";

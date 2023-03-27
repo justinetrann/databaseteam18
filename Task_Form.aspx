@@ -14,6 +14,12 @@
                 </div>
               </div>
               <div class="form-group row">
+                <label for="taskEmployee" class="col-sm-2 col-form-label">Task Employee</label>
+                <div class="col-sm-3">
+                    <asp:DropDownList ID="task_employee" runat="server"> </asp:DropDownList>
+                </div>
+              </div>
+              <div class="form-group row">
                 <label for="taskDescription" class="col-sm-2 col-form-label">Task Description</label>
                 <div class="col-sm-6">
                   <input type="text" class="form-control" id="task_Description">
@@ -21,11 +27,12 @@
               </div>
               <div class="form-group row">
                 <label for="taskPredecessor" class="col-sm-2 col-form-label">Task Predecessor</label>
-                <div class="col-sm-6">
-                  <select name="taskPredecessor" id="task_predecessor">
+                <div class="col-sm-3">
+                  <!--<select name="taskPredecessor" id="task_predecessor">
                       <option value=NULL>Select Predecessor</option>
                       <option value=NULL selected>N/A - None</option>
-                  </select>
+                  </select>-->
+                <asp:DropDownList ID="task_results" runat="server"> </asp:DropDownList>
                 </div>
               </div>
               <div class="form-group row">

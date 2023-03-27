@@ -47,7 +47,7 @@ namespace databaseteam18
 
             {
 
-                // Display error message
+                //Display error message
 
                 errorMessage.InnerHtml = "Please fill in all fields.";
 
@@ -57,7 +57,7 @@ namespace databaseteam18
 
             }
 
-            // Check if user email exists in database
+            //C/*heck if user email exists in databa*/se
 
 
             try
@@ -83,7 +83,7 @@ namespace databaseteam18
 
                 if (reader.HasRows)
                 {
-                    // if email exist in database, update user role
+                    //if email exist in database, update user role
 
 
                     int rowCount = 0;
@@ -103,7 +103,7 @@ namespace databaseteam18
 
 
 
-                    
+
 
 
 
@@ -111,7 +111,7 @@ namespace databaseteam18
                     SqlCommand update_command = new SqlCommand(update_query, connection);
                     update_command.Parameters.AddWithValue("@Email", email);
                     update_command.Parameters.AddWithValue("@roleID", roleID);
-                    //update_command.ExecuteNonQuery();
+                    update_command.ExecuteNonQuery();
 
                     if (update_command.ExecuteNonQuery() == 1)
                     {
@@ -120,7 +120,7 @@ namespace databaseteam18
                     }
                     else
                     {
-                        // Display an error message
+                        //Display an error message
                         errorMessage.InnerHtml = "Error while updating user role!";
                         errorMessage.Style.Remove("display");
                     }
@@ -130,14 +130,14 @@ namespace databaseteam18
                 }
                 else
                 {
-                    // Display an error message
+                    //Display an error message
                     errorMessage.InnerHtml = "This user login email does not exist in the database!";
                     errorMessage.Style.Remove("display");
                 }
-               
+
 
                 reader.Close();
-              
+
                 connection.Close();
 
 
@@ -147,10 +147,11 @@ namespace databaseteam18
 
             {
 
-                // Handle the error in some way, such as displaying an error message to the user or logging the error for later analysis
+                //Handle the error in some way, such as displaying an error message to the user or logging the error for later analysis
 
-                Console.WriteLine("An error occurred: " + ex.Message);
-                errorMessage.InnerHtml = "A Database error occurred: " + ex.Message;
+
+               Console.WriteLine("An error occurred: " + ex.Message);
+               errorMessage.InnerHtml = "A Database error occurred: " + ex.Message;
                 errorMessage.Style.Remove("display");
 
             }
@@ -212,10 +213,13 @@ namespace databaseteam18
 
 
                     int rowCount = 0;
+                    int employee_id = 5;
 
                     while (reader.Read())
                     {
                         rowCount++;
+                        employee_id = Convert.ToInt32(reader["employee_id"]);
+                        
                     }
 
 
@@ -232,9 +236,9 @@ namespace databaseteam18
 
 
 
-                    string update_query = " UPDATE COMPANY.Employee SET dept_ID = @deptID WHERE user_email=@Email;";
+                    string update_query = " UPDATE COMPANY.employees SET dept_ID = @deptID WHERE employee_id=@employeeId;";
                     SqlCommand update_command = new SqlCommand(update_query, connection);
-                    update_command.Parameters.AddWithValue("@Email", email);
+                    update_command.Parameters.AddWithValue("@employeeId", employee_id);
                     update_command.Parameters.AddWithValue("@deptID", departmentID);
 
 
@@ -249,6 +253,8 @@ namespace databaseteam18
                         errorMessage1.InnerHtml = "Error while setting user department!";
                         errorMessage1.Style.Remove("display");
                     }
+
+                    
                     reader.Close();
                 }
                 else

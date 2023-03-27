@@ -157,7 +157,7 @@ namespace databaseteam18
                 Session["employee_id"] = employee_ID;
                 Session["role_id"] = default_role;
 
-                Response.Redirect("~/Default.aspx");
+                //Response.Redirect("~/Default.aspx");
 
 
 
@@ -168,6 +168,8 @@ namespace databaseteam18
                 command.ExecuteNonQuery();
 
                 connection.Close();
+
+                Response.Redirect("~/Default.aspx");
 
 
 

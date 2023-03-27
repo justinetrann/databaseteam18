@@ -65,7 +65,7 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label for="roleType" class="col-sm-2 col-form-label">Role Type</label>
+                <label for="dept_id" class="col-sm-2 col-form-label">department Type</label>
                 <div class="col-sm-6">
                   <select name="department_id" id="department_id" runat="server">
                       <option value=1>Executive Department</option>

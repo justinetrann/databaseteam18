@@ -84,9 +84,9 @@ namespace databaseteam18
 
 
                     {
-                        Session["user_login_id"] = reader.GetInt32(0);
-                        Session["employee_id"] = reader.GetInt32(7);
-                        Session["role_id"] = reader.GetInt32(6);
+                        Session["user_login_id"] = Convert.ToInt32(reader["login_ID"]);
+                        Session["employee_id"] = Convert.ToInt32(reader["employee_ID"]);
+                        Session["role_id"] = Convert.ToInt32(reader["user_role_ID"]);
                         
                     }
 

@@ -104,13 +104,13 @@ namespace databaseteam18
 
 
 
-                    string query = " UPDATE COMPANY.User_Login SET user_role_ID = @roleID WHERE user_email=@Email;";
-                    SqlCommand command = new SqlCommand(query, connection);
-                    command.Parameters.AddWithValue("@Email", email);
-                    command.Parameters.AddWithValue("@roleID", roleID);
+                    string update_query = " UPDATE COMPANY.User_Login SET user_role_ID = @roleID WHERE user_email=@Email;";
+                    SqlCommand update_command = new SqlCommand(update_query, connection);
+                    update_command.Parameters.AddWithValue("@Email", email);
+                    update_command.Parameters.AddWithValue("@roleID", roleID);
 
-                    successMessage.InnerHtml = "User Role Updated Successfully";
-                    successMessage.Style.Remove("display");
+                    SuccessMessage.InnerHtml = "User Role Updated Successfully";
+                    SuccessMessage.Style.Remove("display");
                     reader.Close();
 
                 }

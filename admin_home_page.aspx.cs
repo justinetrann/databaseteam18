@@ -29,7 +29,7 @@ namespace databaseteam18
         {
 
             userRoleAssignmentSubmitButton.ServerClick += new EventHandler(userRoleAssignmentSubmitButton_Click);
-            userDepartmentAssignmentSubmitButton.ServerClick += new EventHandler(userDepartmentAssignmentSubmitButton_Click);
+           
 
         }
 
@@ -164,132 +164,7 @@ namespace databaseteam18
         }
 
 
-        protected void userDepartmentAssignmentSubmitButton_Click(object sender, EventArgs e)
-
-        {
-
-            //check if all required fields are filled
-
-
-            if (string.IsNullOrEmpty(user_login_email_dept.Value) || string.IsNullOrEmpty(department_id.Value))
-
-            {
-
-                // Display error message
-
-                errorMessage1.InnerHtml = "Please fill in all fields.";
-
-                errorMessage1.Style.Remove("display");
-
-                return;
-
-            }
-
-            // Check if user email exists in database
-
-
-            try
-
-            {
-
-                string connectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
-
-                SqlConnection connection = new SqlConnection(connectionString);
-
-
-                string email = user_login_email_dept.Value;
-                int departmentID = int.Parse(department_id.Value);
-
-                string query = "SELECT * FROM COMPANY.User_Login WHERE user_email=@Email";
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@Email", email);
-
-                connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.HasRows)
-                {
-                    // if email exist in database, update user role
-
-
-                    int rowCount = 0;
-                    int employee_id = 5;
-
-                    while (reader.Read())
-                    {
-                        rowCount++;
-                        employee_id = Convert.ToInt32(reader["employee_id"]);
-                        
-                    }
-
-
-                    if (rowCount != 1)
-                    {
-                        errorMessage1.InnerHtml = "Something unexpected happened. Please try again later.(more than 1 row returned by user_login table";
-                        errorMessage1.Style.Remove("display");
-                        return;
-                    }
-
-
-
-
-
-
-
-                    string update_query = " UPDATE COMPANY.employees SET dept_ID = @deptID WHERE employee_id=@employeeId;";
-                    SqlCommand update_command = new SqlCommand(update_query, connection);
-                    update_command.Parameters.AddWithValue("@employeeId", employee_id);
-                    update_command.Parameters.AddWithValue("@deptID", departmentID);
-
-
-                    if (update_command.ExecuteNonQuery() == 1)
-                    {
-                        SuccessMessage1.InnerHtml = "User Department Set Successfully";
-                        SuccessMessage1.Style.Remove("display");
-                    }
-                    else
-                    {
-                        // Display an error message
-                        errorMessage1.InnerHtml = "Error while setting user department!";
-                        errorMessage1.Style.Remove("display");
-                    }
-
-                    
-                    reader.Close();
-                }
-                else
-                {
-                    // Display an error message
-                    errorMessage1.InnerHtml = "This user login email does not exist in the database!";
-                    errorMessage1.Style.Remove("display");
-                }
-
-                reader.Close();
-                command.Dispose();
-
-                connection.Close();
-
-
-            }
-
-            catch (Exception ex)
-
-            {
-
-                // Handle the error in some way, such as displaying an error message to the user or logging the error for later analysis
-
-                Console.WriteLine("An error occurred: " + ex.Message);
-                errorMessage1.InnerHtml = "A Database error occurred: " + ex.Message;
-                errorMessage1.Style.Remove("display");
-
-            }
-
-
-
-
-
-
-        }
+        
        
 
 

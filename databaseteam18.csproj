@@ -101,6 +101,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="admin_home_page.aspx" />
+    <Content Include="departmentReport.aspx" />
     <Content Include="employeeReport.aspx" />
     <Content Include="Employee_Profile_Page.aspx" />
     <Content Include="Login.aspx" />
@@ -205,6 +206,13 @@
       <DependentUpon>admin_home_page.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="departmentReport.aspx.cs">
+      <DependentUpon>departmentReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="departmentReport.aspx.designer.cs">
+      <DependentUpon>departmentReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="employeeReport.aspx.cs">
       <DependentUpon>employeeReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -269,6 +269,13 @@
     <Compile Include="admin_site.Master.designer.cs">
       <DependentUpon>admin_site.Master</DependentUpon>
     </Compile>
+    <Compile Include="default_site.Master.cs">
+      <DependentUpon>default_site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="default_site.Master.designer.cs">
+      <DependentUpon>default_site.Master</DependentUpon>
+    </Compile>
     <Compile Include="Task_Form.aspx.cs">
       <DependentUpon>Task_Form.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -300,6 +307,7 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
     <Content Include="employee_site.Master" />
     <Content Include="admin_site.Master" />
+    <Content Include="default_site.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

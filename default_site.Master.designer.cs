@@ -11,17 +11,8 @@ namespace databaseteam18
 {
 
 
-    public partial class SiteMaster
+    public partial class default_site
     {
-
-        /// <summary>
-        /// signoutButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton signoutButton;
 
         /// <summary>
         /// MainContent control.

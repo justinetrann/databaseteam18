@@ -12,8 +12,10 @@ namespace databaseteam18
         protected void Page_PreInit(object sender, EventArgs e)
         {
             if (Session.Count == 0)
+            {
+                //this.MasterPageFile = "~/default_site.Master";
                 Response.Redirect("~/Login.aspx");
-
+            }
             else
             {
                 int role_ID = int.Parse(Session["role_id"].ToString());
@@ -23,11 +25,16 @@ namespace databaseteam18
                 {
                     this.MasterPageFile = "~/employee_site.Master"; // Path to Site Master with different navbar for user_role_id = 1
                 }
-                else
+                else if (role_ID == 2)
                 {
                     this.MasterPageFile = "~/Site.Master";
                     Response.Redirect("~/signup.aspx"); // path to common site master
                 }
+                else if (role_ID == 1)
+                {
+                    this.MasterPageFile = "~/Site.Master";
+                }
+
             }
         }
 

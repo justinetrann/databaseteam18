@@ -10,7 +10,7 @@
               <div class="form-group row">
                 <label for="taskName" class="col-sm-2 col-form-label">Task Name</label>
                 <div class="col-sm-6">
-                  <input type="text" class="form-control" id="task_Name" runat ="server">
+                  <input type="text" class="form-control" id="task_name" runat ="server">
                 </div>
               </div>
               <div class="form-group row">
@@ -22,7 +22,7 @@
               <div class="form-group row">
                 <label for="taskDescription" class="col-sm-2 col-form-label">Task Description</label>
                 <div class="col-sm-6">
-                  <input type="text" class="form-control" id="task_Description" runat ="server">
+                  <input type="text" class="form-control" id="task_description" runat ="server">
                 </div>
               </div>
               <div class="form-group row">

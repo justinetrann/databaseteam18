@@ -72,9 +72,75 @@ namespace databaseteam18
                 else if (projectEndDate > today)
                     status = "ONGOING";
 
-
-                //Get current employee Department ID
+                //Get current manager employee id from session
                 int employee_id = Convert.ToInt32(Session["employee_id"]);
+
+
+                //CHECK MANAGER PROJECT ASSIGNMENT STATUS
+                //Get current manager project assignment status 
+               
+                string project_assignment_status = 'no_values';
+                string read_status_query = "SELECT project_assignment_status FROM COMPANY.manages_project WHERE employee_id = @employee_id ;";
+                SqlCommand read_status_querycommand = new SqlCommand(read_status_query, connection);
+                read_status_querycommand.Parameters.AddWithValue("@employee_id", employee_id);
+                connection.Open();
+
+                //read_command.ExecuteNonQuery();
+
+                SqlDataReader status_reader = read_status_querycommand.ExecuteReader();
+
+
+
+
+                //check if project_assignment_status was returned
+                if (status_reader.HasRows)
+                {
+                    //errorMessage.InnerHtml = "Something unexpected happened. Please try again later.(more than 1 row returned by user_login table";
+                    //errorMessage.Style.Remove("display");
+                    //return;
+
+                    int rowCount = 0;
+
+                    while (status_reader.Read())
+                    {
+                        rowCount++;
+                    }
+
+                if (rowCount == 1)
+                    {
+
+                        status_reader.Close();
+
+                        status_reader = read_command.ExecuteReader();
+
+
+
+                        //Redirect the user to the home page
+                        while (status_reader.Read())
+
+
+                        {
+                            project_assignment_status = status_reader["project_assignment_status"];
+
+                            if (project_assignment_status == 'assigned') {
+                                errorMessage.InnerHtml = "Error while adding new project! Cannot assign more than one project.";
+                                errorMessage.Style.Remove("display");
+                                return;
+                            }
+                            
+                        }
+                        
+                    }
+
+
+
+                }
+
+
+                    ///////////////////
+
+                    //Get current employee Department ID
+                    
                 int department_id = -1;
                 string read_query = "SELECT dept_ID FROM COMPANY.employees WHERE employee_id = @employee_id ;";
                 SqlCommand read_command = new SqlCommand(read_query, connection);
@@ -168,6 +234,17 @@ namespace databaseteam18
 
                         command.ExecuteNonQuery();
 
+                        /////// ASSIGNING PROJECT TO CURRENT MANAGER
+                        string insert_manages_project_query = "INSERT INTO COMPANY.manages_project (employee_ID, project_ID) values (@employee_id, @project_id) ;";
+                        SqlCommand insert_manages_project_command = new SqlCommand(read_query, connection);
+                        insert_manages_project_command.Parameters.AddWithValue("@employee_id", employee_id);
+                        insert_manages_project_command.Parameters.AddWithValue("@project_id", project_id);
+
+
+                        insert_manages_project_command.ExecuteNonQuery();
+
+                        /////////
+
                         connection.Close();
                         successMessage.InnerHtml = "New Project Added Successfully!";
                         successMessage.Style.Remove("display");
@@ -177,7 +254,7 @@ namespace databaseteam18
 
                 }
 
-
+                
             }
 
             catch (Exception ex)

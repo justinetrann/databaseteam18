@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link href="Styles/project_form.css" rel="stylesheet" type="text/css"/>
 
-    <main aria-labelledby="project_form">
+    <main aria-labelledby="task_form">
         <div className="container">
             <form>
               <div class="form-group row">

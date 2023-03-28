@@ -240,7 +240,7 @@ namespace databaseteam18
 
 
 
-                    //Response.Redirect("~/Default.aspx");
+                    Response.Redirect("~/Default.aspx");
                     //Response.AddHeader("REFRESH", "5;URL=~/Default.aspx");
 
 

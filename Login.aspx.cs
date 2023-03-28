@@ -100,7 +100,7 @@ namespace databaseteam18
                     //reader.Close();
 
 
-                    ////// Read user current department_id and project_id
+                    ////// Read user current department_id
                     ///
                     
                     string read_dept_query = "SELECT dept_ID FROM COMPANY.employees WHERE employee_id=@employee_id;";
@@ -114,24 +114,24 @@ namespace databaseteam18
                     {
 
 
-                        rowCount = 0;
+                        //rowCount = 0;
 
-                        while (read_deptreader.Read())
-                        {
-                            rowCount++;
-                        }
+                        //while (read_deptreader.Read())
+                        //{
+                        //    rowCount++;
+                        //}
 
 
-                        if (rowCount != 1)
-                        {
-                            errorMessage.InnerHtml = "Something unexpected happened. Please try again later.(more than 1 row returned by user_login table";
-                            errorMessage.Style.Remove("display");
-                            return;
-                        }
+                        //if (rowCount != 1)
+                        //{
+                        //    errorMessage.InnerHtml = "Something unexpected happened. Please try again later.(more than 1 row returned by user_login table";
+                        //    errorMessage.Style.Remove("display");
+                        //    return;
+                        //}
 
-                        read_deptreader.Close();
+                        //read_deptreader.Close();
 
-                        read_deptreader = read_deptcommand.ExecuteReader();
+                        //read_deptreader = read_deptcommand.ExecuteReader();
 
 
 
@@ -150,24 +150,89 @@ namespace databaseteam18
 
 
                     }
-                    else
+                    //else
+                    //{
+                    //    //successMessage.InnerHtml = "Login successfull with following warning: no department assigned to this user.";
+                    //    //successMessage.Style.Remove("display");
+                    //    //System.Threading.Thread.Sleep(3500);
+                    //    Response.Redirect("~/Default.aspx");
+                    //    //Response.AddHeader("REFRESH", "5;URL=~/Default.aspx");
+                    //}
+
+                    /////////////////////////////////////////////////
+                  
+
+
+
+                    ///
+                    ////// Read user(Manager) current project_id
+                    
+
+                    string read_project_query = "SELECT project_id FROM COMPANY.manages_project WHERE employee_ID=@employee_id;";
+                    SqlCommand read_projectcommand = new SqlCommand(read_project_query, connection);
+                    read_projectcommand.Parameters.AddWithValue("@employee_id", employee_id);
+
+                    //connection.Open();
+                    SqlDataReader read_projectreader = read_projectcommand.ExecuteReader();
+
+                    if (read_projectreader.HasRows)
                     {
-                        //successMessage.InnerHtml = "Login successfull with following warning: no department assigned to this user.";
-                        //successMessage.Style.Remove("display");
-                        //System.Threading.Thread.Sleep(3500);
-                        Response.Redirect("~/Default.aspx");
-                        //Response.AddHeader("REFRESH", "5;URL=~/Default.aspx");
+
+
+                        //rowCount = 0;
+
+                        //while (read_projectreader.Read())
+                        //{
+                        //    rowCount++;
+                        //}
+
+
+                        //if (rowCount != 1)
+                        //{
+                        //    errorMessage.InnerHtml = "Something unexpected happened. Please try again later.(more than 1 row returned by user_login table";
+                        //    errorMessage.Style.Remove("display");
+                        //    return;
+                        //}
+
+                        //read_projectreader.Close();
+
+                        //read_projectreader = read_deptcommand.ExecuteReader();
+
+
+
+                        //Read current employee department id
+                        while (read_projectreader.Read())
+
+
+                        {
+                            Session["project_id"] = Convert.ToInt32(read_projectreader["project_ID"]);
+
+
+                        }
+
+
+                        read_projectreader.Close();
+
+
                     }
+                    //else
+                    //{
+                    //    //successMessage.InnerHtml = "Login successfull with following warning: no department assigned to this user.";
+                    //    //successMessage.Style.Remove("display");
+                    //    //System.Threading.Thread.Sleep(3500);
+                    //    Response.Redirect("~/Default.aspx");
+                    //    //Response.AddHeader("REFRESH", "5;URL=~/Default.aspx");
+                    //}
 
                     /////////////////////////////////////////////////
 
-                    //successMessage.InnerHtml = "Login successfull!";
-                    //successMessage.Style.Remove("display");
+                    errorMessage.InnerHtml = "DEPT ID: "+ Session["department_id"] +"  PROJECT ID: "+ Session["project_id"];
+                    errorMessage.Style.Remove("display");
                     //System.Threading.Thread.Sleep(1000);
 
 
 
-                    Response.Redirect("~/Default.aspx");
+                    //Response.Redirect("~/Default.aspx");
                     //Response.AddHeader("REFRESH", "5;URL=~/Default.aspx");
 
 

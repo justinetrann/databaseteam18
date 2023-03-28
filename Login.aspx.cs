@@ -140,7 +140,15 @@ namespace databaseteam18
 
 
                         {
-                            Session["department_id"] = Convert.ToInt32(read_deptreader["dept_ID"]);
+
+                           
+                            if (read_deptreader["dept_ID"].ToString().Length != 0)
+                             {
+                                Session["department_id"] = Convert.ToInt32(read_deptreader["dept_ID"]);
+                            }
+                            
+
+
 
 
                         }
@@ -205,6 +213,7 @@ namespace databaseteam18
 
 
                         {
+
                             Session["project_id"] = Convert.ToInt32(read_projectreader["project_ID"]);
 
 
@@ -226,8 +235,7 @@ namespace databaseteam18
 
                     /////////////////////////////////////////////////
 
-                    errorMessage.InnerHtml = "DEPT ID: "+ Session["department_id"] +"  PROJECT ID: "+ Session["project_id"];
-                    errorMessage.Style.Remove("display");
+                    
                     //System.Threading.Thread.Sleep(1000);
 
 

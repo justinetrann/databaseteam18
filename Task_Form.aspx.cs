@@ -116,7 +116,7 @@ namespace databaseteam18
 
                     task_results.DataSource = tasks;
                     task_results.DataTextField = "task_name"; // The column you want to display in the dropdown list
-                    task_results.DataValueField = "taks_ID"; // The column you want to use as the value for the selected item
+                    task_results.DataValueField = "task_ID"; // The column you want to use as the value for the selected item
                     task_results.DataBind();
 
                     task_dependency_id = Convert.ToInt32(task_results.SelectedValue);
@@ -126,11 +126,11 @@ namespace databaseteam18
 
                 }
                 ///////////////////////
-
+                ///getting all employess that work for the department, which contains the project with the new task
                 int department_id = Convert.ToInt32(Session["department_id"]);
 
 
-                ///getting all employess that work for the department, which contains the project with the new task
+                
 
 
                 string read_employees_query = "SELECT employee_id, employee_first_name, employee_last_name FROM COMPANY.employees WHERE dept_ID = @department_id;";
@@ -164,6 +164,7 @@ namespace databaseteam18
 
                 ///Insert into tasks table
                 
+
 
 
 

@@ -165,10 +165,9 @@ namespace databaseteam18
                     //successMessage.Style.Remove("display");
                     //System.Threading.Thread.Sleep(1000);
 
-                    successMessage.InnerHtml = Session["project_id"].ToString();
-                    successMessage.Style.Remove("display");
 
-                    //Response.Redirect("~/Default.aspx");
+
+                    Response.Redirect("~/Default.aspx");
                     //Response.AddHeader("REFRESH", "5;URL=~/Default.aspx");
 
 

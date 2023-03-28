@@ -34,6 +34,12 @@
                 <div id="errorMessage" class="alert alert-danger" runat ="server" style="display:none;">
                     Passwords do not match!
                 </div>
+                    <div id="warningMessage" class="alert alert-warning" runat ="server" style="display:none;">
+                    
+                </div>
+                <div id="successMessage" class="alert alert-success" runat ="server" style="display:none;">
+                    
+                </div>
                 </form>
             </div>
         </div>

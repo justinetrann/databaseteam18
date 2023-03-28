@@ -148,14 +148,16 @@ namespace databaseteam18
                     }
                     else
                     {
-                        errorMessage.InnerHtml = "Login successfull with following warning: no department assigned to this user.";
-                        errorMessage.Style.Remove("display");
+                        warningMessage.InnerHtml = "Login successfull with following warning: no department assigned to this user.";
+                        warningMessage.Style.Remove("display");
                         Response.AddHeader("REFRESH", "5;URL=~/Default.aspx");
                     }
 
                     /////////////////////////////////////////////////
 
                     //Response.Redirect("~/Default.aspx");
+                    successMessage.InnerHtml = "Login successfull!";
+                    successMessage.Style.Remove("display");
                     Response.AddHeader("REFRESH", "5;URL=~/Default.aspx");
 
 

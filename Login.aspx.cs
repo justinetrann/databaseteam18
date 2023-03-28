@@ -44,6 +44,7 @@ namespace databaseteam18
 
                 string email = login_email.Value;
                 string password = login_password.Value;
+                int employee_id = -1;
 
                 string query = "SELECT * FROM COMPANY.User_Login WHERE user_email=@Email AND user_password=@Password";
                 SqlCommand command = new SqlCommand(query, connection);
@@ -77,9 +78,8 @@ namespace databaseteam18
 
                     reader = command.ExecuteReader();
 
-                 
 
-                    //Redirect the user to the home page
+                    // Set Session Variables and Redirect the user to the home page
                     while (reader.Read())
 
 
@@ -87,10 +87,76 @@ namespace databaseteam18
                         Session["user_login_id"] = Convert.ToInt32(reader["login_ID"]);
                         Session["employee_id"] = Convert.ToInt32(reader["employee_ID"]);
                         Session["role_id"] = Convert.ToInt32(reader["user_role_ID"]);
-                        
+                        //setting current user department_id and project_id to default value -1
+                        Session["department_id"] = -1;
+                        Session["project_id"] = -1;
+
+                        employee_id = Convert.ToInt32(reader["employee_ID"];
+
+
                     }
 
-                    Response.Redirect("~/Default.aspx");
+
+                    ////// Read user current department_id and project_id
+                    ///
+                    
+                    string read_dept_query = "SELECT dept_ID FROM COMPANY.employees WHERE employee_id=@employee_id;
+                    SqlCommand read_deptcommand = new SqlCommand(read_dept_query, connection);
+                    command.Parameters.AddWithValue("@employee_id", employee_id);
+
+                    connection.Open();
+                    SqlDataReader read_deptreader = read_deptcommand.ExecuteReader();
+
+                    if (read_deptreader.HasRows)
+                    {
+
+
+                        int rowCount = 0;
+
+                        while (read_deptreader.Read())
+                        {
+                            rowCount++;
+                        }
+
+
+                        if (rowCount != 1)
+                        {
+                            errorMessage.InnerHtml = "Something unexpected happened. Please try again later.(more than 1 row returned by user_login table";
+                            errorMessage.Style.Remove("display");
+                            return;
+                        }
+
+                        read_deptreader.Close();
+
+                        read_deptreader = command.ExecuteReader();
+
+
+
+                        //Read current employee department id
+                        while (read_deptreader.Read())
+
+
+                        {
+                            Session["department_id"] = Convert.ToInt32(reader["dept_ID"]);
+
+
+                        }
+
+ 
+
+
+                    }
+                    else
+                    {
+                        errorMessage.InnerHtml = "Login successfull with following warning: no department assigned to this user.";
+                        errorMessage.Style.Remove("display");
+                        Response.AddHeader("REFRESH", "5;URL=~/Default.aspx");
+                    }
+
+                    /////////////////////////////////////////////////
+
+                    //Response.Redirect("~/Default.aspx");
+                    Response.AddHeader("REFRESH", "5;URL=~/Default.aspx");
 
 
                 }

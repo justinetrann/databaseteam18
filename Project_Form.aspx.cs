@@ -79,7 +79,7 @@ namespace databaseteam18
                 //CHECK MANAGER PROJECT ASSIGNMENT STATUS
                 //Get current manager project assignment status 
                
-                string project_assignment_status = 'no_values';
+                string project_assignment_status = "no_values";
                 string read_status_query = "SELECT project_assignment_status FROM COMPANY.manages_project WHERE employee_id = @employee_id ;";
                 SqlCommand read_status_querycommand = new SqlCommand(read_status_query, connection);
                 read_status_querycommand.Parameters.AddWithValue("@employee_id", employee_id);
@@ -106,12 +106,14 @@ namespace databaseteam18
                         rowCount++;
                     }
 
-                if (rowCount == 1)
+                    status_reader.Close();
+
+                    if (rowCount == 1)
                     {
 
-                        status_reader.Close();
+                        
 
-                        status_reader = read_command.ExecuteReader();
+                        status_reader = read_status_querycommand.ExecuteReader();
 
 
 
@@ -120,16 +122,24 @@ namespace databaseteam18
 
 
                         {
-                            project_assignment_status = status_reader["project_assignment_status"];
+                            project_assignment_status = Convert.ToString(status_reader["project_assignment_status"]);
 
-                            if (project_assignment_status == 'assigned') {
-                                errorMessage.InnerHtml = "Error while adding new project! Cannot assign more than one project.";
-                                errorMessage.Style.Remove("display");
-                                return;
-                            }
+                         
                             
                         }
+
+                        //errorMessage.InnerHtml = (project_assignment_status.ToString()).GetType().ToString() + (Convert.ToString("assigned").ToString()).GetType().ToString();
+                        //errorMessage.Style.Remove("display");
+                        //return;
+
+                        if (project_assignment_status != Convert.ToString("assigned"))
+                        {
+                            errorMessage.InnerHtml = "Error while adding new project! Cannot assign more than one project.";
+                            errorMessage.Style.Remove("display");
+                            return;
+                        }
                         
+
                     }
 
 
@@ -145,7 +155,7 @@ namespace databaseteam18
                 string read_query = "SELECT dept_ID FROM COMPANY.employees WHERE employee_id = @employee_id ;";
                 SqlCommand read_command = new SqlCommand(read_query, connection);
                 read_command.Parameters.AddWithValue("@employee_id", employee_id);
-                connection.Open();
+                
 
                 //read_command.ExecuteNonQuery();
 
@@ -236,7 +246,7 @@ namespace databaseteam18
 
                         /////// ASSIGNING PROJECT TO CURRENT MANAGER
                         string insert_manages_project_query = "INSERT INTO COMPANY.manages_project (employee_ID, project_ID) values (@employee_id, @project_id) ;";
-                        SqlCommand insert_manages_project_command = new SqlCommand(read_query, connection);
+                        SqlCommand insert_manages_project_command = new SqlCommand(insert_manages_project_query, connection);
                         insert_manages_project_command.Parameters.AddWithValue("@employee_id", employee_id);
                         insert_manages_project_command.Parameters.AddWithValue("@project_id", project_id);
 

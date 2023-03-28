@@ -17,6 +17,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 using System.Diagnostics;
+using System.Threading;
 
 namespace databaseteam18
 {
@@ -91,27 +92,29 @@ namespace databaseteam18
                         Session["department_id"] = -1;
                         Session["project_id"] = -1;
 
-                        employee_id = Convert.ToInt32(reader["employee_ID"];
+                        employee_id = Convert.ToInt32(reader["employee_ID"]);
 
 
                     }
+
+                    //reader.Close();
 
 
                     ////// Read user current department_id and project_id
                     ///
                     
-                    string read_dept_query = "SELECT dept_ID FROM COMPANY.employees WHERE employee_id=@employee_id;
+                    string read_dept_query = "SELECT dept_ID FROM COMPANY.employees WHERE employee_id=@employee_id;";
                     SqlCommand read_deptcommand = new SqlCommand(read_dept_query, connection);
-                    command.Parameters.AddWithValue("@employee_id", employee_id);
+                    read_deptcommand.Parameters.AddWithValue("@employee_id", employee_id);
 
-                    connection.Open();
+                    //connection.Open();
                     SqlDataReader read_deptreader = read_deptcommand.ExecuteReader();
 
                     if (read_deptreader.HasRows)
                     {
 
 
-                        int rowCount = 0;
+                        rowCount = 0;
 
                         while (read_deptreader.Read())
                         {
@@ -128,7 +131,7 @@ namespace databaseteam18
 
                         read_deptreader.Close();
 
-                        read_deptreader = command.ExecuteReader();
+                        read_deptreader = read_deptcommand.ExecuteReader();
 
 
 
@@ -137,12 +140,13 @@ namespace databaseteam18
 
 
                         {
-                            Session["department_id"] = Convert.ToInt32(reader["dept_ID"]);
+                            Session["department_id"] = Convert.ToInt32(read_deptreader["dept_ID"]);
 
 
                         }
 
- 
+
+                        read_deptreader.Close();
 
 
                     }

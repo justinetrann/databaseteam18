@@ -28,7 +28,7 @@ namespace databaseteam18
             //check if all required fields are filled
 
 
-            if (string.IsNullOrEmpty(task_Name.Value) || string.IsNullOrEmpty(task_Description.Value) || string.IsNullOrEmpty(estimated_duration.Value))
+            if (string.IsNullOrEmpty(task_name.Value) || string.IsNullOrEmpty(task_description.Value) || string.IsNullOrEmpty(estimated_duration.Value))
 
             {
 
@@ -73,7 +73,7 @@ namespace databaseteam18
 
 
                 ////getting already existing tasks to determine predecessors
-                string read_tasks_query = "SELECT (task_ID, task_name) FROM COMPANY.tasks WHERE project_id = @project_id;";
+                string read_tasks_query = "SELECT task_ID, task_name FROM COMPANY.tasks WHERE project_id = @project_id;";
 
                 SqlCommand read_tasks_command = new SqlCommand(read_tasks_query, connection);
                 read_tasks_command.Parameters.AddWithValue("@project_id", project_id);
@@ -149,8 +149,13 @@ namespace databaseteam18
                 // fill the DataTable with the results of the SQL query
                 da.Fill(employees);
 
+                
+                
+
+
+
                 task_employees.DataSource = employees;
-                task_employees.DataTextField = "employee_last_name, employee_first_name"; // The column you want to display in the dropdown list
+                task_employees.DataTextField = "employee_last_name"; // The column you want to display in the dropdown list
                 task_employees.DataValueField = "employee_id"; // The column you want to use as the value for the selected item
                 task_employees.DataBind();
 

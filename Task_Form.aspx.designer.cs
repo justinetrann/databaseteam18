@@ -15,13 +15,13 @@ namespace databaseteam18
     {
 
         /// <summary>
-        /// task_Name control.
+        /// task_name control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText task_Name;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText task_name;
 
         /// <summary>
         /// task_employees control.
@@ -33,13 +33,13 @@ namespace databaseteam18
         protected global::System.Web.UI.WebControls.DropDownList task_employees;
 
         /// <summary>
-        /// task_Description control.
+        /// task_description control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText task_Description;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText task_description;
 
         /// <summary>
         /// task_results control.

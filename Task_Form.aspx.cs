@@ -189,9 +189,7 @@ namespace databaseteam18
 
 
 
-                errorMessage.InnerHtml = this.employee_id.ToString();
-                errorMessage.Style.Remove("display");
-                return;
+                
 
                 string connectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
 

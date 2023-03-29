@@ -8,13 +8,14 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
 using System.Globalization;
+using System.Data.Common;
 
 namespace databaseteam18
 {
     public partial class Task_Form : System.Web.UI.Page
     {
 
-        int project_id = Convert.ToInt32(Session["project_id"]);
+        int project_id = -1;
 
         int predecessor_id = -1;
         int employee_id = -1;
@@ -26,9 +27,10 @@ namespace databaseteam18
         protected void Page_Load(object sender, EventArgs e)
         {
             submitButton.ServerClick += new EventHandler(submitButton_Click);
+            SqlDataAdapter da;
 
 
-
+            project_id = Convert.ToInt32(Session["project_id"]);
 
             string connectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
             SqlConnection connection = new SqlConnection(connectionString);
@@ -41,12 +43,12 @@ namespace databaseteam18
 
 
 
-            string read_employees_query = "SELECT employee_id, employee_first_name, employee_last_name FROM COMPANY.employees WHERE dept_ID = @department_id;";
+            string read_employees_query = "SELECT employee_id, convert(varchar, employee_id) + ' ' + employee_first_name + ' ' + employee_last_name AS employee_full_name FROM COMPANY.employees WHERE dept_ID = @department_id;";
 
             SqlCommand read_employees_command = new SqlCommand(read_employees_query, connection);
             read_employees_command.Parameters.AddWithValue("@department_id", department_id);
 
-
+           
 
             da = new SqlDataAdapter(read_employees_command);
 
@@ -62,11 +64,11 @@ namespace databaseteam18
 
 
             task_employees.DataSource = employees;
-            task_employees.DataTextField = "employee_last_name"; // The column you want to display in the dropdown list
+            task_employees.DataTextField = "employee_full_name"; // The column you want to display in the dropdown list
             task_employees.DataValueField = "employee_id"; // The column you want to use as the value for the selected item
             task_employees.DataBind();
 
-            employee_id = Convert.ToInt32(task_employees.SelectedValue);
+            //this.employee_id = Convert.ToInt32(task_employees.SelectedValue);
 
             read_employees_command.Dispose();
             da.Dispose();
@@ -86,7 +88,7 @@ namespace databaseteam18
 
 
             int rowCount = 0;
-            SqlDataAdapter da;
+            
 
             while (task_name_reader.Read())
             {
@@ -97,8 +99,8 @@ namespace databaseteam18
 
             if (rowCount == 0)
             {
-                successMessage.InnerHtml = "There are no tasks for the current project!";
-                successMessage.Style.Remove("display");
+                //successMessage.InnerHtml = "There are no tasks for the current project!";
+                //successMessage.Style.Remove("display");
                 tasks_exsiting_flag = false;
             }
 
@@ -113,11 +115,15 @@ namespace databaseteam18
                 da.Fill(tasks);
 
                 task_results.DataSource = tasks;
+                task_results.AppendDataBoundItems = true;
+                task_results.Items.Insert(0, new ListItem("Select an option", "-1"));
                 task_results.DataTextField = "task_name"; // The column you want to display in the dropdown list
                 task_results.DataValueField = "task_ID"; // The column you want to use as the value for the selected item
+                
+                
                 task_results.DataBind();
 
-                predecessor_id = Convert.ToInt32(task_results.SelectedValue);
+                
 
                 read_tasks_command.Dispose();
                 da.Dispose();
@@ -164,11 +170,22 @@ namespace databaseteam18
                 Random rand = new Random();
                 int task_id = rand.Next(20000, 40000);
 
+                if (task_results.SelectedValue.ToString() == "-1")
+                    tasks_exsiting_flag = false;
 
+
+                else
+                    predecessor_id = Convert.ToInt32(task_results.SelectedValue);
+                
                 ////////////////////////////
 
                 ///Insert into tasks table
                 ///
+                this.employee_id = Convert.ToInt32(task_employees.SelectedValue);
+
+                //errorMessage.InnerHtml = this.employee_id.ToString();
+                //errorMessage.Style.Remove("display");
+                //return;
 
                 string connectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
 
@@ -179,6 +196,7 @@ namespace databaseteam18
 
                 int task_assignment_id = rand.Next(50000, 90000);
                 int task_dependency_id = rand.Next(5000, 9000);
+                
 
                 string task_status = "assigned";
 
@@ -190,14 +208,17 @@ namespace databaseteam18
 
                 string query = "INSERT INTO COMPANY.tasks (project_ID, task_ID, task_name, task_description, task_est_duration, task_creation_date) VALUES (@project_id, @task_id, @task_name, @task_description, @task_est_duration, @task_creation_date);";
 
-                query += "INSERT INTO COMPANY.task_asssignment (task_assignment_ID, task_id, employee_ID, project_ID, task_status, task_assignment_date) VALUES (@task_assignment_ID, @task_id,@employee_ID,@project_ID, @task_status, @task_assignment_date);";
+                query += "INSERT INTO COMPANY.task_assignment (task_assignment_ID, task_id, employee_ID, project_ID, task_status, task_assignment_date) VALUES (@task_assignment_ID, @task_id,@employee_ID,@project_ID, @task_status, @task_assignment_date);";
 
-
+                if (tasks_exsiting_flag == true)
+                {
+                    query += "INSERT INTO COMPANY.Tasks_Dependecies (task_dependency_ID, task_descendant_ID, task_predecessor_ID) VALUES (@task_dependency_id, @task_id,@predecessor_id);";
+                }
 
 
                 SqlCommand command = new SqlCommand(query, connection);
 
-
+               
 
                 command.Parameters.AddWithValue("@project_id", project_id);
 
@@ -207,17 +228,26 @@ namespace databaseteam18
 
                 command.Parameters.AddWithValue("@task_description", task_description.Value);
 
-                command.Parameters.AddWithValue("@task_est_duration", estimated_duration);
+                command.Parameters.AddWithValue("@task_est_duration", estimated_duration.Value);
 
                 command.Parameters.AddWithValue("@task_creation_date", task_creation_date);
 
 
                 command.Parameters.AddWithValue("@task_assignment_ID", task_assignment_id);
-                command.Parameters.AddWithValue("@task_id", task_id);
-                command.Parameters.AddWithValue("@employee_ID", employee_id);
-                command.Parameters.AddWithValue("@project_ID", project_id);
+                //command.Parameters.AddWithValue("@task_id", task_id);
+                command.Parameters.AddWithValue("@employee_ID", this.employee_id);
+                //command.Parameters.AddWithValue("@project_ID", project_id);
                 command.Parameters.AddWithValue("@task_status", task_status); 
                 command.Parameters.AddWithValue("@task_assignment_date", task_creation_date);
+
+                if (tasks_exsiting_flag == true)
+                {
+
+                    command.Parameters.AddWithValue("@task_dependency_ID", task_dependency_id);
+                    command.Parameters.AddWithValue("@predecessor_id", predecessor_id);
+
+
+                }
 
 
                 //Response.Redirect("~/Default.aspx");
@@ -225,7 +255,8 @@ namespace databaseteam18
                 command.ExecuteNonQuery();
 
 
-
+                tasks_exsiting_flag = true;
+                Response.Redirect("~/Task_Form.aspx");
                 connection.Close();
 
 

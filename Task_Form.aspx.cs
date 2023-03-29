@@ -13,6 +13,16 @@ namespace databaseteam18
 {
     public partial class Task_Form : System.Web.UI.Page
     {
+
+        int project_id = Convert.ToInt32(Session["project_id"]);
+
+        int predecessor_id = -1;
+        int employee_id = -1;
+        bool tasks_exsiting_flag = true;
+        
+
+        
+
         protected void Page_Load(object sender, EventArgs e)
         {
             submitButton.ServerClick += new EventHandler(submitButton_Click);
@@ -20,12 +30,111 @@ namespace databaseteam18
 
 
 
+            string connectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+
+
+            //////////////////////////
+            ///getting all employees that work for the department, which contains the project with the new task
+            int department_id = Convert.ToInt32(Session["department_id"]);
+
+
+
+            string read_employees_query = "SELECT employee_id, employee_first_name, employee_last_name FROM COMPANY.employees WHERE dept_ID = @department_id;";
+
+            SqlCommand read_employees_command = new SqlCommand(read_employees_query, connection);
+            read_employees_command.Parameters.AddWithValue("@department_id", department_id);
+
+
+
+            da = new SqlDataAdapter(read_employees_command);
+
+            // create a DataTable to hold the results
+            DataTable employees = new DataTable();
+
+            // fill the DataTable with the results of the SQL query
+            da.Fill(employees);
+
+
+
+
+
+
+            task_employees.DataSource = employees;
+            task_employees.DataTextField = "employee_last_name"; // The column you want to display in the dropdown list
+            task_employees.DataValueField = "employee_id"; // The column you want to use as the value for the selected item
+            task_employees.DataBind();
+
+            employee_id = Convert.ToInt32(task_employees.SelectedValue);
+
+            read_employees_command.Dispose();
+            da.Dispose();
+
+
+            ////getting already existing tasks to determine predecessors
+            string read_tasks_query = "SELECT task_ID, task_name FROM COMPANY.tasks WHERE project_id = @project_id;";
+
+            SqlCommand read_tasks_command = new SqlCommand(read_tasks_query, connection);
+            read_tasks_command.Parameters.AddWithValue("@project_id", project_id);
+
+
+
+
+            SqlDataReader task_name_reader = read_tasks_command.ExecuteReader();
+
+
+
+            int rowCount = 0;
+            SqlDataAdapter da;
+
+            while (task_name_reader.Read())
+            {
+                rowCount++;
+            }
+
+            task_name_reader.Close();
+
+            if (rowCount == 0)
+            {
+                successMessage.InnerHtml = "There are no tasks for the current project!";
+                successMessage.Style.Remove("display");
+                tasks_exsiting_flag = false;
+            }
+
+            else if (rowCount > 0)
+            {
+                da = new SqlDataAdapter(read_tasks_command);
+
+                // create a DataTable to hold the results
+                DataTable tasks = new DataTable();
+
+                // fill the DataTable with the results of the SQL query
+                da.Fill(tasks);
+
+                task_results.DataSource = tasks;
+                task_results.DataTextField = "task_name"; // The column you want to display in the dropdown list
+                task_results.DataValueField = "task_ID"; // The column you want to use as the value for the selected item
+                task_results.DataBind();
+
+                predecessor_id = Convert.ToInt32(task_results.SelectedValue);
+
+                read_tasks_command.Dispose();
+                da.Dispose();
+
+            }
+            
+
+            connection.Close();
+
         }
         protected void submitButton_Click(object sender, EventArgs e)
 
         {
 
             //check if all required fields are filled
+
+
 
 
             if (string.IsNullOrEmpty(task_name.Value) || string.IsNullOrEmpty(task_description.Value) || string.IsNullOrEmpty(estimated_duration.Value))
@@ -51,17 +160,15 @@ namespace databaseteam18
 
             {
 
+                //////////  setting default task ID 
                 Random rand = new Random();
-
                 int task_id = rand.Next(20000, 40000);
 
-                int project_id = Convert.ToInt32(Session["project_id"]);
 
-                int predecessor_id = -1;
-                int employee_id = -1;
+                ////////////////////////////
 
-                bool tasks_exsiting_flag = true;
-
+                ///Insert into tasks table
+                ///
 
                 string connectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
 
@@ -69,107 +176,6 @@ namespace databaseteam18
 
 
                 connection.Open();
-
-
-
-                ////getting already existing tasks to determine predecessors
-                string read_tasks_query = "SELECT task_ID, task_name FROM COMPANY.tasks WHERE project_id = @project_id;";
-
-                SqlCommand read_tasks_command = new SqlCommand(read_tasks_query, connection);
-                read_tasks_command.Parameters.AddWithValue("@project_id", project_id);
-
-
-
-
-                SqlDataReader task_name_reader = read_tasks_command.ExecuteReader();
-
-
-
-
-
-
-                int rowCount = 0;
-                SqlDataAdapter da;
-
-                while (task_name_reader.Read())
-                {
-                    rowCount++;
-                }
-
-                task_name_reader.Close();
-
-                if (rowCount == 0)
-                {
-                    successMessage.InnerHtml = "There are no tasks for the current project!";
-                    successMessage.Style.Remove("display");
-                    tasks_exsiting_flag = false;
-                }
-
-                else if (rowCount > 0)
-                {
-                    da = new SqlDataAdapter(read_tasks_command);
-
-                    // create a DataTable to hold the results
-                    DataTable tasks = new DataTable();
-
-                    // fill the DataTable with the results of the SQL query
-                    da.Fill(tasks);
-
-                    task_results.DataSource = tasks;
-                    task_results.DataTextField = "task_name"; // The column you want to display in the dropdown list
-                    task_results.DataValueField = "task_ID"; // The column you want to use as the value for the selected item
-                    task_results.DataBind();
-
-                    predecessor_id = Convert.ToInt32(task_results.SelectedValue);
-
-                    read_tasks_command.Dispose();
-                    da.Dispose();
-
-                }
-                ///////////////////////
-                ///getting all employess that work for the department, which contains the project with the new task
-                int department_id = Convert.ToInt32(Session["department_id"]);
-
-
-
-
-
-                string read_employees_query = "SELECT employee_id, employee_first_name, employee_last_name FROM COMPANY.employees WHERE dept_ID = @department_id;";
-
-                SqlCommand read_employees_command = new SqlCommand(read_employees_query, connection);
-                read_employees_command.Parameters.AddWithValue("@department_id", department_id);
-
-
-
-                da = new SqlDataAdapter(read_employees_command);
-
-                // create a DataTable to hold the results
-                DataTable employees = new DataTable();
-
-                // fill the DataTable with the results of the SQL query
-                da.Fill(employees);
-
-                
-                
-
-
-
-                task_employees.DataSource = employees;
-                task_employees.DataTextField = "employee_last_name"; // The column you want to display in the dropdown list
-                task_employees.DataValueField = "employee_id"; // The column you want to use as the value for the selected item
-                task_employees.DataBind();
-
-                employee_id = Convert.ToInt32(task_employees.SelectedValue);
-
-                read_employees_command.Dispose();
-                da.Dispose();
-
-
-
-                ////////////////////////////
-
-                ///Insert into tasks table
-                ///
 
                 int task_assignment_id = rand.Next(50000, 90000);
                 int task_dependency_id = rand.Next(5000, 9000);
@@ -220,7 +226,7 @@ namespace databaseteam18
 
 
 
-
+                connection.Close();
 
 
 

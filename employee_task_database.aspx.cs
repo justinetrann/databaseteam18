@@ -16,20 +16,41 @@ namespace databaseteam18
         {
             // Establishing connection string to database
             // Reading from the web.config file
-            int project_id = -1;
+            int selected_project_id = -1;
             string dbConnectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
 
             SqlConnection connection = new SqlConnection(dbConnectionString);
 
             connection.Open();
+
+
+            //READ EMPLOYEE CURRENT PROJECTS AND DISPLAY IN DROP DOWN LIST
             string employee_id = Session["employee_id"].ToString();
+            
+            string read_employee_projects_query = "SELECT DISTINCT COMPANY.task_assignment.project_ID, COMPANY.projects.Name as project_name FROM COMPANY.task_assignment as TA inner join COMPANY.projects as P on TA.project_ID = P.ID WHERE employee_ID = @employee_id and project_assignment_status = 'active';";
+
+            SqlCommand read_employee_projects_command = new SqlCommand(read_employee_projects_query, connection);
+            read_employee_projects_command.Parameters.AddWithValue("@employee_id", employee_id);
+
+            da = new SqlDataAdapter(read_employee_projects_command);
+
+            // create a DataTable to hold the results
+            DataTable projects = new DataTable();
+
+            // fill the DataTable with the results of the SQL query
+            da.Fill(projects);
 
 
-            string read_project_id_query = "SELECT DISTINCT COMPANY.task_assignment.project_ID FROM COMPANY.task_assignment WHERE employee_ID = @employee_id;";
 
-            SqlCommand read_project_id_command = new SqlCommand(read_project_id_query, connection);
-            read_project_id_command.Parameters.AddWithValue("@employee_id", employee_id);
+            employee_projects.DataSource = projects;
+            employee_projects.AppendDataBoundItems = true;
+            employee_projects.DataTextField = "project_name"; // The column you want to display in the dropdown list
+            employee_projects.DataValueField = "project_ID"; // The column you want to use as the value for the selected item
+            employee_projects.DataBind();
 
+
+            read_employee_projects_command.Dispose();
+            da.Dispose();
 
 
 

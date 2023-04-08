@@ -3,7 +3,31 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <link rel="stylesheet" href="Styles/project.css">
     <main aria-labelledby="task_database">
-        <p>Current Tasks in Database</p>
+        <div className="container">
+            <form>
+              <div class="form-group row">
+                <label for="projectName" class="col-sm-2 col-form-label">Project Name</label>
+                <div class="col-sm-3">
+                  <%--<select name="projectName" id="project_name">
+                      <option value=NULL>Select Project</option>
+                      <option value=NULL selected>N/A - None</option>
+                  </select>--%>
+                <asp:DropDownList ID="project_name" runat="server"> </asp:DropDownList>
+                </div>
+              </div>
+
+                <button type="submit" id ="submitButton" runat ="server" class="btn3">View Tasks</button>
+            </form>
+
+
+            <div id="errorMessage" class="alert alert-danger" runat ="server" style="display:none;">
+                    
+             </div>
+            <div id="successMessage" class="alert alert-success" runat ="server" style="display:none;">
+                    
+             </div>
+        </div>
+        <p>Current Tasks for Selected Project</p>
         <asp:GridView ID ="GridView1" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%" Height ="400px">
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
             <EditRowStyle BackColor="#999999" />

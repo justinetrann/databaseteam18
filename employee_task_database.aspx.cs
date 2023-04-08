@@ -71,7 +71,7 @@ namespace databaseteam18
             var dbConncetion = new SqlConnection(dbConnectionString);
             var dataAdapter = new SqlDataAdapter(queryString, dbConncetion);
 
-            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            //var commandBuilder = new SqlCommandBuilder(dataAdapter);
             var ds = new DataSet();
             dataAdapter.Fill(ds);
 
@@ -107,8 +107,10 @@ namespace databaseteam18
         private void BindGridView()
         {
             // Connect to database and execute query to retrieve data
-            string connectionString = "your connection string here";
-            string query = "SELECT Id, Status FROM YourTableNameHere";
+           
+
+            string connectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
+            string query = "SELECT COMPANY.tasks.task_ID as 'Task ID', task_name as 'Task Name', task_description as 'Description',task_est_duration as 'Duration', COMPANY.task_assignment.task_status as 'Status', task_creation_date as 'Creation Date', convert(varchar,COMPANY.task_assignment.employee_id) + ' ' + employee_first_name + ' ' + employee_last_name as 'Employee'  FROM COMPANY.tasks  inner join COMPANY.task_assignment on COMPANY.task_assignment.task_id = COMPANY.tasks.task_ID inner join COMPANY.employees on COMPANY.employees.employee_id = COMPANY.task_assignment.employee_ID WHERE  COMPANY.tasks.project_ID=" + project_id + "AND COMPANY.task_assignment.employee_ID =" + employee_id;
 
             DataTable dataTable = new DataTable();
             using (SqlConnection connection = new SqlConnection(connectionString))

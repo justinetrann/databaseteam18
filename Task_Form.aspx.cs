@@ -32,6 +32,12 @@ namespace databaseteam18
 
             project_id = Convert.ToInt32(Session["project_id"]);
 
+
+
+            
+
+
+
             string connectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
             SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();
@@ -41,7 +47,12 @@ namespace databaseteam18
             ///getting all employees that work for the department, which contains the project with the new task
             int department_id = Convert.ToInt32(Session["department_id"]);
 
+            //errorMessage.InnerHtml = department_id.ToString();
 
+
+            //errorMessage.Style.Remove("display");
+
+            //return;
 
             string read_employees_query = "SELECT employee_id, convert(varchar, employee_id) + ' ' + employee_first_name + ' ' + employee_last_name AS employee_full_name FROM COMPANY.employees WHERE dept_ID = @department_id;";
 
@@ -102,7 +113,9 @@ namespace databaseteam18
             {
                 //successMessage.InnerHtml = "There are no tasks for the current project!";
                 //successMessage.Style.Remove("display");
-                tasks_exsiting_flag = false;
+
+                task_results.Items.Insert(0, new ListItem("No Tasks!", "-1"));
+                //tasks_exsiting_flag = false;
             }
 
             else if (rowCount > 0)
@@ -177,7 +190,7 @@ namespace databaseteam18
 
                 else
                     predecessor_id = Convert.ToInt32(task_results.SelectedValue);
-                
+
                 ////////////////////////////
 
                 ///Insert into tasks table

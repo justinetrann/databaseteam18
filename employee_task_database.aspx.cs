@@ -28,7 +28,7 @@ namespace databaseteam18
             //READ EMPLOYEE CURRENT PROJECTS AND DISPLAY IN DROP DOWN LIST
             string employee_id = Session["employee_id"].ToString();
             
-            string read_employee_projects_query = "SELECT DISTINCT COMPANY.task_assignment.project_ID, COMPANY.projects.Name as project_name FROM COMPANY.task_assignment as TA inner join COMPANY.projects as P on TA.project_ID = P.ID WHERE employee_ID = @employee_id and project_assignment_status = 'active';";
+            string read_employee_projects_query = "SELECT DISTINCT TA.project_ID, P.Name as project_name FROM COMPANY.task_assignment as TA inner join COMPANY.projects as P on TA.project_ID = P.ID WHERE employee_ID = @employee_id and project_assignment_status = 'active';";
 
             SqlCommand read_employee_projects_command = new SqlCommand(read_employee_projects_query, connection);
             read_employee_projects_command.Parameters.AddWithValue("@employee_id", employee_id);
@@ -55,19 +55,19 @@ namespace databaseteam18
 
 
 
-            SqlDataReader project_id_reader = read_project_id_command.ExecuteReader();
+            //SqlDataReader project_id_reader = read_project_id_command.ExecuteReader();
 
 
 
 
 
-            while (project_id_reader.Read())
-            {
-                project_id = Convert.ToInt32(project_id_reader["project_ID"].ToString());
-            }
+            //while (project_id_reader.Read())
+            //{
+            //    project_id = Convert.ToInt32(project_id_reader["project_ID"].ToString());
+            //}
 
-            project_id_reader.Close();
-            connection.Close();
+            //project_id_reader.Close();
+            //connection.Close();
 
 
 
@@ -89,9 +89,10 @@ namespace databaseteam18
 
 
             //var queryString = "SELECT * FROM COMPANY.tasks";
-            var queryString  = "SELECT COMPANY.tasks.task_ID as 'Task ID', task_name as 'Task Name', task_description as 'Description',task_est_duration as 'Duration', COMPANY.task_assignment.task_status as 'Status', task_creation_date as 'Creation Date', convert(varchar,COMPANY.task_assignment.employee_id) + ' ' + employee_first_name + ' ' + employee_last_name as 'Employee'  FROM COMPANY.tasks  inner join COMPANY.task_assignment on COMPANY.task_assignment.task_id = COMPANY.tasks.task_ID inner join COMPANY.employees on COMPANY.employees.employee_id = COMPANY.task_assignment.employee_ID WHERE  COMPANY.tasks.project_ID="+ project_id +"AND COMPANY.task_assignment.employee_ID ="+employee_id; // Return all records from Project Table in Database; // Return all records from Project Table in Database
+            var queryString  = "SELECT COMPANY.tasks.task_ID as 'Task ID', task_name as 'Task Name', task_description as 'Description',task_est_duration as 'Duration', COMPANY.task_assignment.task_status as 'Status', task_creation_date as 'Creation Date', convert(varchar,COMPANY.task_assignment.employee_id) + ' ' + employee_first_name + ' ' + employee_last_name as 'Employee'  FROM COMPANY.tasks  inner join COMPANY.task_assignment on COMPANY.task_assignment.task_id = COMPANY.tasks.task_ID inner join COMPANY.employees on COMPANY.employees.employee_id = COMPANY.task_assignment.employee_ID WHERE  COMPANY.tasks.project_ID="+ selected_project_id + "AND COMPANY.task_assignment.employee_ID ="+employee_id; // Return all records from Project Table in Database; // Return all records from Project Table in Database
             var dbConncetion = new SqlConnection(dbConnectionString);
-            var dataAdapter = new SqlDataAdapter(queryString, dbConncetion);
+            SqlCommand read_employee_tasks_command = new SqlCommand(queryString, dbConncetion);
+            var dataAdapter = new SqlDataAdapter(read_employee_tasks_command);
 
             //var commandBuilder = new SqlCommandBuilder(dataAdapter);
             var ds = new DataSet();

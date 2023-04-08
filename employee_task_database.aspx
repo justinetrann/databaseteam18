@@ -12,7 +12,7 @@
                       <option value=NULL>Select Project</option>
                       <option value=NULL selected>N/A - None</option>
                   </select>--%>
-                <asp:DropDownList ID="project_name" runat="server"> </asp:DropDownList>
+                <asp:DropDownList ID="employee_projects" runat="server"> </asp:DropDownList>
                 </div>
               </div>
 

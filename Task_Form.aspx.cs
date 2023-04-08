@@ -111,7 +111,7 @@ namespace databaseteam18
                 //successMessage.InnerHtml = "There are no tasks for the current project!";
                 //successMessage.Style.Remove("display");
 
-                task_results.Items.Insert(0, new ListItem("No Tasks!", "-1"));
+                task_results.Items.Insert(0, new ListItem("No Tasks", "-1"));
                 //tasks_exsiting_flag = false;
             }
 

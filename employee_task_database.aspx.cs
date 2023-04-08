@@ -12,11 +12,14 @@ namespace databaseteam18
 {
     public partial class employee_task_database : System.Web.UI.Page
     {
+        public int selected_project_id = -1;
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            submitButton.ServerClick += new EventHandler(viewTasksButton_Click);
             // Establishing connection string to database
             // Reading from the web.config file
-            int selected_project_id = -1;
+            
             SqlDataAdapter da;
             string dbConnectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
 
@@ -41,65 +44,56 @@ namespace databaseteam18
             // fill the DataTable with the results of the SQL query
             da.Fill(projects);
 
-
-
             employee_projects.DataSource = projects;
             employee_projects.AppendDataBoundItems = true;
+            employee_projects.Items.Insert(0, new ListItem("Select a project", "-1"));
             employee_projects.DataTextField = "project_name"; // The column you want to display in the dropdown list
             employee_projects.DataValueField = "project_ID"; // The column you want to use as the value for the selected item
             employee_projects.DataBind();
-
-
             read_employee_projects_command.Dispose();
             da.Dispose();
 
 
+            
+        }
 
-            //SqlDataReader project_id_reader = read_project_id_command.ExecuteReader();
+        protected void viewTasksButton_Click(object sender, EventArgs e)
 
+        {
+            if (employee_projects.SelectedValue.ToString() == "-1")
+            {// Display error message
 
+                errorMessage.InnerHtml = "You have not selected any project. Check again when you are assigned a project.";
 
+                errorMessage.Style.Remove("display");
 
-
-            //while (project_id_reader.Read())
-            //{
-            //    project_id = Convert.ToInt32(project_id_reader["project_ID"].ToString());
-            //}
-
-            //project_id_reader.Close();
-            //connection.Close();
-
-
-
+                return;
+            }
 
 
+            else
+            { 
+                selected_project_id = Convert.ToInt32(employee_projects.SelectedValue)
+                //var queryString = "SELECT * FROM COMPANY.tasks";
+                var queryString = "SELECT COMPANY.tasks.task_ID as 'Task ID', task_name as 'Task Name', task_description as 'Description',task_est_duration as 'Duration', COMPANY.task_assignment.task_status as 'Status', task_creation_date as 'Creation Date', convert(varchar,COMPANY.task_assignment.employee_id) + ' ' + employee_first_name + ' ' + employee_last_name as 'Employee'  FROM COMPANY.tasks  inner join COMPANY.task_assignment on COMPANY.task_assignment.task_id = COMPANY.tasks.task_ID inner join COMPANY.employees on COMPANY.employees.employee_id = COMPANY.task_assignment.employee_ID WHERE  COMPANY.tasks.project_ID=" + selected_project_id + "AND COMPANY.task_assignment.employee_ID =" + employee_id; // Return all records from Project Table in Database; // Return all records from Project Table in Database
+                var dbConncetion = new SqlConnection(dbConnectionString);
+                SqlCommand read_employee_tasks_command = new SqlCommand(queryString, dbConncetion);
+                var dataAdapter = new SqlDataAdapter(read_employee_tasks_command);
+
+                //var commandBuilder = new SqlCommandBuilder(dataAdapter);
+                var ds = new DataSet();
+                dataAdapter.Fill(ds);
+
+                GridView1.DataSource = ds.Tables[0];
+                GridView1.DataBind();
+                GridView1.Visible = true;
+
+            };
 
 
 
+           
 
-
-
-
-
-
-
-
-
-
-
-
-            //var queryString = "SELECT * FROM COMPANY.tasks";
-            var queryString  = "SELECT COMPANY.tasks.task_ID as 'Task ID', task_name as 'Task Name', task_description as 'Description',task_est_duration as 'Duration', COMPANY.task_assignment.task_status as 'Status', task_creation_date as 'Creation Date', convert(varchar,COMPANY.task_assignment.employee_id) + ' ' + employee_first_name + ' ' + employee_last_name as 'Employee'  FROM COMPANY.tasks  inner join COMPANY.task_assignment on COMPANY.task_assignment.task_id = COMPANY.tasks.task_ID inner join COMPANY.employees on COMPANY.employees.employee_id = COMPANY.task_assignment.employee_ID WHERE  COMPANY.tasks.project_ID="+ selected_project_id + "AND COMPANY.task_assignment.employee_ID ="+employee_id; // Return all records from Project Table in Database; // Return all records from Project Table in Database
-            var dbConncetion = new SqlConnection(dbConnectionString);
-            SqlCommand read_employee_tasks_command = new SqlCommand(queryString, dbConncetion);
-            var dataAdapter = new SqlDataAdapter(read_employee_tasks_command);
-
-            //var commandBuilder = new SqlCommandBuilder(dataAdapter);
-            var ds = new DataSet();
-            dataAdapter.Fill(ds);
-
-            GridView1.DataSource = ds.Tables[0];
-            GridView1.DataBind();
         }
 
         protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)

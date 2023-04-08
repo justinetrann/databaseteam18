@@ -71,9 +71,6 @@ namespace databaseteam18
 
 
 
-
-
-
             task_employees.DataSource = employees;
             task_employees.AppendDataBoundItems = true;
             task_employees.DataTextField = "employee_full_name"; // The column you want to display in the dropdown list

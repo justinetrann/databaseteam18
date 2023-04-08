@@ -252,7 +252,15 @@ namespace databaseteam18
 
                 //Response.Redirect("~/Default.aspx");
 
+
                 command.ExecuteNonQuery();
+                // Display success message
+
+                successMessage.InnerHtml = "Task Created Successfully!";
+
+                successMessage.Style.Remove("display");
+
+                return;
 
 
                 tasks_exsiting_flag = true;

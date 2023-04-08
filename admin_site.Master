@@ -50,8 +50,8 @@
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Contact">Contact</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Login">Login</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Signup">Signup</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/admin_home_page">Department Assign</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/department_assign">Role Assign</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/admin_home_page">Role Assign</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/department_assign">Department Assign</a></li>
 
 
        

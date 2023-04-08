@@ -64,6 +64,7 @@ namespace databaseteam18
 
 
             task_employees.DataSource = employees;
+            task_employees.AppendDataBoundItems = true;
             task_employees.DataTextField = "employee_full_name"; // The column you want to display in the dropdown list
             task_employees.DataValueField = "employee_id"; // The column you want to use as the value for the selected item
             task_employees.DataBind();
@@ -183,9 +184,12 @@ namespace databaseteam18
                 ///
                 this.employee_id = Convert.ToInt32(task_employees.SelectedValue);
 
-                //errorMessage.InnerHtml = this.employee_id.ToString();
-                //errorMessage.Style.Remove("display");
-                //return;
+
+
+
+
+
+                
 
                 string connectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
 
@@ -264,7 +268,7 @@ namespace databaseteam18
 
 
                 tasks_exsiting_flag = true;
-                Response.Redirect("~/Task_Form.aspx");
+                //Response.Redirect("~/Task_Form.aspx");
                 connection.Close();
 
 

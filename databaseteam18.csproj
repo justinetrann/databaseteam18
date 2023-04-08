@@ -105,6 +105,7 @@
     <Content Include="department_assign.aspx" />
     <Content Include="employeeReport.aspx" />
     <Content Include="Employee_Profile_Page.aspx" />
+    <Content Include="employee_task_database.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
@@ -159,6 +160,7 @@
     <Content Include="Content\bootstrap-grid.rtl.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <None Include="Properties\PublishProfiles\projectManagementSystem598 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -234,6 +236,13 @@
     </Compile>
     <Compile Include="Employee_Profile_Page.aspx.designer.cs">
       <DependentUpon>Employee_Profile_Page.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="employee_task_database.aspx.cs">
+      <DependentUpon>employee_task_database.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="employee_task_database.aspx.designer.cs">
+      <DependentUpon>employee_task_database.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

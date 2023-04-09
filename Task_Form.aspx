@@ -41,6 +41,12 @@
                   <input type="number" class="form-control" id="estimated_duration" runat ="server">
                 </div>
               </div>
+                 <div class="form-group row">
+                <label for="inputTaskEndDate" class="col-sm-2 col-form-label">Deadline</label>
+                <div class="col-sm-6">
+                  <input type="date" class="form-control" id="task_deadline" runat="server">
+                </div>
+              </div>
                 <button type="submit" id ="submitButton" runat ="server" class="btn3">Submit</button>
             </form>
 

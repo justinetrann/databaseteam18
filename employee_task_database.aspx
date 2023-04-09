@@ -60,7 +60,7 @@
                     </asp:DropDownList>
                 </EditItemTemplate>
             </asp:TemplateField>
-            <asp:BoundField DataField="Creation Date" HeaderText="Creation Date" ReadOnly="true" />
+            <asp:BoundField DataField="Assignment Date" HeaderText="Assignment Date" ReadOnly="true" />
             <asp:CommandField ShowEditButton="true" />
         </Columns>
 

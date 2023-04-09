@@ -14,7 +14,7 @@ namespace databaseteam18
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            BindGridView()
+            BindGridView();
         }
 
         protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)

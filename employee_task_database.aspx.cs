@@ -58,6 +58,8 @@ namespace databaseteam18
                 da.Dispose();
 
                 connection.Close();
+
+                
             }
 
         }
@@ -145,8 +147,8 @@ namespace databaseteam18
             connection.Open();
                     command.ExecuteNonQuery();
             connection.Close();
-                
-            
+
+
 
             GridView1.EditIndex = -1;
             BindGridView();
@@ -160,6 +162,7 @@ namespace databaseteam18
 
         private void BindGridView()
         {
+            viewTasksButton_Click(null, null);
             //// Connect to database and execute query to retrieve data
             string employee_id = Session["employee_id"].ToString();
 

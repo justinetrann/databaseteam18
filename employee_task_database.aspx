@@ -43,6 +43,7 @@
 
 
            <Columns>
+            <asp:BoundField DataField="Task ID" HeaderText="Duration" ReadOnly="true" Visible ="false" />
             <asp:BoundField DataField="Task Name" HeaderText="Task Name" ReadOnly="true" />
             <asp:BoundField DataField="Description" HeaderText="Description" ReadOnly="true" />
             <asp:BoundField DataField="Duration" HeaderText="Duration" ReadOnly="true" />

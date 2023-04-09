@@ -16,7 +16,9 @@
                 </div>
               </div>
 
-                <button type="submit" id ="submitButton" runat ="server" class="btn3">View Tasks</button>
+                <button type="submit" id ="submitButton" UseSubmitBehavior ="true" runat ="server" class="btn3">View Tasks</button>
+               
+
             </form>
 
 
@@ -43,6 +45,7 @@
 
 
            <Columns>
+            <asp:BoundField DataField="Task ID" HeaderText="Task ID" ReadOnly="true"/>
             <asp:BoundField DataField="Task Name" HeaderText="Task Name" ReadOnly="true" />
             <asp:BoundField DataField="Description" HeaderText="Description" ReadOnly="true" />
             <asp:BoundField DataField="Duration" HeaderText="Duration" ReadOnly="true" />

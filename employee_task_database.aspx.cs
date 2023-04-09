@@ -154,7 +154,7 @@ namespace databaseteam18
 
             GridView1.EditIndex = -1;
             BindGridView();
-            GridView1.Columns[5].Visible = true;
+            //GridView1.Columns[5].Visible = true;
         }
 
         protected void GridView1_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
@@ -162,7 +162,7 @@ namespace databaseteam18
             GridView1.EditIndex = -1;
 
             BindGridView();
-            GridView1.Columns[5].Visible = true;
+            //GridView1.Columns[5].Visible = true;
         }
 
         private void BindGridView()

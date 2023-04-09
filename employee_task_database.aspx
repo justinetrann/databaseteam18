@@ -28,7 +28,7 @@
              </div>
         </div>
         <p>Current Tasks for Selected Project</p>
-        <asp:GridView ID ="GridView1" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%" Height ="400px"   AutoGenerateColumns="true" OnRowDataBound="GridView1_RowDataBound" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating"  OnRowCancelingEdit = "GridView1_RowCancelingEdit">
+        <asp:GridView ID ="GridView1" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%" Height ="400px"   AutoGenerateColumns="false" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating"  OnRowCancelingEdit = "GridView1_RowCancelingEdit">
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
             <EditRowStyle BackColor="#999999" />
             <FooterStyle BackColor="#5D7B9D" ForeColor="White" Font-Bold="True" />
@@ -43,8 +43,10 @@
 
 
            <Columns>
-            <asp:BoundField DataField="Task ID" HeaderText="ID" ReadOnly="true" />
-            <asp:TemplateField HeaderText="Action">
+            <asp:BoundField DataField="Task Name" HeaderText="Task Name" ReadOnly="true" />
+            <asp:BoundField DataField="Description" HeaderText="Description" ReadOnly="true" />
+            <asp:BoundField DataField="Duration" HeaderText="Duration" ReadOnly="true" />
+            <asp:TemplateField HeaderText="Status">
                 <ItemTemplate>
                     <asp:Label ID="StatusLabel" runat="server" Text='<%# Eval("Status") %>'></asp:Label>
                 </ItemTemplate>
@@ -56,6 +58,7 @@
                     </asp:DropDownList>
                 </EditItemTemplate>
             </asp:TemplateField>
+            <asp:BoundField DataField="Creation Date" HeaderText="Create Date" ReadOnly="true" />
             <asp:CommandField ShowEditButton="true" />
         </Columns>
 

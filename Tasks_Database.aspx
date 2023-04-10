@@ -32,10 +32,21 @@
                         <asp:ListItem Text="Start" Value="Started"></asp:ListItem>
                         <asp:ListItem Text="Pause" Value="Paused"></asp:ListItem>
                         <asp:ListItem Text="Complete" Value="Completed"></asp:ListItem>
-                    </asp:DropDownList>
+                    </asp:DropDownList> 
                 </EditItemTemplate>
             </asp:TemplateField>
-            <asp:BoundField DataField="Creation Date" HeaderText="Creation Date" ReadOnly="true" />
+            <asp:TemplateField HeaderText="Employee">
+                <ItemTemplate>
+                    <asp:Label ID="EmployeeLabel" runat="server" Text='<%# Eval("Employee") %>'></asp:Label>
+                </ItemTemplate>
+                <EditItemTemplate>
+                    <asp:DropDownList ID="EmployeeDropDownList" runat="server">
+ 
+                    </asp:DropDownList> 
+                </EditItemTemplate>
+            </asp:TemplateField>
+            <asp:BoundField DataField="e" HeaderText="Creation Date" ReadOnly="true"/>
+            <asp:BoundField DataField="Creation Date" HeaderText="Creation Date" ReadOnly="true"/>
             <asp:CommandField ShowEditButton="true" />
             </Columns>
 

@@ -19,10 +19,31 @@
 
 
              <Columns>
+             <!-- TASK ID COLUMN-->
             <asp:BoundField DataField="Task ID" HeaderText="Task ID" ReadOnly="true"/>
-            <asp:BoundField DataField="Task Name" HeaderText="Task Name" ReadOnly="true" />
-            <asp:BoundField DataField="Description" HeaderText="Description" ReadOnly="true" />
+
+             <!-- TASK NAME COLUMN-->
+            <asp:TemplateField HeaderText="Task Name">
+                <ItemTemplate>
+                    <asp:Label ID="TaskNameLabel" runat="server" Text='<%# Eval("Task Name") %>'></asp:Label>
+                </ItemTemplate>
+                <EditItemTemplate>
+                    <asp:TextBox ID="TaskNameTextBox" runat="server" Text='<%# Bind("Task Name") %>'></asp:TextBox>
+                </EditItemTemplate>
+            </asp:TemplateField>
+
+             <!-- TASK DESCRIPTION COLUMN-->
+             <asp:TemplateField HeaderText="Description">
+                <ItemTemplate>
+                    <asp:Label ID="DescriptionLabel" runat="server" Text='<%# Eval("Description") %>'></asp:Label>
+                </ItemTemplate>
+                <EditItemTemplate>
+                    <asp:TextBox ID="DescriptionTextBox" runat="server" Text='<%# Bind("Description") %>'></asp:TextBox>
+                </EditItemTemplate>
+            </asp:TemplateField>
             <asp:BoundField DataField="Duration" HeaderText="Duration" ReadOnly="true" />
+            
+            <!-- TASK STATUS COLUMN-->
             <asp:TemplateField HeaderText="Status">
                 <ItemTemplate>
                     <asp:Label ID="StatusLabel" runat="server" Text='<%# Eval("Status") %>'></asp:Label>
@@ -35,18 +56,48 @@
                     </asp:DropDownList> 
                 </EditItemTemplate>
             </asp:TemplateField>
+
+            <!-- DEPARTMENT EMPLOYEES COLUMN-->
             <asp:TemplateField HeaderText="Employee">
                 <ItemTemplate>
                     <asp:Label ID="EmployeeLabel" runat="server" Text='<%# Eval("Employee") %>'></asp:Label>
                 </ItemTemplate>
                 <EditItemTemplate>
                     <asp:DropDownList ID="EmployeeDropDownList" runat="server">
- 
                     </asp:DropDownList> 
                 </EditItemTemplate>
             </asp:TemplateField>
-            <asp:BoundField DataField="e" HeaderText="Creation Date" ReadOnly="true"/>
+
+
+            <!-- TASK ASSIGNMENT DATE COLUMN-->
+            <asp:BoundField DataField="Assignment Date" HeaderText="Assignment Date" ReadOnly="true"/>
+
+
+            <!-- TASK CREATION DATE COLUMN-->
             <asp:BoundField DataField="Creation Date" HeaderText="Creation Date" ReadOnly="true"/>
+            
+
+            <!-- TASK DEADLINE COLUMN-->
+            <asp:TemplateField HeaderText="Deadline">
+                <ItemTemplate>
+                    <asp:Label ID="DeadlineDateLabel" runat="server" Text='<%# Eval("Deadline") %>'></asp:Label>
+                </ItemTemplate>
+                <EditItemTemplate>
+                    <asp:TextBox ID="DeadlineTextBox" runat="server" Text='<%# Bind("Deadline") %>'></asp:TextBox>
+                </EditItemTemplate>
+            </asp:TemplateField>
+
+
+            <!-- TASK PRIORITY COLLUMN-->
+            <asp:TemplateField HeaderText="Task Priority">
+                <ItemTemplate>
+                    <asp:Label ID="TaskPriorityLabel" runat="server" Text='<%# Eval("Task Priority") %>'></asp:Label>
+                </ItemTemplate>
+                <EditItemTemplate>
+                    <asp:TextBox ID="TaskPriorityTextBox" runat="server" Text='<%# Bind("Task Priority") %>'></asp:TextBox>
+                </EditItemTemplate>
+            </asp:TemplateField>
+
             <asp:CommandField ShowEditButton="true" />
             </Columns>
 

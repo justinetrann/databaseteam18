@@ -13,10 +13,15 @@ namespace databaseteam18
     public partial class Tasks_Database : System.Web.UI.Page
     {
         public string current_employee_id;
+        public string new_employee;
+        public DropDownList ddl;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
                 BindGridView();
+
+
+            
         }
 
         protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
@@ -24,15 +29,16 @@ namespace databaseteam18
                GridView1.EditIndex = e.NewEditIndex;
             int rowIndex = e.NewEditIndex;
 
+
+           
+
             BindGridView();
-
+            //string currentFieldValue = ((DataRowView)GridView1.Rows[e.NewEditIndex].DataItem)["Task Name"].ToString();
             // Get a reference to the DropDownList control
-            DropDownList ddl = (DropDownList)GridView1.Rows[rowIndex].FindControl("EmployeeDropDownList");
+            ddl = (DropDownList)GridView1.Rows[rowIndex].FindControl("EmployeeDropDownList");
 
-            GridViewRow row = GridView1.Rows[rowIndex];
-
-            //Get Current Employee ID
-            current_employee_id = row.Cells[5].Text;
+            //DropDownList DeadlineTextBox = (DropDownList)GridView1.Rows[GridView1.EditIndex].FindControl("EmployeeDropDownList");
+            //string new_task_deadline = DeadlineTextBox.Text;
 
 
 
@@ -58,6 +64,14 @@ namespace databaseteam18
             ddl.DataValueField = "employee_id";
             ddl.DataBind();
             //ddl.SelectedValue = current_employee_id;
+            //new_employee = ddl.SelectedValue;
+
+            // Set the selected value of the DropDownList control to the current field value
+            
+            //ddl.SelectedValue = currentFieldValue;
+
+
+            
 
             da.Dispose();
             read_employees_command.Dispose();
@@ -73,7 +87,7 @@ namespace databaseteam18
 
             //Get Task ID
             string task_id = row.Cells[0].Text;
-            BindGridView();
+     
 
             //Get Task Name Update Value
             TextBox TaskNameTextBox = (TextBox)GridView1.Rows[GridView1.EditIndex].FindControl("TaskNameTextBox");
@@ -89,48 +103,8 @@ namespace databaseteam18
 
             //Get New Assigned Employee Value
             DropDownList employeeDropDownList = (DropDownList)GridView1.Rows[e.RowIndex].FindControl("EmployeeDropDownList");
-
-            int department_id = Convert.ToInt32(Session["department_id"]);
-            string connectionString1 = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
-            SqlConnection connection1 = new SqlConnection(connectionString1);
-            connection1.Open();
-
-            string read_employees_query = "SELECT employee_id, convert(varchar, employee_id) + ' ' + employee_first_name + ' ' + employee_last_name AS employee_full_name FROM COMPANY.employees WHERE dept_ID = @department_id;";
-            SqlCommand read_employees_command = new SqlCommand(read_employees_query, connection1);
-            read_employees_command.Parameters.AddWithValue("@department_id", department_id);
-
-            SqlDataAdapter da = new SqlDataAdapter(read_employees_command);
-            DataTable employees = new DataTable();
-            da.Fill(employees);
-
-
-            employeeDropDownList.DataSource = employees;
-            employeeDropDownList.AppendDataBoundItems = true;
-            employeeDropDownList.DataTextField = "employee_full_name";
-            employeeDropDownList.DataValueField = "employee_id";
-            employeeDropDownList.DataBind();
-            //employeeDropDownList.SelectedValue = current_employee_id;
-
-            da.Dispose();
-            read_employees_command.Dispose();
-            connection1.Close();
-
-
-
-
-
-
-
-
-
             string new_assigned_employee = (employeeDropDownList.SelectedValue);
 
-
-            errorMessage.InnerHtml = new_assigned_employee;
-
-            errorMessage.Style.Remove("display");
-
-            return;
 
 
             //Get Task Deadline Update Value
@@ -169,7 +143,7 @@ namespace databaseteam18
 
 
             GridView1.EditIndex = -1;
-            BindGridView();
+            //BindGridView();
             //GridView1.Columns[5].Visible = true;
         }
 

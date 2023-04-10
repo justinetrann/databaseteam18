@@ -8,7 +8,7 @@
     <main aria-labelledby="login">
         <div class="container">
             <div class="login_image">
-                <img src="img/login.png" alt="Phone image">
+                <img src="img/login.png" alt="Phone image"/>
             </div>
             <div class="form_signup">
                 <h3>Register</h3>

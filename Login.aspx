@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="Project Management System" Language="C#" MasterPageFile="~/default_site.Master" AutoEventWireup="true" CodeBehind="login.aspx.cs" Inherits="databaseteam18.login"%>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
 <link href="Styles/login_signup.css" rel="stylesheet" type="text/css"/>
     <main aria-labelledby="login">
         <div class="container">

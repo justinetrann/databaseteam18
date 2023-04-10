@@ -12,10 +12,11 @@ namespace databaseteam18
 {
     public partial class Tasks_Database : System.Web.UI.Page
     {
-
+        public string current_employee_id;
         protected void Page_Load(object sender, EventArgs e)
         {
-            BindGridView();
+            if (!IsPostBack)
+                BindGridView();
         }
 
         protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
@@ -31,7 +32,7 @@ namespace databaseteam18
             GridViewRow row = GridView1.Rows[rowIndex];
 
             //Get Current Employee ID
-            string current_employee_id = row.Cells[5].Text;
+            current_employee_id = row.Cells[5].Text;
 
 
 
@@ -56,7 +57,7 @@ namespace databaseteam18
             ddl.DataTextField = "employee_full_name";
             ddl.DataValueField = "employee_id";
             ddl.DataBind();
-            ddl.SelectedValue = current_employee_id;
+            //ddl.SelectedValue = current_employee_id;
 
             da.Dispose();
             read_employees_command.Dispose();
@@ -72,10 +73,10 @@ namespace databaseteam18
 
             //Get Task ID
             string task_id = row.Cells[0].Text;
-
+            BindGridView();
 
             //Get Task Name Update Value
-            TextBox TaskNameTextBox = (TextBox)GridView1.Rows[GridView1.EditIndex].FindControl("Task Name");
+            TextBox TaskNameTextBox = (TextBox)GridView1.Rows[GridView1.EditIndex].FindControl("TaskNameTextBox");
             string new_task_name = TaskNameTextBox.Text;
 
             //Get Task Description Update Value
@@ -88,7 +89,49 @@ namespace databaseteam18
 
             //Get New Assigned Employee Value
             DropDownList employeeDropDownList = (DropDownList)GridView1.Rows[e.RowIndex].FindControl("EmployeeDropDownList");
+
+            int department_id = Convert.ToInt32(Session["department_id"]);
+            string connectionString1 = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
+            SqlConnection connection1 = new SqlConnection(connectionString1);
+            connection1.Open();
+
+            string read_employees_query = "SELECT employee_id, convert(varchar, employee_id) + ' ' + employee_first_name + ' ' + employee_last_name AS employee_full_name FROM COMPANY.employees WHERE dept_ID = @department_id;";
+            SqlCommand read_employees_command = new SqlCommand(read_employees_query, connection1);
+            read_employees_command.Parameters.AddWithValue("@department_id", department_id);
+
+            SqlDataAdapter da = new SqlDataAdapter(read_employees_command);
+            DataTable employees = new DataTable();
+            da.Fill(employees);
+
+
+            employeeDropDownList.DataSource = employees;
+            employeeDropDownList.AppendDataBoundItems = true;
+            employeeDropDownList.DataTextField = "employee_full_name";
+            employeeDropDownList.DataValueField = "employee_id";
+            employeeDropDownList.DataBind();
+            //employeeDropDownList.SelectedValue = current_employee_id;
+
+            da.Dispose();
+            read_employees_command.Dispose();
+            connection1.Close();
+
+
+
+
+
+
+
+
+
             string new_assigned_employee = (employeeDropDownList.SelectedValue);
+
+
+            errorMessage.InnerHtml = new_assigned_employee;
+
+            errorMessage.Style.Remove("display");
+
+            return;
+
 
             //Get Task Deadline Update Value
             TextBox DeadlineTextBox = (TextBox)GridView1.Rows[GridView1.EditIndex].FindControl("DeadlineTextBox");
@@ -105,7 +148,7 @@ namespace databaseteam18
             // Update the Task and Task Assignment tables with update data
             string connectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
             string query = "UPDATE COMPANY.task_assignment SET task_priority = @task_priority, task_status = @task_status, task_deadline = @task_deadline, employee_ID = @employee_id WHERE task_id = @task_id;";
-            query+= "UPDATE COMPANY.tasks SET task_name = @task_name, task_description = @task_description WHERE task_id = @task_id;"
+            query += "UPDATE COMPANY.tasks SET task_name = @task_name, task_description = @task_description WHERE task_id = @task_id;";
 
             SqlConnection connection = new SqlConnection(connectionString);
 

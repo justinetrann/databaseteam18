@@ -88,7 +88,7 @@
                     <asp:Label ID="DeadlineDateLabel" runat="server" Text='<%# Eval("Deadline","{0:MM/dd/yyyy}") %>'></asp:Label>
                 </ItemTemplate>
                 <EditItemTemplate>
-                    <asp:TextBox ID="DeadlineTextBox" runat="server" Text='<%# Bind("Dealine","{0:MM/dd/yyyy}") %>'></asp:TextBox> 
+                    <asp:TextBox ID="DeadlineTextBox" runat="server" Text='<%# Bind("Deadline","{0:MM/dd/yyyy}") %>'></asp:TextBox> 
                 </EditItemTemplate>
             </asp:TemplateField>
 

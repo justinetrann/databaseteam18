@@ -61,7 +61,10 @@
                 </EditItemTemplate>
             </asp:TemplateField>
             <asp:BoundField DataField="Assignment Date" HeaderText="Assignment Date" ReadOnly="true" />
+
             <asp:BoundField DataField="Deadline" HeaderText="Deadline" ReadOnly="true" />
+             <asp:BoundField DataField="Task Priority" HeaderText="Task Priority" ReadOnly="true" />
+
             <asp:CommandField ShowEditButton="true" />
         </Columns>
 

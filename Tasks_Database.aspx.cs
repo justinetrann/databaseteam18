@@ -12,6 +12,7 @@ namespace databaseteam18
 {
     public partial class Tasks_Database : System.Web.UI.Page
     {
+
         protected void Page_Load(object sender, EventArgs e)
         {
             BindGridView();
@@ -27,7 +28,12 @@ namespace databaseteam18
             // Get a reference to the DropDownList control
             DropDownList ddl = (DropDownList)GridView1.Rows[rowIndex].FindControl("EmployeeDropDownList");
 
-            
+            GridViewRow row = GridView1.Rows[rowIndex];
+
+            //Get Current Employee ID
+            string current_employee_id = row.Cells[5].Text;
+
+
 
 
             // Populate the DropDownList with data
@@ -50,6 +56,7 @@ namespace databaseteam18
             ddl.DataTextField = "employee_full_name";
             ddl.DataValueField = "employee_id";
             ddl.DataBind();
+            ddl.SelectedValue = current_employee_id;
 
             da.Dispose();
             read_employees_command.Dispose();
@@ -63,26 +70,54 @@ namespace databaseteam18
         {
             GridViewRow row = GridView1.Rows[e.RowIndex];
 
-            string ID = row.Cells[0].Text;
+            //Get Task ID
+            string task_id = row.Cells[0].Text;
 
+
+            //Get Task Name Update Value
+            TextBox TaskNameTextBox = (TextBox)GridView1.Rows[GridView1.EditIndex].FindControl("Task Name");
+            string new_task_name = TaskNameTextBox.Text;
+
+            //Get Task Description Update Value
+            TextBox DescriptionTextBox = (TextBox)GridView1.Rows[GridView1.EditIndex].FindControl("DescriptionTextBox");
+            string new_task_description = DescriptionTextBox.Text;
+
+            //Get Task Status Update Value
             DropDownList statusDropDownList = (DropDownList)GridView1.Rows[e.RowIndex].FindControl("StatusDropDownList");
-            string status = (statusDropDownList.SelectedValue);
+            string new_task_status = (statusDropDownList.SelectedValue);
+
+            //Get New Assigned Employee Value
+            DropDownList employeeDropDownList = (DropDownList)GridView1.Rows[e.RowIndex].FindControl("EmployeeDropDownList");
+            string new_assigned_employee = (employeeDropDownList.SelectedValue);
+
+            //Get Task Deadline Update Value
+            TextBox DeadlineTextBox = (TextBox)GridView1.Rows[GridView1.EditIndex].FindControl("DeadlineTextBox");
+            string new_task_deadline = DeadlineTextBox.Text;
+
+
+            //Get Task Priority Update Value
+            DropDownList TaskPriorityDropDownList = (DropDownList)GridView1.Rows[e.RowIndex].FindControl("TaskPriorityDropDownList");
+            string new_task_priority = (employeeDropDownList.SelectedValue);
 
 
 
-            // Update the status column in the database using the id value
-            // ...
 
+            // Update the Task and Task Assignment tables with update data
             string connectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
-            string query = "UPDATE COMPANY.task_assignment SET task_status = @status WHERE task_id = @id;";
-
+            string query = "UPDATE COMPANY.task_assignment SET task_priority = @task_priority, task_status = @task_status, task_deadline = @task_deadline, employee_ID = @employee_id WHERE task_id = @task_id;";
+            query+= "UPDATE COMPANY.tasks SET task_name = @task_name, task_description = @task_description WHERE task_id = @task_id;"
 
             SqlConnection connection = new SqlConnection(connectionString);
 
             SqlCommand command = new SqlCommand(query, connection);
 
-            command.Parameters.AddWithValue("@status", status);
-            command.Parameters.AddWithValue("@id", ID);
+            command.Parameters.AddWithValue("@task_priority", new_task_priority);
+            command.Parameters.AddWithValue("@task_status", new_task_status);
+            command.Parameters.AddWithValue("@task_deadline", new_task_deadline); 
+            command.Parameters.AddWithValue("@employee_id", new_assigned_employee);
+            command.Parameters.AddWithValue("@task_id", task_id);
+            command.Parameters.AddWithValue("@task_name", new_task_name);
+            command.Parameters.AddWithValue("@task_description", new_task_description);
 
             connection.Open();
             command.ExecuteNonQuery();

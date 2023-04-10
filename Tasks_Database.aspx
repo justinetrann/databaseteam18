@@ -54,6 +54,7 @@
                 </ItemTemplate>
                 <EditItemTemplate>
                     <asp:DropDownList ID="StatusDropDownList" runat="server">
+                        <asp:ListItem Text="Assigned" Value="assigned"></asp:ListItem>
                         <asp:ListItem Text="Start" Value="Started"></asp:ListItem>
                         <asp:ListItem Text="Pause" Value="Paused"></asp:ListItem>
                         <asp:ListItem Text="Complete" Value="Completed"></asp:ListItem>
@@ -84,10 +85,10 @@
             
             <asp:TemplateField HeaderText="Deadline">
                 <ItemTemplate>
-                    <asp:Label ID="DeadlineDateLabel" runat="server" Text='<%# Eval("Deadline") %>'></asp:Label>
+                    <asp:Label ID="DeadlineDateLabel" runat="server" Text='<%# Eval("Deadline","{0:MM/dd/yyyy}") %>'></asp:Label>
                 </ItemTemplate>
                 <EditItemTemplate>
-                    <asp:TextBox ID="DeadlineTextBox" runat="server" Text='<%# Bind("Deadline") %>'></asp:TextBox>
+                    <asp:TextBox ID="DeadlineTextBox" runat="server" Text='<%# Bind("Dealine","{0:MM/dd/yyyy}") %>'></asp:TextBox> 
                 </EditItemTemplate>
             </asp:TemplateField>
 
@@ -98,7 +99,11 @@
                     <asp:Label ID="TaskPriorityLabel" runat="server" Text='<%# Eval("Task Priority") %>'></asp:Label>
                 </ItemTemplate>
                 <EditItemTemplate>
-                    <asp:TextBox ID="TaskPriorityTextBox" runat="server" Text='<%# Bind("[Task Priority]") %>'></asp:TextBox>
+                    <asp:DropDownList ID="TaskPriorityDropDownList" runat="server">
+                        <asp:ListItem Text="Low" Value="low"></asp:ListItem>
+                        <asp:ListItem Text="Medium" Value="medium"></asp:ListItem>
+                        <asp:ListItem Text="High" Value="high"></asp:ListItem>
+                    </asp:DropDownList> 
                 </EditItemTemplate>
             </asp:TemplateField>
 

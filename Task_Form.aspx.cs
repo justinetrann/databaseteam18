@@ -273,10 +273,9 @@ namespace databaseteam18
                 string task_creation_date = currentDate.ToString("MM/dd/yyyy");
 
 
-
                 string query = "INSERT INTO COMPANY.tasks (project_ID, task_ID, task_name, task_description, task_est_duration, task_creation_date) VALUES (@project_id, @task_id, @task_name, @task_description, @task_est_duration, @task_creation_date);";
 
-                query += "INSERT INTO COMPANY.task_assignment (task_assignment_ID, task_id, employee_ID, project_ID, task_status, task_assignment_date) VALUES (@task_assignment_ID, @task_id,@employee_ID,@project_ID, @task_status, @task_assignment_date);";
+                query += "INSERT INTO COMPANY.task_assignment (task_assignment_ID, task_id, employee_ID, project_ID, task_status, task_assignment_date, task_deadline) VALUES (@task_assignment_ID, @task_id,@employee_ID,@project_ID, @task_status, @task_assignment_date, @task_deadline);";
 
                 if (tasks_exsiting_flag == true)
                 {
@@ -307,7 +306,7 @@ namespace databaseteam18
                 //command.Parameters.AddWithValue("@project_ID", project_id);
                 command.Parameters.AddWithValue("@task_status", task_status); 
                 command.Parameters.AddWithValue("@task_assignment_date", task_creation_date);
-
+                command.Parameters.AddWithValue("@task_deadline", task_deadline.Value);
                 if (tasks_exsiting_flag == true)
                 {
 

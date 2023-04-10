@@ -47,7 +47,7 @@
             <asp:BoundField DataField="Task ID" HeaderText="Task ID" ReadOnly="true"/>
             <asp:BoundField DataField="Task Name" HeaderText="Task Name" ReadOnly="true" />
             <asp:BoundField DataField="Description" HeaderText="Description" ReadOnly="true" />
-            <asp:BoundField DataField="Duration" HeaderText="Duration" ReadOnly="true" />
+           
             <asp:TemplateField HeaderText="Status">
                 <ItemTemplate>
                     <asp:Label ID="StatusLabel" runat="server" Text='<%# Eval("Status") %>'></asp:Label>
@@ -61,8 +61,7 @@
                 </EditItemTemplate>
             </asp:TemplateField>
             <asp:BoundField DataField="Assignment Date" HeaderText="Assignment Date" ReadOnly="true" />
-             <asp:BoundField DataField="Task Priority" HeaderText="Task Priority" ReadOnly="true" />
-               
+            <asp:BoundField DataField="Deadline" HeaderText="Deadline" ReadOnly="true" />
             <asp:CommandField ShowEditButton="true" />
         </Columns>
 

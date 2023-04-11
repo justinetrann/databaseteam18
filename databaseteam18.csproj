@@ -193,6 +193,7 @@
     <Content Include="Styles\login_signup.css" />
     <Content Include="Styles\project.css" />
     <Content Include="Styles\project_form.css" />
+    <Content Include="Styles\signup.css" />
     <Content Include="Tasks_Database.aspx" />
     <Content Include="Task_Form.aspx" />
     <Content Include="test.aspx" />

@@ -44,10 +44,10 @@
 
                     </form>
                 </div>
-                <div class="login-image">
+                <div>
                     <!-- Sign Up button -->
-                    <figure>
-                        <img src="img/manage.jpg" alt="phone_img"/>
+                    <figure class="resize">
+                        <img class="rounded float-left" src="img/manage.png" alt="phone_img"/>
                     </figure>
                 </div>
             </div>

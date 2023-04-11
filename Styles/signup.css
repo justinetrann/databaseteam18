@@ -51,6 +51,11 @@ input {
     left: 0;
 }
 
+.resize {
+    width: 70px;
+    height: 80px;
+}
+
 .register {
     margin-bottom: 150px;
 }
@@ -65,7 +70,6 @@ input {
     margin: 0 55px;
 }
 
-.register-form, .register-image {
-    width: 50%;
+.register-form{
     overflow: hidden;
 }

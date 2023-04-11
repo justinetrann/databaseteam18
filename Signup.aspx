@@ -78,8 +78,8 @@
                     </form>
                 </div>
                 <div class="register-image">
-                    <figure>
-                        <img src="img/manage2.jpg" alt="phone_img"/>
+                    <figure class="resize">
+                        <img  class="rounded float-left" src="img/manage2.png" alt="phone_img"/>
                     </figure>
                 </div>
             </div>

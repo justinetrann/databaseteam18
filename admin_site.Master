@@ -46,17 +46,14 @@
                 </button>
                 <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/">Home</a></li>
+                        <!--To Access Pages User: Logs Out-->
+                        <!--<li class="nav-item"><a class="nav-link" runat="server" href="~/">Home</a></li>-->
+                        <!--<li class="nav-item"><a class="nav-link" runat="server" href="~/Login">Login</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Signup">Signup</a></li>-->
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Contact">Contact</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Login">Login</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Signup">Signup</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/admin_home_page">Role Assign</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/department_assign">Department Assign</a></li>
-
-
-       
-                        <li class="nav-item"><button id="signoutButton" class="nav-link" runat="server">Sign out</button></li>
-                        
+                        <li class="nav-item"><button id="signoutButton" class="nav-link" runat="server">Sign out</button></li>                        
                     </ul>
                 </div>
             </div>

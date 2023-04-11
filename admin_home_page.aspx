@@ -3,21 +3,12 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 <link href="Styles/admin.css" rel="stylesheet" type="text/css"/>
 <main aria-labelledby="admin_home_forms">
-        <div className="container">
-            <div class="containerNew" id="desc-format">
+        <div classname="container">
+            <div class="containerNew2">
                 <h2 class="text-center font-weight-bold">User Roles Descriptions</h2>
                 <p class="format">EMPLOYEE ROLE: Default role assigned to users after signup. Basic permission to view tasks and profile information.</p>
                 <p class="format">MANAGER ROLE: Manager role assigned to Project Managers. Permission to manage project, tasks, and profile information.</p>
-                <p class="format">ADMIN ROLE: System administrator role.</p>
-
-            </div><br/>
-
-           
-
-
-
-
-            <div class="containerNew2">
+                <p class="format">ADMIN ROLE: System administrator role.</p><br/>
                <form>
                   <div class="form-group row" style="padding: 10px;">
                     <label for="userLoginEmail" class="col-sm-2 col-form-label">User Login Email*</label>

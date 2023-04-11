@@ -12,6 +12,14 @@
     justify-content: space-between;
 }
 
+.fill-container {
+    padding: 30px;
+    width: 60%;
+    height: 60%;
+    position: center;
+    object-fit: fill;
+}
+
 .content .text {
     position: relative;
     max-width: 600px;

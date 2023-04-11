@@ -8,7 +8,7 @@
         <div class="containerNew">
             <div class="login-content">
                 <div class="login-form">
-                    <h2 class="form-title">Sign In</h2>
+                    <h2 class="form-title">Welcome Back</h2>
                     <form method="post" class="sign-form" id="sign-form">
                         <!-- Email input -->
                         <div class="form-group">
@@ -28,7 +28,7 @@
                         
                         <!-- Submit button -->
                         <div class="form-group form-button">
-                            <button id="loginButton" type="submit" class="btn3" runat="server">Sign In</button>
+                            <button id="loginButton" type="submit" class="btn btn-primary" runat="server">Sign In</button>
                         </div>
                         
                         <!-- Error message display -->
@@ -49,7 +49,6 @@
                     <figure>
                         <img src="img/manage.jpg" alt="phone_img"/>
                     </figure>
-                    <a herf="#" class="signup-link">I am already member</a>
                 </div>
             </div>
         </div>

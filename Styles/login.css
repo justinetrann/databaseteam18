@@ -18,7 +18,7 @@ div{
 .containerNew {
     background: #fff;
     margin: 0 auto;
-    box-shadow: 0 15px 16.83px 0.17px rgba(0,0,0,.05);
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
     border-radius: 20px;
 }
 
@@ -67,22 +67,6 @@ label {
 .login-form, .login-image{
     width: 50%;
     overflow: hidden;
-}
-
-.form-submit {
-    display: inline-block;
-    background: #6dabe4;
-    color: #fff;
-    border-bottom: none;
-    width: auto;
-    padding: 15px 39px;
-    border-radius: 5px;
-    margin-top: 25px;
-    cursor: pointer;
-}
-
-.form-submit:hover {
-    background-color: #2E8BC0;
 }
 
 .signup-link {

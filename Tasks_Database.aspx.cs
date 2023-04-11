@@ -108,7 +108,7 @@ namespace databaseteam18
 
             //Get Task Priority Update Value
             DropDownList TaskPriorityDropDownList = (DropDownList)GridView1.Rows[e.RowIndex].FindControl("TaskPriorityDropDownList");
-            string new_task_priority = (employeeDropDownList.SelectedValue);
+            string new_task_priority = (TaskPriorityDropDownList.SelectedValue);
 
 
 

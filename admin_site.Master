@@ -52,11 +52,11 @@
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Signup">Signup</a></li>-->
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/admin_home_page">Role Assign</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/department_assign">Department Assign</a></li>
+                        <button id="signoutButton" class="btn btn-light my-1 my-sm-0" type="submit" runat="server">Sign out</button>
                     </ul>
                 </div>
-               <form class="form-inline">
-                    <button id="signoutButton" class="btn btn-light my-1 my-sm-0" type="submit" runat="server">Sign out</button>
-                </form>
+             
+                    
             </div>
         </nav>
         <div class="container body-content">

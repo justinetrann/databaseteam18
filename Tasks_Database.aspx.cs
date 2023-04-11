@@ -17,7 +17,7 @@ namespace databaseteam18
         public DropDownList ddl;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if(!IsPostBack)
                 BindGridView();
 
 
@@ -33,13 +33,8 @@ namespace databaseteam18
            
 
             BindGridView();
-            //string currentFieldValue = ((DataRowView)GridView1.Rows[e.NewEditIndex].DataItem)["Task Name"].ToString();
-            // Get a reference to the DropDownList control
+            
             ddl = (DropDownList)GridView1.Rows[rowIndex].FindControl("EmployeeDropDownList");
-
-            //DropDownList DeadlineTextBox = (DropDownList)GridView1.Rows[GridView1.EditIndex].FindControl("EmployeeDropDownList");
-            //string new_task_deadline = DeadlineTextBox.Text;
-
 
 
 
@@ -63,12 +58,7 @@ namespace databaseteam18
             ddl.DataTextField = "employee_full_name";
             ddl.DataValueField = "employee_id";
             ddl.DataBind();
-            //ddl.SelectedValue = current_employee_id;
-            //new_employee = ddl.SelectedValue;
-
-            // Set the selected value of the DropDownList control to the current field value
             
-            //ddl.SelectedValue = currentFieldValue;
 
 
             
@@ -104,6 +94,10 @@ namespace databaseteam18
             //Get New Assigned Employee Value
             DropDownList employeeDropDownList = (DropDownList)GridView1.Rows[e.RowIndex].FindControl("EmployeeDropDownList");
             string new_assigned_employee = (employeeDropDownList.SelectedValue);
+
+            //errorMessage.InnerHtml = new_assigned_employee;
+            //errorMessage.Style.Remove("display");
+            //return;
 
 
 
@@ -143,7 +137,7 @@ namespace databaseteam18
 
 
             GridView1.EditIndex = -1;
-            //BindGridView();
+            BindGridView();
             //GridView1.Columns[5].Visible = true;
         }
 

@@ -8,7 +8,7 @@
         <div id="errorMessage" class="alert alert-danger" runat ="server" style="display:none;">
                     
              </div>
-        <asp:GridView ID ="GridView1" runat="server" DataKeyNames="Task ID" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%" Height ="400px" AutoGenerateColumns="false" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating"  OnRowCancelingEdit = "GridView1_RowCancelingEdit">
+        <asp:GridView ID ="GridView1" runat="server" DataKeyNames="Task ID" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%" Height ="400px" AutoGenerateColumns="false" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating"  OnRowCancelingEdit = "GridView1_RowCancelingEdit" OnRowDeleting ="GridView1_RowDeleting">
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
             <EditRowStyle BackColor="#999999" />
             <FooterStyle BackColor="#5D7B9D" ForeColor="White" Font-Bold="True" />
@@ -107,7 +107,9 @@
                 </EditItemTemplate>
             </asp:TemplateField>
 
-            <asp:CommandField ShowEditButton="true" />
+            <asp:CommandField ShowEditButton="true"/>
+             <asp:CommandField ShowDeleteButton="true"/>
+            
             </Columns>
 
         </asp:GridView>

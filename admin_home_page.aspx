@@ -4,7 +4,7 @@
 <link href="Styles/admin.css" rel="stylesheet" type="text/css"/>
 <main aria-labelledby="admin_home_forms">
         <div className="container">
-            <div class="container" id="desc-format">
+            <div class="containerNew" id="desc-format">
                 <h2 class="text-center font-weight-bold">User Roles Descriptions</h2>
                 <p class="format">EMPLOYEE ROLE: Default role assigned to users after signup. Basic permission to view tasks and profile information.</p>
                 <p class="format">MANAGER ROLE: Manager role assigned to Project Managers. Permission to manage project, tasks, and profile information.</p>
@@ -12,15 +12,12 @@
 
             </div><br/>
 
-            <div class="containerTable">
-                <p>table goes here: employee and email</p>
-            </div><br/>
+           
 
 
 
 
-
-            <div class="container">
+            <div class="containerNew2">
                <form>
                   <div class="form-group row" style="padding: 10px;">
                     <label for="userLoginEmail" class="col-sm-2 col-form-label">User Login Email*</label>
@@ -49,7 +46,12 @@
                     </div>
                     <!-- Success message display -->
                     <div id="SuccessMessage" class="alert alert-success" runat ="server" style="display:none;">
-            </div>
+            </div><br/>
+
+             <div class="containerTable">
+                <p>table goes here: employee and email</p>
+            </div><br/>
+
         </div>
   
     </main>

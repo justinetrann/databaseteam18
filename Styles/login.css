@@ -60,12 +60,12 @@ label {
 }
 
 .login-image {
-    margin-top: 30px;
-    margin: 0 55px;
+    padding: 100px;
+    margin-top: 70px;
+    margin: 0 75px;
 }
 
 .login-form, .login-image{
-    width: 50%;
     overflow: hidden;
 }
 

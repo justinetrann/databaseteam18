@@ -49,7 +49,7 @@
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/">Home</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Employee_Profile_Page">My Profile</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Contact">Contact</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Project_Form">Create Projet</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Project_Form">Create Project</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Task_Form">Create Task</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Projects_Database">Projects</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Tasks_Database">Current Project Tasks</a></li>

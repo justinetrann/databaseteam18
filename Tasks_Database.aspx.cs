@@ -73,6 +73,7 @@ namespace databaseteam18
 
         protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
+
             GridViewRow row = GridView1.Rows[e.RowIndex];
 
             //Get Task ID
@@ -173,6 +174,9 @@ namespace databaseteam18
         protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             GridViewRow row = GridView1.Rows[e.RowIndex];
+
+            //FIRST, SHOW MODAL VIEW 
+            delete-modal.Style.Remove("display");
 
             //Get Task ID
             string task_id = row.Cells[0].Text;

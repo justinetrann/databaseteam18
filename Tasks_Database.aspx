@@ -107,31 +107,26 @@
                 </EditItemTemplate>
             </asp:TemplateField>
 
+                
+
+
             <asp:CommandField ShowEditButton="true"/>
-             <asp:CommandField ShowDeleteButton="true"/>
+
+                 
+             <asp:TemplateField>
+                    <ItemTemplate>
+                        <asp:LinkButton ID="DeleteButton" runat="server" CommandName="Delete"
+                            OnClientClick="return confirm('Are you sure you want to delete this record?');"
+                            Text="Delete" CssClass="btn btn-outline-danger btn-sm" >
+                        </asp:LinkButton>
+                    </ItemTemplate>
+                </asp:TemplateField>
+           
             
             </Columns>
 
         </asp:GridView>
-        <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="delete-modal-label" aria-hidden="true" style="display:none;">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="delete-modal-label">Confirm Deletion</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        Are you sure you want to delete this item?
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal" >Cancel</button>
-                        <button type="button" class="btn btn-danger" id="confirm-delete-btn" runat ="server">Delete Task</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+
      
     </main>
 </asp:Content>

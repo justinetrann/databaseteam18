@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.Configuration;
 
 namespace databaseteam18
 {
@@ -175,9 +176,7 @@ namespace databaseteam18
         {
             GridViewRow row = GridView1.Rows[e.RowIndex];
 
-            //FIRST, SHOW MODAL VIEW 
-            delete-modal.Style.Remove("display");
-
+           
             //Get Task ID
             string task_id = row.Cells[0].Text;
 

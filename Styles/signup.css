@@ -25,7 +25,7 @@ div {
 }
 
 .register-form {
-    margin-left: 65px;
+    margin-left: 75px;
     margin-right: 65px;
     padding-left: 4px;
 }
@@ -51,11 +51,6 @@ input {
     left: 0;
 }
 
-.resize {
-    width: 70px;
-    height: 80px;
-}
-
 .register {
     margin-bottom: 150px;
 }
@@ -70,6 +65,7 @@ input {
     margin: 0 55px;
 }
 
-.register-form{
+.register-form {
+    width: 40%;
     overflow: hidden;
 }

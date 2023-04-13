@@ -36,7 +36,7 @@ namespace databaseteam18
             // Reading from the web.config file
             string dbConnectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
 
-            var queryString = "SELECT u.user_email, u.user_role_ID, r.role_type FROM COMPANY.User_Login u LEFT JOIN COMPANY.role r ON u.user_role_ID = r.role_ID"; // Return all records from Project Table in Database
+            var queryString = "SELECT u.user_email, r.role_type FROM COMPANY.User_Login u LEFT JOIN COMPANY.role r ON u.user_role_ID = r.role_ID"; // Return all records from Project Table in Database
             var dbConncetion = new SqlConnection(dbConnectionString);
             var dataAdapter = new SqlDataAdapter(queryString, dbConncetion);
 

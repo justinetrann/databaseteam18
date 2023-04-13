@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -11,9 +12,26 @@ namespace databaseteam18
 {
     public partial class department_assign : System.Web.UI.Page
     {
+        protected GridView GridViewAdminDepartment;
         protected void Page_Load(object sender, EventArgs e)
         {
             userDepartmentAssignmentSubmitButton.ServerClick += new EventHandler(userDepartmentAssignmentSubmitButton_Click);
+
+            // GETTING USER EMAILS
+            // Establishing connection string to database
+            // Reading from the web.config file
+            string dbConnectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
+
+            var queryString = "SELECT u.user_email, r.role_type FROM COMPANY.User_Login u LEFT JOIN COMPANY.role r ON u.user_role_ID = r.role_ID"; // Return all records from Project Table in Database
+            var dbConncetion = new SqlConnection(dbConnectionString);
+            var dataAdapter = new SqlDataAdapter(queryString, dbConncetion);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+
+            GridViewAdminDepartment.DataSource = ds.Tables[0];
+            GridViewAdminDepartment.DataBind();
         }
 
         protected void userDepartmentAssignmentSubmitButton_Click(object sender, EventArgs e)

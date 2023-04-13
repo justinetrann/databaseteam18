@@ -5,6 +5,19 @@
 <link href="Styles/project_forms.css" rel="stylesheet" type="text/css"/>
 
     <main aria-labelledby="project_form">
+       <!--Project Form Introduction-->
+        <div class="title-page">
+            <video class="fill-container" autoplay="" loop="" muted="">
+            <source src="video/project-form.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+            </video>
+            <div class="video-text">
+            <h1>Project Form</h1>
+            <p>A document that outlines the details and goals of a project, including its</p>
+            <p> task, timeline, budget, and key stakeholders.</p>
+            </div>
+        </div><br/>
+
         <!--NEW PROJECT FORM-->
         <div class="containerNew">
             <div class="project-content">
@@ -69,10 +82,6 @@
                     </form>
                 </div>
                 <div>
-                    <!-- Sign Up button -->
-                    <figure id="resize">
-                        <img class="rounded float-left" src="img/project-form.png" alt="project-form-img"/>
-                    </figure>
                 </div>
             </div>
         </div>

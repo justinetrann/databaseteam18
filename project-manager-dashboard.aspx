@@ -7,19 +7,42 @@
         <div classname="containerNew">
            <!--Profile-->
             <div class="manager-profile">
-                <div class="row justify-content-md-center">
-                <div id="manager-profile" class="col col-lg-2">
-                    <p>profile</p>
-                </div>
+                <div class="row">
+                    <div id="manager-profile" class="col col-lg-2">
+                        <img src="img/profile.png" alt="profile-picture" style="width:150px;height:130px; float:left; margin-right: 10px;"/>
+                        <div class="inline-div" style="width: calc(100% - 160px);">
+                            <h4 id="first_name">First Name</h4>
+                            <h4 id="last_name">Last Name</h4>
+                        </div>
+                    </div>
                 </div>
             </div><br/>
+        </div>
 
         <div class="containerNew2">
           <div class="row justify-content-between">
-           <!--Manager Project-->
+           <!--Manager Project: Project Ranked By Dates-->
 
             <div class="project-manager col-md-6">
-                <p>hui</p>
+
+
+                <h5 class="text-center text-muted mb-3 h5">Current Projects In The System</h5>
+                <asp:GridView ID ="GridViewAdminProject1" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" Width="483px" HorizontalAlign="Center">
+                    <AlternatingRowStyle BackColor="White" />
+                    <EditRowStyle BackColor="#2461BF" />
+                    <FooterStyle BackColor="#507CD1" ForeColor="White" Font-Bold="True" />
+                    <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                    <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                    <RowStyle BackColor="#EFF3FB" />
+                    <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                    <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                    <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                    <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                    <SortedDescendingHeaderStyle BackColor="#4870BE" />
+
+                </asp:GridView>
+
+
             </div>
               <br />
             <!--Calender-->

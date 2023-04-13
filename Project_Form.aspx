@@ -70,8 +70,8 @@
                 </div>
                 <div>
                     <!-- Sign Up button -->
-                    <figure class="resize">
-                        <img class="rounded float-left" src="" alt=""/>
+                    <figure id="resize">
+                        <img class="rounded float-left" src="img/project-form.png" alt="project-form-img"/>
                     </figure>
                 </div>
             </div>

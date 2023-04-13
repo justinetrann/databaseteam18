@@ -1,34 +1,65 @@
-﻿* {
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    font-family: 'Poppins', sans-serif;
+﻿body {
+    font-size: 13px;
+    line-height: 1.8;
+    color: #222;
+    background: #f8f8f8;
+    font-family: Poppins;
 }
 
-.form-inline .form-group {
-    display: inline-block;
-    margin-bottom: 0;
-    vertical-align: middle;
+.containerNew {
+    background: #fff;
+    margin: 0 auto;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    border-radius: 20px;
 }
 
-.form-inline .form-control {
-    display: inline-block;
-    margin-bottom: 0;
-    vertical-align: middle;
+h2 {
+    margin-bottom: 50px;
 }
 
-.form-inline .form-group {
-    margin-right: 20px;
+div {
+    display: block;
 }
 
-.btn3 {
-    background: #714496;
-    padding: 15px 15px;
-    transition: .5s;
+.project-div-form {
+    margin-left: 75px;
+    margin-right: 75px;
+    padding-left: 34px;
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 25px;
+    overflow: hidden;
+}
+
+input {
+    width: 100%;
+    display: block;
     border: none;
-    outline: none;
-    font-size: 12px;
-    font-weight: 700;
-    border-radius: 10px;
-    box-shadow: 1px 4px 12px rgba(94,28,68,.15);
+    border-bottom: 1px solid #999;
+    padding: 6px 30px;
+    font-family: Poppins;
+    box-sizing: border-box;
+}
+
+label {
+    position: absolute;
+    left: 0;
+    color: #222;
+}
+
+.project {
+    margin-bottom: 150px;
+}
+
+.project-content {
+    display: flex;
+    padding: 75px 0;
+}
+
+.project-image {
+    padding: 100px;
+    margin-top: 70px;
+    margin: 0 75px;
 }

@@ -58,7 +58,6 @@ p {
     margin: 0px auto;
     padding: 50px;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-    border-radius: 20px;
 }
 
 .containerNew2 {
@@ -66,11 +65,24 @@ p {
     margin: 0px auto;
     padding: 30px;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-    border-radius: 20px;
 }
 
 .form {
     margin-left: 75px;
     margin-right: 75px;
     padding-left: 34px;
+}
+
+.title-page {
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+.video-text {
+    position: absolute;
+    top: 55%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    color: #216ad9;
+    text-align: center;
 }

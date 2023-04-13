@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Globalization;
 using System.Linq;
@@ -12,11 +13,28 @@ namespace databaseteam18
 {
     public partial class Project_Form : System.Web.UI.Page
     {
+        protected GridView GridViewProjectForm;
         protected void Page_Load(object sender, EventArgs e)
 
         {
 
             submitButton.ServerClick += new EventHandler(submitButton_Click);
+
+            // Current Projects In System
+            // Establishing connection string to database
+            // Reading from the web.config file
+            string dbConnectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
+
+            var queryString = "SELECT u.user_email, r.role_type FROM COMPANY.User_Login u LEFT JOIN COMPANY.role r ON u.user_role_ID = r.role_ID"; // Return all records from Project Table in Database
+            var dbConncetion = new SqlConnection(dbConnectionString);
+            var dataAdapter = new SqlDataAdapter(queryString, dbConncetion);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+
+            GridViewProjectForm.DataSource = ds.Tables[0];
+            GridViewProjectForm.DataBind();
 
         }
 

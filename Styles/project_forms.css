@@ -51,7 +51,7 @@ label {
 
 .project-content {
     display: flex;
-    padding: 75px 0;
+    padding: 50px;
 }
 
 .project-image {
@@ -88,5 +88,13 @@ img{
 }
 
 .title-page {
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+.containerTable {
+    display: table;
+    background: #fff;
+    margin: 0px auto;
+    padding: 50px;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }

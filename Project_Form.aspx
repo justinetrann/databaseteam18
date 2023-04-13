@@ -2,7 +2,7 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"/>
-<link href="Styles/project_form.css" rel="stylesheet" type="text/css"/>
+<link href="Styles/project_forms.css" rel="stylesheet" type="text/css"/>
 
     <main aria-labelledby="project_form">
         <!--NEW PROJECT FORM-->

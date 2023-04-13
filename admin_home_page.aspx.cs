@@ -23,17 +23,32 @@ namespace databaseteam18
     public partial class admin_home_page : System.Web.UI.Page
 
     {
+        protected GridView GridViewAdmin;
 
         protected void Page_Load(object sender, EventArgs e)
 
         {
 
             userRoleAssignmentSubmitButton.ServerClick += new EventHandler(userRoleAssignmentSubmitButton_Click);
-           
+
+            // GETTING USER EMAILS
+            // Establishing connection string to database
+            // Reading from the web.config file
+            string dbConnectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
+
+            var queryString = "SELECT u.user_email, u.user_role_ID, r.role_type FROM COMPANY.User_Login u LEFT JOIN COMPANY.role r ON u.user_role_ID = r.role_ID"; // Return all records from Project Table in Database
+            var dbConncetion = new SqlConnection(dbConnectionString);
+            var dataAdapter = new SqlDataAdapter(queryString, dbConncetion);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+
+            GridViewAdmin.DataSource = ds.Tables[0];
+            GridViewAdmin.DataBind();
+
 
         }
-
-
 
 
         protected void userRoleAssignmentSubmitButton_Click(object sender, EventArgs e)

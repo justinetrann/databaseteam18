@@ -76,27 +76,29 @@ namespace databaseteam18
             }
 
 
-            var queryString = "SELECT p.Name, p.Start_Date, p.End_Date, d.depName FROM COMPANY.projects p LEFT JOIN COMPANY.department d ON p.Department_ID = d.depid ORDER BY p.End_Date ASC"; // Return all records from Project Table in Database
+
+            var queryString = "SELECT p.Name, p.Start_Date, p.End_Date, d.depName FROM COMPANY.projects p LEFT JOIN COMPANY.department d ON p.Department_ID = d.depid WHERE d.depName = @DepartmentName ORDER BY p.End_Date ASC";
             var dataAdapter = new SqlDataAdapter(queryString, dbConncetion);
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
             var ds = new DataSet();
+            dataAdapter.SelectCommand.Parameters.AddWithValue("@DepartmentName", departmentName);
             dataAdapter.Fill(ds);
             GridViewManagerProject1.DataSource = ds.Tables[0];
             GridViewManagerProject1.DataBind();
 
-            queryString = "SELECT p.Name, t.task_name, ta.task_status, ta.task_deadline FROM COMPANY.projects p JOIN COMPANY.task_assignment ta ON p.ID = ta.Project_ID JOIN COMPANY.tasks t ON t.task_id = ta.task_id ORDER BY p.Name ASC"; // Return all records from Project Table in Database
+            queryString = "SELECT p.Name, t.task_name, ta.task_status, ta.task_deadline FROM COMPANY.projects p JOIN COMPANY.task_assignment ta ON p.ID = ta.Project_ID JOIN COMPANY.tasks t ON t.task_id = ta.task_id JOIN COMPANY.department d ON p.Department_ID = d.depid WHERE d.depName = @DepartmentName ORDER BY p.Name ASC";
             dataAdapter = new SqlDataAdapter(queryString, dbConncetion);
             ds = new DataSet();
+            dataAdapter.SelectCommand.Parameters.AddWithValue("@DepartmentName", departmentName);
             dataAdapter.Fill(ds);
-
             GridViewManagerTask.DataSource = ds.Tables[0];
             GridViewManagerTask.DataBind();
 
-            queryString = "SELECT p.Name as Project_Name, ta.employee_id, d.depName, t.task_name FROM COMPANY.projects p JOIN COMPANY.task_assignment ta ON p.ID = ta.Project_ID LEFT JOIN COMPANY.department d ON p.Department_ID = d.depid JOIN COMPANY.tasks t ON t.task_id = ta.task_id LEFT JOIN COMPANY.employees e ON e.employee_id = ta.employee_ID"; // Return all records from Project Table in Database
+            queryString = "SELECT p.Name as Project_Name, ta.employee_id, d.depName, t.task_name FROM COMPANY.projects p JOIN COMPANY.task_assignment ta ON p.ID = ta.Project_ID LEFT JOIN COMPANY.department d ON p.Department_ID = d.depid JOIN COMPANY.tasks t ON t.task_id = ta.task_id LEFT JOIN COMPANY.employees e ON e.employee_id = ta.employee_ID WHERE d.depName = @DepartmentName";
             dataAdapter = new SqlDataAdapter(queryString, dbConncetion);
             ds = new DataSet();
+            dataAdapter.SelectCommand.Parameters.AddWithValue("@DepartmentName", departmentName);
             dataAdapter.Fill(ds);
-
             GridViewManagerEmployees.DataSource = ds.Tables[0];
             GridViewManagerEmployees.DataBind();
 

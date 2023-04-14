@@ -22,6 +22,7 @@ namespace databaseteam18
         protected GridView GridViewManagerTaskA;
         protected GridView GridViewManagerTaskS;
         protected GridView GridViewManagerEmployees;
+        protected GridView GridViewManagerEmployees1;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -78,7 +79,7 @@ namespace databaseteam18
             }
 
             // current projects in system related to that emplopyee
-            var queryString = "SELECT p.Name, p.Start_Date, p.End_Date, d.depName FROM COMPANY.projects p LEFT JOIN COMPANY.department d ON p.Department_ID = d.depid WHERE d.depName = @DepartmentName ORDER BY p.End_Date ASC";
+            var queryString = "SELECT p.Name AS 'Project Name ', p.Start_Date AS 'Start Date ', p.End_Date AS 'End Date ', d.depName AS 'Department Name 'FROM COMPANY.projects p LEFT JOIN COMPANY.department d ON p.Department_ID = d.depid WHERE d.depName = @DepartmentName ORDER BY p.End_Date ASC";
             var dataAdapter = new SqlDataAdapter(queryString, dbConncetion);
             dataAdapter.SelectCommand.Parameters.AddWithValue("@DepartmentName", departmentName);
             var ds = new DataSet();
@@ -87,7 +88,7 @@ namespace databaseteam18
             GridViewManagerProject1.DataBind();
             
             // assigned tasks
-            queryString = "SELECT p.Name, t.task_name, ta.task_status, ta.task_deadline FROM COMPANY.projects p JOIN COMPANY.task_assignment ta ON p.ID = ta.Project_ID JOIN COMPANY.tasks t ON t.task_id = ta.task_id JOIN COMPANY.department d ON p.Department_ID = d.depid WHERE d.depName = @DepartmentName AND ta.task_status = 'assigned' ORDER BY p.Name ASC";
+            queryString = "SELECT p.Name AS 'Project Name ', t.task_name AS 'Task ', ta.task_status AS 'Status ', ta.task_deadline AS 'Deadline ' FROM COMPANY.projects p JOIN COMPANY.task_assignment ta ON p.ID = ta.Project_ID JOIN COMPANY.tasks t ON t.task_id = ta.task_id JOIN COMPANY.department d ON p.Department_ID = d.depid WHERE d.depName = @DepartmentName AND ta.task_status = 'assigned' ORDER BY p.Name ASC";
             dataAdapter = new SqlDataAdapter(queryString, dbConncetion);
             ds = new DataSet();
             dataAdapter.SelectCommand.Parameters.AddWithValue("@DepartmentName", departmentName);
@@ -96,7 +97,7 @@ namespace databaseteam18
             GridViewManagerTaskA.DataBind();
 
             // completed tasks
-            queryString = "SELECT p.Name, t.task_name, ta.task_status, ta.task_deadline FROM COMPANY.projects p JOIN COMPANY.task_assignment ta ON p.ID = ta.Project_ID JOIN COMPANY.tasks t ON t.task_id = ta.task_id JOIN COMPANY.department d ON p.Department_ID = d.depid WHERE d.depName = @DepartmentName AND ta.task_status = 'Completed' ORDER BY p.Name ASC";
+            queryString = "SELECT p.Name AS 'Project Name ', t.task_name AS 'Task ', ta.task_status AS 'Status ', ta.task_deadline AS 'Deadline ' FROM COMPANY.projects p JOIN COMPANY.task_assignment ta ON p.ID = ta.Project_ID JOIN COMPANY.tasks t ON t.task_id = ta.task_id JOIN COMPANY.department d ON p.Department_ID = d.depid WHERE d.depName = @DepartmentName AND ta.task_status = 'Completed' ORDER BY p.Name ASC";
             dataAdapter = new SqlDataAdapter(queryString, dbConncetion);
             ds = new DataSet();
             dataAdapter.SelectCommand.Parameters.AddWithValue("@DepartmentName", departmentName);
@@ -105,7 +106,7 @@ namespace databaseteam18
             GridViewManagerTaskC.DataBind();
 
             // paused tasks
-            queryString = "SELECT p.Name, t.task_name, ta.task_status, ta.task_deadline FROM COMPANY.projects p JOIN COMPANY.task_assignment ta ON p.ID = ta.Project_ID JOIN COMPANY.tasks t ON t.task_id = ta.task_id JOIN COMPANY.department d ON p.Department_ID = d.depid WHERE d.depName = @DepartmentName AND ta.task_status = 'Paused' ORDER BY p.Name ASC";
+            queryString = "SELECT p.Name AS 'Project Name ', t.task_name AS 'Task ', ta.task_status AS 'Status ', ta.task_deadline AS 'Deadline ' FROM COMPANY.projects p JOIN COMPANY.task_assignment ta ON p.ID = ta.Project_ID JOIN COMPANY.tasks t ON t.task_id = ta.task_id JOIN COMPANY.department d ON p.Department_ID = d.depid WHERE d.depName = @DepartmentName AND ta.task_status = 'Paused' ORDER BY p.Name ASC";
             dataAdapter = new SqlDataAdapter(queryString, dbConncetion);
             ds = new DataSet();
             dataAdapter.SelectCommand.Parameters.AddWithValue("@DepartmentName", departmentName);
@@ -114,7 +115,7 @@ namespace databaseteam18
             GridViewManagerTaskP.DataBind();
 
             // started tasks
-            queryString = "SELECT p.Name, t.task_name, ta.task_status, ta.task_deadline FROM COMPANY.projects p JOIN COMPANY.task_assignment ta ON p.ID = ta.Project_ID JOIN COMPANY.tasks t ON t.task_id = ta.task_id JOIN COMPANY.department d ON p.Department_ID = d.depid WHERE d.depName = @DepartmentName AND ta.task_status = 'Started' ORDER BY p.Name ASC";
+            queryString = "SELECT p.Name AS 'Project Name ', t.task_name AS 'Task ', ta.task_status AS 'Status ', ta.task_deadline AS 'Deadline ' FROM COMPANY.projects p JOIN COMPANY.task_assignment ta ON p.ID = ta.Project_ID JOIN COMPANY.tasks t ON t.task_id = ta.task_id JOIN COMPANY.department d ON p.Department_ID = d.depid WHERE d.depName = @DepartmentName AND ta.task_status = 'Started' ORDER BY p.Name ASC";
             dataAdapter = new SqlDataAdapter(queryString, dbConncetion);
             ds = new DataSet();
             dataAdapter.SelectCommand.Parameters.AddWithValue("@DepartmentName", departmentName);
@@ -122,8 +123,17 @@ namespace databaseteam18
             GridViewManagerTaskS.DataSource = ds.Tables[0];
             GridViewManagerTaskS.DataBind();
 
+            // current employees in the department
+            queryString = "SELECT e.employee_first_name AS 'First Name ', e.employee_last_name AS 'Last Name ', e.employee_id AS 'UID ', d.depName AS 'Department Name ' FROM COMPANY.employees e JOIN COMPANY.department d ON e.dept_ID = d.depId WHERE d.depName = @DepartmentName";
+            dataAdapter = new SqlDataAdapter(queryString, dbConncetion);
+            ds = new DataSet();
+            dataAdapter.SelectCommand.Parameters.AddWithValue("@DepartmentName", departmentName);
+            dataAdapter.Fill(ds);
+            GridViewManagerEmployees1.DataSource = ds.Tables[0];
+            GridViewManagerEmployees1.DataBind();
+
             // current employees and their tasks
-            queryString = "SELECT p.Name as Project_Name, ta.employee_id, d.depName, t.task_name FROM COMPANY.projects p JOIN COMPANY.task_assignment ta ON p.ID = ta.Project_ID LEFT JOIN COMPANY.department d ON p.Department_ID = d.depid JOIN COMPANY.tasks t ON t.task_id = ta.task_id LEFT JOIN COMPANY.employees e ON e.employee_id = ta.employee_ID WHERE d.depName = @DepartmentName";
+            queryString = "SELECT p.Name AS 'Project Name ', ta.employee_id AS 'UID ', d.depName AS 'Department Name ', t.task_name AS 'Task Name ' FROM COMPANY.projects p JOIN COMPANY.task_assignment ta ON p.ID = ta.Project_ID LEFT JOIN COMPANY.department d ON p.Department_ID = d.depid JOIN COMPANY.tasks t ON t.task_id = ta.task_id LEFT JOIN COMPANY.employees e ON e.employee_id = ta.employee_ID WHERE d.depName = @DepartmentName";
             dataAdapter = new SqlDataAdapter(queryString, dbConncetion);
             ds = new DataSet();
             dataAdapter.SelectCommand.Parameters.AddWithValue("@DepartmentName", departmentName);

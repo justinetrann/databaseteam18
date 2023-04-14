@@ -64,17 +64,17 @@ namespace databaseteam18
 
             if (firstName.Length != 0)
             {
-                first_name.InnerText = firstName;
+                first_name.InnerText = "First Name: " + firstName;
             }
 
             if (lastName.Length != 0)
             {
-                last_name.InnerText = lastName;
+                last_name.InnerText = "Last Name: " + lastName;
             }
 
             if (departmentName.Length != 0)
             {
-                Department.InnerText = departmentName;
+                Department.InnerText = "Department: " + departmentName;
             }
 
             // current projects in system related to that emplopyee

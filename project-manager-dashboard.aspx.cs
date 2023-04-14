@@ -79,7 +79,7 @@ namespace databaseteam18
             }
 
             // current projects in system related to that emplopyee
-            var queryString = "SELECT p.Name AS 'Project Name ', p.Start_Date AS 'Start Date ', p.End_Date AS 'End Date ', d.depName AS 'Department Name 'FROM COMPANY.projects p LEFT JOIN COMPANY.department d ON p.Department_ID = d.depid WHERE d.depName = @DepartmentName ORDER BY p.End_Date ASC";
+            var queryString = "SELECT p.Name AS 'Name ', p.Start_Date AS 'Start Date ', p.End_Date AS 'End Date ', d.depName AS 'Department Name 'FROM COMPANY.projects p LEFT JOIN COMPANY.department d ON p.Department_ID = d.depid WHERE d.depName = @DepartmentName ORDER BY p.End_Date ASC";
             var dataAdapter = new SqlDataAdapter(queryString, dbConncetion);
             dataAdapter.SelectCommand.Parameters.AddWithValue("@DepartmentName", departmentName);
             var ds = new DataSet();

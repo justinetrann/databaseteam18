@@ -13,5 +13,14 @@ namespace databaseteam18
 
     public partial class project_manager_dashboard
     {
+
+        /// <summary>
+        /// first_name control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl first_name;
     }
 }

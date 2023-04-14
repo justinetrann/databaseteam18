@@ -15,15 +15,15 @@ body {
 
 
 .project-manager {
-    display: block;
-    padding: 50px;
+    padding: 30px;
     background: #fff;
+    margin: 0px auto;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
 
 .calender {
-    display: block;
-    padding: 50px;
+    padding: 30px;
     background: #fff;
+    margin: 0px auto;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }

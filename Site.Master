@@ -41,23 +41,24 @@
 
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-light">
             <div class="container">
-                <a class="navbar-brand" runat="server" href="~/">Project Management System</a>
+                <a class="navbar-brand" runat="server">Project Management System</a>
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Employee_Profile_Page">My Profile</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Contact">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/project-manager-site">Home</a></li>
+                        <!--<li class="nav-item"><a class="nav-link" runat="server" href="~/Contact">Contact</a></li>-->
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/project-manager-dashboard">Dashboard</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Project_Form">Create Project</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Task_Form">Create Task</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Projects_Database">Projects</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Tasks_Database">Current Project Tasks</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Task_Form">Create Task</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/employee_task_database">My Tasks</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Login">Login</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Signup">Signup</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Employee_Profile_Page">My Profile</a></li>
+                        <!--<li class="nav-item"><a class="nav-link" runat="server" href="~/Login">Login</a></li>-->
+                        <!--<li class="nav-item"><a class="nav-link" runat="server" href="~/Signup">Signup</a></li>-->
                         <li class="nav-item"><button id="signoutButton" class="nav-link" runat="server">Sign out</button></li>
                         
                     </ul>

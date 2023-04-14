@@ -23,6 +23,7 @@ namespace databaseteam18
         {
             string dbConnectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
             var dbConncetion = new SqlConnection(dbConnectionString);
+
             // Getting Users First Name, Last Name, and Department Name
             int users_login_id = int.Parse(Session["user_login_id"].ToString());
             int employee_id = int.Parse(Session["employee_id"].ToString());

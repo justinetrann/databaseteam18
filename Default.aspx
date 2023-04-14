@@ -11,7 +11,7 @@
                     <p>Manage projects accross departments, tracking the hours of efforts by each member in projects, project status, and reporting on effort and cost.
                     </p>
                    </div>
-                    <img src="img/homepage_img.png" alt="">
+                    <img src="img/homepage_img.png" alt=""/>
                </div>
            </div>
         </body>

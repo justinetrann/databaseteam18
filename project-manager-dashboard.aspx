@@ -12,8 +12,8 @@
                         <img src="img/profile.png" alt="profile-picture" style="width:150px;height:130px; float:left; margin-right: 10px;"/>
                         <div class="inline-div" style="width: calc(100% - 160px);">
                             <h4 id="first_name" runat="server">First Name</h4>
-                            <h4 id="last_name">Last Name</h4>
-                            <h4 id="Department">Department Name</h4>
+                            <h4 id="last_name" runat="server">Last Name</h4>
+                            <h4 id="Department" runat="server">Department Name</h4>
                         </div>
                     </div>
                 </div>

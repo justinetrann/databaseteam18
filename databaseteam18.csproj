@@ -103,6 +103,7 @@
     <Content Include="admin_home_page.aspx" />
     <Content Include="departmentReport.aspx" />
     <Content Include="department_assign.aspx" />
+    <Content Include="employee-home-site.aspx" />
     <Content Include="employeeReport.aspx" />
     <Content Include="Employee_Profile_Page.aspx" />
     <Content Include="employee_task_database.aspx" />
@@ -229,6 +230,13 @@
     </Compile>
     <Compile Include="department_assign.aspx.designer.cs">
       <DependentUpon>department_assign.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="employee-home-site.aspx.cs">
+      <DependentUpon>employee-home-site.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="employee-home-site.aspx.designer.cs">
+      <DependentUpon>employee-home-site.aspx</DependentUpon>
     </Compile>
     <Compile Include="employeeReport.aspx.cs">
       <DependentUpon>employeeReport.aspx</DependentUpon>

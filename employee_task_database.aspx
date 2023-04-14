@@ -3,7 +3,7 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <link rel="stylesheet" href="Styles/project.css">
     <main aria-labelledby="task_database">
-        <div className="container">
+        <div classname="container">
             <form>
               <div class="form-group row">
                 <label for="projectName" class="col-sm-2 col-form-label">Project Name</label>

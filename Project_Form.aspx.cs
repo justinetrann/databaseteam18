@@ -285,48 +285,30 @@ namespace databaseteam18
                 
             }
 
-            catch (Exception ex)
+            catch (SqlException ex)
 
             {
+                if (ex.Message.Contains("Manager already has an ongoing project"))
+                {
+                    // Display a personalized error message to the user
+                    Console.WriteLine("An error occurred: " + ex.Message);
+                    errorMessage.InnerHtml = "You alread have an ongoing project. Pause or Complete a project before starting a new one.";
+                    errorMessage.Style.Remove("display");
+                }
+                else
+                {
+                    // If the error was caused by something else, display a generic error message
+                    Console.WriteLine("An error occurred: " + ex.Message);
+                    errorMessage.InnerHtml = "A Database error occurred: " + ex.Message;
+                    errorMessage.Style.Remove("display");
+                }
 
                 // Handle the error in some way, such as displaying an error message to the user or logging the error for later analysis
-
-                Console.WriteLine("An error occurred: " + ex.Message);
-                errorMessage.InnerHtml = "A Database error occurred: " + ex.Message;
-                errorMessage.Style.Remove("display");
+                
 
             }
 
-            /// <summary>
-            /// Determine if Date String is an actual date
-            /// Date format = MM/DD/YYYY
-            /// </summary>
-            /// <param name="date"></param>
-            /// <returns></returns>
-            //private bool ValidateDate(string date)
-            //{
-            //    try
-            //    {
-            //        // for US, alter to suit if splitting on hyphen, comma, etc.
-            //        string[] dateParts = date.Split('/');
-
-            //        // create new date from the parts; if this does not fail
-            //        // the method will return true and the date is valid
-            //        DateTime testDate = new
-            //            DateTime(Convert.ToInt32(dateParts[2]),
-            //            Convert.ToInt32(dateParts[0]),
-            //            Convert.ToInt32(dateParts[1]));
-
-            //        return true;
-            //    }
-            //    catch
-            //    {
-            //        // if a test date cannot be created, the
-            //        // method will return false
-            //        return false;
-            //    }
-            //}
-
+           
         }
 
 

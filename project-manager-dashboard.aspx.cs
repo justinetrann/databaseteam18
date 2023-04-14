@@ -13,6 +13,7 @@ namespace databaseteam18
     public partial class project_manager_dashboard : System.Web.UI.Page
     {
         protected GridView GridViewAdminProject1;
+        protected GridView GridViewAdminTask;
         protected void Page_Load(object sender, EventArgs e)
         {
             string dbConnectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
@@ -27,6 +28,17 @@ namespace databaseteam18
 
             GridViewAdminProject1.DataSource = ds.Tables[0];
             GridViewAdminProject1.DataBind();
+
+            queryString = "SELECT p.Name, d.depName, t.task_name, ta.task_status, ta.task_deadline FROM COMPANY.projects p JOIN COMPANY.task_assignment ta ON p.ID = ta.Project_ID LEFT JOIN COMPANY.department d ON p.Department_ID = d.depid JOIN COMPANY.tasks t ON t.task_id = ta.task_id"; // Return all records from Project Table in Database
+            dbConncetion = new SqlConnection(dbConnectionString);
+            dataAdapter = new SqlDataAdapter(queryString, dbConncetion);
+
+            commandBuilder = new SqlCommandBuilder(dataAdapter);
+            ds = new DataSet();
+            dataAdapter.Fill(ds);
+
+            GridViewAdminTask.DataSource = ds.Tables[0];
+            GridViewAdminTask.DataBind();
         }
     }
 }

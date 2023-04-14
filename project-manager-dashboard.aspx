@@ -10,7 +10,7 @@
                 <div class="row">
                     <div id="manager-profile" class="col col-lg-2">
                         <img src="img/profile.png" alt="profile-picture" style="width:150px;height:130px; float:left; margin-right: 10px;"/>
-                        <div class="inline-div" style="width: calc(100% - 160px);">
+                        <div class="inline-div col" style="width: calc(100% - 160px);">
                             <h4 id="first_name" runat="server">First Name</h4>
                             <h4 id="last_name" runat="server">Last Name</h4>
                             <h4 id="Department" runat="server">Department Name</h4>
@@ -61,11 +61,12 @@
 
             </div>
               <br/>
-            <!--Calender-->
+            <!--Tasks-->
             <div class="calender col-md-6">
-                <!--Project Tasks in Departments-->
-                <h5 class="text-center text-muted mb-3 h5">Current In-Progress Tasks In The System</h5>
-                <asp:GridView ID ="GridViewManagerTask" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" Width="483px" HorizontalAlign="Center">
+
+                 <!--Project Completed Tasks Only in Departments-->
+                <h5 class="text-center text-muted mb-3 h5">Completed Tasks In The System</h5>
+                <asp:GridView ID ="GridViewManagerTaskC" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" Width="483px" HorizontalAlign="Center">
                     <AlternatingRowStyle BackColor="White" />
                     <EditRowStyle BackColor="#2461BF" />
                     <FooterStyle BackColor="#507CD1" ForeColor="White" Font-Bold="True" />
@@ -79,6 +80,53 @@
                     <SortedDescendingHeaderStyle BackColor="#4870BE" />
                 </asp:GridView>
 
+                 <!--Project Started Tasks Only in Departments-->
+                <h5 class="text-center text-muted mb-3 h5">Started Tasks In The System</h5>
+                <asp:GridView ID ="GridViewManagerTaskS" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" Width="483px" HorizontalAlign="Center">
+                    <AlternatingRowStyle BackColor="White" />
+                    <EditRowStyle BackColor="#2461BF" />
+                    <FooterStyle BackColor="#507CD1" ForeColor="White" Font-Bold="True" />
+                    <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                    <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                    <RowStyle BackColor="#EFF3FB" />
+                    <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                    <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                    <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                    <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                    <SortedDescendingHeaderStyle BackColor="#4870BE" />
+                </asp:GridView>
+
+                <!--Project Assigned Tasks Only in Departments-->
+                <h5 class="text-center text-muted mb-3 h5">Current In-Progress Tasks In The System</h5>
+                <asp:GridView ID ="GridViewManagerTaskA" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" Width="483px" HorizontalAlign="Center">
+                    <AlternatingRowStyle BackColor="White" />
+                    <EditRowStyle BackColor="#2461BF" />
+                    <FooterStyle BackColor="#507CD1" ForeColor="White" Font-Bold="True" />
+                    <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                    <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                    <RowStyle BackColor="#EFF3FB" />
+                    <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                    <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                    <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                    <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                    <SortedDescendingHeaderStyle BackColor="#4870BE" />
+                </asp:GridView>
+
+                <!--Project Paused Tasks Only in Departments-->
+                <h5 class="text-center text-muted mb-3 h5">Paused Tasks In The System</h5>
+                <asp:GridView ID ="GridViewManagerTaskP" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" Width="483px" HorizontalAlign="Center">
+                    <AlternatingRowStyle BackColor="White" />
+                    <EditRowStyle BackColor="#2461BF" />
+                    <FooterStyle BackColor="#507CD1" ForeColor="White" Font-Bold="True" />
+                    <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                    <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                    <RowStyle BackColor="#EFF3FB" />
+                    <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                    <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                    <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                    <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                    <SortedDescendingHeaderStyle BackColor="#4870BE" />
+                </asp:GridView>
 
             </div>
     </main>

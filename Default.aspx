@@ -1,19 +1,22 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/default_site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" OnPreInit="Page_PreInit" Inherits="databaseteam18._Default" %>
 
-<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-<link href="Styles/homepage.css" rel="stylesheet" type="text/css"/>
-    <main>
-        <body>
-            <div class="container">
-                <div class="content">
-                    <div class="text">
-                    <h1>Control Your Business<br> <span>Project Management System</span></h1>
-                    <p>Manage projects accross departments, tracking the hours of efforts by each member in projects, project status, and reporting on effort and cost.
-                    </p>
-                   </div>
-                    <img src="img/homepage_img.png" alt=""/>
-               </div>
-           </div>
-        </body>
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+<link href="Styles/manager.css" rel="stylesheet" type="text/css"/>
+    <main aria-labelledby="project-manager">
+        <div classname="container">
+
+            <!--Admin Page Introduction-->
+            <div class="title-page">
+                <video class="fill-container" autoplay="" loop="" muted="">
+                <source src="video/admin-page.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                </video>
+                <div class="video-text">
+                <h1>WELCOME PROJECT MANAGER.</h1>
+                </div>
+            </div><br/>
+
+        </div>
     </main>
 </asp:Content>

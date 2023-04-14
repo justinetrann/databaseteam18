@@ -10,6 +10,7 @@ using System.Configuration;
 using System.Data.Common;
 using System.Data.Odbc;
 using System.Runtime.Remoting.Messaging;
+using System.Collections.ObjectModel;
 
 namespace databaseteam18
 {
@@ -25,64 +26,58 @@ namespace databaseteam18
             var dbConncetion = new SqlConnection(dbConnectionString);
 
             // Getting Users First Name, Last Name, and Department Name
-            int users_login_id = int.Parse(Session["user_login_id"].ToString());
-            int employee_id = int.Parse(Session["employee_id"].ToString());
-            int role_ID = int.Parse(Session["role_id"].ToString());
+            int employee_id = 0;
+            if (Session["employee_id"] != null)
+            {
+                employee_id = int.Parse(Session["employee_id"].ToString());
+            }
+            else
+            {
+                // testing
+                employee_id = 69802;
+            }
 
-            string queryStringAccess = "SELECT e.employee_first_name, e.employee_last_name, d.depName " +
-                                             "FROM COMPANY.employees e, COMPANY.department" +
-                                             "JOIN COMPANY.department d ON e.department_id = d.dpHeadID" +
-                                             "WHERE e.employee_id = @employee_id";
+            string queryStringAccess = "SELECT e.employee_first_name, e.employee_last_name, d.depName FROM COMPANY.employees e JOIN COMPANY.department d ON e.dept_ID = d.depId WHERE e.employee_id = @Employee_id";
+            
             // temp department
             string departmentName = "Executive Department";
+            string firstName = "First Name";
+            string lastName = "Last Name";
+            dbConncetion.Open();
             using (var command = new SqlCommand(queryStringAccess, dbConncetion))
             {
-                command.Parameters.AddWithValue("@employee_id", employee_id);
+                command.Parameters.AddWithValue("@Employee_id", employee_id);
                 using (var reader = command.ExecuteReader())
                 {
                     if (reader.Read())
                     {
-                        string firstName = reader.GetString(0);
-                        string lastName = reader.GetString(1);
+                        firstName = reader.GetString(0);
+                        lastName = reader.GetString(1);
                         departmentName = reader.GetString(2);
 
-                        if(firstName.Length != 0)
-                        {
-                            first_name.InnerText = firstName;
-                        }
-                        else
-                        {
-                            first_name.InnerText = "First Name";
-                        }
-
-                        if (lastName.Length != 0)
-                        {
-                            last_name.InnerText = lastName;
-                        }
-                        else
-                        {
-                            last_name.InnerText = "Last Name";
-                        }
-
-                        if (departmentName.Length != 0)
-                        {
-                            Department.InnerText = departmentName;
-                        }
-                        else
-                        {
-                            Department.InnerText = "Department Name";
-                        }
                     }
                 }
             }
 
+            if (firstName.Length != 0)
+            {
+                first_name.InnerText = firstName;
+            }
 
+            if (lastName.Length != 0)
+            {
+                last_name.InnerText = lastName;
+            }
+
+            if (departmentName.Length != 0)
+            {
+                Department.InnerText = departmentName;
+            }
 
             var queryString = "SELECT p.Name, p.Start_Date, p.End_Date, d.depName FROM COMPANY.projects p LEFT JOIN COMPANY.department d ON p.Department_ID = d.depid WHERE d.depName = @DepartmentName ORDER BY p.End_Date ASC";
             var dataAdapter = new SqlDataAdapter(queryString, dbConncetion);
-            var commandBuilder = new SqlCommandBuilder(dataAdapter);
-            var ds = new DataSet();
             dataAdapter.SelectCommand.Parameters.AddWithValue("@DepartmentName", departmentName);
+            var ds = new DataSet();
             dataAdapter.Fill(ds);
             GridViewManagerProject1.DataSource = ds.Tables[0];
             GridViewManagerProject1.DataBind();

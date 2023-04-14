@@ -114,26 +114,6 @@ namespace databaseteam18
                     {
 
 
-                        //rowCount = 0;
-
-                        //while (read_deptreader.Read())
-                        //{
-                        //    rowCount++;
-                        //}
-
-
-                        //if (rowCount != 1)
-                        //{
-                        //    errorMessage.InnerHtml = "Something unexpected happened. Please try again later.(more than 1 row returned by user_login table";
-                        //    errorMessage.Style.Remove("display");
-                        //    return;
-                        //}
-
-                        //read_deptreader.Close();
-
-                        //read_deptreader = read_deptcommand.ExecuteReader();
-
-
 
                         //Read current employee department id
                         while (read_deptreader.Read())

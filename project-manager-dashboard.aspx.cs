@@ -30,8 +30,8 @@ namespace databaseteam18
             int role_ID = int.Parse(Session["role_id"].ToString());
 
             string queryStringAccess = "SELECT e.employee_first_name, e.employee_last_name, d.depName " +
-                                             "FROM COMPANY.employees e, COMPANY.department d " +
-                                             "JOIN COMPANY.department d ON e.managerID = d.dpHeadID" +
+                                             "FROM COMPANY.employees e, COMPANY.department" +
+                                             "JOIN COMPANY.department d ON e.department_id = d.dpHeadID" +
                                              "WHERE e.employee_id = @employee_id";
             // temp department
             string departmentName = "Executive Department";

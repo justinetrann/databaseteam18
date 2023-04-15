@@ -130,6 +130,7 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="project-dashboard.aspx" />
     <Content Include="project-manager-dashboard.aspx" />
     <Content Include="project-manager-site.aspx" />
     <Content Include="Project_Form.aspx" />
@@ -290,6 +291,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="project-dashboard.aspx.cs">
+      <DependentUpon>project-dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="project-dashboard.aspx.designer.cs">
+      <DependentUpon>project-dashboard.aspx</DependentUpon>
     </Compile>
     <Compile Include="project-manager-dashboard.aspx.cs">
       <DependentUpon>project-manager-dashboard.aspx</DependentUpon>

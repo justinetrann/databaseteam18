@@ -28,10 +28,11 @@ namespace databaseteam18
         {
             submitButton.ServerClick += new EventHandler(submitButton_Click);
             
-                SqlDataAdapter da;
+                SqlDataAdapter employees_da;
+                SqlDataAdapter tasks_da;
 
 
-                project_id = Convert.ToInt32(Session["project_id"]);
+            project_id = Convert.ToInt32(Session["project_id"]);
 
 
            
@@ -63,18 +64,18 @@ namespace databaseteam18
 
             if (!IsPostBack)
             {
-                da = new SqlDataAdapter(read_employees_command);
+                employees_da = new SqlDataAdapter(read_employees_command);
 
                 // create a DataTable to hold the results
                 DataTable employees = new DataTable();
 
                 // fill the DataTable with the results of the SQL query
-                da.Fill(employees);
+                employees_da.Fill(employees);
 
 
 
                 task_employees.DataSource = employees;
-                task_employees.AppendDataBoundItems = true;
+                //---->1. task_employees.AppendDataBoundItems = true;
                 task_employees.DataTextField = "employee_full_name"; // The column you want to display in the dropdown list
                 task_employees.DataValueField = "employee_id"; // The column you want to use as the value for the selected item
                 task_employees.DataBind();
@@ -82,32 +83,33 @@ namespace databaseteam18
                 //this.employee_id = Convert.ToInt32(task_employees.SelectedValue);
 
                 read_employees_command.Dispose();
-                da.Dispose();
+                //da.Dispose();
             }
 
-           else if (IsPostBack)
-            {
-                da = new SqlDataAdapter(read_employees_command);
+            //---->2 ELSE IF BLOCK COMMENT 
+           //else if (IsPostBack)
+           // {
+           //     da = new SqlDataAdapter(read_employees_command);
 
-                // create a DataTable to hold the results
-                DataTable employees = new DataTable();
+           //     // create a DataTable to hold the results
+           //     DataTable employees = new DataTable();
 
-                // fill the DataTable with the results of the SQL query
-                da.Fill(employees);
+           //     // fill the DataTable with the results of the SQL query
+           //     da.Fill(employees);
 
 
-                task_employees.Items.Clear();
-                task_employees.DataSource = employees;
-                task_employees.AppendDataBoundItems = true;
-                task_employees.DataTextField = "employee_full_name"; // The column you want to display in the dropdown list
-                task_employees.DataValueField = "employee_id"; // The column you want to use as the value for the selected item
-                task_employees.DataBind();
+           //     task_employees.Items.Clear();
+           //     task_employees.DataSource = employees;
+           //     task_employees.AppendDataBoundItems = true;
+           //     task_employees.DataTextField = "employee_full_name"; // The column you want to display in the dropdown list
+           //     task_employees.DataValueField = "employee_id"; // The column you want to use as the value for the selected item
+           //     task_employees.DataBind();
 
-                //this.employee_id = Convert.ToInt32(task_employees.SelectedValue);
+           //     //this.employee_id = Convert.ToInt32(task_employees.SelectedValue);
 
-                read_employees_command.Dispose();
-                da.Dispose();
-            }
+           //     read_employees_command.Dispose();
+           //     da.Dispose();
+           // }
 
             ////getting already existing tasks to determine predecessors
             string read_tasks_query = "SELECT task_ID, task_name FROM COMPANY.tasks WHERE project_id = @project_id;";
@@ -145,13 +147,13 @@ namespace databaseteam18
                 {
                 if (!IsPostBack)
                 {
-                    da = new SqlDataAdapter(read_tasks_command);
+                    tasks_da = new SqlDataAdapter(read_tasks_command);
 
                     // create a DataTable to hold the results
                     DataTable tasks = new DataTable();
 
                     // fill the DataTable with the results of the SQL query
-                    da.Fill(tasks);
+                    tasks_da.Fill(tasks);
 
                     task_results.DataSource = tasks;
                     task_results.AppendDataBoundItems = true;
@@ -165,33 +167,33 @@ namespace databaseteam18
 
 
                     read_tasks_command.Dispose();
-                    da.Dispose();
+                    //tasks_da.Dispose();
                 }
-                else if (IsPostBack)
-                {
-                    da = new SqlDataAdapter(read_tasks_command);
+                //else if (IsPostBack)
+                //{
+                //    da = new SqlDataAdapter(read_tasks_command);
 
-                    // create a DataTable to hold the results
-                    DataTable tasks = new DataTable();
+                //    // create a DataTable to hold the results
+                //    DataTable tasks = new DataTable();
 
-                    // fill the DataTable with the results of the SQL query
-                    da.Fill(tasks);
+                //    // fill the DataTable with the results of the SQL query
+                //    da.Fill(tasks);
 
-                    task_results.Items.Clear();
-                    task_results.DataSource = tasks;
-                    task_results.AppendDataBoundItems = true;
-                    task_results.Items.Insert(0, new ListItem("Select an option", "-1"));
-                    task_results.DataTextField = "task_name"; // The column you want to display in the dropdown list
-                    task_results.DataValueField = "task_ID"; // The column you want to use as the value for the selected item
-
-
-                    task_results.DataBind();
+                //    task_results.Items.Clear();
+                //    task_results.DataSource = tasks;
+                //    task_results.AppendDataBoundItems = true;
+                //    task_results.Items.Insert(0, new ListItem("Select an option", "-1"));
+                //    task_results.DataTextField = "task_name"; // The column you want to display in the dropdown list
+                //    task_results.DataValueField = "task_ID"; // The column you want to use as the value for the selected item
 
 
+                //    task_results.DataBind();
 
-                    read_tasks_command.Dispose();
-                    da.Dispose();
-                }
+
+
+                //    read_tasks_command.Dispose();
+                //    da.Dispose();
+                //}
             }
 
 
@@ -204,8 +206,6 @@ namespace databaseteam18
         {
 
             //check if all required fields are filled
-
-
 
 
             if (string.IsNullOrEmpty(task_name.Value) || string.IsNullOrEmpty(task_description.Value) || string.IsNullOrEmpty(estimated_duration.Value))
@@ -221,10 +221,6 @@ namespace databaseteam18
                 return;
 
             }
-
-
-
-
 
 
             try
@@ -247,11 +243,6 @@ namespace databaseteam18
                 ///Insert into tasks table
                 ///
                 this.employee_id = Convert.ToInt32(task_employees.SelectedValue);
-
-
-
-
-
 
                 
 
@@ -327,8 +318,10 @@ namespace databaseteam18
 
                 successMessage.Style.Remove("display");
 
-                Page_Load(sender, e);
-                return;
+
+
+                //--> 3. Page_Load(sender, e);
+                //return;
 
 
                 tasks_exsiting_flag = true;

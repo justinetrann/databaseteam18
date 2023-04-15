@@ -21,7 +21,6 @@ namespace databaseteam18
             if(!IsPostBack)
                 BindGridView();
 
-
             
         }
 
@@ -159,9 +158,10 @@ namespace databaseteam18
 
             string project_id = Session["project_id"].ToString();
 
-            var queryString = "SELECT COMPANY.tasks.task_ID as 'Task ID', task_name as 'Task Name', task_description as 'Description',task_est_duration as 'Duration', task_priority as 'Task Priority', COMPANY.task_assignment.task_status as 'Status', COMPANY.tasks.deleted as 'Delete', task_creation_date as 'Creation Date', task_assignment_date as 'Assignment Date', task_deadline as 'Deadline', convert(varchar,COMPANY.task_assignment.employee_id) + ' ' + employee_first_name + ' ' + employee_last_name as 'Employee'  FROM COMPANY.tasks  inner join COMPANY.task_assignment on COMPANY.task_assignment.task_id = COMPANY.tasks.task_ID inner join COMPANY.employees on COMPANY.employees.employee_id = COMPANY.task_assignment.employee_ID WHERE  COMPANY.tasks.project_ID=" + project_id + "AND COMPANY.tasks.deleted = 0;" ; // Return all records from Project Table in Database
+            var queryString = "SELECT COMPANY.tasks.task_ID as 'Task ID', task_name as 'Task Name', task_description as 'Description',task_est_duration as 'Duration',task_predecessor_ID as 'Task_Pred_ID', task_priority as 'Task Priority', COMPANY.task_assignment.task_status as 'Status', COMPANY.tasks.deleted as 'Delete', task_creation_date as 'Creation Date', task_assignment_date as 'Assignment Date', task_deadline as 'Deadline', convert(varchar,COMPANY.task_assignment.employee_id) + ' ' + employee_first_name + ' ' + employee_last_name as 'Employee'  FROM COMPANY.tasks  inner join COMPANY.task_assignment on COMPANY.task_assignment.task_id = COMPANY.tasks.task_ID inner join COMPANY.employees on COMPANY.employees.employee_id = COMPANY.task_assignment.employee_ID left outer join COMPANY.Tasks_Dependecies TDP on TDP.task_descendant_ID = COMPANY.tasks.task_ID WHERE  COMPANY.tasks.project_ID=" + project_id + "AND COMPANY.tasks.deleted = 0;" ; // Return all records from Project Table in Database
             var dbConncetion = new SqlConnection(dbConnectionString);
-            var dataAdapter = new SqlDataAdapter(queryString, dbConncetion);
+            //var dataAdapter = new SqlDataAdapter(queryString, dbConncetion);
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(queryString, dbConncetion);
 
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
             var ds = new DataSet();

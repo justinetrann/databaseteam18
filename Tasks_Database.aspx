@@ -61,6 +61,7 @@
                     </asp:DropDownList> 
                 </EditItemTemplate>
             </asp:TemplateField>
+            <asp:BoundField DataField="Task_Pred_ID" HeaderText="Task_Pred_ID" ReadOnly="true"/> 
 
            
             <asp:TemplateField HeaderText="Employee">

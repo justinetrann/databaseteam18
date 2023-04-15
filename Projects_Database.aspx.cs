@@ -15,7 +15,9 @@ namespace databaseteam18
             // Reading from the web.config file
             string dbConnectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
 
-            var queryString = "SELECT * FROM COMPANY.projects"; // Return all records from Project Table in Database
+            string manager_employee_ID = Session["employee_id"].ToString();
+
+            var queryString = "SELECT ID as 'Project ID', Name as 'Project Name',Start_Date as 'Start', deadline as 'Deadline', Status as 'Status', end_date as 'Completion Date', Estimated_Cost as 'Est. Cost', Effort as 'Est. Effort', Total_Cost as 'Tot. Cost', Total_Effort as 'Tot. Effort', DepName as 'Department', project_assignment_status as 'Assign. Status' FROM COMPANY.projects P inner join COMPANY.manages_project MP on P.ID = MP.Project_ID inner join COMPANY.department D on D.depId = P.Department_ID WHERE MP.employee_ID =" + manager_employee_ID+";"; // Return all records from Project Table in Database
             var dbConncetion = new SqlConnection(dbConnectionString);
             var dataAdapter = new SqlDataAdapter(queryString, dbConncetion);
 

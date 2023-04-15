@@ -3,7 +3,7 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <link rel="stylesheet" href="Styles/project.css">
     <main aria-labelledby="task_database">
-        <p>Current Tasks in Database</p>
+        <p>Current Project Tasks</p>
 
         <div id="errorMessage" class="alert alert-danger" runat ="server" style="display:none;">
                     

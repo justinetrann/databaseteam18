@@ -14,6 +14,7 @@ namespace databaseteam18
     public partial class project_dashboard : System.Web.UI.Page
     {
         protected GridView GridViewManagerProject;
+        protected GridView GridViewDepartment;
         protected GridView GridViewDepartmentProject;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -39,12 +40,29 @@ namespace databaseteam18
             GridViewManagerProject.DataSource = ds.Tables[0];
             GridViewManagerProject.DataBind();
 
+            queryString = "SELECT depId AS 'ID ', depName AS 'Department Name ' FROM COMPANY.department";
+            dataAdapter = new SqlDataAdapter(queryString, dbConncetion);
+            ds = new DataSet();
+            dataAdapter.Fill(ds);
+            GridViewDepartment.DataSource = ds.Tables[0];
+            GridViewDepartment.DataBind();
+
             if (IsPostBack)
             {
                 string eventTarget = Request.Form["__EVENTTARGET"];
                 if (eventTarget == FindProjectsDepButton.UniqueID)
                 {
                     FindDepProjects(sender, e);
+                }
+
+                if (eventTarget == RemoveDepartmentProject.UniqueID)
+                {
+                    RemoveDepProject(sender, e);
+                }
+
+                if (eventTarget == RestoreDepartmentProject.UniqueID)
+                {
+                    RestoreDepProject(sender, e);
                 }
             }
         }
@@ -77,6 +95,55 @@ namespace databaseteam18
             dataAdapter.Fill(ds);
             GridViewDepartmentProject.DataSource = ds.Tables[0];
             GridViewDepartmentProject.DataBind();
+        }
+
+        protected void RemoveDepProject(object sender, EventArgs e)
+        {
+            string projectName = removeProjects.Text.Trim();
+            string dbConnectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
+
+            using (SqlConnection connection = new SqlConnection(dbConnectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand("UPDATE COMPANY.projects SET Deleted = 1 WHERE ID = @ProjectID", connection);
+                command.Parameters.AddWithValue("@ProjectID", projectName);
+                int rowsAffected = command.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    Response.Write("<script>alert('Project Deletion Successfully!')</script>");
+                }
+                else
+                {
+                    Response.Write("<script>alert('Project Deletion Failed!')</script>");
+                }
+
+            }
+            removeProjects.Text = string.Empty;
+        }
+
+        protected void RestoreDepProject(object sender, EventArgs e)
+        {
+            string projectName = restoreProjects.Text.Trim();
+            string dbConnectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
+
+            using (SqlConnection connection = new SqlConnection(dbConnectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand("UPDATE COMPANY.projects SET Deleted = 0 WHERE ID = @ProjectID", connection);
+                command.Parameters.AddWithValue("@ProjectID", projectName);
+                int rowsAffected = command.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    Response.Write("<script>alert('Project Recovery Successfully!')</script>");
+                }
+                else
+                {
+                    Response.Write("<script>alert('Project Recovery Failed!')</script>");
+                }
+
+            }
+ 
+            restoreProjects.Text = string.Empty;
         }
     }
 }

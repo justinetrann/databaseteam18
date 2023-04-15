@@ -39,6 +39,7 @@
             <div class="search-bar">
                 <div class="container">
                   <div class="row">
+                    <!--Search-->
                     <div class="col-md-6">
                         <h5 class="text-muted mb-3 h5">Search Department Projects</h5>
                         <div class="findProjDepartment">
@@ -46,12 +47,27 @@
                             <asp:Button ID="FindProjectsDepButton" runat="server" Text="Search" OnClick="FindDepProjects" CssClass="btn btn-primary ml-2" />
                         </div>
                     </div>
-
+                    <!--Remove-->
                     <div class="col-md-6">
                         <h5 class="text-muted mb-3 h5">Remove Department Project</h5>
                         <div class="findProjectsDepartment">
                             <asp:TextBox ID="removeProjects" runat="server" placeholder="Project ID..."></asp:TextBox>
-                            <asp:Button ID="RemoveDepartmentProject" runat="server" Text="Search" OnClick="RemoveDepProject" CssClass="btn btn-danger ml-2" />
+                            <asp:Button ID="RemoveDepartmentProject" runat="server" Text="Remove" OnClick="RemoveDepProject" CssClass="btn btn-danger ml-2" />
+                        </div>
+                    </div>
+                    <!--Search-->
+                    <div class="col-md-6">
+                        <h5 class="text-muted mb-3 h5">Search For Project</h5>
+                        <div class="findProjDepartment">
+                            <asp:TextBox ID="TextBox1" runat="server" placeholder="Project Name..."></asp:TextBox>
+                        </div>
+                    </div>
+                    <!--Restore-->
+                    <div class="col-md-6">
+                        <h5 class="text-muted mb-3 h5">Restore Department Project</h5>
+                        <div class="findProjectsDepartment">
+                            <asp:TextBox ID="restoreProjects" runat="server" placeholder="Project ID..."></asp:TextBox>
+                            <asp:Button ID="RestoreDepartmentProject" runat="server" Text="Recover" OnClick="RestoreDepProject" CssClass="btn btn-success ml-2" />
                         </div>
                     </div>
                   </div>

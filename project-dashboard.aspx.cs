@@ -59,6 +59,11 @@ namespace databaseteam18
                 {
                     RemoveDepProject(sender, e);
                 }
+
+                if (eventTarget == RestoreDepartmentProject.UniqueID)
+                {
+                    RestoreDepProject(sender, e);
+                }
             }
         }
 
@@ -94,7 +99,7 @@ namespace databaseteam18
 
         protected void RemoveDepProject(object sender, EventArgs e)
         {
-            string projectName = removeProjects.Text;
+            string projectName = removeProjects.Text.Trim();
             string dbConnectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
 
             using (SqlConnection connection = new SqlConnection(dbConnectionString))
@@ -105,14 +110,40 @@ namespace databaseteam18
                 int rowsAffected = command.ExecuteNonQuery();
                 if (rowsAffected > 0)
                 {
-                    Response.Write("<script>alert('Project Updated Successfully!')</script>");
+                    Response.Write("<script>alert('Project Deletion Successfully!')</script>");
                 }
                 else
                 {
-                    Response.Write("<script>alert('Project Updated Failed!')</script>");
+                    Response.Write("<script>alert('Project Deletion Failed!')</script>");
                 }
 
             }
+            removeProjects.Text = string.Empty;
+        }
+
+        protected void RestoreDepProject(object sender, EventArgs e)
+        {
+            string projectName = restoreProjects.Text.Trim();
+            string dbConnectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
+
+            using (SqlConnection connection = new SqlConnection(dbConnectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand("UPDATE COMPANY.projects SET Deleted = 0 WHERE ID = @ProjectID", connection);
+                command.Parameters.AddWithValue("@ProjectID", projectName);
+                int rowsAffected = command.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    Response.Write("<script>alert('Project Recovery Successfully!')</script>");
+                }
+                else
+                {
+                    Response.Write("<script>alert('Project Recovery Failed!')</script>");
+                }
+
+            }
+ 
+            restoreProjects.Text = string.Empty;
         }
     }
 }

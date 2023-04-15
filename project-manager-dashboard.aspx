@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/project-manager.Master" AutoEventWireup="true" CodeBehind="project-manager-dashboard.aspx.cs" Inherits="databaseteam18.project_manager_dashboard" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"/>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
 <link href="Styles/manager-dashboard.css" rel="stylesheet" type="text/css"/>
     <main aria-labelledby="project-manager-dashbaord">
@@ -57,7 +58,14 @@
                     <SortedDescendingCellStyle BackColor="#E9EBEF" />
                     <SortedDescendingHeaderStyle BackColor="#4870BE" />
 
-                </asp:GridView>
+                </asp:GridView><br/>
+
+                <h5 class="text-center mb-3 h5">Find Employee Task In System</h5><br/>
+
+                <div class="d-flex justify-content-center">
+                    <asp:TextBox ID="findEmployee" runat="server" placeholder="Search UID..."></asp:TextBox>
+                    <asp:Button ID="searchButton" runat="server" Text="Search" OnClick="SubmitFormEmployee" CssClass="btn btn-primary btn-sm" />
+                </div><br/><br/>
 
                 <!--Employees Tasks-->
                 <h5 class="text-center text-muted mb-3 h5">Current Employees And Their Tasks</h5>
@@ -80,6 +88,14 @@
               <br/>
             <!--Tasks-->
             <div class="calender col-md-6">
+
+                <br/>
+                <h5 class="text-center mb-3 h5">Find Employee Task Status</h5><br/>
+
+                <div class="d-flex justify-content-center">
+                    <input id="findTask" type="text" placeholder="Search UID..." name="search" />
+                    <a href="#" class="btn btn-primary btn-sm" onclick="">Search</a>
+                </div><br/><br/>
 
                  <!--Project Completed Tasks Only in Departments-->
                 <h5 class="text-center text-muted mb-3 h5">Completed Tasks In The System</h5>

@@ -24,15 +24,6 @@ namespace databaseteam18
         protected global::System.Web.UI.HtmlControls.HtmlInputText task_name;
 
         /// <summary>
-        /// task_employees control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList task_employees;
-
-        /// <summary>
         /// task_description control.
         /// </summary>
         /// <remarks>
@@ -42,15 +33,6 @@ namespace databaseteam18
         protected global::System.Web.UI.HtmlControls.HtmlInputText task_description;
 
         /// <summary>
-        /// task_results control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList task_results;
-
-        /// <summary>
         /// estimated_duration control.
         /// </summary>
         /// <remarks>
@@ -58,6 +40,24 @@ namespace databaseteam18
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl estimated_duration;
+
+        /// <summary>
+        /// task_employees control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList task_employees;
+
+        /// <summary>
+        /// task_results control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList task_results;
 
         /// <summary>
         /// task_deadline control.

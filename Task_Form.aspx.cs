@@ -20,9 +20,9 @@ namespace databaseteam18
         int predecessor_id = -1;
         int employee_id = -1;
         bool tasks_exsiting_flag = true;
-        
 
-        
+
+        protected GridView GridViewEmployeesAssignedProjects;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -34,10 +34,27 @@ namespace databaseteam18
 
             project_id = Convert.ToInt32(Session["project_id"]);
 
+            ////////////JUSTINE ADDED//////////////
 
-           
+            // Current Projects In System
+            // Establishing connection string to database
+            // Reading from the web.config file
+            string dbConnectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
+            var queryString = "SELECT p.Name, ta.employee_ID, t.task_name " +
+                              "FROM COMPANY.projects p " +
+                              "LEFT JOIN COMPANY.task_assignment ta ON ta.project_ID = p.ID " +
+                              "LEFT JOIN COMPANY.tasks t ON t.task_ID = ta.task_id " +
+                              "WHERE p.ID = @Project_ID";
+            var dbConncetion = new SqlConnection(dbConnectionString);
+            var dataAdapter = new SqlDataAdapter(queryString, dbConncetion);
+            dataAdapter.SelectCommand.Parameters.AddWithValue("@Project_ID", project_id);
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            GridViewEmployeesAssignedProjects.DataSource = ds.Tables[0];
+            GridViewEmployeesAssignedProjects.DataBind();
 
-
+            ////////////////////////////////////////
 
 
             string connectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;

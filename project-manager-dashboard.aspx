@@ -3,22 +3,36 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"/>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-<link href="Styles/manager-dashboard.css" rel="stylesheet" type="text/css"/>
+<link href="Styles/manager-dashboardd.css" rel="stylesheet" type="text/css"/>
     <main aria-labelledby="project-manager-dashbaord">
+
+        <!--Project Form Introduction-->
+        <div class="title-page">
+            <video class="fill-container" autoplay="" loop="" muted="">
+            <source src="video/lightbulb.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+            </video>
+            <div class="video-text">
+                <div id="manager-profile">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h4 id="first_name" runat="server">First Name</h4>
+                        </div>
+                        <div class="col-md-3">
+                            <h4 id="last_name" runat="server">Last Name</h4>
+                        </div>
+                    </div>
+                    <h4 id="Department" runat="server">Department Name</h4>
+                </div>
+            </div>
+        </div><br/>
+
         <div classname="containerNew">
            <!--Profile-->
             <div class="manager-profile">
                 <div class="row">
-                    <div id="manager-profile">
-                        <img src="img/profile.png" alt="profile-picture" style="width:150px;height:130px; float:left; margin-right: 10px;"/>
-                        <div class="col" style="width: calc(100% - 160px);">
-                            <h4 id="first_name" runat="server">First Name</h4>
-                            <h4 id="last_name" runat="server">Last Name</h4>
-                            <h4 id="Department" runat="server">Department Name</h4>
-                        </div>
-                    </div>
                     <h5 class="text-center mb-3 h5">Find Employee Task In System</h5><br/>
-                    <div class="d-flex justify-content-end">
+                    <div class="d-flex justify-content-center">
                         <asp:TextBox ID="findEmployee" runat="server" placeholder="Search UID..."></asp:TextBox>
                         <asp:Button ID="searchButton" runat="server" Text="Search" OnClick="SubmitFormEmployee" CssClass="btn btn-primary btn-sm" />
                     </div>

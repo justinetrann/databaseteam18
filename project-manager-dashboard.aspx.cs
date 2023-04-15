@@ -94,6 +94,14 @@ namespace databaseteam18
             dataAdapter.Fill(ds);
             GridViewManagerEmployees1.DataSource = ds.Tables[0];
             GridViewManagerEmployees1.DataBind();
+
+            // current employees and their tasks
+            // current employees and their task status
+            if (IsPostBack)
+            {
+                SubmitFormEmployee(sender,e);
+                SubmitFormTask(sender,e);
+            }
         }
 
         // current employees and their tasks

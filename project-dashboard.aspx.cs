@@ -86,5 +86,10 @@ namespace databaseteam18
             GridViewDepartmentProject.DataSource = ds.Tables[0];
             GridViewDepartmentProject.DataBind();
         }
+
+        protected void RemoveDepProject(object sender, EventArgs e)
+        {
+            string projectName = removeProjects.Text;
+        }
     }
 }

@@ -48,10 +48,10 @@
                     </div>
 
                     <div class="col-md-6">
-                        <h5 class="text-muted mb-3 h5">Delete Department Project</h5>
+                        <h5 class="text-muted mb-3 h5">Remove Department Project</h5>
                         <div class="findProjectsDepartment">
-                            <asp:TextBox ID="removeProjects" runat="server" placeholder="Department Project..."></asp:TextBox>
-                            <button type="button" class="btn btn-danger ml-2" onclick="confirmDelete">Remove</button>
+                            <asp:TextBox ID="removeProjects" runat="server" placeholder="Project Name..."></asp:TextBox>
+                            <asp:Button ID="RemoveDepartmentProject" runat="server" Text="Search" OnClick="RemoveDepProject" CssClass="btn btn-danger ml-2" />
                         </div>
                     </div>
                   </div>

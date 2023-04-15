@@ -85,42 +85,6 @@ namespace databaseteam18
             dataAdapter.Fill(ds);
             GridViewManagerProject1.DataSource = ds.Tables[0];
             GridViewManagerProject1.DataBind();
-            
-            // assigned tasks
-            queryString = "SELECT p.Name AS 'Name ', ta.employee_ID AS 'UID ', t.task_name AS 'Task ', ta.task_id as 'Task ID ', ta.task_status AS 'Status ', ta.task_deadline AS 'Deadline ' FROM COMPANY.projects p JOIN COMPANY.task_assignment ta ON p.ID = ta.Project_ID JOIN COMPANY.tasks t ON t.task_id = ta.task_id JOIN COMPANY.department d ON p.Department_ID = d.depid WHERE d.depName = @DepartmentName AND ta.task_status = 'assigned' ORDER BY p.Name ASC";
-            dataAdapter = new SqlDataAdapter(queryString, dbConncetion);
-            ds = new DataSet();
-            dataAdapter.SelectCommand.Parameters.AddWithValue("@DepartmentName", departmentName);
-            dataAdapter.Fill(ds);
-            GridViewManagerTaskA.DataSource = ds.Tables[0];
-            GridViewManagerTaskA.DataBind();
-
-            // completed tasks
-            queryString = "SELECT p.Name AS 'Name ', ta.employee_ID AS 'UID ', t.task_name AS 'Task ', ta.task_id as 'Task ID ',ta.task_status AS 'Status ', ta.task_deadline AS 'Deadline ' FROM COMPANY.projects p JOIN COMPANY.task_assignment ta ON p.ID = ta.Project_ID JOIN COMPANY.tasks t ON t.task_id = ta.task_id JOIN COMPANY.department d ON p.Department_ID = d.depid WHERE d.depName = @DepartmentName AND ta.task_status = 'Completed' ORDER BY p.Name ASC";
-            dataAdapter = new SqlDataAdapter(queryString, dbConncetion);
-            ds = new DataSet();
-            dataAdapter.SelectCommand.Parameters.AddWithValue("@DepartmentName", departmentName);
-            dataAdapter.Fill(ds);
-            GridViewManagerTaskC.DataSource = ds.Tables[0];
-            GridViewManagerTaskC.DataBind();
-
-            // paused tasks
-            queryString = "SELECT p.Name AS 'Name ', ta.employee_ID AS 'UID ', t.task_name AS 'Task ', ta.task_id as 'Task ID ', ta.task_status AS 'Status ', ta.task_deadline AS 'Deadline ' FROM COMPANY.projects p JOIN COMPANY.task_assignment ta ON p.ID = ta.Project_ID JOIN COMPANY.tasks t ON t.task_id = ta.task_id JOIN COMPANY.department d ON p.Department_ID = d.depid WHERE d.depName = @DepartmentName AND ta.task_status = 'Paused' ORDER BY p.Name ASC";
-            dataAdapter = new SqlDataAdapter(queryString, dbConncetion);
-            ds = new DataSet();
-            dataAdapter.SelectCommand.Parameters.AddWithValue("@DepartmentName", departmentName);
-            dataAdapter.Fill(ds);
-            GridViewManagerTaskP.DataSource = ds.Tables[0];
-            GridViewManagerTaskP.DataBind();
-
-            // started tasks
-            queryString = "SELECT p.Name AS 'Name ', ta.employee_ID AS 'UID ', t.task_name AS 'Task ', ta.task_id as 'Task ID ', ta.task_status AS 'Status ', ta.task_deadline AS 'Deadline ' FROM COMPANY.projects p JOIN COMPANY.task_assignment ta ON p.ID = ta.Project_ID JOIN COMPANY.tasks t ON t.task_id = ta.task_id JOIN COMPANY.department d ON p.Department_ID = d.depid WHERE d.depName = @DepartmentName AND ta.task_status = 'Started' ORDER BY p.Name ASC";
-            dataAdapter = new SqlDataAdapter(queryString, dbConncetion);
-            ds = new DataSet();
-            dataAdapter.SelectCommand.Parameters.AddWithValue("@DepartmentName", departmentName);
-            dataAdapter.Fill(ds);
-            GridViewManagerTaskS.DataSource = ds.Tables[0];
-            GridViewManagerTaskS.DataBind();
 
             // current employees in the department
             queryString = "SELECT e.employee_first_name AS 'First Name ', e.employee_last_name AS 'Last Name ', e.employee_id AS 'UID ', d.depName AS 'Department Name ' FROM COMPANY.employees e JOIN COMPANY.department d ON e.dept_ID = d.depId WHERE d.depName = @DepartmentName";
@@ -132,9 +96,11 @@ namespace databaseteam18
             GridViewManagerEmployees1.DataBind();
 
             // current employees and their tasks
+            // current employees and their task status
             if (IsPostBack)
             {
                 SubmitFormEmployee(sender,e);
+                SubmitFormTask(sender,e);
             }
         }
 
@@ -154,6 +120,55 @@ namespace databaseteam18
             dataAdapter.Fill(ds);
             GridViewManagerEmployees.DataSource = ds.Tables[0];
             GridViewManagerEmployees.DataBind();
+        }
+
+        // current employees and their tasks status
+        protected void SubmitFormTask(object sender, EventArgs e)
+        {
+            string employeeId = findEmployee.Text.Trim();
+
+            string dbConnectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
+            var dbConncetion = new SqlConnection(dbConnectionString);
+
+            // assigned tasks
+            var queryString = "SELECT p.Name AS 'Name ', ta.employee_ID AS 'UID ', t.task_name AS 'Task ', ta.task_id as 'Task ID ', ta.task_status AS 'Status ', ta.task_deadline AS 'Deadline ' FROM COMPANY.projects p JOIN COMPANY.task_assignment ta ON p.ID = ta.Project_ID JOIN COMPANY.tasks t ON t.task_id = ta.task_id JOIN COMPANY.department d ON p.Department_ID = d.depid WHERE d.depName = @DepartmentName AND ta.employee_id = @EmployeeId AND ta.task_status = 'assigned'  ORDER BY p.Name ASC";
+            var dataAdapter = new SqlDataAdapter(queryString, dbConncetion);
+            var ds = new DataSet();
+            dataAdapter.SelectCommand.Parameters.AddWithValue("@DepartmentName", departmentName);
+            dataAdapter.SelectCommand.Parameters.AddWithValue("@EmployeeId", employeeId);
+            dataAdapter.Fill(ds);
+            GridViewManagerTaskA.DataSource = ds.Tables[0];
+            GridViewManagerTaskA.DataBind();
+
+            // completed tasks
+            queryString = "SELECT p.Name AS 'Name ', ta.employee_ID AS 'UID ', t.task_name AS 'Task ', ta.task_id as 'Task ID ',ta.task_status AS 'Status ', ta.task_deadline AS 'Deadline ' FROM COMPANY.projects p JOIN COMPANY.task_assignment ta ON p.ID = ta.Project_ID JOIN COMPANY.tasks t ON t.task_id = ta.task_id JOIN COMPANY.department d ON p.Department_ID = d.depid WHERE d.depName = @DepartmentName AND ta.employee_id = @EmployeeId AND ta.task_status = 'Completed' ORDER BY p.Name ASC";
+            dataAdapter = new SqlDataAdapter(queryString, dbConncetion);
+            ds = new DataSet();
+            dataAdapter.SelectCommand.Parameters.AddWithValue("@DepartmentName", departmentName);
+            dataAdapter.SelectCommand.Parameters.AddWithValue("@EmployeeId", employeeId);
+            dataAdapter.Fill(ds);
+            GridViewManagerTaskC.DataSource = ds.Tables[0];
+            GridViewManagerTaskC.DataBind();
+
+            // paused tasks
+            queryString = "SELECT p.Name AS 'Name ', ta.employee_ID AS 'UID ', t.task_name AS 'Task ', ta.task_id as 'Task ID ', ta.task_status AS 'Status ', ta.task_deadline AS 'Deadline ' FROM COMPANY.projects p JOIN COMPANY.task_assignment ta ON p.ID = ta.Project_ID JOIN COMPANY.tasks t ON t.task_id = ta.task_id JOIN COMPANY.department d ON p.Department_ID = d.depid WHERE d.depName = @DepartmentName AND ta.employee_id = @EmployeeId AND ta.task_status = 'Paused' ORDER BY p.Name ASC";
+            dataAdapter = new SqlDataAdapter(queryString, dbConncetion);
+            ds = new DataSet();
+            dataAdapter.SelectCommand.Parameters.AddWithValue("@DepartmentName", departmentName);
+            dataAdapter.SelectCommand.Parameters.AddWithValue("@EmployeeId", employeeId);
+            dataAdapter.Fill(ds);
+            GridViewManagerTaskP.DataSource = ds.Tables[0];
+            GridViewManagerTaskP.DataBind();
+
+            // started tasks
+            queryString = "SELECT p.Name AS 'Name ', ta.employee_ID AS 'UID ', t.task_name AS 'Task ', ta.task_id as 'Task ID ', ta.task_status AS 'Status ', ta.task_deadline AS 'Deadline ' FROM COMPANY.projects p JOIN COMPANY.task_assignment ta ON p.ID = ta.Project_ID JOIN COMPANY.tasks t ON t.task_id = ta.task_id JOIN COMPANY.department d ON p.Department_ID = d.depid WHERE d.depName = @DepartmentName AND ta.employee_id = @EmployeeId AND ta.task_status = 'Started' ORDER BY p.Name ASC";
+            dataAdapter = new SqlDataAdapter(queryString, dbConncetion);
+            ds = new DataSet();
+            dataAdapter.SelectCommand.Parameters.AddWithValue("@DepartmentName", departmentName);
+            dataAdapter.SelectCommand.Parameters.AddWithValue("@EmployeeId", employeeId);
+            dataAdapter.Fill(ds);
+            GridViewManagerTaskS.DataSource = ds.Tables[0];
+            GridViewManagerTaskS.DataBind();
         }
     }
 }

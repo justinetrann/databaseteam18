@@ -89,14 +89,6 @@
             <!--Tasks-->
             <div class="calender col-md-6">
 
-                <br/>
-                <h5 class="text-center mb-3 h5">Find Employee Task Status</h5><br/>
-
-                <div class="d-flex justify-content-center">
-                    <input id="findTask" type="text" placeholder="Search UID..." name="search" />
-                    <a href="#" class="btn btn-primary btn-sm" onclick="">Search</a>
-                </div><br/><br/>
-
                  <!--Project Completed Tasks Only in Departments-->
                 <h5 class="text-center text-muted mb-3 h5">Completed Tasks In The System</h5>
                 <asp:GridView ID ="GridViewManagerTaskC" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" Width="483px" HorizontalAlign="Center">
@@ -111,7 +103,7 @@
                     <SortedAscendingHeaderStyle BackColor="#6D95E1" />
                     <SortedDescendingCellStyle BackColor="#E9EBEF" />
                     <SortedDescendingHeaderStyle BackColor="#4870BE" />
-                </asp:GridView>
+                </asp:GridView><br/><br/>
 
                  <!--Project Started Tasks Only in Departments-->
                 <h5 class="text-center text-muted mb-3 h5">Started Tasks In The System</h5>
@@ -127,7 +119,7 @@
                     <SortedAscendingHeaderStyle BackColor="#6D95E1" />
                     <SortedDescendingCellStyle BackColor="#E9EBEF" />
                     <SortedDescendingHeaderStyle BackColor="#4870BE" />
-                </asp:GridView>
+                </asp:GridView><br/><br/>
 
                 <!--Project Assigned Tasks Only in Departments-->
                 <h5 class="text-center text-muted mb-3 h5">Current In-Progress Tasks In The System</h5>
@@ -143,7 +135,7 @@
                     <SortedAscendingHeaderStyle BackColor="#6D95E1" />
                     <SortedDescendingCellStyle BackColor="#E9EBEF" />
                     <SortedDescendingHeaderStyle BackColor="#4870BE" />
-                </asp:GridView>
+                </asp:GridView><br/><br/>
 
                 <!--Project Paused Tasks Only in Departments-->
                 <h5 class="text-center text-muted mb-3 h5">Paused Tasks In The System</h5>
@@ -159,7 +151,7 @@
                     <SortedAscendingHeaderStyle BackColor="#6D95E1" />
                     <SortedDescendingCellStyle BackColor="#E9EBEF" />
                     <SortedDescendingHeaderStyle BackColor="#4870BE" />
-                </asp:GridView>
+                </asp:GridView><br/><br/>
 
             </div>
     </main>

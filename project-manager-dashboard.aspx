@@ -17,10 +17,16 @@
                             <h4 id="Department" runat="server">Department Name</h4>
                         </div>
                     </div>
+                    <h5 class="text-center mb-3 h5">Find Employee Task In System</h5><br/>
+                    <div class="d-flex justify-content-end">
+                        <asp:TextBox ID="findEmployee" runat="server" placeholder="Search UID..."></asp:TextBox>
+                        <asp:Button ID="searchButton" runat="server" Text="Search" OnClick="SubmitFormEmployee" CssClass="btn btn-primary btn-sm" />
+                    </div>
                 </div>
             </div><br/>
         </div>
 
+         <div class="containerNew">
           <div class="row">
            <!--Manager Project-->
 
@@ -58,14 +64,7 @@
                     <SortedDescendingCellStyle BackColor="#E9EBEF" />
                     <SortedDescendingHeaderStyle BackColor="#4870BE" />
 
-                </asp:GridView><br/>
-
-                <h5 class="text-center mb-3 h5">Find Employee Task In System</h5><br/>
-
-                <div class="d-flex justify-content-center">
-                    <asp:TextBox ID="findEmployee" runat="server" placeholder="Search UID..."></asp:TextBox>
-                    <asp:Button ID="searchButton" runat="server" Text="Search" OnClick="SubmitFormEmployee" CssClass="btn btn-primary btn-sm" />
-                </div><br/><br/>
+                </asp:GridView>
 
                 <!--Employees Tasks-->
                 <h5 class="text-center text-muted mb-3 h5">Current Employees And Their Tasks</h5>
@@ -154,5 +153,6 @@
                 </asp:GridView><br/><br/>
 
             </div>
+        </div>
     </main>
 </asp:Content>

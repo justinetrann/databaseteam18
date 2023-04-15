@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/project-manager.Master" AutoEventWireup="true" CodeBehind="project-manager-site.aspx.cs" Inherits="databaseteam18.project_manager_site" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="project-manager-site.aspx.cs" Inherits="databaseteam18.project_manager_site" %>
 
 
 

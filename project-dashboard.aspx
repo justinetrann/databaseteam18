@@ -9,10 +9,10 @@
             <div class="title-page">
                 <video class="fill-container" autoplay="" loop="" muted="">
                 <source src="video/phone.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
+                Your browser does not support the video tag.
                 </video>
                 <div class="video-text">
-                <h1>Manage Projects.</h1>
+                <h1 class="centered-heading">Manage Projects.</h1>
                 </div>
             </div><br/>
 

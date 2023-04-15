@@ -3,13 +3,13 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"/>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-<link href="Styles/manager-dashboardd.css" rel="stylesheet" type="text/css"/>
+<link href="Styles/manager-dashboard.css" rel="stylesheet" type="text/css"/>
     <main aria-labelledby="project-manager-dashbaord">
 
         <!--Project Form Introduction-->
         <div class="title-page">
             <video class="fill-container" autoplay="" loop="" muted="">
-            <source src="video/lightbulb.mp4" type="video/mp4" />
+            <source src="video/project-form.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
             <div class="video-text">

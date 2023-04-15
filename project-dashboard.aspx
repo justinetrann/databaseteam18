@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
 <link href="Styles/project-dashboard.css" rel="stylesheet" type="text/css"/>
         <main aria-labelledby="project-dashboard">
-           <!--Project Form Introduction-->
+           <!--Project Dashboard Introduction-->
             <div class="title-page">
                 <video class="fill-container" autoplay="" loop="" muted="">
                 <source src="video/phone.mp4" type="video/mp4" />

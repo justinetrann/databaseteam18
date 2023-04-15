@@ -5,18 +5,16 @@
 <link href="Styles/project_forms.css" rel="stylesheet" type="text/css"/>
 
     <main aria-labelledby="project_form">
-       <!--Project Form Introduction-->
-        <div class="title-page">
-            <video class="fill-container" autoplay="" loop="" muted="">
-            <source src="video/project-form.mp4" type="video/mp4" />
+           <!--Project Dashboard Introduction-->
+            <div class="title-page">
+                <video class="fill-container" autoplay="" loop="" muted="">
+                <source src="video/lightbulb.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
-            </video>
-            <div class="video-text">
-            <h1>Project Form</h1>
-            <p>A document that outlines the details and goals of a project, including its</p>
-            <p> task, timeline, budget, and estimated efforts.</p>
-            </div>
-        </div><br/>
+                </video>
+                <div class="video-text">
+                <h1 class="centered-heading">Create Projects.</h1>
+                </div>
+            </div><br/>
 
         <!--NEW PROJECT FORM-->
         <div class="row"/>

@@ -16,9 +16,9 @@
                 </div>
             </div><br/>
 
-
             <div class="containerTable">
                 <!--See All Departments-->
+                <!--That are not deleted-->
                 <h5 class="text-center text-muted mb-3 h5">Current Projects In A Department</h5>
                 <asp:GridView ID="GridViewDepartment" runat="server" CellPadding="6" ForeColor="#333333" GridLines="None" Width="100%" HorizontalAlign="Center">
                     <AlternatingRowStyle BackColor="White" />
@@ -33,7 +33,7 @@
                     <SortedDescendingCellStyle BackColor="#E9EBEF" />
                     <SortedDescendingHeaderStyle BackColor="#4870BE" />
                 </asp:GridView>
-            </div>
+            </div><br/>
 
             <!--Find Department Projects in System-->
             <div class="search-bar">
@@ -72,7 +72,7 @@
                     </div>
                   </div>
                 </div>
-            </div>
+            </div><br/>
 
             <div class="containerTable">
                 <!--All Projects in System-->
@@ -89,13 +89,44 @@
                     <SortedAscendingHeaderStyle BackColor="#6D95E1" />
                     <SortedDescendingCellStyle BackColor="#E9EBEF" />
                     <SortedDescendingHeaderStyle BackColor="#4870BE" />
-                </asp:GridView>
-            </div>
+                </asp:GridView><br/>
 
-            <div class="containerTable">
+                 <!--That are deleted-->
+                <h5 class="text-center text-muted mb-3 h5">Deleted Projects In A Department</h5>
+                <asp:GridView ID="GridViewDepartmentDeletedProject" runat="server" CellPadding="6" ForeColor="#333333" GridLines="None" Width="100%" HorizontalAlign="Center">
+                    <AlternatingRowStyle BackColor="White" />
+                    <EditRowStyle BackColor="#2461BF" />
+                    <FooterStyle BackColor="#507CD1" ForeColor="White" Font-Bold="True" />
+                    <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                    <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                    <RowStyle BackColor="#EFF3FB" />
+                    <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                    <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                    <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                    <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                    <SortedDescendingHeaderStyle BackColor="#4870BE" />
+                </asp:GridView><br/><br/><div style="border-top: 1px solid black;"></div><br/><br/>
+
+
                 <!--All Projects in System-->
                 <h5 class="text-center text-muted mb-3 h5">Current Projects In The System</h5>
                 <asp:GridView ID="GridViewManagerProject" runat="server" CellPadding="6" ForeColor="#333333" GridLines="None" Width="100%" HorizontalAlign="Center">
+                    <AlternatingRowStyle BackColor="White" />
+                    <EditRowStyle BackColor="#2461BF" />
+                    <FooterStyle BackColor="#507CD1" ForeColor="White" Font-Bold="True" />
+                    <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                    <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                    <RowStyle BackColor="#EFF3FB" />
+                    <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                    <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                    <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                    <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                    <SortedDescendingHeaderStyle BackColor="#4870BE" />
+                </asp:GridView><br/>
+
+                 <!--That are deleted-->
+                <h5 class="text-center text-muted mb-3 h5">Deleted Projects In The System</h5>
+                <asp:GridView ID="GridViewDeletedProject" runat="server" CellPadding="6" ForeColor="#333333" GridLines="None" Width="100%" HorizontalAlign="Center">
                     <AlternatingRowStyle BackColor="White" />
                     <EditRowStyle BackColor="#2461BF" />
                     <FooterStyle BackColor="#507CD1" ForeColor="White" Font-Bold="True" />

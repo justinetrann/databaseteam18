@@ -180,9 +180,7 @@ namespace databaseteam18
             catch (SqlException ex)
 
             {
-                errorMessage.InnerHtml = "yo";
-                errorMessage.Style.Remove("display");
-                if (ex.Message.Contains("dependent task(s) left"))
+                if (ex.Message.Contains("dependent"))
                 {
                     // Display a personalized error message to the user
                     

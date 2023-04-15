@@ -54,7 +54,8 @@
                         <!--<li class="nav-item"><a class="nav-link" runat="server" href="~/Contact">Contact</a></li>-->
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/project-manager-dashboard">Dashboard</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Project_Form">Create Project</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/project-dashboard">Manage Projects</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Projects_Database">Manage Projects</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/project-dashboard">Search Projects</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Task_Form">Create Task</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Tasks_Database">Manage Tasks</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/employee_task_database">My Tasks</a></li>

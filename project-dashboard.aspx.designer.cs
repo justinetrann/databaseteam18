@@ -13,5 +13,32 @@ namespace databaseteam18
 
     public partial class project_dashboard
     {
+
+        /// <summary>
+        /// findProjectsDepartment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox findProjectsDepartment;
+
+        /// <summary>
+        /// FindProjectsDepButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button FindProjectsDepButton;
+
+        /// <summary>
+        /// removeProjects control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox removeProjects;
     }
 }

@@ -16,6 +16,47 @@
                 </div>
             </div><br/>
 
+            <!--Find Department Projects in System-->
+            <div class="search-bar">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-6">
+                        <h5 class="text-muted mb-3 h5">Search Department Projects</h5>
+                        <div class="findProjDepartment">
+                            <asp:TextBox ID="findProjectsDepartment" runat="server" placeholder="Department Project..."></asp:TextBox>
+                            <asp:Button ID="FindProjectsDepButton" runat="server" Text="Search" OnClick="FindDepProjects" CssClass="btn btn-primary ml-2" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <h5 class="text-muted mb-3 h5">Delete Department Project</h5>
+                        <div class="findProjectsDepartment">
+                            <asp:TextBox ID="removeProjects" runat="server" placeholder="Department Project..."></asp:TextBox>
+                            <button type="button" class="btn btn-danger ml-2" onclick="confirmDelete">Remove</button>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+            <div class="containerTable">
+                <!--All Projects in System-->
+                <h5 class="text-center text-muted mb-3 h5">Current Projects In A Department</h5>
+                <asp:GridView ID="GridViewDepartmentProject" runat="server" CellPadding="6" ForeColor="#333333" GridLines="None" Width="90%" HorizontalAlign="Center">
+                    <AlternatingRowStyle BackColor="White" />
+                    <EditRowStyle BackColor="#2461BF" />
+                    <FooterStyle BackColor="#507CD1" ForeColor="White" Font-Bold="True" />
+                    <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                    <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                    <RowStyle BackColor="#EFF3FB" />
+                    <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                    <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                    <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                    <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                    <SortedDescendingHeaderStyle BackColor="#4870BE" />
+                </asp:GridView>
+            </div>
+
             <div class="containerTable">
                 <!--All Projects in System-->
                 <h5 class="text-center text-muted mb-3 h5">Current Projects In The System</h5>

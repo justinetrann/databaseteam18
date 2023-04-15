@@ -12,7 +12,7 @@
                 Your browser does not support the video tag.
                 </video>
                 <div class="video-text">
-                <h1 class="centered-heading">Create Projects.</h1>
+                <h1>Create Projects.</h1>
                 </div>
             </div><br/>
 

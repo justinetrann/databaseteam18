@@ -142,37 +142,66 @@ namespace databaseteam18
 
         protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            GridViewRow row = GridView1.Rows[e.RowIndex];
+            try
+            {
+                GridViewRow row = GridView1.Rows[e.RowIndex];
 
-            string ID = row.Cells[0].Text;
+                string ID = row.Cells[0].Text;
 
-            DropDownList statusDropDownList = (DropDownList)GridView1.Rows[e.RowIndex].FindControl("StatusDropDownList");
-            string status = (statusDropDownList.SelectedValue);
-
-            
-
-            // Update the status column in the database using the id value
-            // ...
-
-            string connectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
-            string query = "UPDATE COMPANY.task_assignment SET task_status = @status WHERE task_id = @id;";
+                DropDownList statusDropDownList = (DropDownList)GridView1.Rows[e.RowIndex].FindControl("StatusDropDownList");
+                string status = (statusDropDownList.SelectedValue);
 
 
-           SqlConnection connection = new SqlConnection(connectionString);
-            
+
+                // Update the status column in the database using the id value
+                // ...
+
+                string connectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
+                string query = "UPDATE COMPANY.task_assignment SET task_status = @status WHERE task_id = @id;";
+
+
+                SqlConnection connection = new SqlConnection(connectionString);
+
                 SqlCommand command = new SqlCommand(query, connection);
+
+                command.Parameters.AddWithValue("@status", status);
+                command.Parameters.AddWithValue("@id", ID);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+                connection.Close();
+
                 
-                    command.Parameters.AddWithValue("@status", status);
-                    command.Parameters.AddWithValue("@id", ID);
+               
 
-            connection.Open();
-                    command.ExecuteNonQuery();
-            connection.Close();
+                GridView1.EditIndex = -1;
+                BindGridView();
+            }
+            catch (SqlException ex)
+
+            {
+                errorMessage.InnerHtml = "yo";
+                errorMessage.Style.Remove("display");
+                if (ex.Message.Contains("dependent task(s) left"))
+                {
+                    // Display a personalized error message to the user
+                    
+                    Console.WriteLine("An error occurred: " + ex.Message);
+                    errorMessage.InnerHtml = ex.Message;
+                    errorMessage.Style.Remove("display");
+                }
+                else
+                {
+                    // If the error was caused by something else, display a generic error message
+                    Console.WriteLine("An error occurred: " + ex.Message);
+                    errorMessage.InnerHtml = "A Database error occurred: " + ex.Message;
+                    errorMessage.Style.Remove("display");
+                }
+
+                // Handle the error in some way, such as displaying an error message to the user or logging the error for later analysis
 
 
-
-            GridView1.EditIndex = -1;
-            BindGridView();
+            }
             //GridView1.Columns[5].Visible = true;
         }
 

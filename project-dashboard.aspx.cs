@@ -14,6 +14,7 @@ namespace databaseteam18
     public partial class project_dashboard : System.Web.UI.Page
     {
         protected GridView GridViewManagerProject;
+        protected GridView GridViewDepartment;
         protected GridView GridViewDepartmentProject;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -38,6 +39,13 @@ namespace databaseteam18
             dataAdapter.Fill(ds);
             GridViewManagerProject.DataSource = ds.Tables[0];
             GridViewManagerProject.DataBind();
+
+            queryString = "SELECT depId AS 'ID ', depName AS 'Department Name ' FROM COMPANY.department";
+            dataAdapter = new SqlDataAdapter(queryString, dbConncetion);
+            ds = new DataSet();
+            dataAdapter.Fill(ds);
+            GridViewDepartment.DataSource = ds.Tables[0];
+            GridViewDepartment.DataBind();
 
             if (IsPostBack)
             {

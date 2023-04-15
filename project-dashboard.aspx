@@ -42,7 +42,7 @@
             <div class="containerTable">
                 <!--All Projects in System-->
                 <h5 class="text-center text-muted mb-3 h5">Current Projects In A Department</h5>
-                <asp:GridView ID="GridViewDepartmentProject" runat="server" CellPadding="6" ForeColor="#333333" GridLines="None" Width="90%" HorizontalAlign="Center">
+                <asp:GridView ID="GridViewDepartmentProject" runat="server" CellPadding="6" ForeColor="#333333" GridLines="None" Width="100%" HorizontalAlign="Center">
                     <AlternatingRowStyle BackColor="White" />
                     <EditRowStyle BackColor="#2461BF" />
                     <FooterStyle BackColor="#507CD1" ForeColor="White" Font-Bold="True" />
@@ -60,7 +60,7 @@
             <div class="containerTable">
                 <!--All Projects in System-->
                 <h5 class="text-center text-muted mb-3 h5">Current Projects In The System</h5>
-                <asp:GridView ID="GridViewManagerProject" runat="server" CellPadding="6" ForeColor="#333333" GridLines="None" Width="90%" HorizontalAlign="Center">
+                <asp:GridView ID="GridViewManagerProject" runat="server" CellPadding="6" ForeColor="#333333" GridLines="None" Width="100%" HorizontalAlign="Center">
                     <AlternatingRowStyle BackColor="White" />
                     <EditRowStyle BackColor="#2461BF" />
                     <FooterStyle BackColor="#507CD1" ForeColor="White" Font-Bold="True" />

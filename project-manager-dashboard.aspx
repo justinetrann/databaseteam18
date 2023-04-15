@@ -121,7 +121,7 @@
                 </asp:GridView><br/><br/>
 
                 <!--Project Assigned Tasks Only in Departments-->
-                <h5 class="text-center text-muted mb-3 h5">Current In-Progress Tasks In The System</h5>
+                <h5 class="text-center text-muted mb-3 h5">Assigned Tasks In The System</h5>
                 <asp:GridView ID ="GridViewManagerTaskA" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" Width="483px" HorizontalAlign="Center">
                     <AlternatingRowStyle BackColor="White" />
                     <EditRowStyle BackColor="#2461BF" />

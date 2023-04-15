@@ -54,6 +54,11 @@ namespace databaseteam18
                 {
                     FindDepProjects(sender, e);
                 }
+
+                if (eventTarget == RemoveDepartmentProject.UniqueID)
+                {
+                    RemoveDepProject(sender, e);
+                }
             }
         }
 

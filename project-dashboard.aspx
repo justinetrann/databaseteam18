@@ -50,7 +50,7 @@
                     <div class="col-md-6">
                         <h5 class="text-muted mb-3 h5">Remove Department Project</h5>
                         <div class="findProjectsDepartment">
-                            <asp:TextBox ID="removeProjects" runat="server" placeholder="Project Name..."></asp:TextBox>
+                            <asp:TextBox ID="removeProjects" runat="server" placeholder="Project ID..."></asp:TextBox>
                             <asp:Button ID="RemoveDepartmentProject" runat="server" Text="Search" OnClick="RemoveDepProject" CssClass="btn btn-danger ml-2" />
                         </div>
                     </div>

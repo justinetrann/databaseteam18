@@ -90,6 +90,24 @@ namespace databaseteam18
         protected void RemoveDepProject(object sender, EventArgs e)
         {
             string projectName = removeProjects.Text;
+            string dbConnectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
+
+            using (SqlConnection connection = new SqlConnection(dbConnectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand("UPDATE COMPANY.projects SET Deleted = 1 WHERE ID = @ProjectID", connection);
+                command.Parameters.AddWithValue("@ProjectID", projectName);
+                int rowsAffected = command.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    Response.Write("<script>alert('Project Updated Successfully!')</script>");
+                }
+                else
+                {
+                    Response.Write("<script>alert('Project Updated Failed!')</script>");
+                }
+
+            }
         }
     }
 }

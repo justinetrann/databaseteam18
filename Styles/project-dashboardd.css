@@ -1,12 +1,4 @@
-﻿.body {
-    font-size: 13px;
-    line-height: 1.8;
-    color: #222;
-    background: #f8f8f8;
-    font-family: Poppins;
-}
-
-h2 {
+﻿h2 {
     margin-bottom: 50px;
 }
 
@@ -51,10 +43,9 @@ h2 {
 }
 
 .containerTable {
+    font-family: Poppins;
     font-size: 13px;
     line-height: 1.8;
-    color: #222;
-    font-family: Poppins;
     padding: 30px;
     padding-bottom: 50px;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);

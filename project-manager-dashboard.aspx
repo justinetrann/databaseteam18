@@ -2,14 +2,13 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"/>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
 <link href="Styles/manager-dashboard.css" rel="stylesheet" type="text/css"/>
     <main aria-labelledby="project-manager-dashbaord">
 
         <!--Project Form Introduction-->
         <div class="title-page">
             <video class="fill-container" autoplay="" loop="" muted="">
-            <source src="video/project-form.mp4" type="video/mp4" />
+            <source src="video/video1.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
             <div class="video-text">
@@ -61,7 +60,7 @@
                     <SortedDescendingCellStyle BackColor="#E9EBEF" />
                     <SortedDescendingHeaderStyle BackColor="#4870BE" />
 
-                </asp:GridView><br/>
+                </asp:GridView><br/><br/>
 
                  <!--Employees In Department-->
                 <h5 class="text-center text-muted mb-3 h5">Current Employees In Department</h5>
@@ -78,7 +77,7 @@
                     <SortedDescendingCellStyle BackColor="#E9EBEF" />
                     <SortedDescendingHeaderStyle BackColor="#4870BE" />
 
-                </asp:GridView>
+                </asp:GridView><br/><br/>
 
                 <!--Employees Tasks-->
                 <h5 class="text-center text-muted mb-3 h5">Current Employees And Their Tasks</h5>

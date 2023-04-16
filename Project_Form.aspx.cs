@@ -25,7 +25,7 @@ namespace databaseteam18
             // Reading from the web.config file
             string dbConnectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
 
-            var queryString = "SELECT p.Name, p.Start_Date, p.End_Date, p.Estimated_Cost, p.Effort FROM COMPANY.projects p"; // Return all records from Project Table in Database
+            var queryString = "SELECT p.Name, p.Start_Date, p.End_Date, p.Estimated_Cost, p.Effort FROM COMPANY.projects p";
             var dbConncetion = new SqlConnection(dbConnectionString);
             var dataAdapter = new SqlDataAdapter(queryString, dbConncetion);
 

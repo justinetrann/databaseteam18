@@ -4,7 +4,8 @@
 
 <html lang="en">
 <head runat="server">
-    <link href="~Styles/styles.css" rel="stylesheet" type="text/css" />
+    <link href="~/Styles/styles.css" rel="stylesheet" type="text/css" />
+    <link href="~/Styles/navbar.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%: Page.Title %> - Project Management System</title>
@@ -53,9 +54,16 @@
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/project-manager-site">Home</a></li>
                         <!--<li class="nav-item"><a class="nav-link" runat="server" href="~/Contact">Contact</a></li>-->
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/project-manager-dashboard">Dashboard</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Project_Form">Create Project</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/project-dashboard">Search Projects</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Projects_Database">Manage Projects</a></li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" runat="server" href="~/Project_Form" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Projects</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li class=""><a class="nav-link dropdown-item" runat="server" href="~/Project_Form">Create Project</a></li>
+                                <li class=""><a class="nav-link dropdown-item" runat="server" href="~/project-dashboard">Search Projects</a></li>
+                                <li class=""><a class="nav-link dropdown-item" runat="server" href="~/Projects_Database">Manage Projects</a></li>
+                             </ul>
+                        </li>
+
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Task_Form">Create Task</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Tasks_Database">Manage Tasks</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/employee_task_database">My Tasks</a></li>

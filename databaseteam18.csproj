@@ -136,6 +136,7 @@
     <Content Include="Project_Form.aspx" />
     <Content Include="Signup.aspx" />
     <Content Include="Styles\admin.css" />
+    <Content Include="Styles\navbar.css" />
     <Content Include="Styles\home.css" />
     <Content Include="Styles\homepage.css" />
     <Content Include="Projects_Database.aspx" />

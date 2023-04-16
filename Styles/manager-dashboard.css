@@ -60,7 +60,6 @@ h4 {
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
 
-/* Style the search field */
 form.example input[type=text] {
     padding: inherit;
     font-size: 17px;
@@ -70,7 +69,6 @@ form.example input[type=text] {
     background: #f1f1f1;
 }
 
-/* Style the submit button */
 form.example button {
     width: 20%;
     padding: 10px;
@@ -78,7 +76,7 @@ form.example button {
     color: white;
     font-size: 17px;
     border: 1px solid grey;
-    border-left: none; /* Prevent double borders */
+    border-left: none;
     cursor: pointer;
 }
 
@@ -86,7 +84,6 @@ form.example button:hover {
     background: #0b7dda;
 }
 
-/* Clear floats */
 form.example::after {
     content: "";
     clear: both;
@@ -94,7 +91,7 @@ form.example::after {
 }
 
 h5 {
-    font-size: 1px;
+    font-size: 13px;
     line-height: 1.8;
     color: #222;
     background: #f8f8f8;

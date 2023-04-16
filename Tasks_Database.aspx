@@ -1,14 +1,24 @@
 ﻿<%@ Page Title="Project Management System" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Tasks_Database.aspx.cs" Inherits="databaseteam18.Tasks_Database" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <link rel="stylesheet" href="Styles/project.css">
+    <link rel="stylesheet" href="Styles/task-database.css">
     <main aria-labelledby="task_database">
-        <p>Current Project Tasks</p>
+                <div classname="container">
+           <!--Project Database Introduction-->
+            <div class="title-page">
+                <video class="fill-container" autoplay="" loop="" muted="">
+                <source src="video/video3.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                </video>
+                <div class="video-text">
+                <h1>Manage Your Task.</h1>
+                </div>
+            </div><br/>
+        </div>
 
-        <div id="errorMessage" class="alert alert-danger" runat ="server" style="display:none;">
-                    
-             </div>
-        <asp:GridView ID ="GridView1" runat="server" DataKeyNames="Task ID" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%" Height ="400px" AutoGenerateColumns="False" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating"  OnRowCancelingEdit = "GridView1_RowCancelingEdit" OnRowDeleting ="GridView1_RowDeleting">
+        <div class="containerNew">
+        <div id="errorMessage" class="alert alert-danger" runat ="server" style="display:none;"/>                    
+        <asp:GridView ID ="GridView1" runat="server" DataKeyNames="Task ID" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%" Height ="200px" AutoGenerateColumns="False" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating"  OnRowCancelingEdit = "GridView1_RowCancelingEdit" OnRowDeleting ="GridView1_RowDeleting">
             <AlternatingRowStyle BackColor="White" />
             <EditRowStyle BackColor="#2461BF" />
             <FooterStyle BackColor="#507CD1" ForeColor="White" Font-Bold="True" />
@@ -127,7 +137,7 @@
             </Columns>
 
         </asp:GridView>
-
+        </div>
      
     </main>
 </asp:Content>

@@ -167,7 +167,8 @@ namespace databaseteam18
                 using (SqlConnection connection = new SqlConnection(dbConnectionString))
                 {
                     connection.Open();
-                    SqlCommand command = new SqlCommand("UPDATE COMPANY.projects SET Deleted = 1 WHERE ID = @ProjectID", connection);
+                    
+                    SqlCommand command = new SqlCommand("UPDATE COMPANY.projects SET Deleted = 1 WHERE ID = @ProjectID; UPDATE COMPANY.manages_project SET Deleted = 1 WHERE project_ID = @ProjectID", connection);
                     command.Parameters.AddWithValue("@ProjectID", projectName);
                     int rowsAffected = command.ExecuteNonQuery();
                     if (rowsAffected > 0)
@@ -201,7 +202,7 @@ namespace databaseteam18
                 using (SqlConnection connection = new SqlConnection(dbConnectionString))
                 {
                     connection.Open();
-                    SqlCommand command = new SqlCommand("UPDATE COMPANY.projects SET Deleted = 0 WHERE ID = @ProjectID", connection);
+                    SqlCommand command = new SqlCommand("UPDATE COMPANY.projects SET Deleted = 0 WHERE ID = @ProjectID;UPDATE COMPANY.manages_project SET Deleted = 0 WHERE project_ID = @ProjectID", connection);
                     command.Parameters.AddWithValue("@ProjectID", projectName);
                     int rowsAffected = command.ExecuteNonQuery();
                     if (rowsAffected > 0)

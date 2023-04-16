@@ -24,18 +24,18 @@ namespace databaseteam18
             // All Projects In Departments
             string dbConnectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
             var dbConncetion = new SqlConnection(dbConnectionString);
-            var queryString = "SELECT p.ID AS 'Project ID', " +
-                   "p.Name AS 'Name', " +
-                   "p.Start_Date AS 'Start Date', " +
-                   "p.Status AS 'Status', " +
-                   "p.Estimated_Cost AS 'Est. Cost', " +
-                   "p.Effort AS 'Effort', " +
-                   "p.Total_Cost AS 'Total Cost', " +
-                   "p.Total_Effort AS 'Total Effort', " +
-                   "p.Managers AS 'Manager', " +
-                   "p.End_Date AS 'End Date', " +
-                   "p.Deleted AS 'Deleted', " +
-                   "p.Department_ID AS 'Dep. ID' " +
+            var queryString = "SELECT p.ID AS 'Project ID ', " +
+                   "p.Name AS 'Name ', " +
+                   "p.Start_Date AS 'Start Date ', " +
+                   "p.Status AS 'Status ', " +
+                   "p.Estimated_Cost AS 'Est. Cost ', " +
+                   "p.Effort AS 'Effort ', " +
+                   "p.Total_Cost AS 'Total Cost ', " +
+                   "p.Total_Effort AS 'Total Effort ', " +
+                   "p.Managers AS 'Manager ', " +
+                   "p.End_Date AS 'End Date ', " +
+                   "p.Deleted AS 'Deleted ', " +
+                   "p.Department_ID AS 'Dep. ID ' " +
                    "FROM COMPANY.projects p " +
                    "WHERE p.Deleted = 0;";
             var dataAdapter = new SqlDataAdapter(queryString, dbConncetion);
@@ -44,18 +44,18 @@ namespace databaseteam18
             GridViewManagerProject.DataSource = ds.Tables[0];
             GridViewManagerProject.DataBind();
 
-            queryString = "SELECT p.ID AS 'Project ID', " +
-                   "p.Name AS 'Name', " +
-                   "p.Start_Date AS 'Start Date', " +
-                   "p.Status AS 'Status', " +
-                   "p.Estimated_Cost AS 'Est. Cost', " +
-                   "p.Effort AS 'Effort', " +
-                   "p.Total_Cost AS 'Total Cost', " +
-                   "p.Total_Effort AS 'Total Effort', " +
-                   "p.Managers AS 'Manager', " +
-                   "p.End_Date AS 'End Date', " +
-                   "p.Deleted AS 'Deleted', " +
-                   "p.Department_ID AS 'Dep. ID' " +
+            queryString = "SELECT p.ID AS 'Project ID ', " +
+                   "p.Name AS 'Name ', " +
+                   "p.Start_Date AS 'Start Date ', " +
+                   "p.Status AS 'Status ', " +
+                   "p.Estimated_Cost AS 'Est. Cost ', " +
+                   "p.Effort AS 'Effort ', " +
+                   "p.Total_Cost AS 'Total Cost ', " +
+                   "p.Total_Effort AS 'Total Effort ', " +
+                   "p.Managers AS 'Manager ', " +
+                   "p.End_Date AS 'End Date ', " +
+                   "p.Deleted AS 'Deleted ', " +
+                   "p.Department_ID AS 'Dep. ID ' " +
                    "FROM COMPANY.projects p "+
                    "WHERE p.Deleted = 1;";
             dataAdapter = new SqlDataAdapter(queryString, dbConncetion);
@@ -109,17 +109,17 @@ namespace databaseteam18
             // All Projects In Departments
             string dbConnectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
             var dbConncetion = new SqlConnection(dbConnectionString);
-            var queryString = "SELECT p.ID AS 'Project ID', " +
-                               "p.Name AS 'Name', " +
-                               "p.Start_Date AS 'Start Date', " +
-                               "p.Status AS 'Status', " +
-                               "p.Estimated_Cost AS 'Est. Cost', " +
-                               "p.Effort AS 'Effort', " +
-                               "p.Total_Cost AS 'Total Cost', " +
-                               "p.Total_Effort AS 'Total Effort', " +
-                               "p.Managers AS 'Manager', " +
-                               "p.End_Date AS 'End Date', " +
-                               "p.Deleted AS 'Deleted', " +
+            var queryString = "SELECT p.ID AS 'Project ID ', " +
+                               "p.Name AS 'Name ', " +
+                               "p.Start_Date AS 'Start Date ', " +
+                               "p.Status AS 'Status ', " +
+                               "p.Estimated_Cost AS 'Est. Cost ', " +
+                               "p.Effort AS 'Effort ', " +
+                               "p.Total_Cost AS 'Total Cost ', " +
+                               "p.Total_Effort AS 'Total Effort ', " +
+                               "p.Managers AS 'Manager ', " +
+                               "p.End_Date AS 'End Date ', " +
+                               "p.Deleted AS 'Deleted ', " +
                                "d.depName AS 'Dep. Name ' " +
                                "FROM COMPANY.projects p " +
                                "LEFT JOIN COMPANY.department d ON d.depId = p.Department_ID " +
@@ -132,17 +132,17 @@ namespace databaseteam18
             GridViewDepartmentProject.DataBind();
 
             // All Projects In Departments Deleted
-            queryString = "SELECT p.ID AS 'Project ID', " +
-                               "p.Name AS 'Name', " +
-                               "p.Start_Date AS 'Start Date', " +
-                               "p.Status AS 'Status', " +
-                               "p.Estimated_Cost AS 'Est. Cost', " +
-                               "p.Effort AS 'Effort', " +
-                               "p.Total_Cost AS 'Total Cost', " +
-                               "p.Total_Effort AS 'Total Effort', " +
-                               "p.Managers AS 'Manager', " +
-                               "p.End_Date AS 'End Date', " +
-                               "p.Deleted AS 'Deleted', " +
+            queryString = "SELECT p.ID AS 'Project ID ', " +
+                               "p.Name AS 'Name ', " +
+                               "p.Start_Date AS 'Start Date ', " +
+                               "p.Status AS 'Status ', " +
+                               "p.Estimated_Cost AS 'Est. Cost ', " +
+                               "p.Effort AS 'Effort ', " +
+                               "p.Total_Cost AS 'Total Cost ', " +
+                               "p.Total_Effort AS 'Total Effort ', " +
+                               "p.Managers AS 'Manager ', " +
+                               "p.End_Date AS 'End Date ', " +
+                               "p.Deleted AS 'Deleted ', " +
                                "d.depName AS 'Dep. Name ' " +
                                "FROM COMPANY.projects p " +
                                "LEFT JOIN COMPANY.department d ON d.depId = p.Department_ID " +

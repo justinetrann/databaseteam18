@@ -99,9 +99,6 @@ namespace databaseteam18
 
 
 
-
-
-
             
             // Update the Task and Task Assignment tables with update data
             string connectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;

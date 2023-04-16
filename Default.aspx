@@ -12,7 +12,8 @@
                     Your browser does not support the video tag.
                 </video>
                 <div class="video-text">
-                <h1>WELCOME PROJECT MANAGER.</h1>
+                <h1>WELCOME TO </h1>
+                <h1>PROJECT MANAGEMENT SYSTEM.</h1>
                 </div>
             </div><br/>
 

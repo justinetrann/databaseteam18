@@ -30,7 +30,7 @@
            <!--Profile-->
             <div class="manager-profile">
                 <div class="row">
-                    <h5 class="text-center mb-3 h5">Find Employee Task In System</h5><br/>
+                    <h5 class="text-center mb-3 h5" style="font-weight: bold; font-size: 15px; font-family:Poppins;">Find Employee Task In System</h5><br/>
                     <div class="d-flex justify-content-center">
                         <asp:TextBox ID="findEmployee" runat="server" placeholder="Search UID..."></asp:TextBox>
                         <asp:Button ID="searchButton" runat="server" Text="Search" OnClick="SubmitFormEmployee" CssClass="btn btn-primary btn-sm" />
@@ -46,7 +46,7 @@
             <div class="project-manager col-md-6">
 
                 <!--Project Ranked By Dates-->
-                <h5 class="text-center text-muted mb-3 h5">Current Projects In The System</h5>
+                <h5 class="text-center text-muted mb-3 h5" style="font-weight: bold; font-size: 15px; font-family:Poppins;">Current Projects In The System</h5>
                 <asp:GridView ID ="GridViewManagerProject1" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" Width="483px" HorizontalAlign="Center">
                     <AlternatingRowStyle BackColor="White" />
                     <EditRowStyle BackColor="#2461BF" />
@@ -63,7 +63,7 @@
                 </asp:GridView><br/><br/>
 
                  <!--Employees In Department-->
-                <h5 class="text-center text-muted mb-3 h5">Current Employees In Department</h5>
+                <h5 class="text-center text-muted mb-3 h5" style="font-weight: bold; font-size: 15px; font-family:Poppins;">Current Employees In Department</h5>
                 <asp:GridView ID ="GridViewManagerEmployees1" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" Width="483px" HorizontalAlign="Center">
                     <AlternatingRowStyle BackColor="White" />
                     <EditRowStyle BackColor="#2461BF" />
@@ -80,7 +80,7 @@
                 </asp:GridView><br/><br/>
 
                 <!--Employees Tasks-->
-                <h5 class="text-center text-muted mb-3 h5">Current Employees And Their Tasks</h5>
+                <h5 class="text-center text-muted mb-3 h5" style="font-weight: bold; font-size: 15px; font-family:Poppins;">Current Employees And Their Tasks</h5>
                 <asp:GridView ID ="GridViewManagerEmployees" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" Width="483px" HorizontalAlign="Center">
                     <AlternatingRowStyle BackColor="White" />
                     <EditRowStyle BackColor="#2461BF" />
@@ -102,7 +102,7 @@
             <div class="calender col-md-6">
 
                  <!--Project Completed Tasks Only in Departments-->
-                <h5 class="text-center text-muted mb-3 h5">Completed Tasks In The System</h5>
+                <h5 class="text-center text-muted mb-3 h5" style="font-weight: bold; font-size: 15px; font-family:Poppins;">Completed Tasks In The System</h5>
                 <asp:GridView ID ="GridViewManagerTaskC" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" Width="483px" HorizontalAlign="Center">
                     <AlternatingRowStyle BackColor="White" />
                     <EditRowStyle BackColor="#2461BF" />
@@ -118,7 +118,7 @@
                 </asp:GridView><br/><br/>
 
                  <!--Project Started Tasks Only in Departments-->
-                <h5 class="text-center text-muted mb-3 h5">Started Tasks In The System</h5>
+                <h5 class="text-center text-muted mb-3 h5" style="font-weight: bold; font-size: 15px; font-family:Poppins;">Started Tasks In The System</h5>
                 <asp:GridView ID ="GridViewManagerTaskS" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" Width="483px" HorizontalAlign="Center">
                     <AlternatingRowStyle BackColor="White" />
                     <EditRowStyle BackColor="#2461BF" />
@@ -134,7 +134,7 @@
                 </asp:GridView><br/><br/>
 
                 <!--Project Assigned Tasks Only in Departments-->
-                <h5 class="text-center text-muted mb-3 h5">Assigned Tasks In The System</h5>
+                <h5 class="text-center text-muted mb-3 h5" style="font-weight: bold; font-size: 15px; font-family:Poppins;">Assigned Tasks In The System</h5>
                 <asp:GridView ID ="GridViewManagerTaskA" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" Width="483px" HorizontalAlign="Center">
                     <AlternatingRowStyle BackColor="White" />
                     <EditRowStyle BackColor="#2461BF" />
@@ -150,7 +150,7 @@
                 </asp:GridView><br/><br/>
 
                 <!--Project Paused Tasks Only in Departments-->
-                <h5 class="text-center text-muted mb-3 h5">Paused Tasks In The System</h5>
+                <h5 class="text-center text-muted mb-3 h5" style="font-weight: bold; font-size: 15px; font-family:Poppins;">Paused Tasks In The System</h5>
                 <asp:GridView ID ="GridViewManagerTaskP" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" Width="483px" HorizontalAlign="Center">
                     <AlternatingRowStyle BackColor="White" />
                     <EditRowStyle BackColor="#2461BF" />

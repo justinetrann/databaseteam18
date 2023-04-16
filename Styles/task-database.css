@@ -1,0 +1,51 @@
+* {
+    font-size: 13px;
+    line-height: 1.8;
+    font-family: Poppins;
+}
+
+.title-page {
+    position: relative;
+    height: 500px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+.fill-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.fill-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.video-text {
+    position: absolute;
+    top: 45%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    color: #3778cd;
+    text-align: center;
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.containerNew {
+    font-weight: bold;
+    padding-right: 20px;
+    padding: 50px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}

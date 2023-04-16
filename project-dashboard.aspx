@@ -12,14 +12,14 @@
                 Your browser does not support the video tag.
                 </video>
                 <div class="video-text">
-                <h4 class="centered-heading">Manage Projects.</h4>
+                <h4 class="centered-heading">Search Projects.</h4>
                 </div>
             </div><br/>
 
-            <div class="containerTable">
+            <div class="containerTable" style="font-weight: bold;">
                 <!--See All Departments-->
                 <!--That are not deleted-->
-                <h5 class="text-center text-muted mb-3 h5">Current Projects In A Department</h5>
+                <h5 class="text-center text-muted mb-3 h5" style="font-weight: bold; font-size: 15px; font-family:Poppins;">Current Projects In A Department</h5>
                 <asp:GridView ID="GridViewDepartment" runat="server" CellPadding="6" ForeColor="#333333" GridLines="None" Width="100%" HorizontalAlign="Center">
                     <AlternatingRowStyle BackColor="White" />
                     <EditRowStyle BackColor="#2461BF" />
@@ -40,23 +40,23 @@
                 <div class="container">
                   <div class="row">
                     <!--Search-->
-                    <div class="col-md-6">
-                        <h5 class="text-muted mb-3 h5">Search Department Projects</h5>
+                    <div class="col-md-6" style="font-weight: bold;">
+                        <h5 class="text-muted mb-3 h5" style="font-weight: bold; font-size: 15px; font-family:Poppins;">Search Department Projects</h5>
                         <div class="findProjDepartment">
                             <asp:TextBox ID="findProjectsDepartment" runat="server" placeholder="Department Project..."></asp:TextBox>
                             <asp:Button ID="FindProjectsDepButton" runat="server" Text="Search" OnClick="FindDepProjects" CssClass="btn btn-primary ml-2" />
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6" style="font-weight: bold;">
                         <!--Remove-->
-                        <h5 class="text-muted mb-3 h5">Remove Department Project</h5>
+                        <h5 class="text-muted mb-3 h5" style="font-weight: bold; font-size: 15px; font-family:Poppins;">Remove Department Project</h5>
                         <div class="findProjectsDepartment">
                             <asp:TextBox ID="removeProjects" runat="server" placeholder="Project ID..."></asp:TextBox>
                             <asp:Button ID="RemoveDepartmentProject" runat="server" Text="Remove" OnClick="RemoveDepProject" CssClass="btn btn-danger ml-2" />
                         </div>
 
                         <!--Restore-->
-                        <h5 class="text-muted mb-3 h5">Restore Department Project</h5>
+                        <h5 class="text-muted mb-3 h5" style="font-weight: bold; font-size: 15px; font-family:Poppins;">Restore Department Project</h5>
                         <div class="findProjectsDepartment">
                             <asp:TextBox ID="restoreProjects" runat="server" placeholder="Project ID..."></asp:TextBox>
                             <asp:Button ID="RestoreDepartmentProject" runat="server" Text="Recover" OnClick="RestoreDepProject" CssClass="btn btn-success ml-2" />
@@ -66,9 +66,9 @@
                 </div>
             </div><br/>
 
-            <div class="containerTable">
+            <div class="containerTable" style="font-weight: bold;">
                 <!--All Projects in System-->
-                <h5 class="text-center text-muted mb-3 h5">Current Projects In A Department</h5>
+                <h5 class="text-center text-muted mb-3 h5" style="font-weight: bold; font-size: 15px; font-family:Poppins;">Current Projects In A Department</h5>
                 <asp:GridView ID="GridViewDepartmentProject" runat="server" CellPadding="6" ForeColor="#333333" GridLines="None" Width="100%" HorizontalAlign="Center">
                     <AlternatingRowStyle BackColor="White" />
                     <EditRowStyle BackColor="#2461BF" />
@@ -84,7 +84,7 @@
                 </asp:GridView><br/>
 
                  <!--That are deleted-->
-                <h5 class="text-center text-muted mb-3 h5">Deleted Projects In A Department</h5>
+                <h5 class="text-center text-muted mb-3 h5" style="font-weight: bold; font-size: 15px; font-family:Poppins;">Deleted Projects In A Department</h5>
                 <asp:GridView ID="GridViewDepartmentDeletedProject" runat="server" CellPadding="6" ForeColor="#333333" GridLines="None" Width="100%" HorizontalAlign="Center">
                     <AlternatingRowStyle BackColor="White" />
                     <EditRowStyle BackColor="#2461BF" />
@@ -101,7 +101,7 @@
 
 
                 <!--All Projects in System-->
-                <h5 class="text-center text-muted mb-3 h5">Current Projects In The System</h5>
+                <h5 class="text-center text-muted mb-3 h5" style="font-weight: bold; font-size: 15px; font-family:Poppins;">Current Projects In The System</h5>
                 <asp:GridView ID="GridViewManagerProject" runat="server" CellPadding="6" ForeColor="#333333" GridLines="None" Width="100%" HorizontalAlign="Center">
                     <AlternatingRowStyle BackColor="White" />
                     <EditRowStyle BackColor="#2461BF" />
@@ -117,7 +117,7 @@
                 </asp:GridView><br/>
 
                  <!--That are deleted-->
-                <h5 class="text-center text-muted mb-3 h5">Deleted Projects In The System</h5>
+                <h5 class="text-center text-muted mb-3 h5" style="font-weight: bold; font-size: 15px; font-family:Poppins;">Deleted Projects In The System</h5>
                 <asp:GridView ID="GridViewDeletedProject" runat="server" CellPadding="6" ForeColor="#333333" GridLines="None" Width="100%" HorizontalAlign="Center">
                     <AlternatingRowStyle BackColor="White" />
                     <EditRowStyle BackColor="#2461BF" />

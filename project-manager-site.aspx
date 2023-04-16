@@ -3,7 +3,6 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
 <link href="Styles/manager-site.css" rel="stylesheet" type="text/css"/>
     <main aria-labelledby="project-manager">
         <div classname="container">

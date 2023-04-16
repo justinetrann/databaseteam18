@@ -60,10 +60,8 @@ namespace databaseteam18
             DropDownList statusDropDownList = (DropDownList)GridView2.Rows[e.RowIndex].FindControl("StatusDropDownList");
             string new_project_status = (statusDropDownList.SelectedValue);
 
-            string project_end_date = "";
-
-            if (new_project_status == "COMPLETED")
-                project_end_date = DateTime.Now.ToString();
+            
+            DateTime project_end_date = DateTime.Now;
 
 
             //Get project est cost Update Value
@@ -95,34 +93,57 @@ namespace databaseteam18
             string new_project_total_effort = TotEffortTextBox.Text;
 
 
+
+
+
+
             
-
-
-
-
             // Update the Task and Task Assignment tables with update data
             string connectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
-            string query = "UPDATE COMPANY.projects SET Name = @new_project_name, Status = @new_project_status, deadline = @new_project_deadline, Estimated_Cost = @new_project_est_cost, Effort = @new_project_est_effort, Total_Cost = @new_project_total_cost, Total_Effort = @new_project_total_effort, end_date = @project_end_date WHERE ID = @project_id;";
 
             SqlConnection connection = new SqlConnection(connectionString);
 
-            SqlCommand command = new SqlCommand(query, connection);
+            string query;
 
-            command.Parameters.AddWithValue("@project_id", project_id);
-            command.Parameters.AddWithValue("@new_project_name", new_project_name);
-            command.Parameters.AddWithValue("@new_project_status", new_project_status);
-            command.Parameters.AddWithValue("@new_project_deadline", new_project_deadline);
-            command.Parameters.AddWithValue("@new_project_est_cost", new_project_est_cost);
-            command.Parameters.AddWithValue("@new_project_est_effort", new_project_est_effort);
-            command.Parameters.AddWithValue("@new_project_total_cost", new_project_total_cost);
-            command.Parameters.AddWithValue("@new_project_total_effort", new_project_total_effort);
-            command.Parameters.AddWithValue("@project_end_date", project_end_date);
+            if (new_project_status == "COMPLETED")
+            {
+                query = "UPDATE COMPANY.projects SET Name = @new_project_name, Status = @new_project_status, deadline = @new_project_deadline, Estimated_Cost = @new_project_est_cost, Effort = @new_project_est_effort, Total_Cost = @new_project_total_cost, Total_Effort = @new_project_total_effort, end_date = @project_end_date WHERE ID = @project_id;";
+                SqlCommand command = new SqlCommand(query, connection);
 
-            connection.Open();
-            command.ExecuteNonQuery();
-            connection.Close();
+                command.Parameters.AddWithValue("@project_id", project_id);
+                command.Parameters.AddWithValue("@new_project_name", new_project_name);
+                command.Parameters.AddWithValue("@new_project_status", new_project_status);
+                command.Parameters.AddWithValue("@new_project_deadline", new_project_deadline);
+                command.Parameters.AddWithValue("@new_project_est_cost", new_project_est_cost);
+                command.Parameters.AddWithValue("@new_project_est_effort", new_project_est_effort);
+                command.Parameters.AddWithValue("@new_project_total_cost", new_project_total_cost);
+                command.Parameters.AddWithValue("@new_project_total_effort", new_project_total_effort);
+                command.Parameters.AddWithValue("@project_end_date", project_end_date);
 
+                connection.Open();
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
 
+            else if (new_project_status != "COMPLETED")
+            {
+                query = "UPDATE COMPANY.projects SET Name = @new_project_name, Status = @new_project_status, deadline = @new_project_deadline, Estimated_Cost = @new_project_est_cost, Effort = @new_project_est_effort, Total_Cost = @new_project_total_cost, Total_Effort = @new_project_total_effort WHERE ID = @project_id;";
+                SqlCommand command = new SqlCommand(query, connection);
+
+                command.Parameters.AddWithValue("@project_id", project_id);
+                command.Parameters.AddWithValue("@new_project_name", new_project_name);
+                command.Parameters.AddWithValue("@new_project_status", new_project_status);
+                command.Parameters.AddWithValue("@new_project_deadline", new_project_deadline);
+                command.Parameters.AddWithValue("@new_project_est_cost", new_project_est_cost);
+                command.Parameters.AddWithValue("@new_project_est_effort", new_project_est_effort);
+                command.Parameters.AddWithValue("@new_project_total_cost", new_project_total_cost);
+                command.Parameters.AddWithValue("@new_project_total_effort", new_project_total_effort);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+                connection.Close();
+
+            }
 
             GridView2.EditIndex = -1;
             BindGridView();
@@ -143,7 +164,7 @@ namespace databaseteam18
 
             string manager_employee_ID = Session["employee_id"].ToString();
 
-            var queryString = "SELECT ID as 'Project ID', Name as 'Project Name',Start_Date as 'Start', deadline as 'Deadline', Status as 'Status', end_date as 'Completion Date', Estimated_Cost as 'Est Cost', Effort as 'Est Effort', Total_Cost as 'Tot Cost', Total_Effort as 'Tot Effort', DepName as 'Department', project_assignment_status as 'Assign Status' FROM COMPANY.projects P inner join COMPANY.manages_project MP on P.ID = MP.Project_ID inner join COMPANY.department D on D.depId = P.Department_ID WHERE MP.employee_ID =" + manager_employee_ID + ";"; // Return all records from Project Table in Database
+            var queryString = "SELECT ID as 'Project ID', Name as 'Project Name',Start_Date as 'Start', deadline as 'Deadline', Status as 'Status', end_date as 'Completion Date', Estimated_Cost as 'Est Cost', Effort as 'Est Effort', Total_Cost as 'Tot Cost', Total_Effort as 'Tot Effort', DepName as 'Department', project_assignment_status as 'Assign Status' FROM COMPANY.projects P inner join COMPANY.manages_project MP on P.ID = MP.Project_ID inner join COMPANY.department D on D.depId = P.Department_ID WHERE MP.employee_ID =" + manager_employee_ID + " AND P.Deleted = 0 AND MP.deleted = 0;"; // Return all records from Project Table in Database
             var dbConncetion = new SqlConnection(dbConnectionString);
             var dataAdapter = new SqlDataAdapter(queryString, dbConncetion);
 
@@ -161,8 +182,8 @@ namespace databaseteam18
             GridViewRow row = GridView2.Rows[e.RowIndex];
 
 
-            //Get Task ID
-            string task_id = row.Cells[0].Text;
+            //Get Project ID
+            string project_id = row.Cells[0].Text;
 
 
 
@@ -171,21 +192,22 @@ namespace databaseteam18
 
             // Update the Task and Task Assignment tables with update data
             string connectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
-            string query = "UPDATE COMPANY.task_assignment SET deleted = 1 WHERE task_id = @task_id;";
-            query += "UPDATE COMPANY.tasks SET deleted = 1 WHERE task_id = @task_id;";
-            query += "UPDATE COMPANY.tasks_Dependecies SET deleted = 1 WHERE task_predecessor_ID = @task_id OR task_descendant_ID = @task_id;";
+            string query = "UPDATE COMPANY.manages_project SET deleted = 1 WHERE project_ID = @project_id;";
+            query += "UPDATE COMPANY.projects SET Deleted = 1 WHERE ID = @project_id;";
+            
 
             SqlConnection connection = new SqlConnection(connectionString);
 
             SqlCommand command = new SqlCommand(query, connection);
 
 
-            command.Parameters.AddWithValue("@task_id", task_id);
+            command.Parameters.AddWithValue("@project_id", project_id);
 
 
             connection.Open();
             command.ExecuteNonQuery();
             connection.Close();
+
 
 
 

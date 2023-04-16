@@ -86,14 +86,11 @@ namespace databaseteam18
             //Get project total cost Update Value
             string new_project_total_cost = "NULL";
             TextBox TotCostTextBox = (TextBox)GridView2.Rows[GridView2.EditIndex].FindControl("TotCostTextBox");
-            string new_project_total_cost = TotCostTextBox.Text;
+            new_project_total_cost = TotCostTextBox.Text;
 
             //Get project total effort Update Value
             TextBox TotEffortTextBox = (TextBox)GridView2.Rows[GridView2.EditIndex].FindControl("TotEffortTextBox");
             string new_project_total_effort = TotEffortTextBox.Text;
-
-
-
 
 
 

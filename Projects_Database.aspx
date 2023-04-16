@@ -59,9 +59,9 @@
                 </ItemTemplate>
                 <EditItemTemplate>
                     <asp:DropDownList ID="StatusDropDownList" runat="server">
-                        <asp:ListItem Text="Resume" Value="ongoing"></asp:ListItem>
-                        <asp:ListItem Text="Pause" Value="Paused"></asp:ListItem>
-                        <asp:ListItem Text="Complete" Value="Completed"></asp:ListItem>
+                        <asp:ListItem Text="Resume" Value="ONGOING"></asp:ListItem>
+                        <asp:ListItem Text="Pause" Value="PAUSED"></asp:ListItem>
+                        <asp:ListItem Text="Complete" Value="COMPLETED"></asp:ListItem>
                     </asp:DropDownList> 
                 </EditItemTemplate>
             </asp:TemplateField>

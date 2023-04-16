@@ -31,6 +31,10 @@ namespace databaseteam18
                 SqlDataAdapter employees_da;
                 SqlDataAdapter tasks_da;
 
+            //successMessage.InnerHtml = "Task Created Successfully!";
+
+            //successMessage.Style.Add("display", "none");
+
 
             project_id = Convert.ToInt32(Session["project_id"]);
 
@@ -328,6 +332,7 @@ namespace databaseteam18
                 //Response.Redirect("~/Default.aspx");
 
 
+
                 command.ExecuteNonQuery();
                 // Display success message
 
@@ -337,7 +342,7 @@ namespace databaseteam18
 
 
 
-                //--> 3. Page_Load(sender, e);
+                Page_Load(sender, e);
                 //return;
 
 

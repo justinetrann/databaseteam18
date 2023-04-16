@@ -1,10 +1,4 @@
-﻿* {
-    font-size: 13px;
-    line-height: 1.8;
-    font-family: Poppins;
-}
-
-.body {
+﻿.body {
     font-size: 13px;
     line-height: 1.8;
     color: #222;
@@ -33,11 +27,10 @@ h2 {
 .video-text {
     position: absolute;
     top: 55%;
-    left: 30%;
+    left: 20%;
     transform: translate(-50%, -50%);
-    z-index: 1;
     color: #216ad9;
-    text-align: center;
+    font-family: Poppins;
 }
 
 .title-page {

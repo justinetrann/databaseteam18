@@ -1,9 +1,3 @@
-* {
-    font-size: 13px;
-    line-height: 1.8;
-    font-family: Poppins;
-}
-
 h2 {
     margin-bottom: 50px;
 }
@@ -99,3 +93,10 @@ form.example::after {
     display: table;
 }
 
+h5 {
+    font-size: 1px;
+    line-height: 1.8;
+    color: #222;
+    background: #f8f8f8;
+    font-family: Poppins;
+}

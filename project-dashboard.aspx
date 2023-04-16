@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"/>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-<link href="Styles/project-dashboard.css" rel="stylesheet" type="text/css"/>
+<link href="Styles/project-dashboardd.css" rel="stylesheet" type="text/css"/>
         <main aria-labelledby="project-dashboard">
            <!--Project Dashboard Introduction-->
             <div class="title-page">

@@ -2,7 +2,7 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-<link href="Styles/admin.css" rel="stylesheet" type="text/css"/>
+<link href="Styles/managerr-site.css" rel="stylesheet" type="text/css"/>
     <main aria-labelledby="admin_home_forms">
         <div classname="container">
             <!--Admin Page Introduction-->

@@ -43,6 +43,7 @@
                                 </div>
 
                                 <!-- Estimated Duration input -->
+                                <p>Estimated Duration</p>
                                 <div class="form-group text-left">
                                     <label for="estimated-duration">
                                         <i class="bi bi-alarm-fill"></i>
@@ -53,16 +54,16 @@
                                 <p>Task Employee</p>
                                 <!-- Task Employee -->
                                 <div class="form-group text-left">
-                                    <div class="row">
-                                      <div class="col-sm-2" style="flex: 0 0 auto; width: 2%;">
-                                        <label for="task-employee">
-                                          <i class="bi bi-person-fill"></i>
-                                        </label>
-                                      </div>
-                                      <div class="col-sm-3">
-                                        <asp:DropDownList ID="task_employees" runat="server" style="width: 100%; margin-left: 10px;" ></asp:DropDownList>
-                                      </div>
+                                  <div class="row">
+                                    <div class="col-sm-2" style="flex: 0 auto; width: 2%;">
+                                      <label for="task-employee">
+                                        <i class="bi bi-person-fill"></i>
+                                      </label>
                                     </div>
+                                    <div class="col-sm-3">
+                                      <asp:DropDownList ID="task_employees" runat="server" style="width: 100%; margin-left: 10px;"></asp:DropDownList>
+                                    </div>
+                                  </div>
                                 </div>
                                 <!-- Task Predecessor -->
                                 <p>Task Predecessor</p>

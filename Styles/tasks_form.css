@@ -56,6 +56,8 @@ h2 {
 }
 
 .containerTable {
+    max-width: 100%;
+    overflow-x: auto;
     display: inline-block;
 }
 

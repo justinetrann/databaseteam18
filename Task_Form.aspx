@@ -55,13 +55,13 @@
                                 <!-- Task Employee -->
                                 <div class="form-group text-left">
                                   <div class="row">
-                                    <div class="col-sm-2" style="flex: 0 auto; width: 2%;">
+                                    <div class="col-sm-2" style="flex: 0 auto; width: 0%;">
                                       <label for="task-employee">
                                         <i class="bi bi-person-fill"></i>
                                       </label>
                                     </div>
                                     <div class="col-sm-3">
-                                      <asp:DropDownList ID="task_employees" runat="server" style="width: 100%; margin-left: 10px;"></asp:DropDownList>
+                                      <asp:DropDownList ID="task_employees" runat="server" style="margin-left: 10px;"></asp:DropDownList>
                                     </div>
                                   </div>
                                 </div>
@@ -125,6 +125,7 @@
 
                 </div>
             </div>
+        </div>
         </div>
     </main>
 </asp:Content>

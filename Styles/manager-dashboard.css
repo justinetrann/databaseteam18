@@ -2,15 +2,12 @@ h2 {
     margin-bottom: 50px;
 }
 
-body {
+
+.title-page {
     font-size: 13px;
     line-height: 1.8;
     color: #222;
-    background: #f8f8f8;
     font-family: Poppins;
-}
-
-.title-page {
     position: relative;
     height: 500px;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
@@ -88,12 +85,4 @@ form.example::after {
     content: "";
     clear: both;
     display: table;
-}
-
-h5 {
-    font-size: 13px;
-    line-height: 1.8;
-    color: #222;
-    background: #f8f8f8;
-    font-family: Poppins;
 }

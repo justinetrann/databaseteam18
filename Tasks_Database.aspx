@@ -11,7 +11,7 @@
                     Your browser does not support the video tag.
                 </video>
                 <div class="video-text">
-                <h1>Manage Your Task.</h1>
+                <h1>Manage Employees Task.</h1>
                 </div>
             </div><br/>
         </div>

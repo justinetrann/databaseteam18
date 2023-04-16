@@ -16,22 +16,46 @@
             </div><br/>
         </div>
         <div class="containerNew">
+            <h5 class="text-center text-muted mb-3" style=" font-weight:bold; font-size: 15px; font-family:Poppins;">Edit Your Profile</h5>
+            <div style="text-align: center;">
+              <select>
+                <option value="">Select an option</option>
+                <option value="optionFN">First Name</option>
+                <option value="optionLN">Last Name</option>
+                <option value="optionDOB">DOB</option>
+                <option value="optionS">Sex</option>
+                <option value="optionPN">Phone Number</option>
+              </select>
+                <asp:TextBox ID="changeText" runat="server" placeholder="Change Attribute..."></asp:TextBox>
+                  <button type="submit" class="btn btn-secondary">Change</button>
+            </div>
+        </div>
+
+        <div class="containerNew">
             <div>
                 <% %>
-                <ul style="list-style-type:none">
-                    <li>First Name: </li>
-                    <li>Last Name: </li>
-                    <li>Employee ID: </li>
-                    <li>Date of Birth: </li>
-                    <li>Sex: </li>
-                    <li>Email: </li>
-                    <li>Phone Number: </li>
-                    <li>SSN (Last 4 #'s): </li>
-                    <li>Department Name: </li>
-                    <li>Manager's First Name: </li>
-                    <li>Manager's Last Name: </li>
-                    <li>Manager's ID: </li>
-                </ul>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; grid-gap: 10px;">
+                    <div>
+                        <ul style="list-style-type:none">
+                            <li>First Name: <p id="first-name">First Name</p></li>
+                            <li>Last Name: <p id="last-name">Last Name</p></li>
+                            <li>Employee ID: <p id="employee-id">Employee ID</p></li>
+                            <li>Date of Birth: <p id="date-of-birth">Birth Date</p></li>
+                            <li>Sex: <p id="sex">Sex</p></li>
+                            <li>Email: <p id="email">Email</p></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul style="list-style-type:none">
+                            <li>Phone Number: <p id="phone-number">Phone Number</p></li>
+                            <li>SSN (Last 4 #'s): <p id="last-4-sn">SSN</p></li>
+                            <li>Department Name: <p id="departName">Department Name</p></li>
+                            <li>Manager's First Name: <p id="manager-first-name">Manager First Name</p></li>
+                            <li>Manager's Last Name: <p id="manager-last-name">Manager Last Name</p></li>
+                            <li>Manager's ID: <p id="manager-id">Manager ID</p></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </main>

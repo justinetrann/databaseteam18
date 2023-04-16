@@ -103,7 +103,7 @@ namespace databaseteam18
 
             else if (new_project_status != "COMPLETED")
             {
-             query = "UPDATE COMPANY.projects SET Name = @new_project_name, Status = @new_project_status, deadline = @new_project_deadline, Estimated_Cost = @new_project_est_cost, Effort = @new_project_est_effort, Total_Cost = @new_project_total_cost, Total_Effort = @new_project_total_effort WHERE ID = @project_id;";
+                query = "UPDATE COMPANY.projects SET Name = @new_project_name, Status = @new_project_status, deadline = @new_project_deadline, Estimated_Cost = @new_project_est_cost, Effort = @new_project_est_effort, Total_Cost = @new_project_total_cost, Total_Effort = @new_project_total_effort WHERE ID = @project_id;";
                 SqlCommand command = new SqlCommand(query, connection);
 
                 command.Parameters.AddWithValue("@project_id", project_id);
@@ -120,8 +120,6 @@ namespace databaseteam18
                 connection.Close();
 
             }
-
-
 
             GridView2.EditIndex = -1;
             BindGridView();
@@ -142,7 +140,7 @@ namespace databaseteam18
 
             string manager_employee_ID = Session["employee_id"].ToString();
 
-            var queryString = "SELECT ID as 'Project ID', Name as 'Project Name',Start_Date as 'Start', deadline as 'Deadline', Status as 'Status', end_date as 'Completion Date', Estimated_Cost as 'Est Cost', Effort as 'Est Effort', Total_Cost as 'Tot Cost', Total_Effort as 'Tot Effort', DepName as 'Department', project_assignment_status as 'Assign Status' FROM COMPANY.projects P inner join COMPANY.manages_project MP on P.ID = MP.Project_ID inner join COMPANY.department D on D.depId = P.Department_ID WHERE MP.employee_ID =" + manager_employee_ID + ";"; // Return all records from Project Table in Database
+            var queryString = "SELECT ID as 'Project ID', Name as 'Project Name',Start_Date as 'Start', deadline as 'Deadline', Status as 'Status', end_date as 'Completion Date', Estimated_Cost as 'Est Cost', Effort as 'Est Effort', Total_Cost as 'Tot Cost', Total_Effort as 'Tot Effort', DepName as 'Department', project_assignment_status as 'Assign Status' FROM COMPANY.projects P inner join COMPANY.manages_project MP on P.ID = MP.Project_ID inner join COMPANY.department D on D.depId = P.Department_ID WHERE MP.employee_ID =" + manager_employee_ID + " AND P.Deleted = 0 AND MP.deleted = 0;"; // Return all records from Project Table in Database
             var dbConncetion = new SqlConnection(dbConnectionString);
             var dataAdapter = new SqlDataAdapter(queryString, dbConncetion);
 
@@ -160,8 +158,8 @@ namespace databaseteam18
             GridViewRow row = GridView2.Rows[e.RowIndex];
 
 
-            //Get Task ID
-            string task_id = row.Cells[0].Text;
+            //Get Project ID
+            string project_id = row.Cells[0].Text;
 
 
 
@@ -170,21 +168,22 @@ namespace databaseteam18
 
             // Update the Task and Task Assignment tables with update data
             string connectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
-            string query = "UPDATE COMPANY.task_assignment SET deleted = 1 WHERE task_id = @task_id;";
-            query += "UPDATE COMPANY.tasks SET deleted = 1 WHERE task_id = @task_id;";
-            query += "UPDATE COMPANY.tasks_Dependecies SET deleted = 1 WHERE task_predecessor_ID = @task_id OR task_descendant_ID = @task_id;";
+            string query = "UPDATE COMPANY.manages_project SET deleted = 1 WHERE project_ID = @project_id;";
+            query += "UPDATE COMPANY.projects SET Deleted = 1 WHERE ID = @project_id;";
+            
 
             SqlConnection connection = new SqlConnection(connectionString);
 
             SqlCommand command = new SqlCommand(query, connection);
 
 
-            command.Parameters.AddWithValue("@task_id", task_id);
+            command.Parameters.AddWithValue("@project_id", project_id);
 
 
             connection.Open();
             command.ExecuteNonQuery();
             connection.Close();
+
 
 
 

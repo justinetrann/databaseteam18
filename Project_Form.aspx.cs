@@ -213,7 +213,7 @@ namespace databaseteam18
                     }
                     else
                     {
-                        string query = "INSERT INTO COMPANY.projects (ID, Name, Start_Date, End_Date, Status, Estimated_Cost, Effort, Department_ID) VALUES (@project_id, @project_name, @start_date, @end_date, @status, @estimated_cost, @estimated_effort, @department_id);";
+                        string query = "INSERT INTO COMPANY.projects (ID, Name, Start_Date, End_Date, Status, Estimated_Cost, Effort, Department_ID) VALUES (@project_id, @project_name, @start_date, @end_date, 'ASSIGNED', @estimated_cost, @estimated_effort, @department_id);";
 
                         //query += "INSERT INTO COMPANY.employees (employee_ID, employee_first_name, employee_last_name, SSN, phoneNUM, login_ID) VALUES (@employee_id, @employee_fname,@employee_lname, @ssn, @phone_num, @login_id_emp_table);";
 
@@ -230,9 +230,7 @@ namespace databaseteam18
 
                         command.Parameters.AddWithValue("@start_date", project_start_date.Value);
 
-                        command.Parameters.AddWithValue("@end_date", project_end_date.Value);
-
-                        command.Parameters.AddWithValue("@status", status);
+                        command.Parameters.AddWithValue("@end_date", project_end_date.Value);       
 
                         command.Parameters.AddWithValue("@estimated_cost", estimated_cost.Value);
 
@@ -246,12 +244,13 @@ namespace databaseteam18
                         command.ExecuteNonQuery();
 
                         /////// ASSIGNING PROJECT TO CURRENT MANAGER
-                        string insert_manages_project_query = "INSERT INTO COMPANY.manages_project (employee_ID, project_ID) values (@employee_id, @project_id) ;";
+                        string insert_manages_project_query = "INSERT INTO COMPANY.manages_project (employee_ID, project_ID) values (@employee_id, @project_id) ; UPDATE COMPANY.projects SET Status = @status";
                         SqlCommand insert_manages_project_command = new SqlCommand(insert_manages_project_query, connection);
                         insert_manages_project_command.Parameters.AddWithValue("@employee_id", employee_id);
                         insert_manages_project_command.Parameters.AddWithValue("@project_id", project_id);
+                        insert_manages_project_command.Parameters.AddWithValue("@status", status);
 
-
+                        
                         insert_manages_project_command.ExecuteNonQuery();
 
                         /////////

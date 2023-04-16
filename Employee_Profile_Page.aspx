@@ -1,10 +1,21 @@
 ﻿<%@ Page Title="Project Management System" Language="C#" MasterPageFile="~/employee_site.Master" AutoEventWireup="true" CodeBehind="Employee_Profile_Page.aspx.cs" Inherits="databaseteam18.Employee_Profile_Page"%>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link href="Styles/project_form.css" rel="stylesheet" type="text/css"/>
-
+<link href="Styles/employee-profile-page.css" rel="stylesheet" type="text/css"/>
     <main aria-labelledby="project_form">
+        <div classname="container">
+           <!--Employee Profile Page-->
+            <div class="title-page">
+                <video class="fill-container" autoplay="" loop="" muted="">
+                <source src="video/video3.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                </video>
+                <div class="video-text">
+                <h1>Profile.</h1>
+                </div>
+            </div><br/>
+        </div>
+        <div class="containerNew">
             <div>
                 <% %>
                 <ul style="list-style-type:none">
@@ -22,5 +33,6 @@
                     <li>Manager's ID: </li>
                 </ul>
             </div>
+        </div>
     </main>
 </asp:Content>

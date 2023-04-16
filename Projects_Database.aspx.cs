@@ -49,10 +49,8 @@ namespace databaseteam18
             DropDownList statusDropDownList = (DropDownList)GridView2.Rows[e.RowIndex].FindControl("StatusDropDownList");
             string new_project_status = (statusDropDownList.SelectedValue);
 
-            string project_end_date = "";
-
-            if (new_project_status == "COMPLETED")
-                project_end_date = DateTime.Now.ToString();
+            
+            DateTime project_end_date = DateTime.Now;
 
             //Get project est cost Update Value
             TextBox EstCostTextBox = (TextBox)GridView2.Rows[GridView2.EditIndex].FindControl("EstCostTextBox");
@@ -71,32 +69,57 @@ namespace databaseteam18
             string new_project_total_effort = TotEffortTextBox.Text;
 
 
+
+
+
+
             
-
-
-
-
             // Update the Task and Task Assignment tables with update data
             string connectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
-            string query = "UPDATE COMPANY.projects SET Name = @new_project_name, Status = @new_project_status, deadline = @new_project_deadline, Estimated_Cost = @new_project_est_cost, Effort = @new_project_est_effort, Total_Cost = @new_project_total_cost, Total_Effort = @new_project_total_effort, end_date = @project_end_date WHERE ID = @project_id;";
 
             SqlConnection connection = new SqlConnection(connectionString);
 
-            SqlCommand command = new SqlCommand(query, connection);
+            string query;
 
-            command.Parameters.AddWithValue("@project_id", project_id);
-            command.Parameters.AddWithValue("@new_project_name", new_project_name);
-            command.Parameters.AddWithValue("@new_project_status", new_project_status);
-            command.Parameters.AddWithValue("@new_project_deadline", new_project_deadline);
-            command.Parameters.AddWithValue("@new_project_est_cost", new_project_est_cost);
-            command.Parameters.AddWithValue("@new_project_est_effort", new_project_est_effort);
-            command.Parameters.AddWithValue("@new_project_total_cost", new_project_total_cost);
-            command.Parameters.AddWithValue("@new_project_total_effort", new_project_total_effort);
-            command.Parameters.AddWithValue("@project_end_date", project_end_date);
+            if (new_project_status == "COMPLETED")
+            {
+                query = "UPDATE COMPANY.projects SET Name = @new_project_name, Status = @new_project_status, deadline = @new_project_deadline, Estimated_Cost = @new_project_est_cost, Effort = @new_project_est_effort, Total_Cost = @new_project_total_cost, Total_Effort = @new_project_total_effort, end_date = @project_end_date WHERE ID = @project_id;";
+                SqlCommand command = new SqlCommand(query, connection);
 
-            connection.Open();
-            command.ExecuteNonQuery();
-            connection.Close();
+                command.Parameters.AddWithValue("@project_id", project_id);
+                command.Parameters.AddWithValue("@new_project_name", new_project_name);
+                command.Parameters.AddWithValue("@new_project_status", new_project_status);
+                command.Parameters.AddWithValue("@new_project_deadline", new_project_deadline);
+                command.Parameters.AddWithValue("@new_project_est_cost", new_project_est_cost);
+                command.Parameters.AddWithValue("@new_project_est_effort", new_project_est_effort);
+                command.Parameters.AddWithValue("@new_project_total_cost", new_project_total_cost);
+                command.Parameters.AddWithValue("@new_project_total_effort", new_project_total_effort);
+                command.Parameters.AddWithValue("@project_end_date", project_end_date);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
+
+            else if (new_project_status != "COMPLETED")
+            {
+             query = "UPDATE COMPANY.projects SET Name = @new_project_name, Status = @new_project_status, deadline = @new_project_deadline, Estimated_Cost = @new_project_est_cost, Effort = @new_project_est_effort, Total_Cost = @new_project_total_cost, Total_Effort = @new_project_total_effort WHERE ID = @project_id;";
+                SqlCommand command = new SqlCommand(query, connection);
+
+                command.Parameters.AddWithValue("@project_id", project_id);
+                command.Parameters.AddWithValue("@new_project_name", new_project_name);
+                command.Parameters.AddWithValue("@new_project_status", new_project_status);
+                command.Parameters.AddWithValue("@new_project_deadline", new_project_deadline);
+                command.Parameters.AddWithValue("@new_project_est_cost", new_project_est_cost);
+                command.Parameters.AddWithValue("@new_project_est_effort", new_project_est_effort);
+                command.Parameters.AddWithValue("@new_project_total_cost", new_project_total_cost);
+                command.Parameters.AddWithValue("@new_project_total_effort", new_project_total_effort);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+                connection.Close();
+
+            }
 
 
 

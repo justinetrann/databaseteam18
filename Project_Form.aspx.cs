@@ -20,7 +20,7 @@ namespace databaseteam18
 
             submitButton.ServerClick += new EventHandler(submitButton_Click);
 
-            // Current Projects In System
+            //Current Projects In System
             // Establishing connection string to database
             // Reading from the web.config file
             string dbConnectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
@@ -61,11 +61,6 @@ namespace databaseteam18
                 return;
 
             }
-
-            
-
-
-
 
             try
 
@@ -129,11 +124,7 @@ namespace databaseteam18
                     if (rowCount == 1)
                     {
 
-                        
-
                         status_reader = read_status_querycommand.ExecuteReader();
-
-
 
                         //Redirect the user to the home page
                         while (status_reader.Read())
@@ -142,8 +133,6 @@ namespace databaseteam18
                         {
                             project_assignment_status = Convert.ToString(status_reader["project_assignment_status"]);
 
-                         
-                            
                         }
 
                         //errorMessage.InnerHtml = (project_assignment_status.ToString()).GetType().ToString() + (Convert.ToString("assigned").ToString()).GetType().ToString();
@@ -157,13 +146,9 @@ namespace databaseteam18
                             return;
                         }
                         
-
                     }
 
-
-
                 }
-
 
                     ///////////////////
 
@@ -217,8 +202,6 @@ namespace databaseteam18
                         department_id = Convert.ToInt32(reader["dept_ID"]);
                         
                     }
-
-
 
                     ////////////
 
@@ -277,12 +260,10 @@ namespace databaseteam18
                         successMessage.InnerHtml = "New Project Added Successfully!";
                         successMessage.Style.Remove("display");
 
-
                     }
 
                 }
 
-                
             }
 
             catch (SqlException ex)

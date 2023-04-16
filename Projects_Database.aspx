@@ -12,7 +12,7 @@
         <div id="errorMessage" class="alert alert-danger" runat ="server" style="display:none;">
                     
              </div>
-        <asp:GridView ID ="GridView2" runat="server" DataKeyNames="Task ID" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%" Height ="400px" AutoGenerateColumns="false" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating"  OnRowCancelingEdit = "GridView1_RowCancelingEdit" OnRowDeleting ="GridView1_RowDeleting">
+        <asp:GridView ID ="GridView2" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%" Height ="400px" AutoGenerateColumns="false" OnRowEditing="GridView2_RowEditing" OnRowUpdating="GridView2_RowUpdating"  OnRowCancelingEdit = "GridView2_RowCancelingEdit" OnRowDeleting ="GridView2_RowDeleting">
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
             <EditRowStyle BackColor="#999999" />
             <FooterStyle BackColor="#5D7B9D" ForeColor="White" Font-Bold="True" />
@@ -59,48 +59,48 @@
                 </ItemTemplate>
                 <EditItemTemplate>
                     <asp:DropDownList ID="StatusDropDownList" runat="server">
-                        <asp:ListItem Text="Resume" Value="ongoing"></asp:ListItem>
-                        <asp:ListItem Text="Pause" Value="Paused"></asp:ListItem>
-                        <asp:ListItem Text="Complete" Value="Completed"></asp:ListItem>
+                        <asp:ListItem Text="Resume" Value="ONGOING"></asp:ListItem>
+                        <asp:ListItem Text="Pause" Value="PAUSED"></asp:ListItem>
+                        <asp:ListItem Text="Complete" Value="COMPLETED"></asp:ListItem>
                     </asp:DropDownList> 
                 </EditItemTemplate>
             </asp:TemplateField>
 
-            <asp:BoundField DataField="Completion Date" HeaderText="Pred. ID" ReadOnly="true"/> 
+            <asp:BoundField DataField="Completion Date" HeaderText="Completion Date" ReadOnly="true"/> 
 
             <asp:TemplateField HeaderText="Est. Cost">
                     <ItemTemplate>
-                        <asp:Label ID="EstCostLabel" runat="server" Text='<%# Eval("Est. Cost") %>'></asp:Label>
+                        <asp:Label ID="EstCostLabel" runat="server" Text='<%# Eval("Est Cost") %>'></asp:Label>
                     </ItemTemplate>
                     <EditItemTemplate>
-                        <asp:TextBox ID="EstCostTextBox" runat="server" Text='<%# Bind("[Est. Cost]") %>'></asp:TextBox>
+                        <asp:TextBox ID="EstCostTextBox" runat="server" Text='<%# Bind("[Est Cost]") %>'></asp:TextBox>
                     </EditItemTemplate>
                 </asp:TemplateField>
 
             <asp:TemplateField HeaderText="Est. Effort">
                     <ItemTemplate>
-                        <asp:Label ID="EstEffortLabel" runat="server" Text='<%# Eval("Est. Effort") %>'></asp:Label>
+                        <asp:Label ID="EstEffortLabel" runat="server" Text='<%# Eval("Est Effort") %>'></asp:Label>
                     </ItemTemplate>
                     <EditItemTemplate>
-                        <asp:TextBox ID="EstEffortTextBox" runat="server" Text='<%# Bind("[Est. Effort]") %>'></asp:TextBox>
+                        <asp:TextBox ID="EstEffortTextBox" runat="server" Text='<%# Bind("[Est Effort]") %>'></asp:TextBox>
                     </EditItemTemplate>
                 </asp:TemplateField>
 
             <asp:TemplateField HeaderText="Tot. Cost">
                     <ItemTemplate>
-                        <asp:Label ID="TotCostLabel" runat="server" Text='<%# Eval("Tot. Cost") %>'></asp:Label>
+                        <asp:Label ID="TotCostLabel" runat="server" Text='<%# Eval("Tot Cost") %>'></asp:Label>
                     </ItemTemplate>
                     <EditItemTemplate>
-                        <asp:TextBox ID="TotCostTextBox" runat="server" Text='<%# Bind("[Tot. Cost]") %>'></asp:TextBox>
+                        <asp:TextBox ID="TotCostTextBox" runat="server" Text='<%# Bind("[Tot Cost]") %>'></asp:TextBox>
                     </EditItemTemplate>
                 </asp:TemplateField>
 
             <asp:TemplateField HeaderText="Tot. Effort">
                     <ItemTemplate>
-                        <asp:Label ID="TotEffortLabel" runat="server" Text='<%# Eval("Tot. Effort") %>'></asp:Label>
+                        <asp:Label ID="TotEffortLabel" runat="server" Text='<%# Eval("Tot Effort") %>'></asp:Label>
                     </ItemTemplate>
                     <EditItemTemplate>
-                        <asp:TextBox ID="TotEffortTextBox" runat="server" Text='<%# Bind("[Tot. Effort]") %>'></asp:TextBox>
+                        <asp:TextBox ID="TotEffortTextBox" runat="server" Text='<%# Bind("[Tot Effort]") %>'></asp:TextBox>
                     </EditItemTemplate>
                 </asp:TemplateField>
 
@@ -109,7 +109,7 @@
 
 
             
-            <asp:BoundField DataField="Assign. Status" HeaderText="Assign. Status" ReadOnly="true"/>
+            <asp:BoundField DataField="Assign Status" HeaderText="Assign Status" ReadOnly="true"/>
                          
 
 

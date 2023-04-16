@@ -18,7 +18,7 @@
         <div class="containerNew">
             <h5 class="text-center text-muted mb-3" style=" font-weight:bold; font-size: 15px; font-family:Poppins;">Edit Your Profile</h5>
             <div style="text-align: center;">
-              <select>
+              <select class="form-select-sm">
                 <option value="">Select an option</option>
                 <option value="optionFN">First Name</option>
                 <option value="optionLN">Last Name</option>

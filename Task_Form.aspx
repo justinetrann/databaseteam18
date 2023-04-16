@@ -20,10 +20,10 @@
         <!--New Task Form-->
         <div class="form-container">
             <div class="container">
-                <div class="row ">
+                <div class="row justify-content-center">
                 <!--Form-->
                 <div class="col-md-6">
-                    <div class="project-content text-left">
+                    <div class="form-content text-left">
                         <h2>Task Form</h2>
                             <form method="post" class="project-form" id="project-form">
                                 <!-- Task Name input -->

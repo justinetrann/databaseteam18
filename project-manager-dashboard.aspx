@@ -45,9 +45,9 @@
 
             <div class="project-manager col-md-6">
 
-                <!--Project Ranked By Dates-->
-                <h5 class="text-center text-muted mb-3 h5" style="font-weight: bold; font-size: 15px; font-family:Poppins;">Current Projects In The System</h5>
-                <asp:GridView ID ="GridViewManagerProject1" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" Width="483px" HorizontalAlign="Center">
+                <!--Employees In Department-->
+                <h5 class="text-center text-muted mb-3 h5" style="font-weight: bold; font-size: 15px; font-family:Poppins;">Current Employees In Department</h5>
+                <asp:GridView ID ="GridViewManagerEmployees1" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" Width="483px" HorizontalAlign="Center">
                     <AlternatingRowStyle BackColor="White" />
                     <EditRowStyle BackColor="#2461BF" />
                     <FooterStyle BackColor="#507CD1" ForeColor="White" Font-Bold="True" />
@@ -62,9 +62,10 @@
 
                 </asp:GridView><br/><br/>
 
-                 <!--Employees In Department-->
-                <h5 class="text-center text-muted mb-3 h5" style="font-weight: bold; font-size: 15px; font-family:Poppins;">Current Employees In Department</h5>
-                <asp:GridView ID ="GridViewManagerEmployees1" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" Width="483px" HorizontalAlign="Center">
+
+                <!--Project Ranked By Dates-->
+                <h5 class="text-center text-muted mb-3 h5" style="font-weight: bold; font-size: 15px; font-family:Poppins;">Current Projects In The System</h5>
+                <asp:GridView ID ="GridViewManagerProject1" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" Width="483px" HorizontalAlign="Center">
                     <AlternatingRowStyle BackColor="White" />
                     <EditRowStyle BackColor="#2461BF" />
                     <FooterStyle BackColor="#507CD1" ForeColor="White" Font-Bold="True" />

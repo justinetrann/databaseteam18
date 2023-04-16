@@ -38,12 +38,23 @@ namespace databaseteam18
 
 
             //Get project Name Update Value
+            string new_project_name = "";
             TextBox ProjectNameTextBox = (TextBox)GridView2.Rows[GridView2.EditIndex].FindControl("ProjectNameTextBox");
-            string new_project_name = ProjectNameTextBox.Text;
+            if (!string.IsNullOrEmpty(ProjectNameTextBox.Text))
+            {
+                 new_project_name = ProjectNameTextBox.Text;
+            }
+
+
 
             //Get project deadline Update Value
+            string new_project_deadline = "";
             TextBox DeadlineTextBox = (TextBox)GridView2.Rows[GridView2.EditIndex].FindControl("DeadlineTextBox");
-            string new_project_deadline = DeadlineTextBox.Text;
+            if (!string.IsNullOrEmpty(DeadlineTextBox.Text))
+            {
+                new_project_deadline = DeadlineTextBox.Text;
+            }
+         
 
             //Get project Status Update Value
             DropDownList statusDropDownList = (DropDownList)GridView2.Rows[e.RowIndex].FindControl("StatusDropDownList");
@@ -52,15 +63,28 @@ namespace databaseteam18
             
             DateTime project_end_date = DateTime.Now;
 
+
             //Get project est cost Update Value
+            string new_project_est_cost = "";
             TextBox EstCostTextBox = (TextBox)GridView2.Rows[GridView2.EditIndex].FindControl("EstCostTextBox");
-            string new_project_est_cost = EstCostTextBox.Text;
+            if (!string.IsNullOrEmpty(EstCostTextBox.Text))
+            {
+                new_project_est_cost = EstCostTextBox.Text;
+            }
+
+
 
             //Get project est effort Update Value
+            string new_project_est_effort = "NULL";
             TextBox EstEffortTextBox = (TextBox)GridView2.Rows[GridView2.EditIndex].FindControl("EstEffortTextBox");
-            string new_project_est_effort = EstEffortTextBox.Text;
+            if (!string.IsNullOrEmpty(EstEffortTextBox.Text))
+            {
+                new_project_est_effort = EstEffortTextBox.Text;
+            }
+
 
             //Get project total cost Update Value
+            string new_project_total_cost = "NULL";
             TextBox TotCostTextBox = (TextBox)GridView2.Rows[GridView2.EditIndex].FindControl("TotCostTextBox");
             string new_project_total_cost = TotCostTextBox.Text;
 

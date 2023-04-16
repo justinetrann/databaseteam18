@@ -38,7 +38,7 @@ namespace databaseteam18
 
 
             //Get project Name Update Value
-            string new_project_name = "";
+            string new_project_name = "No Name";
             TextBox ProjectNameTextBox = (TextBox)GridView2.Rows[GridView2.EditIndex].FindControl("ProjectNameTextBox");
             if (!string.IsNullOrEmpty(ProjectNameTextBox.Text))
             {
@@ -48,13 +48,9 @@ namespace databaseteam18
 
 
             //Get project deadline Update Value
-            string new_project_deadline = "";
+            
             TextBox DeadlineTextBox = (TextBox)GridView2.Rows[GridView2.EditIndex].FindControl("DeadlineTextBox");
-            if (!string.IsNullOrEmpty(DeadlineTextBox.Text))
-            {
-                new_project_deadline = DeadlineTextBox.Text;
-            }
-         
+            string new_project_deadline = DeadlineTextBox.Text;
 
             //Get project Status Update Value
             DropDownList statusDropDownList = (DropDownList)GridView2.Rows[e.RowIndex].FindControl("StatusDropDownList");
@@ -65,7 +61,7 @@ namespace databaseteam18
 
 
             //Get project est cost Update Value
-            string new_project_est_cost = "";
+            string new_project_est_cost = "NULL";
             TextBox EstCostTextBox = (TextBox)GridView2.Rows[GridView2.EditIndex].FindControl("EstCostTextBox");
             if (!string.IsNullOrEmpty(EstCostTextBox.Text))
             {
@@ -86,11 +82,20 @@ namespace databaseteam18
             //Get project total cost Update Value
             string new_project_total_cost = "NULL";
             TextBox TotCostTextBox = (TextBox)GridView2.Rows[GridView2.EditIndex].FindControl("TotCostTextBox");
-            string new_project_total_cost = TotCostTextBox.Text;
+            if (!string.IsNullOrEmpty(TotCostTextBox.Text))
+            {
+                new_project_total_cost = TotCostTextBox.Text;
+            }
+
 
             //Get project total effort Update Value
+            string new_project_total_effort = "NULL";
             TextBox TotEffortTextBox = (TextBox)GridView2.Rows[GridView2.EditIndex].FindControl("TotEffortTextBox");
-            string new_project_total_effort = TotEffortTextBox.Text;
+            if (!string.IsNullOrEmpty(TotEffortTextBox.Text))
+            {
+                new_project_total_effort = TotEffortTextBox.Text;
+            }
+            
 
 
 

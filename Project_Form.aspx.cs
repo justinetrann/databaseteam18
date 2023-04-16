@@ -204,6 +204,9 @@ namespace databaseteam18
                     }
 
                     ////////////
+                    //errorMessage.InnerHtml = employee_id.ToString();
+                    //errorMessage.Style.Remove("display");
+                    //return;
 
 
                     if (department_id == -1)
@@ -244,13 +247,14 @@ namespace databaseteam18
                         command.ExecuteNonQuery();
 
                         /////// ASSIGNING PROJECT TO CURRENT MANAGER
-                        string insert_manages_project_query = "INSERT INTO COMPANY.manages_project (employee_ID, project_ID) values (@employee_id, @project_id) ; UPDATE COMPANY.projects SET Status = @status";
+                        string insert_manages_project_query = "INSERT INTO COMPANY.manages_project (employee_ID, project_ID) values (@employee_id, @project_id) ; UPDATE COMPANY.projects SET Status = @status WHERE ID = @project_id";
                         SqlCommand insert_manages_project_command = new SqlCommand(insert_manages_project_query, connection);
                         insert_manages_project_command.Parameters.AddWithValue("@employee_id", employee_id);
                         insert_manages_project_command.Parameters.AddWithValue("@project_id", project_id);
                         insert_manages_project_command.Parameters.AddWithValue("@status", status);
-
                         
+
+
                         insert_manages_project_command.ExecuteNonQuery();
 
                         /////////

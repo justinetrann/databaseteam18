@@ -73,73 +73,99 @@ namespace databaseteam18
 
         protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
+            try
+            {
+                GridViewRow row = GridView1.Rows[e.RowIndex];
 
-            GridViewRow row = GridView1.Rows[e.RowIndex];
-
-            //Get Task ID
-            string task_id = row.Cells[0].Text;
-     
-
-            //Get Task Name Update Value
-            TextBox TaskNameTextBox = (TextBox)GridView1.Rows[GridView1.EditIndex].FindControl("TaskNameTextBox");
-            string new_task_name = TaskNameTextBox.Text;
-
-            //Get Task Description Update Value
-            TextBox DescriptionTextBox = (TextBox)GridView1.Rows[GridView1.EditIndex].FindControl("DescriptionTextBox");
-            string new_task_description = DescriptionTextBox.Text;
-
-            //Get Task Status Update Value
-            DropDownList statusDropDownList = (DropDownList)GridView1.Rows[e.RowIndex].FindControl("StatusDropDownList");
-            string new_task_status = (statusDropDownList.SelectedValue);
-
-            //Get New Assigned Employee Value
-            DropDownList employeeDropDownList = (DropDownList)GridView1.Rows[e.RowIndex].FindControl("EmployeeDropDownList");
-            string new_assigned_employee = (employeeDropDownList.SelectedValue);
-
-            //errorMessage.InnerHtml = new_assigned_employee;
-            //errorMessage.Style.Remove("display");
-            //return;
+                //Get Task ID
+                string task_id = row.Cells[0].Text;
 
 
+                //Get Task Name Update Value
+                TextBox TaskNameTextBox = (TextBox)GridView1.Rows[GridView1.EditIndex].FindControl("TaskNameTextBox");
+                string new_task_name = TaskNameTextBox.Text;
 
-            //Get Task Deadline Update Value
-            TextBox DeadlineTextBox = (TextBox)GridView1.Rows[GridView1.EditIndex].FindControl("DeadlineTextBox");
-            string new_task_deadline = DeadlineTextBox.Text;
+                //Get Task Description Update Value
+                TextBox DescriptionTextBox = (TextBox)GridView1.Rows[GridView1.EditIndex].FindControl("DescriptionTextBox");
+                string new_task_description = DescriptionTextBox.Text;
 
+                //Get Task Status Update Value
+                DropDownList statusDropDownList = (DropDownList)GridView1.Rows[e.RowIndex].FindControl("StatusDropDownList");
+                string new_task_status = (statusDropDownList.SelectedValue);
 
-            //Get Task Priority Update Value
-            DropDownList TaskPriorityDropDownList = (DropDownList)GridView1.Rows[e.RowIndex].FindControl("TaskPriorityDropDownList");
-            string new_task_priority = (TaskPriorityDropDownList.SelectedValue);
+                //Get New Assigned Employee Value
+                DropDownList employeeDropDownList = (DropDownList)GridView1.Rows[e.RowIndex].FindControl("EmployeeDropDownList");
+                string new_assigned_employee = (employeeDropDownList.SelectedValue);
+
+                //errorMessage.InnerHtml = new_assigned_employee;
+                //errorMessage.Style.Remove("display");
+                //return;
 
 
 
+                //Get Task Deadline Update Value
+                TextBox DeadlineTextBox = (TextBox)GridView1.Rows[GridView1.EditIndex].FindControl("DeadlineTextBox");
+                string new_task_deadline = DeadlineTextBox.Text;
 
-            // Update the Task and Task Assignment tables with update data
-            string connectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
-            string query = "UPDATE COMPANY.task_assignment SET task_priority = @task_priority, task_status = @task_status, task_deadline = @task_deadline, employee_ID = @employee_id WHERE task_id = @task_id;";
-            query += "UPDATE COMPANY.tasks SET task_name = @task_name, task_description = @task_description WHERE task_id = @task_id;";
 
-            SqlConnection connection = new SqlConnection(connectionString);
-
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@task_priority", new_task_priority);
-            command.Parameters.AddWithValue("@task_status", new_task_status);
-            command.Parameters.AddWithValue("@task_deadline", new_task_deadline); 
-            command.Parameters.AddWithValue("@employee_id", new_assigned_employee);
-            command.Parameters.AddWithValue("@task_id", task_id);
-            command.Parameters.AddWithValue("@task_name", new_task_name);
-            command.Parameters.AddWithValue("@task_description", new_task_description);
-
-            connection.Open();
-            command.ExecuteNonQuery();
-            connection.Close();
+                //Get Task Priority Update Value
+                DropDownList TaskPriorityDropDownList = (DropDownList)GridView1.Rows[e.RowIndex].FindControl("TaskPriorityDropDownList");
+                string new_task_priority = (TaskPriorityDropDownList.SelectedValue);
 
 
 
-            GridView1.EditIndex = -1;
-            BindGridView();
+
+                // Update the Task and Task Assignment tables with update data
+                string connectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
+                string query = "UPDATE COMPANY.task_assignment SET task_priority = @task_priority, task_status = @task_status, task_deadline = @task_deadline, employee_ID = @employee_id WHERE task_id = @task_id;";
+                query += "UPDATE COMPANY.tasks SET task_name = @task_name, task_description = @task_description WHERE task_id = @task_id;";
+
+                SqlConnection connection = new SqlConnection(connectionString);
+
+                SqlCommand command = new SqlCommand(query, connection);
+
+                command.Parameters.AddWithValue("@task_priority", new_task_priority);
+                command.Parameters.AddWithValue("@task_status", new_task_status);
+                command.Parameters.AddWithValue("@task_deadline", new_task_deadline);
+                command.Parameters.AddWithValue("@employee_id", new_assigned_employee);
+                command.Parameters.AddWithValue("@task_id", task_id);
+                command.Parameters.AddWithValue("@task_name", new_task_name);
+                command.Parameters.AddWithValue("@task_description", new_task_description);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+                connection.Close();
+
+
+
+                GridView1.EditIndex = -1;
+                BindGridView();
+            }
             //GridView1.Columns[5].Visible = true;
+
+            catch (SqlException ex)
+
+            {
+                if (ex.Message.Contains("dependent"))
+                {
+                    // Display a personalized error message to the user
+
+                    Console.WriteLine("An error occurred: " + ex.Message);
+                    errorMessage.InnerHtml = ex.Message;
+                    errorMessage.Style.Remove("display");
+                }
+                else
+                {
+                    // If the error was caused by something else, display a generic error message
+                    Console.WriteLine("An error occurred: " + ex.Message);
+                    errorMessage.InnerHtml = "A Database error occurred: " + ex.Message;
+                    errorMessage.Style.Remove("display");
+                }
+
+                // Handle the error in some way, such as displaying an error message to the user or logging the error for later analysis
+
+
+            }
         }
 
         protected void GridView1_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)

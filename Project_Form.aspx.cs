@@ -204,9 +204,6 @@ namespace databaseteam18
                     }
 
                     ////////////
-                    //errorMessage.InnerHtml = employee_id.ToString();
-                    //errorMessage.Style.Remove("display");
-                    //return;
 
 
                     if (department_id == -1)
@@ -252,9 +249,8 @@ namespace databaseteam18
                         insert_manages_project_command.Parameters.AddWithValue("@employee_id", employee_id);
                         insert_manages_project_command.Parameters.AddWithValue("@project_id", project_id);
                         insert_manages_project_command.Parameters.AddWithValue("@status", status);
+
                         
-
-
                         insert_manages_project_command.ExecuteNonQuery();
 
                         /////////

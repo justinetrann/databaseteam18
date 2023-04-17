@@ -197,7 +197,6 @@ namespace databaseteam18
 
             }
         }
-
         protected void btnChangeFirstName(object sender, EventArgs e)
         {
             int employee_id = (int)Session["employee_id"];
@@ -207,18 +206,11 @@ namespace databaseteam18
             using (SqlConnection connection = new SqlConnection(dbConnectionString))
             {
                 connection.Open();
-                SqlCommand command = new SqlCommand("UPDATE COMPANY.employees SET employee_first_name = @New_First_Name WHERE employee_id = @Employee_ID AND employee_first_name = @First_Name",connection);
+                SqlCommand command = new SqlCommand("UPDATE COMPANY.employees SET employee_first_name = @New_First_Name OUTPUT INSERTED.employee_first_name WHERE employee_id = @Employee_ID", connection);
                 command.Parameters.AddWithValue("@Employee_ID", employee_id);
-                command.Parameters.AddWithValue("@First_Name", firstName);
-                int rowsAffected = command.ExecuteNonQuery();
-                if (rowsAffected > 0)
-                {
-                    Response.Write("<script>alert('First Name Updated Successfully!')</script>");
-                }
-                else
-                {
-                    Response.Write("<script>alert('First Name Updated Failed!')</script>");
-                }
+                command.Parameters.AddWithValue("@New_First_Name", firstName);
+                string updatedFirstName = (string)command.ExecuteScalar();
+                first_name.Text = updatedFirstName;
             }
         }
 
@@ -226,8 +218,23 @@ namespace databaseteam18
         protected void btnChangeMiddleName(object sender, EventArgs e)
         {
             int employee_id = (int)Session["employee_id"];
+            string middleName = middle_name.Text;
             string dbConnectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
-            var dbConncetion = new SqlConnection(dbConnectionString);
+
+            using (SqlConnection connection = new SqlConnection(dbConnectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand("UPDATE COMPANY.employees SET employee_middle_name = @New_middle_Name WHERE employee_id = @Employee_ID", connection);
+                command.Parameters.AddWithValue("@Employee_ID", employee_id);
+                command.Parameters.AddWithValue("@New_middle_Name", middleName);
+                command.ExecuteNonQuery();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                    middle_name.Text = (string)reader["employee_middle_name"];
+                }
+                reader.Close();
+            }
         }
 
         protected void btnChangeLastName(object sender, EventArgs e)

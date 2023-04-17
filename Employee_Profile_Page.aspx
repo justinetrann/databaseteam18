@@ -32,11 +32,11 @@
                 <br/>
                 <!--Employee ID-->
                 <br/><p>Employee ID: </p><asp:TextBox ID="employeeID" runat="server"></asp:TextBox><br/>
-                <br/><p>Date of Birth: </p><asp:TextBox ID="date_of_birth" runat="server"></asp:TextBox>
+                <br/><p>Date of Birth: </p><asp:TextBox ID="date_of_birth" placeholder="YYYY-MM-DD" runat="server"></asp:TextBox>
                 <asp:Button ID="btnDOB" runat="server" Text="Change DOB" OnClick="btnChangeDOB" CssClass="btn btn-secondary" />
                 <br/>
                 <!--Gender-->
-                <br/><p>Gender: </p><asp:TextBox ID="gender" runat="server"></asp:TextBox>
+                <br/><p>Gender: </p><asp:TextBox ID="gender" placeholder="Male/Female/Unspecified" runat="server"></asp:TextBox>
                 <asp:Button ID="btnGender" runat="server" Text="Change Gender" OnClick="btnChangeGender" CssClass="btn btn-secondary" />
                 <br/>
                 <!--Email-->

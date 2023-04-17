@@ -200,33 +200,62 @@ namespace databaseteam18
 
         protected void btnChangeFirstName(object sender, EventArgs e)
         {
+            int employee_id = (int)Session["employee_id"];
+            string firstName = first_name.Text;
+            string dbConnectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
 
+            using (SqlConnection connection = new SqlConnection(dbConnectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand("UPDATE COMPANY.employees SET employee_first_name = @New_First_Name WHERE employee_id = @Employee_ID AND employee_first_name = @First_Name",connection);
+                command.Parameters.AddWithValue("@Employee_ID", employee_id);
+                command.Parameters.AddWithValue("@First_Name", firstName);
+                int rowsAffected = command.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    Response.Write("<script>alert('First Name Updated Successfully!')</script>");
+                }
+                else
+                {
+                    Response.Write("<script>alert('First Name Updated Failed!')</script>");
+                }
+            }
         }
 
 
         protected void btnChangeMiddleName(object sender, EventArgs e)
         {
-            // code to handle changing middle name
+            int employee_id = (int)Session["employee_id"];
+            string dbConnectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
+            var dbConncetion = new SqlConnection(dbConnectionString);
         }
 
         protected void btnChangeLastName(object sender, EventArgs e)
         {
-            // code to handle changing last name
+            int employee_id = (int)Session["employee_id"];
+            string dbConnectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
+            var dbConncetion = new SqlConnection(dbConnectionString);
         }
 
         protected void btnChangeDOB(object sender, EventArgs e)
         {
-            // code to handle changing date of birth
+            int employee_id = (int)Session["employee_id"];
+            string dbConnectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
+            var dbConncetion = new SqlConnection(dbConnectionString);
         }
 
         protected void btnChangeGender(object sender, EventArgs e)
         {
-            // code to handle changing date of birth
+            int employee_id = (int)Session["employee_id"];
+            string dbConnectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
+            var dbConncetion = new SqlConnection(dbConnectionString);
         }
 
         protected void btnChangePhoneNumber(object sender, EventArgs e)
         {
-            // code to handle changing date of birth
+            int employee_id = (int)Session["employee_id"];
+            string dbConnectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
+            var dbConncetion = new SqlConnection(dbConnectionString);
         }
 
     }

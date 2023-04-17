@@ -30,7 +30,7 @@
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Generate Report</button>
+                <button type="submit" class="btn btn-primary" runat="server" id="submitButton">Generate Report</button>
             </div>
         </div>
         <br />
@@ -69,7 +69,7 @@
         </div>
 
         <br />
-        <div class="containerNew" style="display: none" id="gridViewContainer">
+        <div class="containerNew" style="display: true" id="gridViewContainer">
             <div id="errorMessage" class="alert alert-danger" runat="server" style="display: none;" />
             <asp:GridView ID="GridView1" runat="server" DataKeyNames="Task ID" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%" Height="200px" AutoGenerateColumns="True">
                 <AlternatingRowStyle BackColor="White" />

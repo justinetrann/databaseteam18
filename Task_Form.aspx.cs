@@ -27,9 +27,9 @@ namespace databaseteam18
         protected void Page_Load(object sender, EventArgs e)
         {
             submitButton.ServerClick += new EventHandler(submitButton_Click);
-            
-                SqlDataAdapter employees_da;
-                SqlDataAdapter tasks_da;
+
+            SqlDataAdapter employees_da;
+            SqlDataAdapter tasks_da;
 
             //successMessage.InnerHtml = "Task Created Successfully!";
 
@@ -62,25 +62,20 @@ namespace databaseteam18
 
 
             string connectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
-                SqlConnection connection = new SqlConnection(connectionString);
-                connection.Open();
+            SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
 
 
-                //////////////////////////
-                ///getting all employees that work for the department, which contains the project with the new task
-                int department_id = Convert.ToInt32(Session["department_id"]);
-
-                //errorMessage.InnerHtml = department_id.ToString();
+            //////////////////////////
+            ///getting all employees that work for the department, which contains the project with the new task
+            int department_id = Convert.ToInt32(Session["department_id"]);
 
 
-                //errorMessage.Style.Remove("display");
 
-                //return;
+            string read_employees_query = "SELECT employee_id, convert(varchar, employee_id) + ' ' + employee_first_name + ' ' + employee_last_name AS employee_full_name FROM COMPANY.employees WHERE dept_ID = @department_id;";
 
-                string read_employees_query = "SELECT employee_id, convert(varchar, employee_id) + ' ' + employee_first_name + ' ' + employee_last_name AS employee_full_name FROM COMPANY.employees WHERE dept_ID = @department_id;";
-
-                SqlCommand read_employees_command = new SqlCommand(read_employees_query, connection);
-                read_employees_command.Parameters.AddWithValue("@department_id", department_id);
+            SqlCommand read_employees_command = new SqlCommand(read_employees_query, connection);
+            read_employees_command.Parameters.AddWithValue("@department_id", department_id);
 
 
             if (!IsPostBack)
@@ -107,65 +102,41 @@ namespace databaseteam18
                 //da.Dispose();
             }
 
-            //---->2 ELSE IF BLOCK COMMENT 
-           //else if (IsPostBack)
-           // {
-           //     da = new SqlDataAdapter(read_employees_command);
-
-           //     // create a DataTable to hold the results
-           //     DataTable employees = new DataTable();
-
-           //     // fill the DataTable with the results of the SQL query
-           //     da.Fill(employees);
-
-
-           //     task_employees.Items.Clear();
-           //     task_employees.DataSource = employees;
-           //     task_employees.AppendDataBoundItems = true;
-           //     task_employees.DataTextField = "employee_full_name"; // The column you want to display in the dropdown list
-           //     task_employees.DataValueField = "employee_id"; // The column you want to use as the value for the selected item
-           //     task_employees.DataBind();
-
-           //     //this.employee_id = Convert.ToInt32(task_employees.SelectedValue);
-
-           //     read_employees_command.Dispose();
-           //     da.Dispose();
-           // }
 
             ////getting already existing tasks to determine predecessors
             string read_tasks_query = "SELECT task_ID, task_name FROM COMPANY.tasks WHERE project_id = @project_id;";
 
-                SqlCommand read_tasks_command = new SqlCommand(read_tasks_query, connection);
-                read_tasks_command.Parameters.AddWithValue("@project_id", project_id);
+            SqlCommand read_tasks_command = new SqlCommand(read_tasks_query, connection);
+            read_tasks_command.Parameters.AddWithValue("@project_id", project_id);
 
 
 
 
-                SqlDataReader task_name_reader = read_tasks_command.ExecuteReader();
+            SqlDataReader task_name_reader = read_tasks_command.ExecuteReader();
 
 
 
-                int rowCount = 0;
+            int rowCount = 0;
 
 
-                while (task_name_reader.Read())
-                {
-                    rowCount++;
-                }
+            while (task_name_reader.Read())
+            {
+                rowCount++;
+            }
 
-                task_name_reader.Close();
+            task_name_reader.Close();
 
-                if (rowCount == 0)
-                {
-                    //successMessage.InnerHtml = "There are no tasks for the current project!";
-                    //successMessage.Style.Remove("display");
+            if (rowCount == 0)
+            {
+                //successMessage.InnerHtml = "There are no tasks for the current project!";
+                //successMessage.Style.Remove("display");
 
-                    task_results.Items.Insert(0, new ListItem("No Tasks", "-1"));
-                    //tasks_exsiting_flag = false;
-                }
+                task_results.Items.Insert(0, new ListItem("No Tasks", "-1"));
+                //tasks_exsiting_flag = false;
+            }
 
-                else if (rowCount > 0)
-                {
+            else if (rowCount > 0)
+            {
                 if (!IsPostBack)
                 {
                     tasks_da = new SqlDataAdapter(read_tasks_command);
@@ -190,35 +161,11 @@ namespace databaseteam18
                     read_tasks_command.Dispose();
                     //tasks_da.Dispose();
                 }
-                //else if (IsPostBack)
-                //{
-                //    da = new SqlDataAdapter(read_tasks_command);
-
-                //    // create a DataTable to hold the results
-                //    DataTable tasks = new DataTable();
-
-                //    // fill the DataTable with the results of the SQL query
-                //    da.Fill(tasks);
-
-                //    task_results.Items.Clear();
-                //    task_results.DataSource = tasks;
-                //    task_results.AppendDataBoundItems = true;
-                //    task_results.Items.Insert(0, new ListItem("Select an option", "-1"));
-                //    task_results.DataTextField = "task_name"; // The column you want to display in the dropdown list
-                //    task_results.DataValueField = "task_ID"; // The column you want to use as the value for the selected item
-
-
-                //    task_results.DataBind();
-
-
-
-                //    read_tasks_command.Dispose();
-                //    da.Dispose();
-                //}
+                
             }
 
 
-                connection.Close();
+            connection.Close();
             //}
 
         }
@@ -265,7 +212,7 @@ namespace databaseteam18
                 ///
                 this.employee_id = Convert.ToInt32(task_employees.SelectedValue);
 
-                
+
 
                 string connectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
 
@@ -276,7 +223,7 @@ namespace databaseteam18
 
                 int task_assignment_id = rand.Next(50000, 90000);
                 int task_dependency_id = rand.Next(5000, 9000);
-                
+
 
                 string task_status = "assigned";
 
@@ -297,7 +244,7 @@ namespace databaseteam18
 
                 SqlCommand command = new SqlCommand(query, connection);
 
-               
+
 
                 command.Parameters.AddWithValue("@project_id", project_id);
 
@@ -316,7 +263,7 @@ namespace databaseteam18
                 //command.Parameters.AddWithValue("@task_id", task_id);
                 command.Parameters.AddWithValue("@employee_ID", this.employee_id);
                 //command.Parameters.AddWithValue("@project_ID", project_id);
-                command.Parameters.AddWithValue("@task_status", task_status); 
+                command.Parameters.AddWithValue("@task_status", task_status);
                 command.Parameters.AddWithValue("@task_assignment_date", task_creation_date);
                 command.Parameters.AddWithValue("@task_deadline", task_deadline.Value);
                 if (tasks_exsiting_flag == true)
@@ -350,7 +297,7 @@ namespace databaseteam18
                 //Response.Redirect("~/Task_Form.aspx");
                 connection.Close();
 
-                
+
 
 
             }
@@ -403,4 +350,12 @@ namespace databaseteam18
 //{
 //errorMessage.InnerHtml = "Something unexpected happened. Please try again later.(more than 1 row returned by user_login table";
 //errorMessage.Style.Remove("display");
+//return;
+
+
+//errorMessage.InnerHtml = department_id.ToString();
+
+
+//errorMessage.Style.Remove("display");
+
 //return;

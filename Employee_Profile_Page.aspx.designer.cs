@@ -114,6 +114,15 @@ namespace databaseteam18
         protected global::System.Web.UI.WebControls.Button btnGender;
 
         /// <summary>
+        /// departName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox departName;
+
+        /// <summary>
         /// email_address control.
         /// </summary>
         /// <remarks>
@@ -184,14 +193,5 @@ namespace databaseteam18
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox SSN_num;
-
-        /// <summary>
-        /// departName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox departName;
     }
 }

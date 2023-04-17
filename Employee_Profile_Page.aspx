@@ -28,65 +28,66 @@
                     <!--Employee ID-->
                     <br />
                     <p>Employee ID: </p>
-                    <asp:TextBox ID="employeeID" runat="server" Enabled="false"></asp:TextBox><br />
+                    <asp:TextBox ID="employeeID" runat="server" Enabled="false"></asp:TextBox>
                     <br />
                     <!--First Name-->
                     <br />
                     <p>First Name: </p>
                     <asp:TextBox ID="first_name" runat="server"></asp:TextBox>
-                    <asp:Button ID="btnFirstName" runat="server" Text="Change First Name" OnClick="btnChangeFirstName" CssClass="btn btn-secondary" />
+                    <asp:Button ID="btnFirstName" runat="server" Text="Change First Name" OnClick="btnChangeFirstName" CssClass="btn btn-primary" />
                     <br />
                     <!--Middle Name-->
                     <br />
                     <p>Middle Name: </p>
                     <asp:TextBox ID="middle_name" runat="server"></asp:TextBox>
-                    <asp:Button ID="btnMiddleName" runat="server" Text="Change Middle Name" OnClick="btnChangeMiddleName" CssClass="btn btn-secondary" />
+                    <asp:Button ID="btnMiddleName" runat="server" Text="Change Middle Name" OnClick="btnChangeMiddleName" CssClass="btn btn-primary" />
                     <br />
                     <!--Last Name-->
                     <br />
                     <p>Last Name: </p>
                     <asp:TextBox ID="last_name" runat="server"></asp:TextBox>
-                    <asp:Button ID="btnLastName" runat="server" Text="Change Last Name" OnClick="btnChangeLastName" CssClass="btn btn-secondary" />
+                    <asp:Button ID="btnLastName" runat="server" Text="Change Last Name" OnClick="btnChangeLastName" CssClass="btn btn-primary" />
                     <br />
                     <!--Gender-->
                     <br />
                     <p>Gender: </p>
                     <asp:DropDownList ID="gender" runat="server">
-                        <asp:ListItem Text="None" Value=""></asp:ListItem>
+                        <asp:ListItem Text="None" Value="N"></asp:ListItem>
                         <asp:ListItem Text="Male" Value="M"></asp:ListItem>
                         <asp:ListItem Text="Female" Value="F"></asp:ListItem>
                     </asp:DropDownList>
-                    <asp:Button ID="btnGender" runat="server" Text="Change Gender" OnClick="btnChangeGender" CssClass="btn btn-secondary" />
+                    <asp:Button ID="btnGender" runat="server" Text="Change Gender" OnClick="btnChangeGender" CssClass="btn btn-primary" />
                     <br />
                 </div>
                 <div>
+                     <!--Department Name-->
+                    <br />
+                    <p>Department Name: </p>
+                    <asp:TextBox ID="departName" Width="100%"  runat="server" Enabled="false"></asp:TextBox><br />
                     <!--Email-->
                     <br />
                     <p>Email: </p>
                     <asp:TextBox ID="email_address" runat="server"></asp:TextBox>
-                    <asp:Button ID="btnEmail" runat="server" Text="Change Email" OnClick="btnChangeEmail" CssClass="btn btn-secondary" />
+                    <asp:Button ID="btnEmail" runat="server" Text="Change Email" OnClick="btnChangeEmail" CssClass="btn btn-primary" />
                     <br />
                     <!--Phone Number-->
                     <br />
                     <p>Phone Number: </p>
                     <asp:TextBox ID="phone_number" runat="server"></asp:TextBox>
-                    <asp:Button ID="btnPhoneNumber" runat="server" Text="Change Phone Number" OnClick="btnChangePhoneNumber" CssClass="btn btn-secondary" />
+                    <asp:Button ID="btnPhoneNumber" runat="server" Text="Change Phone Number" OnClick="btnChangePhoneNumber" CssClass="btn btn-primary" />
                     <br />
                     <!--DOB-->
                     <br />
                     <p>Date of Birth: </p>
                     <asp:TextBox ID="current_date_of_birth" Enabled="false" runat="server"></asp:TextBox>
                     <asp:TextBox ID="date_of_birth" placeholder="YYYY-MM-DD" runat="server" type="date"></asp:TextBox>
-                    <asp:Button ID="btnDOB" runat="server" Text="Change DOB" OnClick="btnChangeDOB" CssClass="btn btn-secondary" />
+                    <asp:Button ID="btnDOB" runat="server" Text="Change DOB" OnClick="btnChangeDOB" CssClass="btn btn-primary" />
                     <br />
                     <!--SSN-->
                     <br />
                     <p>SSN (Last 4 #'s): </p>
                     <asp:TextBox ID="SSN_num" runat="server" Enabled="false"></asp:TextBox><br />
-                    <!--Department Name-->
-                    <br />
-                    <p>Department Name: </p>
-                    <asp:TextBox ID="departName" CssClass="full-width" runat="server" Enabled="false"></asp:TextBox><br />
+                   
                 </div>
             </div>
         </div>

@@ -65,7 +65,7 @@
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" runat="server" href="~/Project_Form" id="TasksnavbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tasks</a>
+                            <a class="nav-link dropdown-toggle" runat="server" href="~/Task_Form" id="TasksnavbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tasks</a>
                             <ul class="dropdown-menu" aria-labelledby="TasksnavbarDropdownMenuLink">
                                 <li class="nav-item"><a class="nav-link dropdown-item" runat="server" href="~/Task_Form">Create Task</a></li>
                                 <li class="nav-item"><a class="nav-link dropdown-item" runat="server" href="~/Tasks_Database">Manage Tasks</a></li>
@@ -74,7 +74,7 @@
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" runat="server" href="~/Project_Form" id="ReportnavbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Reports</a>
+                            <a class="nav-link dropdown-toggle" runat="server" href="~/employeeReport" id="ReportnavbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Reports</a>
                             <ul class="dropdown-menu" aria-labelledby="ReportnavbarDropdownMenuLink">
                                 <li class="nav-item"><a class="nav-link dropdown-item" runat="server" href="~/Task_Form"> Department Performance Report</a></li>
                                 <li class="nav-item"><a class="nav-link dropdown-item" runat="server" href="~/employeeReport">Employee Productivity Report</a></li>

@@ -43,6 +43,12 @@ h1 {
     font-weight: bold;
 }
 
+.change-profile {
+    padding-right: 20px;
+    padding: 50px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
 .containerNew {
     font-weight: bold;
     padding-right: 20px;

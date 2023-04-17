@@ -45,7 +45,7 @@
             <div>
                 <!--Phone Number-->
                 <br/><p>Phone Number: </p><asp:TextBox ID="phone_number" runat="server"></asp:TextBox>
-                <asp:Button ID="btnPhoneNumber" runat="server" Text="Change Phone Number" OnClick="btnChnagePhoneNumber" CssClass="btn btn-secondary" />
+                <asp:Button ID="btnPhoneNumber" runat="server" Text="Change Phone Number" OnClick="btnChangePhoneNumber" CssClass="btn btn-secondary" />
                 <br/>
                 <!--SSN-->
                 <br/><p>SSN (Last 4 #'s): </p> <asp:TextBox ID="SSN_num" runat="server"></asp:TextBox><br/>

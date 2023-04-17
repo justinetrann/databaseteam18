@@ -156,6 +156,78 @@ namespace databaseteam18
                 {
                     departName.Text = departmentName;
                 }
+
+            if (IsPostBack)
+            {
+                string eventTarget = Request.Form["__EVENTTARGET"];
+                if (eventTarget == btnFirstName.UniqueID)
+                {
+                    btnChangeFirstName(sender, e);
+                }
+
+                if (eventTarget == btnMiddleName.UniqueID)
+                {
+                    btnChangeMiddleName(sender, e);
+                }
+
+                if (eventTarget == btnLastName.UniqueID)
+                {
+                    btnChangeLastName(sender, e);
+                }
+
+                if (eventTarget == btnDOB.UniqueID)
+                {
+                    btnChangeDOB(sender, e);
+                }
+
+                if (eventTarget == btnDOB.UniqueID)
+                {
+                    btnChangeDOB(sender, e);
+                }
+                
+                if (eventTarget == btnGender.UniqueID)
+                {
+                    btnChangeGender(sender, e);
+                }
+
+                if (eventTarget == btnPhoneNumber.UniqueID)
+                {
+                    btnChangePhoneNumber(sender, e);
+                }
+
+            }
         }
+
+        protected void btnChangeFirstName(object sender, EventArgs e)
+        {
+
+        }
+
+
+        protected void btnChangeMiddleName(object sender, EventArgs e)
+        {
+            // code to handle changing middle name
+        }
+
+        protected void btnChangeLastName(object sender, EventArgs e)
+        {
+            // code to handle changing last name
+        }
+
+        protected void btnChangeDOB(object sender, EventArgs e)
+        {
+            // code to handle changing date of birth
+        }
+
+        protected void btnChangeGender(object sender, EventArgs e)
+        {
+            // code to handle changing date of birth
+        }
+
+        protected void btnChangePhoneNumber(object sender, EventArgs e)
+        {
+            // code to handle changing date of birth
+        }
+
     }
 }

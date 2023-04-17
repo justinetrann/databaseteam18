@@ -18,35 +18,37 @@
         <div class="containerNew">
             <h5 class="text-center text-muted mb-3" style=" font-weight:bold; font-size: 15px; font-family:Poppins;">Edit Your Profile</h5>
             <div style="text-align: center;">
-              <select class="form-select-sm">
-                <option value="">Select an option</option>
-                <option value="optionFN">First Name</option>
-                <option value="optionMN">Middle Name</option>
-                <option value="optionLN">Last Name</option>
-                <option value="optionDOB">DOB</option>
-                <option value="optionG">Gender</option>
-                <option value="optionPN">Phone Number</option>
-              </select>
-                <asp:TextBox ID="changeText" runat="server" placeholder="Change Attribute..."></asp:TextBox>
-                  <button type="submit" class="btn btn-secondary">Change</button>
+                  <button type="submit" class="btn btn-secondary">Click To Edit Profile</button>
             </div>
         </div>
 
         <div class="containerNew">
             <div style="display: grid; grid-template-columns: 1fr 1fr; grid-gap: 10px;">
                 <div>
-                    <br/><p>First Name: </p><asp:TextBox ID="first_name" runat="server"></asp:TextBox><br/>
-                    <br/><p>Middle Name: </p><asp:TextBox ID="middle_name" runat="server"></asp:TextBox><br/>
-                    <br/><p>Last Name: </p><asp:TextBox ID="last_name" runat="server"></asp:TextBox><br/>
+                    <br/><p>First Name: </p><asp:TextBox ID="first_name" runat="server"></asp:TextBox>
+                    <button type="submit" class="btn btn-secondary">Change First Name</button>
+                    <br/>
+                    <br/><p>Middle Name: </p><asp:TextBox ID="middle_name" runat="server"></asp:TextBox>
+                    <button type="submit" class="btn btn-secondary">Change Middle Name</button>
+                    <br/>
+                    <br/><p>Last Name: </p><asp:TextBox ID="last_name" runat="server"></asp:TextBox>
+                    <button type="submit" class="btn btn-secondary">Change Last Name</button>
+                    <br/>
                     <br/><p>Employee ID: </p><asp:TextBox ID="employeeID" runat="server"></asp:TextBox><br/>
-                    <br/><p>Date of Birth: </p><asp:TextBox ID="date_of_birth" runat="server"></asp:TextBox><br/>
-                    <br/><p>Gender: </p><asp:TextBox ID="gender" runat="server"></asp:TextBox><br/>
+                    <br/><p>Date of Birth: </p><asp:TextBox ID="date_of_birth" runat="server"></asp:TextBox>
+                    <button type="submit" class="btn btn-secondary">Change DOB</button>
+                    <br/>
+                    <br/><p>Gender: </p><asp:TextBox ID="gender" runat="server"></asp:TextBox>
+                    <button type="submit" class="btn btn-secondary">Change Gender</button>
+                    <br/>
                     <br/><p>Email: </p><asp:TextBox ID="email_address" runat="server"></asp:TextBox><br/>
                 </div>
                 <div>
-                    <br/><p>Phone Number: </p><asp:TextBox ID="phone_number" runat="server"></asp:TextBox><br/>
+                    <br/><p>Phone Number: </p><asp:TextBox ID="phone_number" runat="server"></asp:TextBox>
+                    <button type="submit" class="btn btn-secondary">Change Phone Number</button>
+                    <br/>
                     <br/><p>SSN (Last 4 #'s): </p> <asp:TextBox ID="SSN_num" runat="server"></asp:TextBox><br/>
-                    <br/><p>Department Name: </p><asp:TextBox ID="departName" runat="server"></asp:TextBox><br/>
+                    <br/><p>Department Name: </p><asp:TextBox ID="departName" CssClass="full-width" runat="server"></asp:TextBox><br/>
                 </div>
             </div>
         </div>

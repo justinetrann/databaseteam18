@@ -16,13 +16,6 @@
             </div><br/>
         </div>
         <div class="containerNew">
-            <h5 class="text-center text-muted mb-3" style=" font-weight:bold; font-size: 15px; font-family:Poppins;">Edit Your Profile</h5>
-            <div style="text-align: center;">
-                  <button type="submit" class="btn btn-secondary">Click To Edit Profile</button>
-            </div>
-        </div>
-
-        <div class="containerNew">
             <div style="display: grid; grid-template-columns: 1fr 1fr; grid-gap: 10px;">
                 <div>
                     <br/><p>First Name: </p><asp:TextBox ID="first_name" runat="server"></asp:TextBox>

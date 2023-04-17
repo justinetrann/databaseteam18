@@ -39,7 +39,7 @@ namespace databaseteam18
 
             int employee_id = (int)Session["employee_id"];
             string queryStringAccess = "SELECT e.employee_first_name, e.employee_middle_name, e.employee_last_name, " +
-                "e.employee_id, e.dob, e.SEX, ul.user_email, e.phoneNum, d.depName " +
+                "e.employee_id, e.dob, e.SEX, ul.user_email, e.phoneNum, e.SSN, d.depName " +
                 "FROM COMPANY.employees e " +
                 "LEFT JOIN COMPANY.department d ON d.depId = e.dept_ID " +
                 "LEFT JOIN COMPANY.User_Login ul ON e.employee_id = ul.employee_ID " +
@@ -93,14 +93,18 @@ namespace databaseteam18
                             email = reader.GetString(6);
                         }
 
-                        if (!reader.IsDBNull(7))
-                        {
-                            phoneNumber = reader.GetString(7);
-                        }
-
                         if (!reader.IsDBNull(8))
                         {
-                            departmentName = reader.GetString(8);
+                            phoneNumber = reader.GetString(8);
+                        }
+                        if (!reader.IsDBNull(8))
+                        {
+                            SSN = reader.GetString(8);
+                        }
+
+                        if (!reader.IsDBNull(9))
+                        {
+                            departmentName = reader.GetString(9);
                         }
                     }
                 }

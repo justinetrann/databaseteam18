@@ -35,6 +35,9 @@ namespace databaseteam18
         }
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            successMessage.Style.Add("display", "none");
+            errorMessage.Style.Add("display", "none");
             // SETTING UPDATE BUTTONS EVENTS HANDLER
             // Register First Name Change event handler
             btnFirstName.Click += new EventHandler(btnChangeFirstName);
@@ -63,6 +66,7 @@ namespace databaseteam18
 
         protected void readEmployeeProfileInfo(object sender, EventArgs e)
         {
+            
 
 
             string dbConnectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
@@ -70,7 +74,7 @@ namespace databaseteam18
 
             int employee_id = (int)Session["employee_id"];
             string queryStringAccess = "SELECT e.employee_first_name, e.employee_middle_name, e.employee_last_name, " +
-                "e.employee_id, e.dob, e.SEX, ul.user_email, e.phoneNum, e.SSN, d.depName " +
+                "e.employee_id, e.dob, e.SEX, ul.user_email, e.phoneNUM, e.SSN, d.depName " +
                 "FROM COMPANY.employees e " +
                 "LEFT JOIN COMPANY.department d ON d.depId = e.dept_ID " +
                 "LEFT JOIN COMPANY.User_Login ul ON e.employee_id = ul.employee_ID " +
@@ -133,9 +137,9 @@ namespace databaseteam18
                             email = reader.GetString(6);
                         }
 
-                        if (!reader.IsDBNull(8))
+                        if (!reader.IsDBNull(7))
                         {
-                            phoneNumber = reader.GetString(8);
+                            phoneNumber = reader.GetString(7);
                         }
                         if (!reader.IsDBNull(8))
                         {
@@ -241,6 +245,8 @@ namespace databaseteam18
 
         protected void btnChangeMiddleName(object sender, EventArgs e)
         {
+            successMessage.Style.Add("display", "none");
+            errorMessage.Style.Add("display", "none");
             int employee_id = (int)Session["employee_id"];
             string middleName = middle_name.Text;
             string dbConnectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
@@ -272,6 +278,8 @@ namespace databaseteam18
 
         protected void btnChangeLastName(object sender, EventArgs e)
         {
+            successMessage.Style.Add("display", "none");
+            errorMessage.Style.Add("display", "none");
             int employee_id = (int)Session["employee_id"];
             string dbConnectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
             string lastName = last_name.Text;
@@ -305,6 +313,8 @@ namespace databaseteam18
         {
             try
             {
+                successMessage.Style.Add("display", "none");
+                errorMessage.Style.Add("display", "none");
                 int employee_id = (int)Session["employee_id"];
                 string dbConnectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
 
@@ -359,6 +369,8 @@ namespace databaseteam18
 
         protected void btnChangeGender(object sender, EventArgs e)
         {
+            successMessage.Style.Add("display", "none");
+            errorMessage.Style.Add("display", "none");
             int employee_id = (int)Session["employee_id"];
             string dbConnectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
 
@@ -393,6 +405,8 @@ namespace databaseteam18
         {
             try
             {
+                successMessage.Style.Add("display", "none");
+                errorMessage.Style.Add("display", "none");
                 int employee_id = (int)Session["employee_id"];
                 string dbConnectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
 
@@ -447,6 +461,8 @@ namespace databaseteam18
         protected void btnChangePhoneNumber(object sender, EventArgs e)
         {
             try {
+                successMessage.Style.Add("display", "none");
+                errorMessage.Style.Add("display", "none");
                 int employee_id = (int)Session["employee_id"];
                 string dbConnectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
 

@@ -15,6 +15,33 @@ namespace databaseteam18
     {
 
         /// <summary>
+        /// errorMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl errorMessage;
+
+        /// <summary>
+        /// successMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl successMessage;
+
+        /// <summary>
+        /// employeeID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox employeeID;
+
+        /// <summary>
         /// first_name control.
         /// </summary>
         /// <remarks>
@@ -69,40 +96,13 @@ namespace databaseteam18
         protected global::System.Web.UI.WebControls.Button btnLastName;
 
         /// <summary>
-        /// employeeID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox employeeID;
-
-        /// <summary>
-        /// date_of_birth control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox date_of_birth;
-
-        /// <summary>
-        /// btnDOB control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDOB;
-
-        /// <summary>
         /// gender control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox gender;
+        protected global::System.Web.UI.WebControls.DropDownList gender;
 
         /// <summary>
         /// btnGender control.
@@ -123,6 +123,15 @@ namespace databaseteam18
         protected global::System.Web.UI.WebControls.TextBox email_address;
 
         /// <summary>
+        /// btnEmail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnEmail;
+
+        /// <summary>
         /// phone_number control.
         /// </summary>
         /// <remarks>
@@ -139,6 +148,33 @@ namespace databaseteam18
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnPhoneNumber;
+
+        /// <summary>
+        /// current_date_of_birth control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox current_date_of_birth;
+
+        /// <summary>
+        /// date_of_birth control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox date_of_birth;
+
+        /// <summary>
+        /// btnDOB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnDOB;
 
         /// <summary>
         /// SSN_num control.

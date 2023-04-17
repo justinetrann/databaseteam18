@@ -1,40 +1,95 @@
-﻿<%@ Page Title="Project Management System" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="employeeReport.aspx.cs" Inherits="databaseteam18.employeeReport"%>
+﻿<%@ Page Title="Project Management System" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="employeeReport.aspx.cs" Inherits="databaseteam18.employeeReport" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link href="Styles/project_form.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="Styles/task-database.css" rel="stylesheet" type="text/css" />
 
     <main aria-labelledby="project_form">
-        <h2>Employee Tasks Report</h2>
-        <div className="container">
-              <div class="form-group row">
-                <label for="employeeID" class="col-sm-2 col-form-label">Employee ID</label>
-                <div class="col-sm-6">
-                  <input type="number" class="form-control" id="employee_id">
+        <div class="containerNew">
+            <div>
+                <h2>Employee Tasks Report</h2>
+                <!-- Report Employee_ID -->
+                <div class="form-group text-left">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label for="department-employees">Employee</label>
+                            <asp:DropDownList ID="department_employees" runat="server" class="form-control"></asp:DropDownList>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div class="form-group row">
-                <label for="taskPredecessor" class="col-sm-2 col-form-label">Year</label>
-                <div class="col-sm-3">
-                  <select name="year" id="year">
-                      <option value=NULL selected>Select Year</option>
-                      <option value=2016>2016</option>
-                      <option value=2017>2017</option>
-                      <option value=2018>2018</option>
-                      <option value=2019>2019</option>
-                      <option value=2020>2020</option>
-                      <option value=2021>2021</option>
-                      <option value=2022>2022</option>
-                      <option value=2023>2023</option>
-                      <option value=2024>2024</option>
-                      <option value=2025>2025</option>
-                  </select>
+                <!-- Start Date and End Date inputs -->
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label for="start-date">Start Date</label>
+                            <input type="date" name="start-date" id="report_start_date" runat="server" class="form-control" />
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="end-date">End Date</label>
+                            <input type="date" name="end-date" id="report_end_date" runat="server" class="form-control" />
+                        </div>
+                    </div>
                 </div>
-              </div>
-                <button type="submit" class="btn3">Generate Report</button>
+                <button type="submit" class="btn btn-primary">Generate Report</button>
+            </div>
         </div>
-        <label for="tasksComplete" class="col-sm-2 col-form-label">Tasks Completed: </label>
-        <label for="tasksLate" class="col-sm-2 col-form-label">Tasks Late: </label>
-        <label for="tasksRate" class="col-sm-2 col-form-label">Completion Rate: </label>
+        <br />
+        <div class="containerNew" style="display: true" id="Container">
+
+            <asp:HiddenField runat="server" ID="tasksCompleted" />
+            <asp:HiddenField runat="server" ID="tasksCompletedOnTime" />
+            <asp:HiddenField runat="server" ID="tasksCompletedLate" />
+            <asp:HiddenField runat="server" ID="progressBarColor" />
+
+            <div class="row">
+                <label for="tasksCompleted" class="col-sm-4 col-form-label">Tasks Completed: <b style="color: #2461BF"><%= tasksCompleted.Value %></b>    </label>
+                <label for="tasksCompletedOnTime" class="col-sm-4 col-form-label">Tasks Completed On Time: <b style="color: #2461BF"><%= tasksCompletedOnTime.Value %> </b></label>
+                <label for="tasksCompletedLate" class="col-sm-4 col-form-label">Tasks Completed Late: <b style="color: #2461BF"><%= tasksCompletedLate.Value %></b> </label>
+
+            </div>
+            <br />
+            <div class="row align-items-start">
+                <div class="col-sm-3">
+                    <asp:HiddenField runat="server" ID="tasksCompletionRateValue" />
+                    <label for="tasksCompletionRate" class="col-form-label">Task Completion Rate: </label>
+                </div>
+                <div class="col-sm-4">
+                    <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="<%= tasksCompletionRateValue.Value %>" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated <%= progressBarColor.Value %> " style="width: <%= tasksCompletionRateValue.Value %>%">
+                            <%= tasksCompletionRateValue.Value %>%
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <asp:HiddenField runat="server" ID="hoursWorked" />
+                <label for="hoursWorked" class="col-sm-4 col-form-label">Number of Hours worked: <b style="color: #2461BF"><%= hoursWorked.Value %></b> </label>
+            </div>
+        </div>
+
+        <br />
+        <div class="containerNew" style="display: none" id="gridViewContainer">
+            <div id="errorMessage" class="alert alert-danger" runat="server" style="display: none;" />
+            <asp:GridView ID="GridView1" runat="server" DataKeyNames="Task ID" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%" Height="200px" AutoGenerateColumns="True">
+                <AlternatingRowStyle BackColor="White" />
+                <EditRowStyle BackColor="#2461BF" />
+                <FooterStyle BackColor="#507CD1" ForeColor="White" Font-Bold="True" />
+                <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                <RowStyle BackColor="#EFF3FB" />
+                <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                <SortedDescendingHeaderStyle BackColor="#4870BE" />
+
+            </asp:GridView>
+        </div>
+
+
+
+
+
     </main>
 </asp:Content>

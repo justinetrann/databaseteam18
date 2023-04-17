@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml.Linq;
+using WebGrease.Activities;
 
 namespace databaseteam18
 {
@@ -214,7 +215,11 @@ namespace databaseteam18
                 command.Parameters.AddWithValue("@Employee_ID", employee_id);
                 command.Parameters.AddWithValue("@New_First_Name", firstName);
                 string updatedFirstName = (string)command.ExecuteScalar();
-                first_name.Text = updatedFirstName;
+
+                if (updatedFirstName != null)
+                {
+                    first_name.Text = updatedFirstName;
+                }
             }
         }
 

@@ -21,9 +21,10 @@
               <select class="form-select-sm">
                 <option value="">Select an option</option>
                 <option value="optionFN">First Name</option>
+                <option value="optionMN">Middle Name</option>
                 <option value="optionLN">Last Name</option>
                 <option value="optionDOB">DOB</option>
-                <option value="optionS">Sex</option>
+                <option value="optionG">Gender</option>
                 <option value="optionPN">Phone Number</option>
               </select>
                 <asp:TextBox ID="changeText" runat="server" placeholder="Change Attribute..."></asp:TextBox>
@@ -32,29 +33,20 @@
         </div>
 
         <div class="containerNew">
-            <div>
-                <% %>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; grid-gap: 10px;">
-                    <div>
-                        <ul style="list-style-type:none">
-                            <li>First Name: <p id="first-name">First Name</p></li>
-                            <li>Last Name: <p id="last-name">Last Name</p></li>
-                            <li>Employee ID: <p id="employee-id">Employee ID</p></li>
-                            <li>Date of Birth: <p id="date-of-birth">Birth Date</p></li>
-                            <li>Sex: <p id="sex">Sex</p></li>
-                            <li>Email: <p id="email">Email</p></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <ul style="list-style-type:none">
-                            <li>Phone Number: <p id="phone-number">Phone Number</p></li>
-                            <li>SSN (Last 4 #'s): <p id="last-4-sn">SSN</p></li>
-                            <li>Department Name: <p id="departName">Department Name</p></li>
-                            <li>Manager's First Name: <p id="manager-first-name">Manager First Name</p></li>
-                            <li>Manager's Last Name: <p id="manager-last-name">Manager Last Name</p></li>
-                            <li>Manager's ID: <p id="manager-id">Manager ID</p></li>
-                        </ul>
-                    </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; grid-gap: 10px;">
+                <div>
+                    <br/><p>First Name: </p><asp:TextBox ID="first_name" runat="server"></asp:TextBox><br/>
+                    <br/><p>Middle Name: </p><asp:TextBox ID="middle_name" runat="server"></asp:TextBox><br/>
+                    <br/><p>Last Name: </p><asp:TextBox ID="last_name" runat="server"></asp:TextBox><br/>
+                    <br/><p>Employee ID: </p><asp:TextBox ID="employeeID" runat="server"></asp:TextBox><br/>
+                    <br/><p>Date of Birth: </p><asp:TextBox ID="date_of_birth" runat="server"></asp:TextBox><br/>
+                    <br/><p>Gender: </p><asp:TextBox ID="gender" runat="server"></asp:TextBox><br/>
+                    <br/><p>Email: </p><asp:TextBox ID="email_address" runat="server"></asp:TextBox><br/>
+                </div>
+                <div>
+                    <br/><p>Phone Number: </p><asp:TextBox ID="phone_number" runat="server"></asp:TextBox><br/>
+                    <br/><p>SSN (Last 4 #'s): </p> <asp:TextBox ID="SSN_num" runat="server"></asp:TextBox><br/>
+                    <br/><p>Department Name: </p><asp:TextBox ID="departName" runat="server"></asp:TextBox><br/>
                 </div>
             </div>
         </div>

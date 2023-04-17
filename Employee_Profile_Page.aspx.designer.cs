@@ -15,15 +15,6 @@ namespace databaseteam18
     {
 
         /// <summary>
-        /// changeText control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox changeText;
-
-        /// <summary>
         /// first_name control.
         /// </summary>
         /// <remarks>
@@ -31,6 +22,15 @@ namespace databaseteam18
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox first_name;
+
+        /// <summary>
+        /// btnFirstName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnFirstName;
 
         /// <summary>
         /// middle_name control.
@@ -42,6 +42,15 @@ namespace databaseteam18
         protected global::System.Web.UI.WebControls.TextBox middle_name;
 
         /// <summary>
+        /// btnMiddleName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnMiddleName;
+
+        /// <summary>
         /// last_name control.
         /// </summary>
         /// <remarks>
@@ -49,6 +58,15 @@ namespace databaseteam18
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox last_name;
+
+        /// <summary>
+        /// btnLastName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnLastName;
 
         /// <summary>
         /// employeeID control.
@@ -69,6 +87,15 @@ namespace databaseteam18
         protected global::System.Web.UI.WebControls.TextBox date_of_birth;
 
         /// <summary>
+        /// btnDOB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnDOB;
+
+        /// <summary>
         /// gender control.
         /// </summary>
         /// <remarks>
@@ -76,6 +103,15 @@ namespace databaseteam18
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox gender;
+
+        /// <summary>
+        /// btnGender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnGender;
 
         /// <summary>
         /// email_address control.
@@ -94,6 +130,15 @@ namespace databaseteam18
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox phone_number;
+
+        /// <summary>
+        /// btnPhoneNumber control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnPhoneNumber;
 
         /// <summary>
         /// SSN_num control.

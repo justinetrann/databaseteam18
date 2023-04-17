@@ -15,13 +15,31 @@ namespace databaseteam18
     {
 
         /// <summary>
-        /// navbarDropdownMenuLink control.
+        /// ProjectsnavbarDropdownMenuLink control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor navbarDropdownMenuLink;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor ProjectsnavbarDropdownMenuLink;
+
+        /// <summary>
+        /// TasksnavbarDropdownMenuLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor TasksnavbarDropdownMenuLink;
+
+        /// <summary>
+        /// ReportnavbarDropdownMenuLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor ReportnavbarDropdownMenuLink;
 
         /// <summary>
         /// signoutButton control.

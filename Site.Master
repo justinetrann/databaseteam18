@@ -56,17 +56,31 @@
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/project-manager-dashboard">Dashboard</a></li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" runat="server" href="~/Project_Form" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Projects</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li class=""><a class="nav-link dropdown-item" runat="server" href="~/Project_Form">Create Project</a></li>
-                                <li class=""><a class="nav-link dropdown-item" runat="server" href="~/project-dashboard">Search Projects</a></li>
-                                <li class=""><a class="nav-link dropdown-item" runat="server" href="~/Projects_Database">Manage Projects</a></li>
+                            <a class="nav-link dropdown-toggle" runat="server" href="~/Project_Form" id="ProjectsnavbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Projects</a>
+                            <ul class="dropdown-menu" aria-labelledby="ProjectsnavbarDropdownMenuLink">
+                                <li class="nav-item"><a class="nav-link dropdown-item" runat="server" href="~/Project_Form">Create Project</a></li>
+                                <li class="nav-item"><a class="nav-link dropdown-item" runat="server" href="~/project-dashboard">Search Projects</a></li>
+                                <li class="nav-item"><a class="nav-link dropdown-item" runat="server" href="~/Projects_Database">Manage Projects</a></li>
                              </ul>
                         </li>
 
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Task_Form">Create Task</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Tasks_Database">Manage Tasks</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/employee_task_database">My Tasks</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" runat="server" href="~/Project_Form" id="TasksnavbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tasks</a>
+                            <ul class="dropdown-menu" aria-labelledby="TasksnavbarDropdownMenuLink">
+                                <li class="nav-item"><a class="nav-link dropdown-item" runat="server" href="~/Task_Form">Create Task</a></li>
+                                <li class="nav-item"><a class="nav-link dropdown-item" runat="server" href="~/Tasks_Database">Manage Tasks</a></li>
+                                <li class="nav-item"><a class="nav-link dropdown-item" runat="server" href="~/employee_task_database">My Tasks</a></li>
+                             </ul>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" runat="server" href="~/Project_Form" id="ReportnavbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Reports</a>
+                            <ul class="dropdown-menu" aria-labelledby="ReportnavbarDropdownMenuLink">
+                                <li class="nav-item"><a class="nav-link dropdown-item" runat="server" href="~/Task_Form"> Department Performance Report</a></li>
+                                <li class="nav-item"><a class="nav-link dropdown-item" runat="server" href="~/Tasks_Database">Employee Productivity Report</a></li>
+                                <li class="nav-item"><a class="nav-link dropdown-item" runat="server" href="~/employee_task_database">Project Cost Report</a></li>
+                             </ul>
+                        </li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Employee_Profile_Page">Profile</a></li>
                         <!--<li class="nav-item"><a class="nav-link" runat="server" href="~/Login">Login</a></li>-->
                         <!--<li class="nav-item"><a class="nav-link" runat="server" href="~/Signup">Signup</a></li>-->

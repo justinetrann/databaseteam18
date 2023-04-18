@@ -242,13 +242,13 @@ namespace databaseteam18
             //set completion rate and progress bar class
             // Retrieve the value for tasksCompletionRate from the backend
             string tasksCompletedOnTimeString = tasksCompletedOnTime.Value;
-            int tasksCompletedOnTimeInt = int.Parse(tasksCompletedOnTimeString);
+            float tasksCompletedOnTimeFloat = float.Parse(tasksCompletedOnTimeString);
 
             string tasksCompletedString = tasksCompleted.Value;
-            int tasksCompletedInt = int.Parse(tasksCompletedString);
+            float tasksCompletedFloat = float.Parse(tasksCompletedString);
             // Do something with tasksCompletedOnTimeInt
 
-            double tasksCompletionRate = (tasksCompletedOnTimeInt / tasksCompletedInt) * 100; // Replace with your actual value
+            double tasksCompletionRate = (tasksCompletedOnTimeFloat / tasksCompletedFloat) * 100; // Replace with your actual value
             string tasksCompletionRateString = tasksCompletionRate.ToString("F2");
             // Set the value of tasksCompletionRateValue to this value
             tasksCompletionRateValue.Value = tasksCompletionRateString;

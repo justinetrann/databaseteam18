@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Globalization;
 
 namespace databaseteam18
 {
@@ -35,26 +36,27 @@ namespace databaseteam18
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-                submitButton.ServerClick += new EventHandler(viewTasksButton_Click);
+            successMessage.Style.Add("display", "none");
+            errorMessage.Style.Add("display", "none");
+            submitButton.ServerClick += new EventHandler(viewTasksButton_Click);
             // Establishing connection string to database
             // Reading from the web.config file
-            
+
             SqlDataAdapter da;
-                string dbConnectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
+            string dbConnectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
 
-                SqlConnection connection = new SqlConnection(dbConnectionString);
+            SqlConnection connection = new SqlConnection(dbConnectionString);
 
-                connection.Open();
+            connection.Open();
 
 
-                //READ EMPLOYEE CURRENT PROJECTS AND DISPLAY IN DROP DOWN LIST
-                string employee_id = Session["employee_id"].ToString();
+            //READ EMPLOYEE CURRENT PROJECTS AND DISPLAY IN DROP DOWN LIST
+            string employee_id = Session["employee_id"].ToString();
 
-                string read_employee_projects_query = "SELECT DISTINCT TA.project_ID, P.Name as project_name FROM COMPANY.task_assignment as TA inner join COMPANY.projects as P on TA.project_ID = P.ID WHERE employee_ID = @employee_id and project_assignment_status = 'active';";
+            string read_employee_projects_query = "SELECT DISTINCT TA.project_ID, P.Name as project_name FROM COMPANY.task_assignment as TA inner join COMPANY.projects as P on TA.project_ID = P.ID WHERE employee_ID = @employee_id and project_assignment_status = 'active';";
 
-                SqlCommand read_employee_projects_command = new SqlCommand(read_employee_projects_query, connection);
-                read_employee_projects_command.Parameters.AddWithValue("@employee_id", employee_id);
+            SqlCommand read_employee_projects_command = new SqlCommand(read_employee_projects_query, connection);
+            read_employee_projects_command.Parameters.AddWithValue("@employee_id", employee_id);
 
 
             if (!IsPostBack)
@@ -63,10 +65,10 @@ namespace databaseteam18
 
                 // create a DataTable to hold the results
                 DataTable projects = new DataTable();
-                
+
                 // fill the DataTable with the results of the SQL query
                 da.Fill(projects);
-               
+
                 employee_projects.DataSource = projects;
                 employee_projects.AppendDataBoundItems = true;
                 employee_projects.Items.Insert(0, new ListItem("Select a project", "-1"));
@@ -78,7 +80,7 @@ namespace databaseteam18
 
                 connection.Close();
 
-                
+
             }
 
         }
@@ -103,7 +105,7 @@ namespace databaseteam18
                 selected_project_id = Convert.ToInt32(employee_projects.SelectedValue);
                 //var queryString = "SELECT * FROM COMPANY.tasks";
                 string dbConnectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
-                var queryString = "SELECT COMPANY.tasks.task_ID as 'Task ID', task_name as 'Task Name', task_description as 'Description', COMPANY.task_assignment.task_status as 'Status', task_priority as 'Task Priority',  COMPANY.task_assignment.task_assignment_date as 'Assignment Date',  COMPANY.task_assignment.task_deadline as 'Deadline' , convert(varchar,COMPANY.task_assignment.employee_id) + ' ' + employee_first_name + ' ' + employee_last_name as 'Employee'  FROM COMPANY.tasks  inner join COMPANY.task_assignment on COMPANY.task_assignment.task_id = COMPANY.tasks.task_ID inner join COMPANY.employees on COMPANY.employees.employee_id = COMPANY.task_assignment.employee_ID WHERE  COMPANY.tasks.project_ID=" + selected_project_id + "AND COMPANY.task_assignment.employee_ID =" + employee_id; // Return all records from Project Table in Database; // Return all records from Project Table in Database
+                var queryString = "SELECT COMPANY.tasks.task_ID as 'Task ID', task_name as 'Task Name', task_description as 'Description', COMPANY.task_assignment.task_status as 'Status', task_priority as 'Task Priority',  COMPANY.task_assignment.task_assignment_date as 'Assignment Date',  COMPANY.task_assignment.task_deadline as 'Deadline' ,COMPANY.task_assignment.task_completion_status as 'CompletionStatus', convert(varchar,COMPANY.task_assignment.employee_id) + ' ' + employee_first_name + ' ' + employee_last_name as 'Employee'  FROM COMPANY.tasks  inner join COMPANY.task_assignment on COMPANY.task_assignment.task_id = COMPANY.tasks.task_ID inner join COMPANY.employees on COMPANY.employees.employee_id = COMPANY.task_assignment.employee_ID WHERE  COMPANY.tasks.project_ID=" + selected_project_id + "AND COMPANY.task_assignment.employee_ID =" + employee_id; // Return all records from Project Table in Database; // Return all records from Project Table in Database
                 var dbConncetion = new SqlConnection(dbConnectionString);
                 SqlCommand read_employee_tasks_command = new SqlCommand(queryString, dbConncetion);
                 var dataAdapter = new SqlDataAdapter(read_employee_tasks_command);
@@ -123,7 +125,7 @@ namespace databaseteam18
 
 
 
-            
+
         }
 
         protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
@@ -147,32 +149,80 @@ namespace databaseteam18
                 GridViewRow row = GridView1.Rows[e.RowIndex];
 
                 string ID = row.Cells[0].Text;
+                string task_deadline_txt = row.Cells[5].Text;
 
                 DropDownList statusDropDownList = (DropDownList)GridView1.Rows[e.RowIndex].FindControl("StatusDropDownList");
                 string status = (statusDropDownList.SelectedValue);
 
 
 
+                DateTime task_deadline = DateTime.ParseExact(task_deadline_txt, "MM/dd/yyyy hh:mm:ss tt", CultureInfo.InvariantCulture);
+                DateTime current_datetime = DateTime.Now;
+
+                //errorMessage.InnerHtml ="Current: " + current_datetime + "   Deadline: " + task_deadline.ToString();
+                //errorMessage.Style.Remove("display");
+                //return;
+
+
                 // Update the status column in the database using the id value
+
                 // ...
+                if (status == "Completed")
+                {
+                    string completion_status = "";
 
-                string connectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
-                string query = "UPDATE COMPANY.task_assignment SET task_status = @status WHERE task_id = @id;";
+
+                    if (current_datetime > task_deadline)
+                    {
+                        completion_status = "Late";
+                    }
+                    else
+                        completion_status = "On Time";
+
+                    string connectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
+                    string query = "UPDATE COMPANY.task_assignment SET task_status = @status, task_completion_status = @completion_status WHERE task_id = @id;";
 
 
-                SqlConnection connection = new SqlConnection(connectionString);
+                    SqlConnection connection = new SqlConnection(connectionString);
 
-                SqlCommand command = new SqlCommand(query, connection);
+                    SqlCommand command = new SqlCommand(query, connection);
 
-                command.Parameters.AddWithValue("@status", status);
-                command.Parameters.AddWithValue("@id", ID);
+                    command.Parameters.AddWithValue("@status", status);
+                    command.Parameters.AddWithValue("@id", ID);
+                    command.Parameters.AddWithValue("@completion_status", completion_status); 
 
-                connection.Open();
-                command.ExecuteNonQuery();
-                connection.Close();
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    connection.Close();
+                    successMessage.InnerHtml = "Task Updated Successfully.";
+                    successMessage.Style.Remove("display");
+                    
+                }
+                else
+                {
+                    string connectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
+                    string query = "UPDATE COMPANY.task_assignment SET task_status = @status WHERE task_id = @id;";
 
-                
-               
+
+                    SqlConnection connection = new SqlConnection(connectionString);
+
+                    SqlCommand command = new SqlCommand(query, connection);
+
+                    command.Parameters.AddWithValue("@status", status);
+                    command.Parameters.AddWithValue("@id", ID);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    connection.Close();
+                    successMessage.InnerHtml = "Task Updated Successfully.";
+                    successMessage.Style.Remove("display");
+                    
+                }
+
+
+
+
+
 
                 GridView1.EditIndex = -1;
                 BindGridView();
@@ -183,7 +233,7 @@ namespace databaseteam18
                 if (ex.Message.Contains("dependent"))
                 {
                     // Display a personalized error message to the user
-                    
+
                     Console.WriteLine("An error occurred: " + ex.Message);
                     errorMessage.InnerHtml = ex.Message;
                     errorMessage.Style.Remove("display");
@@ -215,12 +265,12 @@ namespace databaseteam18
         {
             //auto clicks the view tasks button to bind the gridview and display tasks
             viewTasksButton_Click(null, null);
-            
+
         }
 
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            
+
         }
 
 

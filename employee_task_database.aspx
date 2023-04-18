@@ -28,6 +28,7 @@
             </form>
             <div id="errorMessage" class="alert alert-danger" runat="server" style="display:none;"></div>
             <div id="successMessage" class="alert alert-success" runat="server" style="display:none;"></div>
+
         </div>
         <br/><br/>
 
@@ -69,7 +70,8 @@
                 </asp:TemplateField>
                 <asp:BoundField DataField="Assignment Date" HeaderText="Assignment Date" ReadOnly="true" />
 
-                <asp:BoundField DataField="Deadline" HeaderText="Deadline" ReadOnly="true" />
+                <asp:BoundField DataField="Deadline" HeaderText="Deadline" ReadOnly="true" DataFormatString="{0:MM/dd/yyyy hh:mm:ss tt}"/>
+                <asp:BoundField DataField="CompletionStatus" HeaderText="Completion" ReadOnly="true"  />
                 <asp:BoundField DataField="Task Priority" HeaderText="Task Priority" ReadOnly="true" />
 
                 <asp:CommandField ShowEditButton="true" />

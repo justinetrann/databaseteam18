@@ -107,20 +107,46 @@ namespace databaseteam18
             string completion_date_input = report_end_date.Value;
 
             // Modify your query string to include parameter placeholders
-            var queryString = "SELECT COMPANY.tasks.task_ID as 'Task ID', task_name as 'Task Name', " +
-                               " task_est_duration as 'Duration'," +
-                               " (SELECT DATEDIFF(second,(SELECT task_start_date FROM COMPANY.task_assignment WHERE COMPANY.tasks.task_ID = COMPANY.task_assignment.task_id)," +
-                               " (SELECT task_completion_date FROM COMPANY.task_assignment WHERE COMPANY.tasks.task_ID = COMPANY.task_assignment.task_id)) )AS 'Hours Worked'," +
-                               " task_start_date as 'Started On'," +
-                               " task_deadline as 'Deadline'," +
-                               " task_completion_date as 'Completed On'," +
-                               " task_completion_status as 'Completion'," +
-                               " COMPANY.projects.Name as 'Project'" +
-                               " FROM COMPANY.tasks  inner join COMPANY.task_assignment on COMPANY.task_assignment.task_id = COMPANY.tasks.task_ID" +
-                               " inner join COMPANY.employees on COMPANY.employees.employee_id = COMPANY.task_assignment.employee_ID " +
-                               " inner join COMPANY.projects on COMPANY.projects.ID = COMPANY.task_assignment.project_ID" +
-                               " WHERE COMPANY.task_assignment.task_status = 'Completed' AND COMPANY.tasks.deleted = 0 AND COMPANY.task_assignment.employee_ID = @employee_id" +
-                               " AND task_start_date > @start_date_input AND task_completion_date < @completion_date_input ;";
+            //var queryString = "SELECT COMPANY.tasks.task_ID as 'Task ID', task_name as 'Task Name', " +
+            //                   " task_est_duration as 'Duration'," +
+            //                   " (SELECT DATEDIFF(second,(SELECT task_start_date FROM COMPANY.task_assignment WHERE COMPANY.tasks.task_ID = COMPANY.task_assignment.task_id)," +
+            //                   " (SELECT task_completion_date FROM COMPANY.task_assignment WHERE COMPANY.tasks.task_ID = COMPANY.task_assignment.task_id)) )AS 'Hours Worked'," +
+            //                   " task_start_date as 'Started On'," +
+            //                   " task_deadline as 'Deadline'," +
+            //                   " task_completion_date as 'Completed On'," +
+            //                   " task_completion_status as 'Completion'," +
+            //                   " COMPANY.projects.Name as 'Project'" +
+            //                   " FROM COMPANY.tasks  inner join COMPANY.task_assignment on COMPANY.task_assignment.task_id = COMPANY.tasks.task_ID" +
+            //                   " inner join COMPANY.employees on COMPANY.employees.employee_id = COMPANY.task_assignment.employee_ID " +
+            //                   " inner join COMPANY.projects on COMPANY.projects.ID = COMPANY.task_assignment.project_ID" +
+            //                   " WHERE COMPANY.task_assignment.task_status = 'Completed' AND COMPANY.tasks.deleted = 0 AND COMPANY.task_assignment.employee_ID = @employee_id" +
+            //                   " AND task_start_date > @start_date_input AND task_completion_date < @completion_date_input ;";
+
+            // Modify your query string to include parameter placeholders
+            var queryString = "SELECT COMPANY.task_assignment.employee_ID, COMPANY.tasks.task_ID AS 'Task ID', task_name AS 'Task Name', " +
+                               "task_est_duration AS 'Duration', " +
+                               "(SELECT DATEDIFF(second, task_start_date, task_completion_date)) AS 'Hours Worked', " +
+                               "task_start_date AS 'Started On', " +
+                               "task_deadline AS 'Deadline', " +
+                               "task_completion_date AS 'Completed On', " +
+                               "task_completion_status AS 'Completion', " +
+                               "COMPANY.projects.Name AS 'Project', " +
+                               "SUM(task_est_duration) AS 'Total Duration', " +
+                               "SUM(DATEDIFF(second, task_start_date, task_completion_date)) AS 'Total Hours Worked'" +
+                               "FROM COMPANY.tasks " +
+                               "INNER JOIN COMPANY.task_assignment ON COMPANY.task_assignment.task_id = COMPANY.tasks.task_ID " +
+                               "INNER JOIN COMPANY.employees ON COMPANY.employees.employee_id = COMPANY.task_assignment.employee_ID " +
+                               "INNER JOIN COMPANY.projects ON COMPANY.projects.ID = COMPANY.task_assignment.project_ID " +
+                               "WHERE COMPANY.task_assignment.task_status = 'Completed' " +
+                               "AND COMPANY.tasks.deleted = 0 " +
+                               "AND COMPANY.task_assignment.employee_ID = @employee_id " +
+                               "AND task_start_date > @start_date_input " +
+                               "AND task_completion_date < @completion_date_input " +
+                               "GROUP BY ROLLUP(COMPANY.task_assignment.employee_ID, COMPANY.tasks.task_ID, task_name, task_est_duration, " +
+                               "task_start_date, task_deadline, task_completion_date, task_completion_status, COMPANY.projects.Name) " +
+                               "ORDER BY COMPANY.task_assignment.employee_ID, COMPANY.tasks.task_ID;";
+
+
 
             var connection = new SqlConnection(dbConnectionString);
             SqlCommand command = new SqlCommand(queryString, connection);

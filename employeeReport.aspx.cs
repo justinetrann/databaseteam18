@@ -127,7 +127,7 @@ namespace databaseteam18
 
 
 
-            //get the count of tasks completed and store it in a reader
+         //get the count of tasks completed and store it in a reader
             string read_completed_tasks_query = "SELECT COUNT(*) as 'tasks_completed' FROM COMPANY.task_assignment WHERE task_status = 'Completed'" +
      " AND deleted = 0 AND employee_ID = @employee_id" +
      " AND task_start_date > @start_date_input AND task_completion_date < @completion_date_input;";
@@ -154,7 +154,7 @@ namespace databaseteam18
             connection.Close();
 
 
-            //get the count of tasks completed late and store it in the reader
+        //get the count of tasks completed late and store it in the reader
             string read_completed_late_tasks_query = "SELECT COUNT(*) as 'tasks_completed' FROM COMPANY.task_assignment WHERE task_status = 'Completed'" +
      " AND deleted = 0 AND employee_ID = @employee_id" +
      " AND task_start_date > @start_date_input AND task_completion_date < @completion_date_input AND task_completion_status = 'Late';";
@@ -181,7 +181,7 @@ namespace databaseteam18
             connection.Close();
 
 
-            //get the count of tasks completed on time and store it in the reader
+         //get the count of tasks completed on time and store it in the reader
             string read_completed_OnTime_tasks_query = "SELECT COUNT(*) as 'tasks_completed' FROM COMPANY.task_assignment WHERE task_status = 'Completed'" +
      " AND deleted = 0 AND employee_ID = @employee_id" +
      " AND task_start_date > @start_date_input AND task_completion_date < @completion_date_input AND task_completion_status = 'On Time';";
@@ -207,7 +207,7 @@ namespace databaseteam18
             connection.Close();
 
 
-            //total hours
+         //total hours
             string total_hours_query = "SELECT SUM(DATEDIFF(second, task_start_date, task_completion_date)) / 3600.0 as total_hours_worked " +
                "FROM COMPANY.tasks " +
                "INNER JOIN COMPANY.task_assignment ON COMPANY.task_assignment.task_id = COMPANY.tasks.task_ID " +
@@ -239,8 +239,8 @@ namespace databaseteam18
             reader.Close();
             connection.Close();
 
-            //set completion rate and progress bar class
-            // Retrieve the value for tasksCompletionRate from the backend
+         //set completion rate and progress bar class
+
             string tasksCompletedOnTimeString = tasksCompletedOnTime.Value;
             float tasksCompletedOnTimeFloat = float.Parse(tasksCompletedOnTimeString);
 
@@ -264,68 +264,7 @@ namespace databaseteam18
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         }
     }
     }
 
-
-//<asp:HiddenField runat = "server" ID="tasksCompleted" />
-//<asp:HiddenField runat = "server" ID="tasksCompletedOnTime" />
-//<asp:HiddenField runat = "server" ID="tasksCompletedLate" />
-//< asp:HiddenField runat = "server" ID="hoursWorked" />
-
-
-
-
-
-
-
-//var queryString = "SELECT COMPANY.task_assignment.employee_ID, COMPANY.tasks.task_ID AS 'Task ID', task_name AS 'Task Name', " +
-//                   "task_est_duration AS 'Duration', " +
-//                   "(SELECT DATEDIFF(second, task_start_date, task_completion_date)) AS 'Hours Worked', " +
-//                   "task_start_date AS 'Started On', " +
-//                   "task_deadline AS 'Deadline', " +
-//                   "task_completion_date AS 'Completed On', " +
-//                   "task_completion_status AS 'Completion', " +
-//                   "COMPANY.projects.Name AS 'Project', " +
-//                   "SUM(task_est_duration) AS 'Total Duration', " +
-//                   "SUM(DATEDIFF(second, task_start_date, task_completion_date)) AS 'Total Hours Worked'" +
-//                   "FROM COMPANY.tasks " +
-//                   "INNER JOIN COMPANY.task_assignment ON COMPANY.task_assignment.task_id = COMPANY.tasks.task_ID " +
-//                   "INNER JOIN COMPANY.employees ON COMPANY.employees.employee_id = COMPANY.task_assignment.employee_ID " +
-//                   "INNER JOIN COMPANY.projects ON COMPANY.projects.ID = COMPANY.task_assignment.project_ID " +
-//                   "WHERE COMPANY.task_assignment.task_status = 'Completed' " +
-//                   "AND COMPANY.tasks.deleted = 0 " +
-//                   "AND COMPANY.task_assignment.employee_ID = @employee_id " +
-//                   "AND task_start_date > @start_date_input " +
-//                   "AND task_completion_date < @completion_date_input " +
-//                   "GROUP BY ROLLUP(COMPANY.task_assignment.employee_ID, COMPANY.tasks.task_ID, task_name, task_est_duration, " +
-//                   "task_start_date, task_deadline, task_completion_date, task_completion_status, COMPANY.projects.Name) " +
-//                   "ORDER BY COMPANY.task_assignment.employee_ID, COMPANY.tasks.task_ID;";

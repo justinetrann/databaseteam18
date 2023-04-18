@@ -105,7 +105,7 @@ namespace databaseteam18
                 selected_project_id = Convert.ToInt32(employee_projects.SelectedValue);
                 //var queryString = "SELECT * FROM COMPANY.tasks";
                 string dbConnectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
-                var queryString = "SELECT COMPANY.tasks.task_ID as 'Task ID', task_name as 'Task Name', task_description as 'Description', COMPANY.task_assignment.task_status as 'Status', task_priority as 'Task Priority',  COMPANY.task_assignment.task_assignment_date as 'Assignment Date',  COMPANY.task_assignment.task_deadline as 'Deadline' ,COMPANY.task_assignment.task_completion_status as 'CompletionStatus', convert(varchar,COMPANY.task_assignment.employee_id) + ' ' + employee_first_name + ' ' + employee_last_name as 'Employee'  FROM COMPANY.tasks  inner join COMPANY.task_assignment on COMPANY.task_assignment.task_id = COMPANY.tasks.task_ID inner join COMPANY.employees on COMPANY.employees.employee_id = COMPANY.task_assignment.employee_ID WHERE  COMPANY.tasks.project_ID=" + selected_project_id + "AND COMPANY.task_assignment.employee_ID =" + employee_id; // Return all records from Project Table in Database; // Return all records from Project Table in Database
+                var queryString = "SELECT COMPANY.tasks.task_ID as 'Task ID', task_name as 'Task Name', task_description as 'Description', COMPANY.task_assignment.task_status as 'Status', task_predecessor_ID as 'Task_Pred_ID', task_priority as 'Task Priority',  COMPANY.task_assignment.task_assignment_date as 'Assignment Date',  COMPANY.task_assignment.task_deadline as 'Deadline' ,COMPANY.task_assignment.task_completion_date as 'CompletionDate',COMPANY.task_assignment.task_completion_status as 'CompletionStatus', convert(varchar,COMPANY.task_assignment.employee_id) + ' ' + employee_first_name + ' ' + employee_last_name as 'Employee'  FROM COMPANY.tasks  inner join COMPANY.task_assignment on COMPANY.task_assignment.task_id = COMPANY.tasks.task_ID inner join COMPANY.employees on COMPANY.employees.employee_id = COMPANY.task_assignment.employee_ID left outer join COMPANY.Tasks_Dependecies TDP on TDP.task_descendant_ID = COMPANY.tasks.task_ID WHERE  COMPANY.tasks.project_ID=" + selected_project_id + "AND COMPANY.task_assignment.employee_ID =" + employee_id + "AND COMPANY.tasks.deleted = 0;"; // Return all records from Project Table in Database; // Return all records from Project Table in Database
                 var dbConncetion = new SqlConnection(dbConnectionString);
                 SqlCommand read_employee_tasks_command = new SqlCommand(queryString, dbConncetion);
                 var dataAdapter = new SqlDataAdapter(read_employee_tasks_command);
@@ -149,7 +149,7 @@ namespace databaseteam18
                 GridViewRow row = GridView1.Rows[e.RowIndex];
 
                 string ID = row.Cells[0].Text;
-                string task_deadline_txt = row.Cells[5].Text;
+                string task_deadline_txt = row.Cells[6].Text;
 
                 DropDownList statusDropDownList = (DropDownList)GridView1.Rows[e.RowIndex].FindControl("StatusDropDownList");
                 string status = (statusDropDownList.SelectedValue);
@@ -180,7 +180,7 @@ namespace databaseteam18
                         completion_status = "On Time";
 
                     string connectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
-                    string query = "UPDATE COMPANY.task_assignment SET task_status = @status, task_completion_status = @completion_status WHERE task_id = @id;";
+                    string query = "UPDATE COMPANY.task_assignment SET task_status = @status, task_completion_status = @completion_status, task_completion_date = @completion_date  WHERE task_id = @id;";
 
 
                     SqlConnection connection = new SqlConnection(connectionString);
@@ -189,7 +189,8 @@ namespace databaseteam18
 
                     command.Parameters.AddWithValue("@status", status);
                     command.Parameters.AddWithValue("@id", ID);
-                    command.Parameters.AddWithValue("@completion_status", completion_status); 
+                    command.Parameters.AddWithValue("@completion_status", completion_status);
+                    command.Parameters.AddWithValue("@completion_date", current_datetime);
 
                     connection.Open();
                     command.ExecuteNonQuery();

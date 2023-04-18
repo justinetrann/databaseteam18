@@ -55,7 +55,7 @@
                 <asp:BoundField DataField="Task ID" HeaderText="Task ID" ReadOnly="true"/>
                 <asp:BoundField DataField="Task Name" HeaderText="Task Name" ReadOnly="true" />
                 <asp:BoundField DataField="Description" HeaderText="Description" ReadOnly="true" />
-           
+            
                 <asp:TemplateField HeaderText="Status">
                     <ItemTemplate>
                         <asp:Label ID="StatusLabel" runat="server" Text='<%# Eval("Status") %>'></asp:Label>
@@ -68,11 +68,14 @@
                         </asp:DropDownList>
                     </EditItemTemplate>
                 </asp:TemplateField>
-                <asp:BoundField DataField="Assignment Date" HeaderText="Assignment Date" ReadOnly="true" />
+
+                <asp:BoundField DataField="Task_Pred_ID" HeaderText="Pred. ID" ReadOnly="true"/> 
+                <asp:BoundField DataField="Assignment Date" HeaderText="Assigned On" ReadOnly="true" DataFormatString="{0:MM/dd/yyyy}"/>
 
                 <asp:BoundField DataField="Deadline" HeaderText="Deadline" ReadOnly="true" DataFormatString="{0:MM/dd/yyyy hh:mm:ss tt}"/>
                 <asp:BoundField DataField="CompletionStatus" HeaderText="Completion" ReadOnly="true"  />
-                <asp:BoundField DataField="Task Priority" HeaderText="Task Priority" ReadOnly="true" />
+                <asp:BoundField DataField="CompletionDate" HeaderText="Completed On" ReadOnly="true"  DataFormatString="{0:MM/dd/yyyy}"/>
+                <asp:BoundField DataField="Task Priority" HeaderText="Priority" ReadOnly="true" />
            
                 <asp:CommandField ShowEditButton="true" />
             </Columns>

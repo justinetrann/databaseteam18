@@ -90,7 +90,7 @@
 
 
 
-                    <asp:BoundField DataField="Assignment Date" HeaderText="Assignment Date" ReadOnly="true" />
+                    <asp:BoundField DataField="Assignment Date" HeaderText="Assigned On" ReadOnly="true" DataFormatString="{0:MM/dd/yyyy}"/>
 
 
 
@@ -106,7 +106,7 @@
                             <asp:TextBox ID="DeadlineTextBox" runat="server" Text='<%# Bind("Deadline","{0:MM/dd/yyyy hh:mm:ss tt}") %>'></asp:TextBox>
                         </EditItemTemplate>
                     </asp:TemplateField>
-
+                    <asp:BoundField DataField="Started On" HeaderText="Started On" ReadOnly="true" DataFormatString="{0:MM/dd/yyyy}"/>
                     <asp:BoundField DataField="CompletionStatus" HeaderText="Completion" ReadOnly="true" />
                     <asp:BoundField DataField="CompletionDate" HeaderText="Completed On" ReadOnly="true"  DataFormatString="{0:MM/dd/yyyy}"/>
 

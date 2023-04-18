@@ -73,7 +73,7 @@
                 <asp:BoundField DataField="Deadline" HeaderText="Deadline" ReadOnly="true" DataFormatString="{0:MM/dd/yyyy hh:mm:ss tt}"/>
                 <asp:BoundField DataField="CompletionStatus" HeaderText="Completion" ReadOnly="true"  />
                 <asp:BoundField DataField="Task Priority" HeaderText="Task Priority" ReadOnly="true" />
-                   hf
+           
                 <asp:CommandField ShowEditButton="true" />
             </Columns>
 

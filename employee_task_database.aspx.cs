@@ -105,7 +105,7 @@ namespace databaseteam18
                 selected_project_id = Convert.ToInt32(employee_projects.SelectedValue);
                 //var queryString = "SELECT * FROM COMPANY.tasks";
                 string dbConnectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
-                var queryString = "SELECT COMPANY.tasks.task_ID as 'Task ID', task_name as 'Task Name', task_description as 'Description', COMPANY.task_assignment.task_status as 'Status', task_predecessor_ID as 'Task_Pred_ID', task_priority as 'Task Priority',  COMPANY.task_assignment.task_assignment_date as 'Assignment Date',  COMPANY.task_assignment.task_deadline as 'Deadline' ,COMPANY.task_assignment.task_completion_date as 'CompletionDate',COMPANY.task_assignment.task_completion_status as 'CompletionStatus', convert(varchar,COMPANY.task_assignment.employee_id) + ' ' + employee_first_name + ' ' + employee_last_name as 'Employee'  FROM COMPANY.tasks  inner join COMPANY.task_assignment on COMPANY.task_assignment.task_id = COMPANY.tasks.task_ID inner join COMPANY.employees on COMPANY.employees.employee_id = COMPANY.task_assignment.employee_ID left outer join COMPANY.Tasks_Dependecies TDP on TDP.task_descendant_ID = COMPANY.tasks.task_ID WHERE  COMPANY.tasks.project_ID=" + selected_project_id + "AND COMPANY.task_assignment.employee_ID =" + employee_id + "AND COMPANY.tasks.deleted = 0;"; // Return all records from Project Table in Database; // Return all records from Project Table in Database
+                var queryString = "SELECT COMPANY.tasks.task_ID as 'Task ID', task_name as 'Task Name',task_start_date as 'StartDate', task_description as 'Description', COMPANY.task_assignment.task_status as 'Status', task_predecessor_ID as 'Task_Pred_ID', task_priority as 'Task Priority',  COMPANY.task_assignment.task_assignment_date as 'Assignment Date',  COMPANY.task_assignment.task_deadline as 'Deadline' ,COMPANY.task_assignment.task_completion_date as 'CompletionDate',COMPANY.task_assignment.task_completion_status as 'CompletionStatus', convert(varchar,COMPANY.task_assignment.employee_id) + ' ' + employee_first_name + ' ' + employee_last_name as 'Employee'  FROM COMPANY.tasks  inner join COMPANY.task_assignment on COMPANY.task_assignment.task_id = COMPANY.tasks.task_ID inner join COMPANY.employees on COMPANY.employees.employee_id = COMPANY.task_assignment.employee_ID left outer join COMPANY.Tasks_Dependecies TDP on TDP.task_descendant_ID = COMPANY.tasks.task_ID WHERE  COMPANY.tasks.project_ID=" + selected_project_id + "AND COMPANY.task_assignment.employee_ID =" + employee_id + "AND COMPANY.tasks.deleted = 0;"; // Return all records from Project Table in Database; // Return all records from Project Table in Database
                 var dbConncetion = new SqlConnection(dbConnectionString);
                 SqlCommand read_employee_tasks_command = new SqlCommand(queryString, dbConncetion);
                 var dataAdapter = new SqlDataAdapter(read_employee_tasks_command);
@@ -198,6 +198,26 @@ namespace databaseteam18
                     successMessage.InnerHtml = "Task Updated Successfully.";
                     successMessage.Style.Remove("display");
                     
+                }
+                else if(status == "Started")
+                {
+                    string connectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
+                    string query = "UPDATE COMPANY.task_assignment SET task_status = @status, task_start_date = @start_date WHERE task_id = @id;";
+
+
+                    SqlConnection connection = new SqlConnection(connectionString);
+
+                    SqlCommand command = new SqlCommand(query, connection);
+
+                    command.Parameters.AddWithValue("@status", status);
+                    command.Parameters.AddWithValue("@id", ID);
+                    command.Parameters.AddWithValue("@start_date", current_datetime);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    connection.Close();
+                    successMessage.InnerHtml = "Task Updated Successfully.";
+                    successMessage.Style.Remove("display");
                 }
                 else
                 {

@@ -2,6 +2,7 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
     <link href="Styles/task-database.css" rel="stylesheet" type="text/css" />
 
     <main aria-labelledby="project_form">
@@ -13,7 +14,8 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <label for="department-employees">Employee</label>
-                            <asp:DropDownList ID="department_employees" runat="server" class="form-control"></asp:DropDownList>
+                            <asp:DropDownList ID="department_employees" runat="server"  CssClass="form-control bi bi-chevron-down"></asp:DropDownList>
+                            
                         </div>
                     </div>
                 </div>

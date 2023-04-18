@@ -108,7 +108,7 @@
                     </asp:TemplateField>
 
                     <asp:BoundField DataField="CompletionStatus" HeaderText="Completion" ReadOnly="true" />
-
+                    <asp:BoundField DataField="CompletionDate" HeaderText="Completed On" ReadOnly="true"  DataFormatString="{0:MM/dd/yyyy}"/>
 
 
                     <asp:TemplateField HeaderText="Task Priority">

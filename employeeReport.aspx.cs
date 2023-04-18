@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.Common;
+using System.Collections.ObjectModel;
+using System.Collections;
 
 namespace databaseteam18
 {
@@ -16,9 +18,6 @@ namespace databaseteam18
         protected void Page_Load(object sender, EventArgs e)
         {
             submitButton.ServerClick += new EventHandler(submitButton_Click);
-
-            BindGridView();
-            //get the employees from the current department in the ddl
 
 
             SqlDataAdapter employees_da;
@@ -92,7 +91,6 @@ namespace databaseteam18
 
         protected void submitButton_Click(object sender, EventArgs e)
         {
-            if (!IsPostBack)
                 BindGridView();
         }
 
@@ -104,18 +102,45 @@ namespace databaseteam18
             string dbConnectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
 
             string project_id = Session["project_id"].ToString();
+            string employee_id = department_employees.SelectedValue;
+            string start_date_input = report_start_date.Value;
+            string completion_date_input = report_end_date.Value;
 
-            var queryString = "SELECT COMPANY.tasks.task_ID as 'Task ID', task_name as 'Task Name', task_description as 'Description',task_est_duration as 'Duration',task_predecessor_ID as 'Task_Pred_ID', task_priority as 'Task Priority', COMPANY.task_assignment.task_status as 'Status', COMPANY.tasks.deleted as 'Delete', task_creation_date as 'Creation Date', task_assignment_date as 'Assignment Date', task_deadline as 'Deadline', convert(varchar,COMPANY.task_assignment.employee_id) + ' ' + employee_first_name + ' ' + employee_last_name as 'Employee'  FROM COMPANY.tasks  inner join COMPANY.task_assignment on COMPANY.task_assignment.task_id = COMPANY.tasks.task_ID inner join COMPANY.employees on COMPANY.employees.employee_id = COMPANY.task_assignment.employee_ID left outer join COMPANY.Tasks_Dependecies TDP on TDP.task_descendant_ID = COMPANY.tasks.task_ID WHERE  COMPANY.tasks.project_ID=" + project_id + "AND COMPANY.tasks.deleted = 0;"; // Return all records from Project Table in Database
-            var dbConncetion = new SqlConnection(dbConnectionString);
-            //var dataAdapter = new SqlDataAdapter(queryString, dbConncetion);
-            SqlDataAdapter dataAdapter = new SqlDataAdapter(queryString, dbConncetion);
+            // Modify your query string to include parameter placeholders
+            var queryString = "SELECT COMPANY.tasks.task_ID as 'Task ID', task_name as 'Task Name', " +
+                               " task_est_duration as 'Duration'," +
+                               " (SELECT DATEDIFF(second,(SELECT task_start_date FROM COMPANY.task_assignment WHERE COMPANY.tasks.task_ID = COMPANY.task_assignment.task_id)," +
+                               " (SELECT task_completion_date FROM COMPANY.task_assignment WHERE COMPANY.tasks.task_ID = COMPANY.task_assignment.task_id)) )AS 'Hours Worked'," +
+                               " task_start_date as 'Started On'," +
+                               " task_deadline as 'Deadline'," +
+                               " task_completion_date as 'Completed On'," +
+                               " task_completion_status as 'Completion'," +
+                               " COMPANY.projects.Name as 'Project'" +
+                               " FROM COMPANY.tasks  inner join COMPANY.task_assignment on COMPANY.task_assignment.task_id = COMPANY.tasks.task_ID" +
+                               " inner join COMPANY.employees on COMPANY.employees.employee_id = COMPANY.task_assignment.employee_ID " +
+                               " inner join COMPANY.projects on COMPANY.projects.ID = COMPANY.task_assignment.project_ID" +
+                               " WHERE COMPANY.task_assignment.task_status = 'Completed' AND COMPANY.tasks.deleted = 0 AND COMPANY.task_assignment.employee_ID = @employee_id" +
+                               " AND task_start_date > @start_date_input AND task_completion_date < @completion_date_input ;";
 
-            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var connection = new SqlConnection(dbConnectionString);
+            SqlCommand command = new SqlCommand(queryString, connection);
+
+            // Add parameters to the query and set their values
+            command.Parameters.AddWithValue("@employee_id", employee_id);
+            command.Parameters.AddWithValue("@start_date_input", start_date_input);
+            command.Parameters.AddWithValue("@completion_date_input", completion_date_input);
+
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
             var ds = new DataSet();
             dataAdapter.Fill(ds);
 
             GridView1.DataSource = ds.Tables[0];
+            connection.Close();
             GridView1.DataBind();
+
+
+
+
 
         }
     }

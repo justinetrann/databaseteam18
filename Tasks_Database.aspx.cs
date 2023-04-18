@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Configuration;
+using System.Globalization;
 
 namespace databaseteam18
 {
@@ -80,6 +81,13 @@ namespace databaseteam18
                 //Get Task ID
                 string task_id = row.Cells[0].Text;
 
+                //string task_deadline_txt = row.Cells[8].Text;
+
+                //errorMessage.InnerHtml = task_deadline_txt;
+                //errorMessage.Style.Remove("display");
+                //return;
+
+
 
                 //Get Task Name Update Value
                 TextBox TaskNameTextBox = (TextBox)GridView1.Rows[GridView1.EditIndex].FindControl("TaskNameTextBox");
@@ -108,33 +116,75 @@ namespace databaseteam18
                 string new_task_deadline = DeadlineTextBox.Text;
 
 
+                DateTime task_deadline = DateTime.ParseExact(new_task_deadline, "MM/dd/yyyy hh:mm:ss tt", CultureInfo.InvariantCulture);
+                DateTime current_datetime = DateTime.Now;
+
+
                 //Get Task Priority Update Value
                 DropDownList TaskPriorityDropDownList = (DropDownList)GridView1.Rows[e.RowIndex].FindControl("TaskPriorityDropDownList");
                 string new_task_priority = (TaskPriorityDropDownList.SelectedValue);
 
 
-
-
                 // Update the Task and Task Assignment tables with update data
-                string connectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
-                string query = "UPDATE COMPANY.task_assignment SET task_priority = @task_priority, task_status = @task_status, task_deadline = @task_deadline, employee_ID = @employee_id WHERE task_id = @task_id;";
-                query += "UPDATE COMPANY.tasks SET task_name = @task_name, task_description = @task_description WHERE task_id = @task_id;";
+                if (new_task_status == "Completed")
+                {
+                    string completion_status = "";
 
-                SqlConnection connection = new SqlConnection(connectionString);
+                    if (current_datetime > task_deadline)
+                    {
+                        completion_status = "Late";
+                    }
+                    else
+                        completion_status = "On Time";
 
-                SqlCommand command = new SqlCommand(query, connection);
+                    string connectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
+                    string query = "UPDATE COMPANY.task_assignment SET task_priority = @task_priority, task_completion_status = @completion_status, task_status = @task_status, task_deadline = @task_deadline, employee_ID = @employee_id WHERE task_id = @task_id;";
+                    query += "UPDATE COMPANY.tasks SET task_name = @task_name, task_description = @task_description WHERE task_id = @task_id;";
 
-                command.Parameters.AddWithValue("@task_priority", new_task_priority);
-                command.Parameters.AddWithValue("@task_status", new_task_status);
-                command.Parameters.AddWithValue("@task_deadline", new_task_deadline);
-                command.Parameters.AddWithValue("@employee_id", new_assigned_employee);
-                command.Parameters.AddWithValue("@task_id", task_id);
-                command.Parameters.AddWithValue("@task_name", new_task_name);
-                command.Parameters.AddWithValue("@task_description", new_task_description);
+                    SqlConnection connection = new SqlConnection(connectionString);
 
-                connection.Open();
-                command.ExecuteNonQuery();
-                connection.Close();
+                    SqlCommand command = new SqlCommand(query, connection);
+
+                    command.Parameters.AddWithValue("@task_priority", new_task_priority);
+                    command.Parameters.AddWithValue("@task_status", new_task_status);
+                    command.Parameters.AddWithValue("@task_deadline", new_task_deadline);
+                    command.Parameters.AddWithValue("@employee_id", new_assigned_employee);
+                    command.Parameters.AddWithValue("@task_id", task_id);
+                    command.Parameters.AddWithValue("@task_name", new_task_name);
+                    command.Parameters.AddWithValue("@completion_status", completion_status);
+                    command.Parameters.AddWithValue("@task_description", new_task_description);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    connection.Close();
+                    successMessage.InnerHtml = "Task Updated Successfully.";
+                    successMessage.Style.Remove("display");
+                }
+
+                else
+                {
+                    string connectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
+                    string query = "UPDATE COMPANY.task_assignment SET task_priority = @task_priority, task_status = @task_status, task_deadline = @task_deadline, employee_ID = @employee_id WHERE task_id = @task_id;";
+                    query += "UPDATE COMPANY.tasks SET task_name = @task_name, task_description = @task_description WHERE task_id = @task_id;";
+
+                    SqlConnection connection = new SqlConnection(connectionString);
+
+                    SqlCommand command = new SqlCommand(query, connection);
+
+                    command.Parameters.AddWithValue("@task_priority", new_task_priority);
+                    command.Parameters.AddWithValue("@task_status", new_task_status);
+                    command.Parameters.AddWithValue("@task_deadline", new_task_deadline);
+                    command.Parameters.AddWithValue("@employee_id", new_assigned_employee);
+                    command.Parameters.AddWithValue("@task_id", task_id);
+                    command.Parameters.AddWithValue("@task_name", new_task_name);
+                    command.Parameters.AddWithValue("@task_description", new_task_description);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    connection.Close();
+                    successMessage.InnerHtml = "Task Updated Successfully.";
+                    successMessage.Style.Remove("display");
+                }
 
 
 
@@ -184,7 +234,7 @@ namespace databaseteam18
 
             string project_id = Session["project_id"].ToString();
 
-            var queryString = "SELECT COMPANY.tasks.task_ID as 'Task ID', task_name as 'Task Name', task_description as 'Description',task_est_duration as 'Duration',task_predecessor_ID as 'Task_Pred_ID', task_priority as 'Task Priority', COMPANY.task_assignment.task_status as 'Status', COMPANY.tasks.deleted as 'Delete', task_creation_date as 'Creation Date', task_assignment_date as 'Assignment Date', task_deadline as 'Deadline', convert(varchar,COMPANY.task_assignment.employee_id) + ' ' + employee_first_name + ' ' + employee_last_name as 'Employee'  FROM COMPANY.tasks  inner join COMPANY.task_assignment on COMPANY.task_assignment.task_id = COMPANY.tasks.task_ID inner join COMPANY.employees on COMPANY.employees.employee_id = COMPANY.task_assignment.employee_ID left outer join COMPANY.Tasks_Dependecies TDP on TDP.task_descendant_ID = COMPANY.tasks.task_ID WHERE  COMPANY.tasks.project_ID=" + project_id + "AND COMPANY.tasks.deleted = 0;" ; // Return all records from Project Table in Database
+            var queryString = "SELECT COMPANY.tasks.task_ID as 'Task ID', task_name as 'Task Name', task_description as 'Description',task_est_duration as 'Duration',task_predecessor_ID as 'Task_Pred_ID', task_priority as 'Task Priority', COMPANY.task_assignment.task_status as 'Status', COMPANY.tasks.deleted as 'Delete', task_creation_date as 'Creation Date', task_assignment_date as 'Assignment Date', task_deadline as 'Deadline',COMPANY.task_assignment.task_completion_status as 'CompletionStatus', convert(varchar,COMPANY.task_assignment.employee_id) + ' ' + employee_first_name + ' ' + employee_last_name as 'Employee'  FROM COMPANY.tasks  inner join COMPANY.task_assignment on COMPANY.task_assignment.task_id = COMPANY.tasks.task_ID inner join COMPANY.employees on COMPANY.employees.employee_id = COMPANY.task_assignment.employee_ID left outer join COMPANY.Tasks_Dependecies TDP on TDP.task_descendant_ID = COMPANY.tasks.task_ID WHERE  COMPANY.tasks.project_ID=" + project_id + "AND COMPANY.tasks.deleted = 0;" ; // Return all records from Project Table in Database
             var dbConncetion = new SqlConnection(dbConnectionString);
             //var dataAdapter = new SqlDataAdapter(queryString, dbConncetion);
             SqlDataAdapter dataAdapter = new SqlDataAdapter(queryString, dbConncetion);

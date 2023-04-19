@@ -51,31 +51,31 @@ namespace databaseteam18
         protected global::System.Web.UI.HtmlControls.HtmlButton submitButton;
 
         /// <summary>
-        /// tasksCompleted control.
+        /// departmentName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField tasksCompleted;
+        protected global::System.Web.UI.WebControls.HiddenField departmentName;
 
         /// <summary>
-        /// tasksCompletedOnTime control.
+        /// estProjectCost control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField tasksCompletedOnTime;
+        protected global::System.Web.UI.WebControls.HiddenField estProjectCost;
 
         /// <summary>
-        /// tasksCompletedLate control.
+        /// projectCostVariance control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField tasksCompletedLate;
+        protected global::System.Web.UI.WebControls.HiddenField projectCostVariance;
 
         /// <summary>
         /// progressBarColor control.
@@ -87,22 +87,22 @@ namespace databaseteam18
         protected global::System.Web.UI.WebControls.HiddenField progressBarColor;
 
         /// <summary>
-        /// tasksCompletionRateValue control.
+        /// projectCostVariancePercentage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField tasksCompletionRateValue;
+        protected global::System.Web.UI.WebControls.HiddenField projectCostVariancePercentage;
 
         /// <summary>
-        /// hoursWorked control.
+        /// actualProjectCost control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hoursWorked;
+        protected global::System.Web.UI.WebControls.HiddenField actualProjectCost;
 
         /// <summary>
         /// errorMessage control.

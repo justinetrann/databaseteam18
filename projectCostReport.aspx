@@ -45,7 +45,7 @@
 
             <p class="col-form-label" style="text-align: center;">Project Cost Summery</p></br>
             <div class="row">
-                <label for="projectName" class="col-sm-4 col-form-label">Project Name: <b style="color: #2461BF"><% %></b></label>
+                <label for="projectName" class="col-sm-4 col-form-label">Project Name: <b style="color: #2461BF"><%  %></b></label>
                 <label for="tasksCompleted" class="col-sm-4 col-form-label">Project Estimated Cost: <b style="color: #2461BF"><%= tasksCompleted.Value %></b>    </label>
                 <label for="tasksCompletedOnTime" class="col-sm-4 col-form-label">Project Cost variance: <b style="color: #2461BF"><%= tasksCompletedOnTime.Value %> </b></label>
                 <!--<label for="tasksCompletedLate" class="col-sm-4 col-form-label">tasksCompletedLate <b style="color: #2461BF"><%= tasksCompletedLate.Value %></b> </label>-->

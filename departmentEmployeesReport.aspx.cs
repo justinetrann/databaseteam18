@@ -13,7 +13,7 @@ using System.Collections;
 
 namespace databaseteam18
 {
-    public partial class employeeReport : System.Web.UI.Page
+    public partial class departmentEmployeesReport : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

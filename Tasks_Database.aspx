@@ -17,7 +17,7 @@
             <br />
         </div>
 
-        <div class="containerNew">
+        <div class="containerNew" style="overflow-x: auto;">
             <div id="errorMessage" class="alert alert-danger" runat="server" style="display: none;" />
             <div id="Div1" class="alert alert-danger" runat="server" style="display: none;"></div>
 
@@ -100,7 +100,7 @@
 
                     <asp:TemplateField HeaderText="Deadline">
                         <ItemTemplate>
-                            <asp:Label ID="DeadlineDateLabel" runat="server" Text='<%# Eval("Deadline","{0:MM/dd/yyyy}") %>'></asp:Label>
+                            <asp:Label ID="DeadlineDateLabel" runat="server" Text='<%# Eval("Deadline","{0:MM/dd/yyyy hh:mm:ss tt}") %>'></asp:Label>
                         </ItemTemplate>
                         <EditItemTemplate>
                             <asp:TextBox ID="DeadlineTextBox" runat="server" Text='<%# Bind("Deadline","{0:MM/dd/yyyy hh:mm:ss tt}") %>'></asp:TextBox>

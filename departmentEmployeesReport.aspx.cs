@@ -10,11 +10,25 @@ using System.Web.UI.WebControls;
 using System.Data.Common;
 using System.Collections.ObjectModel;
 using System.Collections;
+using System.Web.Script.Serialization;
+using System.Reflection;
 
 namespace databaseteam18
 {
     public partial class departmentEmployeesReport : System.Web.UI.Page
     {
+
+        public class PieChartData
+        {
+            public string label;
+            public int value;
+
+            public PieChartData(string label, int value)
+            {
+                this.label = label;
+                this.value = value;
+            }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             submitButton.ServerClick += new EventHandler(submitButton_Click);
@@ -68,14 +82,21 @@ namespace databaseteam18
                 ////da.Dispose();
             }
             // PIE CHART CONTROL
-            string[] labels = { "Red", "Blue", "Yellow", "Green", "Purple", "Orange" };
-            int[] values = { 12, 19, 3, 5, 2, 3 };
 
-            var data = new List<object>();
-            for (int i = 0; i < labels.Length; i++)
-            {
-                data.Add(new { label = labels[i], value = values[i] });
-            }
+            List<PieChartData> dataPoints = new List<PieChartData>();
+            dataPoints.Add(new PieChartData("Category 1", 25));
+            dataPoints.Add(new PieChartData("Category 2", 40));
+            dataPoints.Add(new PieChartData("Category 3", 35));
+
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            string serializedData = serializer.Serialize(dataPoints);
+
+            HttpContext.Current.Session["PieChartData"] = serializedData;
+
+
+
+
+
 
         }
 
@@ -98,20 +119,20 @@ namespace databaseteam18
             string completion_date_input = report_end_date.Value;
 
 
-            var queryString = "SELECT COMPANY.tasks.task_ID as 'Task ID', task_name as 'Task Name', " +
-                               " task_est_duration as 'Duration'," +
-                               " (SELECT DATEDIFF(second,(SELECT task_start_date FROM COMPANY.task_assignment WHERE COMPANY.tasks.task_ID = COMPANY.task_assignment.task_id)," +
-                               " (SELECT task_completion_date FROM COMPANY.task_assignment WHERE COMPANY.tasks.task_ID = COMPANY.task_assignment.task_id)) )AS 'Hours Worked'," +
-                               " task_start_date as 'Started On'," +
-                               " task_deadline as 'Deadline'," +
-                               " task_completion_date as 'Completed On'," +
-                               " task_completion_status as 'Completion'," +
-                               " COMPANY.projects.Name as 'Project'" +
-                               " FROM COMPANY.tasks  inner join COMPANY.task_assignment on COMPANY.task_assignment.task_id = COMPANY.tasks.task_ID" +
-                               " inner join COMPANY.employees on COMPANY.employees.employee_id = COMPANY.task_assignment.employee_ID " +
-                               " inner join COMPANY.projects on COMPANY.projects.ID = COMPANY.task_assignment.project_ID" +
-                               " WHERE COMPANY.task_assignment.task_status = 'Completed' AND COMPANY.tasks.deleted = 0 AND COMPANY.task_assignment.employee_ID = @employee_id" +
-                               " AND task_start_date > @start_date_input AND task_completion_date < @completion_date_input ;";
+            var queryString = "SELECT CONVERT(varchar, E.employee_id) + ' ' + E.employee_first_name + ' ' + E.employee_last_name AS 'Employee Name'," +
+                              " COUNT(*) AS 'Completed Tasks'," +
+                              " SUM(CASE WHEN task_completion_status = 'On Time' THEN 1 ELSE 0 END) AS 'On Time'," +
+                              " SUM(CASE WHEN task_completion_status = 'Late' THEN 1 ELSE 0 END) AS 'Late'," +
+                              " CASE WHEN SUM(CASE WHEN task_completion_status = 'On Time' THEN 1 ELSE 0 END) = 0" +
+                              " THEN NULL" +
+                              " ELSE CONCAT(ROUND(CAST(SUM(CASE WHEN task_completion_status = 'On Time' THEN 1 ELSE 0 END) AS FLOAT) / COUNT(*) * 100, 0), '%') END" +
+                              " AS 'On Time Tasks Completion Ratio'" +
+                              " FROM COMPANY.task_assignment TA " +
+                              " INNER JOIN COMPANY.employees E ON E.employee_id = TA.employee_ID " +
+                              " WHERE task_status = 'Completed' AND TA.deleted = 0 " +
+                              " AND task_start_date > @start_date_input AND task_completion_date < @completion_date_input " +
+                              " GROUP BY CONVERT(varchar, E.employee_id) + ' ' + E.employee_first_name + ' ' + E.employee_last_name;";
+
 
             //Modify your query string to include parameter placeholders
 
@@ -122,9 +143,10 @@ namespace databaseteam18
             SqlCommand command = new SqlCommand(queryString, connection);
 
             // Add parameters to the query and set their values
-            command.Parameters.AddWithValue("@employee_id", 0);
+            //command.Parameters.AddWithValue("@employee_id", 0);
             command.Parameters.AddWithValue("@start_date_input", start_date_input);
             command.Parameters.AddWithValue("@completion_date_input", completion_date_input);
+            int department_id = Convert.ToInt32(Session["department_id"]);
 
             SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
             var ds = new DataSet();
@@ -136,98 +158,46 @@ namespace databaseteam18
 
 
 
-         //get the count of tasks completed and store it in a reader
-            string read_completed_tasks_query = "SELECT COUNT(*) as 'tasks_completed' FROM COMPANY.task_assignment WHERE task_status = 'Completed'" +
-     " AND deleted = 0 AND employee_ID = @employee_id" +
-     " AND task_start_date > @start_date_input AND task_completion_date < @completion_date_input;";
+            //get the count of projects completed and store it in a reader
+            string read_completed_projects_query = "SELECT COUNT(*) as 'projects_completed' FROM COMPANY.projects WHERE Status = 'Completed'" +
+     " AND deleted = 0 AND Department_ID = @department_id" +
+     " AND Start_Date > @start_date_input AND end_date < @completion_date_input;";
 
-            SqlCommand read_completed_tasks_command = new SqlCommand(read_completed_tasks_query, connection);
-            read_completed_tasks_command.Parameters.AddWithValue("@employee_id", 0);
-            read_completed_tasks_command.Parameters.AddWithValue("@start_date_input", start_date_input);
-            read_completed_tasks_command.Parameters.AddWithValue("@completion_date_input", completion_date_input);
+            SqlCommand read_completed_projects_command = new SqlCommand(read_completed_projects_query, connection);
+            read_completed_projects_command.Parameters.AddWithValue("@department_id", department_id);
+            read_completed_projects_command.Parameters.AddWithValue("@start_date_input", start_date_input);
+            read_completed_projects_command.Parameters.AddWithValue("@completion_date_input", completion_date_input);
 
             connection.Open();
 
-            SqlDataReader completed_tasks_reader = read_completed_tasks_command.ExecuteReader();
+            SqlDataReader completed_projects_reader = read_completed_projects_command.ExecuteReader();
 
-            if (completed_tasks_reader.HasRows)
+            if (completed_projects_reader.HasRows)
             {
-                if (completed_tasks_reader.Read())
+                if (completed_projects_reader.Read())
                 {
-                    projectsCompleted.Value = Convert.ToString(completed_tasks_reader["tasks_completed"]);
+                    projectsCompleted.Value = Convert.ToString(completed_projects_reader["projects_completed"]);
                 }
             }
+
+
+            completed_projects_reader.Close();
+            connection.Close();
+
+
             
-
-            completed_tasks_reader.Close();
-            connection.Close();
-
-
-        //get the count of tasks completed late and store it in the reader
-            string read_completed_late_tasks_query = "SELECT COUNT(*) as 'tasks_completed' FROM COMPANY.task_assignment WHERE task_status = 'Completed'" +
-     " AND deleted = 0 AND employee_ID = @employee_id" +
-     " AND task_start_date > @start_date_input AND task_completion_date < @completion_date_input AND task_completion_status = 'Late';";
-
-            SqlCommand read_completed_late_tasks_command = new SqlCommand(read_completed_late_tasks_query, connection);
-            read_completed_late_tasks_command.Parameters.AddWithValue("@employee_id", 0);
-            read_completed_late_tasks_command.Parameters.AddWithValue("@start_date_input", start_date_input);
-            read_completed_late_tasks_command.Parameters.AddWithValue("@completion_date_input", completion_date_input);
-
-            connection.Open();
-
-            SqlDataReader completed_late_tasks_reader = read_completed_late_tasks_command.ExecuteReader();
-
-            if (completed_late_tasks_reader.HasRows)
-            {
-                if (completed_late_tasks_reader.Read())
-                {
-                    projectsCompleted.Value = Convert.ToString(completed_late_tasks_reader["tasks_completed"]);
-                }
-            }
-            
-
-            completed_late_tasks_reader.Close();
-            connection.Close();
-
-
-         //get the count of tasks completed on time and store it in the reader
-            string read_completed_OnTime_tasks_query = "SELECT COUNT(*) as 'tasks_completed' FROM COMPANY.task_assignment WHERE task_status = 'Completed'" +
-     " AND deleted = 0 AND employee_ID = @employee_id" +
-     " AND task_start_date > @start_date_input AND task_completion_date < @completion_date_input AND task_completion_status = 'On Time';";
-
-            SqlCommand read_completed_OnTime_tasks_command = new SqlCommand(read_completed_OnTime_tasks_query, connection);
-            read_completed_OnTime_tasks_command.Parameters.AddWithValue("@employee_id", 0);
-            read_completed_OnTime_tasks_command.Parameters.AddWithValue("@start_date_input", start_date_input);
-            read_completed_OnTime_tasks_command.Parameters.AddWithValue("@completion_date_input", completion_date_input);
-
-            connection.Open();
-
-            SqlDataReader completed_OnTime_tasks_reader = read_completed_OnTime_tasks_command.ExecuteReader();
-
-            if (completed_OnTime_tasks_reader.HasRows)
-            {
-                if (completed_OnTime_tasks_reader.Read())
-                {
-                    projectsCompleted.Value = Convert.ToString(completed_OnTime_tasks_reader["tasks_completed"]);
-                }
-            }
-
-            completed_OnTime_tasks_reader.Close();
-            connection.Close();
-
-
-         //total hours
+            //total hours
             string total_hours_query = "SELECT SUM(DATEDIFF(second, task_start_date, task_completion_date)) / 3600.0 as total_hours_worked " +
                "FROM COMPANY.tasks " +
                "INNER JOIN COMPANY.task_assignment ON COMPANY.task_assignment.task_id = COMPANY.tasks.task_ID " +
                "WHERE COMPANY.task_assignment.task_status = 'Completed' " +
                "AND COMPANY.tasks.deleted = 0 " +
-               "AND COMPANY.task_assignment.employee_ID = @employee_id " +
+               //"AND COMPANY.task_assignment.employee_ID = @employee_id " +
                "AND task_start_date > @start_date_input " +
                "AND task_completion_date < @completion_date_input;";
 
             SqlCommand total_hours_command = new SqlCommand(total_hours_query, connection);
-            total_hours_command.Parameters.AddWithValue("@employee_id", 0);
+            //total_hours_command.Parameters.AddWithValue("@employee_id", 0);
             total_hours_command.Parameters.AddWithValue("@start_date_input", start_date_input);
             total_hours_command.Parameters.AddWithValue("@completion_date_input", completion_date_input);
 
@@ -248,43 +218,38 @@ namespace databaseteam18
             reader.Close();
             connection.Close();
 
-         //set completion rate and progress bar class
+            ////set completion rate and progress bar class
 
-            string tasksCompletedOnTimeString = projectsCompleted.Value;
-            float tasksCompletedOnTimeFloat = float.Parse(tasksCompletedOnTimeString);
+            //string tasksCompletedOnTimeString = projectsCompleted.Value;
+            //float tasksCompletedOnTimeFloat = float.Parse(tasksCompletedOnTimeString);
 
-            string tasksCompletedString = projectsCompleted.Value;
-            float tasksCompletedFloat = float.Parse(tasksCompletedString);
-            // Do something with tasksCompletedOnTimeInt
+            //string tasksCompletedString = projectsCompleted.Value;
+            //float tasksCompletedFloat = float.Parse(tasksCompletedString);
+            //// Do something with tasksCompletedOnTimeInt
 
-            double tasksCompletionRate = (tasksCompletedOnTimeFloat / tasksCompletedFloat) * 100; // Replace with your actual value
-            string tasksCompletionRateString = tasksCompletionRate.ToString("F2");
-            // Set the value of tasksCompletionRateValue to this value
-            projectsCompleted.Value = tasksCompletionRateString;
+            //double tasksCompletionRate = (tasksCompletedOnTimeFloat / tasksCompletedFloat) * 100; // Replace with your actual value
+            //string tasksCompletionRateString = tasksCompletionRate.ToString("F2");
+            //// Set the value of tasksCompletionRateValue to this value
+            //projectsCompleted.Value = tasksCompletionRateString;
 
-
-            ////progress bar color;
-            //if (tasksCompletionRate < 50)
-            //    progressBarColor.Value = "bg-danger";
-            //else if (tasksCompletionRate >= 50 && tasksCompletionRate < 75)
-            //    progressBarColor.Value = "bg-warning";
-            //else
-            //    progressBarColor.Value = "";
 
 
             // PIE CHART CONTROL
-            string[] labels = { "Red", "Blue", "Yellow", "Green", "Purple", "Orange" };
-            int[] values = { 12, 19, 3, 5, 2, 3 };
 
-            var data = new List<object>();
-            for (int i = 0; i < labels.Length; i++)
-            {
-                data.Add(new { label = labels[i], value = values[i] });
-            }
+            List<PieChartData> dataPoints = new List<PieChartData>();
+            dataPoints.Add(new PieChartData("Category 1", 25));
+            dataPoints.Add(new PieChartData("Category 2", 40));
+            dataPoints.Add(new PieChartData("Category 3", 35));
+
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            string serializedData = serializer.Serialize(dataPoints);
+
+            HttpContext.Current.Session["PieChartData"] = serializedData;
+
 
 
 
         }
     }
-    }
+}
 

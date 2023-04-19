@@ -42,6 +42,15 @@ namespace databaseteam18
         protected global::System.Web.UI.HtmlControls.HtmlButton submitButton;
 
         /// <summary>
+        /// ResultsContainer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ResultsContainer;
+
+        /// <summary>
         /// projectsCompleted control.
         /// </summary>
         /// <remarks>
@@ -67,6 +76,15 @@ namespace databaseteam18
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField pieChartData;
+
+        /// <summary>
+        /// gridViewContainer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl gridViewContainer;
 
         /// <summary>
         /// errorMessage control.

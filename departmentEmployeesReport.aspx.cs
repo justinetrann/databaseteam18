@@ -60,6 +60,8 @@ namespace databaseteam18
 
             if (!IsPostBack)
             {
+                ResultsContainer.Style.Add("display","none");
+                gridViewContainer.Style.Add("display", "none");
                 //employees_da = new SqlDataAdapter(read_employees_command);
 
                 //// create a DataTable to hold the results
@@ -109,6 +111,8 @@ namespace databaseteam18
         //bind gridView function
         private void BindGridView()
         {
+            ResultsContainer.Style.Remove("display");
+            gridViewContainer.Style.Remove("display");
             // Establishing connection string to database
             // Reading from the web.config file
             string dbConnectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
@@ -160,9 +164,10 @@ namespace databaseteam18
 
 
             //get the count of projects completed and store it in a reader
-            string read_completed_projects_query = "SELECT COUNT(*) as 'projects_completed' FROM COMPANY.projects WHERE Status = 'Completed'" +
-     " AND Deleted = 0 AND Department_ID = @department_id" +
-     " AND Start_Date > @start_date_input AND end_date < @completion_date_input;";
+            string read_completed_projects_query = "SELECT COUNT(*) as projects_completed FROM (SELECT COUNT(*) as project_count" +
+                " FROM COMPANY.projects P INNER JOIN COMPANY.task_assignment TA ON P.ID = TA.project_ID" +
+                " WHERE P.Deleted = 0 AND TA.Deleted = 0 AND Department_ID = @department_id AND TA.task_status = 'Completed' " +
+                "AND task_start_date > @start_date_input AND task_completion_date < @completion_date_input  GROUP BY TA.project_ID) AS project_counts;";
 
             SqlCommand read_completed_projects_command = new SqlCommand(read_completed_projects_query, connection);
             read_completed_projects_command.Parameters.AddWithValue("@department_id", department_id);
@@ -190,17 +195,18 @@ namespace databaseteam18
             //total hours
             string total_hours_query = "SELECT SUM(DATEDIFF(second, task_start_date, task_completion_date)) / 3600.0 as total_hours_worked " +
                "FROM COMPANY.tasks " +
-               "INNER JOIN COMPANY.task_assignment ON COMPANY.task_assignment.task_id = COMPANY.tasks.task_ID " +
-               "WHERE COMPANY.task_assignment.task_status = 'Completed' " +
-               "AND COMPANY.tasks.deleted = 0 " +
+               "INNER JOIN COMPANY.task_assignment ON COMPANY.task_assignment.task_id = COMPANY.tasks.task_ID INNER JOIN COMPANY.projects P on P.ID = COMPANY.task_assignment.project_ID" +
+               " WHERE COMPANY.task_assignment.task_status = 'Completed' " +
+               " AND COMPANY.tasks.deleted = 0 AND  P.Department_ID = @department_id " +
                //"AND COMPANY.task_assignment.employee_ID = @employee_id " +
-               "AND task_start_date > @start_date_input " +
-               "AND task_completion_date < @completion_date_input;";
+               " AND task_start_date > @start_date_input " +
+               " AND task_completion_date < @completion_date_input;";
 
             SqlCommand total_hours_command = new SqlCommand(total_hours_query, connection);
             //total_hours_command.Parameters.AddWithValue("@employee_id", 0);
             total_hours_command.Parameters.AddWithValue("@start_date_input", start_date_input);
             total_hours_command.Parameters.AddWithValue("@completion_date_input", completion_date_input);
+            total_hours_command.Parameters.AddWithValue("@department_id", department_id);
 
             connection.Open();
             SqlDataReader reader = total_hours_command.ExecuteReader();
@@ -238,13 +244,14 @@ namespace databaseteam18
             // PIE CHART CONTROL
 
             string project_name_project_hours_query = "SELECT P.Name as project_name, SUM(DATEDIFF(second, TA.task_start_date, TA.task_completion_date)) / 3600.0 AS total_hours_completed " +
-  "FROM COMPANY.projects P INNER JOIN COMPANY.task_assignment TA ON P.ID = TA.project_ID WHERE TA.task_status = 'Completed' AND TA.deleted = 0 " +
-  "AND TA.task_start_date > @start_date_input AND TA.task_completion_date < @completion_date_input GROUP BY P.Name;";
+  "FROM COMPANY.projects P INNER JOIN COMPANY.task_assignment TA ON P.ID = TA.project_ID WHERE TA.task_status = 'Completed' AND TA.deleted = 0  AND   P.Department_ID = @department_id" +
+  " AND TA.task_start_date > @start_date_input AND TA.task_completion_date < @completion_date_input GROUP BY P.Name;";
 
             SqlCommand project_name_project_hours_command = new SqlCommand(project_name_project_hours_query, connection);
             //total_hours_command.Parameters.AddWithValue("@employee_id", 0);
             project_name_project_hours_command.Parameters.AddWithValue("@start_date_input", start_date_input);
             project_name_project_hours_command.Parameters.AddWithValue("@completion_date_input", completion_date_input);
+            project_name_project_hours_command.Parameters.AddWithValue("@department_id", department_id);
 
             connection.Open();
             SqlDataReader project_name_project_hours_query_reader = project_name_project_hours_command.ExecuteReader();

@@ -44,7 +44,7 @@
             </div>
         </div>
         <br />
-        <div class="containerNew" style="display: true" id="Container">
+        <div class="containerNew" style="display: true" id="ResultsContainer" runat="server">
 
             <asp:HiddenField runat="server" ID="projectsCompleted" />
             <asp:HiddenField runat="server" ID="totalHoursCompleted" />
@@ -65,7 +65,7 @@
         </div>
 
         <br />
-        <div class="containerNew" style="display: true" id="gridViewContainer">
+        <div class="containerNew" style="display: true" id="gridViewContainer" runat="server">
             <div id="errorMessage" class="alert alert-danger" runat="server" style="display: none;" />
             <asp:GridView ID="GridView1" runat="server"  CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%" Height="200px" AutoGenerateColumns="True">
                 <AlternatingRowStyle BackColor="White" />

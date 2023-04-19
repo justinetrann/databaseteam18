@@ -60,13 +60,13 @@ namespace databaseteam18
         protected global::System.Web.UI.WebControls.HiddenField totalHoursCompleted;
 
         /// <summary>
-        /// ProjectsHoursValues control.
+        /// pieChartData control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField ProjectsHoursValues;
+        protected global::System.Web.UI.WebControls.HiddenField pieChartData;
 
         /// <summary>
         /// errorMessage control.

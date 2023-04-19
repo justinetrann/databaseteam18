@@ -7,6 +7,8 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 
 
     <link href="Styles/task-database.css" rel="stylesheet" type="text/css" />
@@ -55,21 +57,17 @@
                 <%--                <label for="tasksCompletedLate" class="col-sm-4 col-form-label">Tasks Completed Late: <b style="color: #2461BF"><%= tasksCompletedLate.Value %></b> </label>--%>
             </div>
             <br />
-            <div>
-                <div>
-                    <asp:HiddenField runat="server" ID="ProjectsHoursValues" />
-                    <label for="ProjectsHours" class="col-form-label">Project Hours Repartition: </label>
-                </div><br />
-                <div class="col-sm-4">
-                    <canvas id="myPieChart"></canvas>
-                </div>
+            <!--- PIE CHART-->
+            <div class="containerNew">
+                <asp:HiddenField runat="server" ID="pieChartData"  />
+                <canvas id="myPieChart"></canvas>
             </div>
         </div>
 
         <br />
         <div class="containerNew" style="display: true" id="gridViewContainer">
             <div id="errorMessage" class="alert alert-danger" runat="server" style="display: none;" />
-            <asp:GridView ID="GridView1" runat="server" DataKeyNames="Task ID" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%" Height="200px" AutoGenerateColumns="True">
+            <asp:GridView ID="GridView1" runat="server"  CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%" Height="200px" AutoGenerateColumns="True">
                 <AlternatingRowStyle BackColor="White" />
                 <EditRowStyle BackColor="#2461BF" />
                 <FooterStyle BackColor="#507CD1" ForeColor="White" Font-Bold="True" />
@@ -103,18 +101,23 @@
                                 'rgba(255, 159, 64, 0.5)'
                             ]
                         }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        width: 1,
+                        height: 1
                     }
                 });
                 return chart;
             }
 
-
-
+            var data = JSON.parse('<%= Session["PieChartData"] %>');
             var canvas = document.getElementById('myPieChart');
-            var data = @Html.Raw(Json.Encode(Model)); // pass the data source from the model to JavaScript
             var chart = createPieChart(canvas, data);
-
+            console.log(data);
         </script>
+
 
     </main>
 </asp:Content>

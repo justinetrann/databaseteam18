@@ -56,11 +56,11 @@ namespace databaseteam18
 
 
 
-                department_employees.DataSource = employees;
+                //department_employees.DataSource = employees;
                 //---->1. task_employees.AppendDataBoundItems = true;
-                department_employees.DataTextField = "employee_full_name"; // The column you want to display in the dropdown list
-                department_employees.DataValueField = "employee_id"; // The column you want to use as the value for the selected item
-                department_employees.DataBind();
+                //department_employees.DataTextField = "employee_full_name"; // The column you want to display in the dropdown list
+                //department_employees.DataValueField = "employee_id"; // The column you want to use as the value for the selected item
+                //department_employees.DataBind();
 
                 //this.employee_id = Convert.ToInt32(task_employees.SelectedValue);
 

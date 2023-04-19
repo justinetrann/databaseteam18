@@ -8,7 +8,7 @@
     <main aria-labelledby="project_form">
         <div class="containerNew">
             <div>
-                <h2>Department Cost Report</h2><br/><br/><br/><br/>
+                <h2>Department Cost Report</h2><br/>
                 <!-- Start Date and End Date inputs -->
                 <div class="form-group">
                     <div class="row">

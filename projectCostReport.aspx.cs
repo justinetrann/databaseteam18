@@ -263,18 +263,25 @@ namespace databaseteam18
             /*double tasksCompletionRate = (tasksCompletedOnTimeFloat / tasksCompletedFloat) * 100;*/
             // Replace with your actual value
             double projectVariancedouble = projectEstimatedCostFloat - projectActualCostFloat;
-            double projectCostVariancePercentageDouble = ((projectEstimatedCostFloat - projectActualCostFloat) / projectEstimatedCostFloat) * 100;
+            double projectCostVariancePercentageDouble = Math.Abs(projectVariancedouble / projectEstimatedCostFloat) * 100;
             string projectVariancedoubleString = projectVariancedouble.ToString("F2");
             string projectCostVariancePercentageString = projectCostVariancePercentageDouble.ToString("F2");
-            // Set the value of tasksCompletionRateValue to this value
-            projectCostVariance.Value = projectVariancedoubleString;
+            // Set the value of the HiddenFields to the calculated values
             projectCostVariancePercentage.Value = projectCostVariancePercentageString;
-
+            projectCostVariance.Value = projectVariancedoubleString;
+            // Set the value of the progressBarColor HiddenField based on the magnitude of the cost variance
             if (projectVariancedouble < 0)
+            {
                 progressBarColor.Value = "bg-danger";
+            }
+            else if (projectVariancedouble > 0)
+            {
+                progressBarColor.Value = "bg-success";
+            }
             else
-                progressBarColor.Value = "";
-
+            {
+                progressBarColor.Value = "bg-info";
+            }
 
 
 

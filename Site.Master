@@ -76,9 +76,9 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" runat="server" href="~/employeeReport" id="ReportnavbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Reports</a>
                             <ul class="dropdown-menu" aria-labelledby="ReportnavbarDropdownMenuLink">
-                                <li class="nav-item"><a class="nav-link dropdown-item" runat="server" href="~/Task_Form"> Department Performance Report</a></li>
+                                <li class="nav-item"><a class="nav-link dropdown-item" runat="server" href="~/departmentEmployeesReport"> Department Performance Report</a></li>
                                 <li class="nav-item"><a class="nav-link dropdown-item" runat="server" href="~/employeeReport">Employee Productivity Report</a></li>
-                                <li class="nav-item"><a class="nav-link dropdown-item" runat="server" href="~/employee_task_database">Project Cost Report</a></li>
+                                <li class="nav-item"><a class="nav-link dropdown-item" runat="server" href="~/projectCostReport">Project Cost Report</a></li>
                              </ul>
                         </li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Employee_Profile_Page">Profile</a></li>

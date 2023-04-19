@@ -104,6 +104,8 @@
     <Content Include="departmentReport.aspx" />
     <Content Include="department_assign.aspx" />
     <Content Include="employee-home-site.aspx" />
+    <Content Include="departmentEmployeesReport.aspx" />
+    <Content Include="projectCostReport.aspx" />
     <Content Include="employeeReport.aspx" />
     <Content Include="Employee_Profile_Page.aspx" />
     <Content Include="employee_task_database.aspx" />
@@ -239,6 +241,20 @@
     </Compile>
     <Compile Include="employee-home-site.aspx.designer.cs">
       <DependentUpon>employee-home-site.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="departmentEmployeesReport.aspx.cs">
+      <DependentUpon>departmentEmployeesReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="departmentEmployeesReport.aspx.designer.cs">
+      <DependentUpon>departmentEmployeesReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="projectCostReport.aspx.cs">
+      <DependentUpon>projectCostReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="projectCostReport.aspx.designer.cs">
+      <DependentUpon>projectCostReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="employeeReport.aspx.cs">
       <DependentUpon>employeeReport.aspx</DependentUpon>

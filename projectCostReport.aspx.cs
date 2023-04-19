@@ -56,11 +56,11 @@ namespace databaseteam18
 
 
 
-                department_project.DataSource = projects;
+                department_employees.DataSource = projects;
                 //---->1. task_employees.AppendDataBoundItems = true;
-                department_project.DataTextField = "project_full_name"; // The column you want to display in the dropdown list
-                department_project.DataValueField = "ID"; // The column you want to use as the value for the selected item
-                department_project.DataBind();
+                department_employees.DataTextField = "project_full_name"; // The column you want to display in the dropdown list
+                department_employees.DataValueField = "ID"; // The column you want to use as the value for the selected item
+                department_employees.DataBind();
 
                 //this.employee_id = Convert.ToInt32(task_employees.SelectedValue);
 
@@ -84,7 +84,7 @@ namespace databaseteam18
             string dbConnectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
 
             string project_id = Session["project_id"].ToString();
-            string employee_id = department_project.SelectedValue;
+            string employee_id = department_employees.SelectedValue;
             string start_date_input = report_start_date.Value;
             string completion_date_input = report_end_date.Value;
 

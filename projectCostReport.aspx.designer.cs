@@ -15,13 +15,13 @@ namespace databaseteam18
     {
 
         /// <summary>
-        /// department_project control.
+        /// department_employees control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList department_project;
+        protected global::System.Web.UI.WebControls.DropDownList department_employees;
 
         /// <summary>
         /// report_start_date control.

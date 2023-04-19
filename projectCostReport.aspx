@@ -13,8 +13,8 @@
                 <div class="form-group text-left">
                     <div class="row">
                         <div class="col-sm-4">
-                            <label for="department-project">Project Name</label>
-                            <asp:DropDownList ID="department_project" runat="server"  CssClass="form-control bi bi-chevron-down"></asp:DropDownList>
+                            <label for="department-employees">Project Name</label>
+                            <asp:DropDownList ID="department_employees" runat="server"  CssClass="form-control bi bi-chevron-down"></asp:DropDownList>
                             
                         </div>
                     </div>

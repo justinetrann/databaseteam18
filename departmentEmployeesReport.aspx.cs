@@ -118,6 +118,7 @@ namespace databaseteam18
             string start_date_input = report_start_date.Value;
             string completion_date_input = report_end_date.Value;
 
+            
 
             var queryString = "SELECT CONVERT(varchar, E.employee_id) + ' ' + E.employee_first_name + ' ' + E.employee_last_name AS 'Employee Name'," +
                               " COUNT(*) AS 'Completed Tasks'," +
@@ -130,7 +131,7 @@ namespace databaseteam18
                               " FROM COMPANY.task_assignment TA " +
                               " INNER JOIN COMPANY.employees E ON E.employee_id = TA.employee_ID " +
                               " WHERE task_status = 'Completed' AND TA.deleted = 0 " +
-                              " AND task_start_date > @start_date_input AND task_completion_date < @completion_date_input " +
+                              " AND task_start_date > @start_date_input AND task_completion_date < @completion_date_input AND E.dept_ID = @department_id" +
                               " GROUP BY CONVERT(varchar, E.employee_id) + ' ' + E.employee_first_name + ' ' + E.employee_last_name;";
 
 
@@ -141,12 +142,12 @@ namespace databaseteam18
 
             var connection = new SqlConnection(dbConnectionString);
             SqlCommand command = new SqlCommand(queryString, connection);
-
+            int department_id = Convert.ToInt32(Session["department_id"]);
             // Add parameters to the query and set their values
             //command.Parameters.AddWithValue("@employee_id", 0);
             command.Parameters.AddWithValue("@start_date_input", start_date_input);
             command.Parameters.AddWithValue("@completion_date_input", completion_date_input);
-            int department_id = Convert.ToInt32(Session["department_id"]);
+            command.Parameters.AddWithValue("@department_id", department_id);
 
             SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
             var ds = new DataSet();
@@ -160,7 +161,7 @@ namespace databaseteam18
 
             //get the count of projects completed and store it in a reader
             string read_completed_projects_query = "SELECT COUNT(*) as 'projects_completed' FROM COMPANY.projects WHERE Status = 'Completed'" +
-     " AND deleted = 0 AND Department_ID = @department_id" +
+     " AND Deleted = 0 AND Department_ID = @department_id" +
      " AND Start_Date > @start_date_input AND end_date < @completion_date_input;";
 
             SqlCommand read_completed_projects_command = new SqlCommand(read_completed_projects_query, connection);

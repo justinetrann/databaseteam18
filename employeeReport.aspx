@@ -53,7 +53,7 @@
             <div class="row align-items-start">
                 <div class="col-sm-3">
                     <asp:HiddenField runat="server" ID="tasksCompletionRateValue" />
-                    <label for="tasksCompletionRate" class="col-form-label">Task Completion Rate: </label>
+                    <label for="tasksCompletionRate" class="col-form-label">On Time Task Completion Rate: </label>
                 </div>
                 <div class="col-sm-4">
                     <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="<%= tasksCompletionRateValue.Value %>" aria-valuemin="0" aria-valuemax="100">

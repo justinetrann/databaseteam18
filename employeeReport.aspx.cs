@@ -90,7 +90,7 @@ namespace databaseteam18
 
 
             var queryString = "SELECT COMPANY.tasks.task_ID as 'Task ID', task_name as 'Task Name', " +
-                   " task_est_duration as 'Duration'," +
+                   " task_est_duration as 'Est. Duration'," +
                    " CAST(CAST(ROUND((SELECT DATEDIFF(second,(SELECT task_start_date FROM COMPANY.task_assignment WHERE COMPANY.tasks.task_ID = COMPANY.task_assignment.task_id)," +
                    " (SELECT task_completion_date FROM COMPANY.task_assignment WHERE COMPANY.tasks.task_ID = COMPANY.task_assignment.task_id)) / 3600.0 ), 2) AS DECIMAL(10,2)) AS VARCHAR(20)) AS 'Hours Worked'," +
                    " task_start_date as 'Started On'," +

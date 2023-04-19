@@ -21,9 +21,9 @@ namespace databaseteam18
         public class PieChartData
         {
             public string label;
-            public int value;
+            public double value;
 
-            public PieChartData(string label, int value)
+            public PieChartData(string label, double value)
             {
                 this.label = label;
                 this.value = value;
@@ -81,17 +81,17 @@ namespace databaseteam18
                 //read_employees_command.Dispose();
                 ////da.Dispose();
             }
-            // PIE CHART CONTROL
+            //// PIE CHART CONTROL
 
-            List<PieChartData> dataPoints = new List<PieChartData>();
-            dataPoints.Add(new PieChartData("Category 1", 25));
-            dataPoints.Add(new PieChartData("Category 2", 40));
-            dataPoints.Add(new PieChartData("Category 3", 35));
+            //List<PieChartData> dataPoints = new List<PieChartData>();
+            //dataPoints.Add(new PieChartData("Category 1", 25));
+            //dataPoints.Add(new PieChartData("Category 2", 40));
+            //dataPoints.Add(new PieChartData("Category 3", 35));
 
-            JavaScriptSerializer serializer = new JavaScriptSerializer();
-            string serializedData = serializer.Serialize(dataPoints);
+            //JavaScriptSerializer serializer = new JavaScriptSerializer();
+            //string serializedData = serializer.Serialize(dataPoints);
 
-            HttpContext.Current.Session["PieChartData"] = serializedData;
+            //HttpContext.Current.Session["PieChartData"] = serializedData;
 
 
 
@@ -118,7 +118,7 @@ namespace databaseteam18
             string start_date_input = report_start_date.Value;
             string completion_date_input = report_end_date.Value;
 
-            
+
 
             var queryString = "SELECT CONVERT(varchar, E.employee_id) + ' ' + E.employee_first_name + ' ' + E.employee_last_name AS 'Employee Name'," +
                               " COUNT(*) AS 'Completed Tasks'," +
@@ -186,7 +186,7 @@ namespace databaseteam18
             connection.Close();
 
 
-            
+
             //total hours
             string total_hours_query = "SELECT SUM(DATEDIFF(second, task_start_date, task_completion_date)) / 3600.0 as total_hours_worked " +
                "FROM COMPANY.tasks " +
@@ -237,10 +237,47 @@ namespace databaseteam18
 
             // PIE CHART CONTROL
 
+            string project_name_project_hours_query = "SELECT P.Name as project_name, SUM(DATEDIFF(second, TA.task_start_date, TA.task_completion_date)) / 3600.0 AS total_hours_completed " +
+  "FROM COMPANY.projects P INNER JOIN COMPANY.task_assignment TA ON P.ID = TA.project_ID WHERE TA.task_status = 'Completed' AND TA.deleted = 0 " +
+  "AND TA.task_start_date > @start_date_input AND TA.task_completion_date < @completion_date_input GROUP BY P.Name;";
+
+            SqlCommand project_name_project_hours_command = new SqlCommand(project_name_project_hours_query, connection);
+            //total_hours_command.Parameters.AddWithValue("@employee_id", 0);
+            project_name_project_hours_command.Parameters.AddWithValue("@start_date_input", start_date_input);
+            project_name_project_hours_command.Parameters.AddWithValue("@completion_date_input", completion_date_input);
+
+            connection.Open();
+            SqlDataReader project_name_project_hours_query_reader = project_name_project_hours_command.ExecuteReader();
+
             List<PieChartData> dataPoints = new List<PieChartData>();
-            dataPoints.Add(new PieChartData("Category 1", 25));
-            dataPoints.Add(new PieChartData("Category 2", 40));
-            dataPoints.Add(new PieChartData("Category 3", 35));
+            if (project_name_project_hours_query_reader.HasRows)
+            {
+               
+                while (project_name_project_hours_query_reader.Read())
+                {
+                    string project_name = project_name_project_hours_query_reader["project_name"].ToString();
+                    double totalHoursWorked = Math.Round(Convert.ToDouble(project_name_project_hours_query_reader["total_hours_completed"]), 2);
+
+                    dataPoints.Add(new PieChartData(project_name, totalHoursWorked));
+
+                }
+            }
+            else
+            {
+                dataPoints.Add(new PieChartData("category 1", 25));
+                dataPoints.Add(new PieChartData("category 2", 40));
+                dataPoints.Add(new PieChartData("category 3", 35));
+
+            }
+            project_name_project_hours_query_reader.Close();
+            connection.Close();
+          
+            
+
+            //List<PieChartData> dataPoints = new List<PieChartData>();
+            //dataPoints.Add(new PieChartData("Category 1", 25));
+            //dataPoints.Add(new PieChartData("Category 2", 40));
+            //dataPoints.Add(new PieChartData("Category 3", 35));
 
             JavaScriptSerializer serializer = new JavaScriptSerializer();
             string serializedData = serializer.Serialize(dataPoints);

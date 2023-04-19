@@ -20,7 +20,7 @@ namespace databaseteam18
             submitButton.ServerClick += new EventHandler(submitButton_Click);
 
 
-            SqlDataAdapter projects_da;
+            SqlDataAdapter employees_da;
 
             string connectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
             SqlConnection connection = new SqlConnection(connectionString);
@@ -38,33 +38,33 @@ namespace databaseteam18
 
             //return;
 
-            string read_project_query = "SELECT ID, convert(varchar, ID) + ' ' + Name AS project_full_name FROM COMPANY.projects WHERE Department_ID = @department_id;";
+            string read_employees_query = "SELECT employee_id, convert(varchar, employee_id) + ' ' + employee_first_name + ' ' + employee_last_name AS employee_full_name FROM COMPANY.employees WHERE dept_ID = @department_id;";
 
-            SqlCommand read_projects_command = new SqlCommand(read_project_query, connection);
-            read_projects_command.Parameters.AddWithValue("@department_id", department_id);
+            SqlCommand read_employees_command = new SqlCommand(read_employees_query, connection);
+            read_employees_command.Parameters.AddWithValue("@department_id", department_id);
 
-            
+
             if (!IsPostBack)
             {
-                projects_da = new SqlDataAdapter(read_projects_command);
+                employees_da = new SqlDataAdapter(read_employees_command);
 
                 // create a DataTable to hold the results
-                DataTable projects = new DataTable();
+                DataTable employees = new DataTable();
 
                 // fill the DataTable with the results of the SQL query
-                projects_da.Fill(projects);
+                employees_da.Fill(employees);
 
 
 
-                department_employees.DataSource = projects;
+                department_employees.DataSource = employees;
                 //---->1. task_employees.AppendDataBoundItems = true;
-                department_employees.DataTextField = "project_full_name"; // The column you want to display in the dropdown list
-                department_employees.DataValueField = "ID"; // The column you want to use as the value for the selected item
+                department_employees.DataTextField = "employee_full_name"; // The column you want to display in the dropdown list
+                department_employees.DataValueField = "employee_id"; // The column you want to use as the value for the selected item
                 department_employees.DataBind();
 
                 //this.employee_id = Convert.ToInt32(task_employees.SelectedValue);
 
-                read_projects_command.Dispose();
+                read_employees_command.Dispose();
                 //da.Dispose();
             }
 

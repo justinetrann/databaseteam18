@@ -78,7 +78,7 @@
                             <ul class="dropdown-menu" aria-labelledby="ReportnavbarDropdownMenuLink">
                                 <li class="nav-item"><a class="nav-link dropdown-item" runat="server" href="~/departmentEmployeesReport"> Department Performance Report</a></li>
                                 <li class="nav-item"><a class="nav-link dropdown-item" runat="server" href="~/employeeReport">Employee Productivity Report</a></li>
-                                <li class="nav-item"><a class="nav-link dropdown-item" runat="server" href="~/projectCostReport">Project Cost Report</a></li>
+                                <li class="nav-item"><a class="nav-link dropdown-item" runat="server" href="~/projectCostReport">Department Cost Report</a></li>
                              </ul>
                         </li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Employee_Profile_Page">Profile</a></li>

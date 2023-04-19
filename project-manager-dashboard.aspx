@@ -13,14 +13,8 @@
             </video>
             <div class="video-text">
                 <div id="manager-profile">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <h4 id="first_name" runat="server">First Name</h4>
-                        </div>
-                        <div class="col-md-3">
-                            <h4 id="last_name" runat="server">Last Name</h4>
-                        </div>
-                    </div>
+                    <h4 id="first_name" runat="server">First Name</h4>
+                    <h4 id="last_name" runat="server">Last Name</h4>
                     <h4 id="Department" runat="server">Department Name</h4>
                 </div>
             </div>

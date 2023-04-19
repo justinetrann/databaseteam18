@@ -110,6 +110,14 @@
                     <asp:BoundField DataField="CompletionStatus" HeaderText="Completion" ReadOnly="true" />
                     <asp:BoundField DataField="CompletionDate" HeaderText="Completed On" ReadOnly="true"  DataFormatString="{0:MM/dd/yyyy}"/>
 
+                    <asp:TemplateField HeaderText="Cost">
+                        <ItemTemplate>
+                            <asp:Label ID="CostLabel" runat="server" Text='<%# Eval("Cost") %>'></asp:Label>
+                        </ItemTemplate>
+                        <EditItemTemplate>
+                            <asp:TextBox ID="TaskCostTextBox" runat="server" Text='<%# Bind("Cost") %>'></asp:TextBox>
+                        </EditItemTemplate>
+                    </asp:TemplateField>
 
                     <asp:TemplateField HeaderText="Task Priority">
                         <ItemTemplate>

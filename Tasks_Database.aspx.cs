@@ -115,6 +115,10 @@ namespace databaseteam18
                 TextBox DeadlineTextBox = (TextBox)GridView1.Rows[GridView1.EditIndex].FindControl("DeadlineTextBox");
                 string new_task_deadline = DeadlineTextBox.Text;
 
+                //Get Task Cost Update Value
+                TextBox TaskCostTextBox = (TextBox)GridView1.Rows[GridView1.EditIndex].FindControl("TaskCostTextBox");
+                string new_task_cost = TaskCostTextBox.Text;
+
 
                 DateTime task_deadline = DateTime.ParseExact(new_task_deadline, "MM/dd/yyyy hh:mm:ss tt", CultureInfo.InvariantCulture);
                 DateTime current_datetime = DateTime.Now;
@@ -139,7 +143,7 @@ namespace databaseteam18
 
                     string connectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
                     string query = "UPDATE COMPANY.task_assignment SET task_priority = @task_priority, task_completion_status = @completion_status,task_completion_date = @completion_date, task_status = @task_status, task_deadline = @task_deadline, employee_ID = @employee_id WHERE task_id = @task_id;";
-                    query += "UPDATE COMPANY.tasks SET task_name = @task_name, task_description = @task_description WHERE task_id = @task_id;";
+                    query += "UPDATE COMPANY.tasks SET task_name = @task_name, task_description = @task_description, cost = @cost WHERE task_id = @task_id;";
 
                     SqlConnection connection = new SqlConnection(connectionString);
 
@@ -154,6 +158,7 @@ namespace databaseteam18
                     command.Parameters.AddWithValue("@completion_status", completion_status);
                     command.Parameters.AddWithValue("@completion_date", current_datetime);
                     command.Parameters.AddWithValue("@task_description", new_task_description);
+                    command.Parameters.AddWithValue("@cost", new_task_cost);
 
                     connection.Open();
                     command.ExecuteNonQuery();
@@ -165,7 +170,7 @@ namespace databaseteam18
                 {
                     string connectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
                     string query = "UPDATE COMPANY.task_assignment SET task_priority = @task_priority, task_status = @task_status, task_deadline = @task_deadline, employee_ID = @employee_id, task_start_date = @task_start_date WHERE task_id = @task_id;";
-                    query += "UPDATE COMPANY.tasks SET task_name = @task_name, task_description = @task_description WHERE task_id = @task_id;";
+                    query += "UPDATE COMPANY.tasks SET task_name = @task_name, task_description = @task_description, cost = @cost WHERE task_id = @task_id;";
 
                     SqlConnection connection = new SqlConnection(connectionString);
 
@@ -178,7 +183,8 @@ namespace databaseteam18
                     command.Parameters.AddWithValue("@task_id", task_id);
                     command.Parameters.AddWithValue("@task_name", new_task_name);
                     command.Parameters.AddWithValue("@task_description", new_task_description);
-                    command.Parameters.AddWithValue("@task_start_date", current_datetime); 
+                    command.Parameters.AddWithValue("@task_start_date", current_datetime);
+                    command.Parameters.AddWithValue("@cost", new_task_cost);
 
                     connection.Open();
                     command.ExecuteNonQuery();
@@ -191,7 +197,7 @@ namespace databaseteam18
                 {
                     string connectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
                     string query = "UPDATE COMPANY.task_assignment SET task_priority = @task_priority, task_status = @task_status, task_deadline = @task_deadline, employee_ID = @employee_id WHERE task_id = @task_id;";
-                    query += "UPDATE COMPANY.tasks SET task_name = @task_name, task_description = @task_description WHERE task_id = @task_id;";
+                    query += "UPDATE COMPANY.tasks SET task_name = @task_name, task_description = @task_description, cost = @cost WHERE task_id = @task_id;";
 
                     SqlConnection connection = new SqlConnection(connectionString);
 
@@ -204,6 +210,7 @@ namespace databaseteam18
                     command.Parameters.AddWithValue("@task_id", task_id);
                     command.Parameters.AddWithValue("@task_name", new_task_name);
                     command.Parameters.AddWithValue("@task_description", new_task_description);
+                    command.Parameters.AddWithValue("@cost", new_task_cost);
 
                     connection.Open();
                     command.ExecuteNonQuery();
@@ -260,7 +267,7 @@ namespace databaseteam18
 
             string project_id = Session["project_id"].ToString();
 
-            var queryString = "SELECT COMPANY.tasks.task_ID as 'Task ID',task_start_date as 'Started On', task_name as 'Task Name', task_description as 'Description',task_est_duration as 'Duration',task_predecessor_ID as 'Task_Pred_ID', task_priority as 'Task Priority', COMPANY.task_assignment.task_status as 'Status', COMPANY.tasks.deleted as 'Delete', task_creation_date as 'Creation Date', task_assignment_date as 'Assignment Date', task_deadline as 'Deadline', COMPANY.task_assignment.task_completion_date as 'CompletionDate', COMPANY.task_assignment.task_completion_status as 'CompletionStatus', convert(varchar,COMPANY.task_assignment.employee_id) + ' ' + employee_first_name + ' ' + employee_last_name as 'Employee'  FROM COMPANY.tasks  inner join COMPANY.task_assignment on COMPANY.task_assignment.task_id = COMPANY.tasks.task_ID inner join COMPANY.employees on COMPANY.employees.employee_id = COMPANY.task_assignment.employee_ID left outer join COMPANY.Tasks_Dependecies TDP on TDP.task_descendant_ID = COMPANY.tasks.task_ID WHERE  COMPANY.tasks.project_ID=" + project_id + "AND COMPANY.tasks.deleted = 0;" ; // Return all records from Project Table in Database
+            var queryString = "SELECT COMPANY.tasks.task_ID as 'Task ID',task_start_date as 'Started On', task_name as 'Task Name', cost as 'Cost', task_description as 'Description',task_est_duration as 'Duration',task_predecessor_ID as 'Task_Pred_ID', task_priority as 'Task Priority', COMPANY.task_assignment.task_status as 'Status', COMPANY.tasks.deleted as 'Delete', task_creation_date as 'Creation Date', task_assignment_date as 'Assignment Date', task_deadline as 'Deadline', COMPANY.task_assignment.task_completion_date as 'CompletionDate', COMPANY.task_assignment.task_completion_status as 'CompletionStatus', convert(varchar,COMPANY.task_assignment.employee_id) + ' ' + employee_first_name + ' ' + employee_last_name as 'Employee'  FROM COMPANY.tasks  inner join COMPANY.task_assignment on COMPANY.task_assignment.task_id = COMPANY.tasks.task_ID inner join COMPANY.employees on COMPANY.employees.employee_id = COMPANY.task_assignment.employee_ID left outer join COMPANY.Tasks_Dependecies TDP on TDP.task_descendant_ID = COMPANY.tasks.task_ID WHERE  COMPANY.tasks.project_ID=" + project_id + "AND COMPANY.tasks.deleted = 0;" ; // Return all records from Project Table in Database
             var dbConncetion = new SqlConnection(dbConnectionString);
             //var dataAdapter = new SqlDataAdapter(queryString, dbConncetion);
             SqlDataAdapter dataAdapter = new SqlDataAdapter(queryString, dbConncetion);

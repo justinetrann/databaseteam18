@@ -46,26 +46,26 @@ namespace databaseteam18
 
             if (!IsPostBack)
             {
-                employees_da = new SqlDataAdapter(read_employees_command);
+                //employees_da = new SqlDataAdapter(read_employees_command);
 
-                // create a DataTable to hold the results
-                DataTable employees = new DataTable();
+                //// create a DataTable to hold the results
+                //DataTable employees = new DataTable();
 
-                // fill the DataTable with the results of the SQL query
-                employees_da.Fill(employees);
+                //// fill the DataTable with the results of the SQL query
+                //employees_da.Fill(employees);
 
 
 
-                department_employees.DataSource = employees;
-                //---->1. task_employees.AppendDataBoundItems = true;
-                department_employees.DataTextField = "employee_full_name"; // The column you want to display in the dropdown list
-                department_employees.DataValueField = "employee_id"; // The column you want to use as the value for the selected item
-                department_employees.DataBind();
+                //department_employees.DataSource = employees;
+                ////---->1. task_employees.AppendDataBoundItems = true;
+                //department_employees.DataTextField = "employee_full_name"; // The column you want to display in the dropdown list
+                //department_employees.DataValueField = "employee_id"; // The column you want to use as the value for the selected item
+                //department_employees.DataBind();
 
-                //this.employee_id = Convert.ToInt32(task_employees.SelectedValue);
+                ////this.employee_id = Convert.ToInt32(task_employees.SelectedValue);
 
-                read_employees_command.Dispose();
-                //da.Dispose();
+                //read_employees_command.Dispose();
+                ////da.Dispose();
             }
 
         }
@@ -84,7 +84,7 @@ namespace databaseteam18
             string dbConnectionString = ConfigurationManager.ConnectionStrings["DataBaseConnectionString"].ConnectionString;
 
             string project_id = Session["project_id"].ToString();
-            string employee_id = department_employees.SelectedValue;
+            //string employee_id = department_employees.SelectedValue;
             string start_date_input = report_start_date.Value;
             string completion_date_input = report_end_date.Value;
 
@@ -113,7 +113,7 @@ namespace databaseteam18
             SqlCommand command = new SqlCommand(queryString, connection);
 
             // Add parameters to the query and set their values
-            command.Parameters.AddWithValue("@employee_id", employee_id);
+            command.Parameters.AddWithValue("@employee_id", 0);
             command.Parameters.AddWithValue("@start_date_input", start_date_input);
             command.Parameters.AddWithValue("@completion_date_input", completion_date_input);
 
@@ -133,7 +133,7 @@ namespace databaseteam18
      " AND task_start_date > @start_date_input AND task_completion_date < @completion_date_input;";
 
             SqlCommand read_completed_tasks_command = new SqlCommand(read_completed_tasks_query, connection);
-            read_completed_tasks_command.Parameters.AddWithValue("@employee_id", employee_id);
+            read_completed_tasks_command.Parameters.AddWithValue("@employee_id", 0);
             read_completed_tasks_command.Parameters.AddWithValue("@start_date_input", start_date_input);
             read_completed_tasks_command.Parameters.AddWithValue("@completion_date_input", completion_date_input);
 
@@ -145,7 +145,7 @@ namespace databaseteam18
             {
                 if (completed_tasks_reader.Read())
                 {
-                    tasksCompleted.Value = Convert.ToString(completed_tasks_reader["tasks_completed"]);
+                    projectsCompleted.Value = Convert.ToString(completed_tasks_reader["tasks_completed"]);
                 }
             }
             
@@ -160,7 +160,7 @@ namespace databaseteam18
      " AND task_start_date > @start_date_input AND task_completion_date < @completion_date_input AND task_completion_status = 'Late';";
 
             SqlCommand read_completed_late_tasks_command = new SqlCommand(read_completed_late_tasks_query, connection);
-            read_completed_late_tasks_command.Parameters.AddWithValue("@employee_id", employee_id);
+            read_completed_late_tasks_command.Parameters.AddWithValue("@employee_id", 0);
             read_completed_late_tasks_command.Parameters.AddWithValue("@start_date_input", start_date_input);
             read_completed_late_tasks_command.Parameters.AddWithValue("@completion_date_input", completion_date_input);
 
@@ -172,7 +172,7 @@ namespace databaseteam18
             {
                 if (completed_late_tasks_reader.Read())
                 {
-                    tasksCompletedLate.Value = Convert.ToString(completed_late_tasks_reader["tasks_completed"]);
+                    projectsCompleted.Value = Convert.ToString(completed_late_tasks_reader["tasks_completed"]);
                 }
             }
             
@@ -187,7 +187,7 @@ namespace databaseteam18
      " AND task_start_date > @start_date_input AND task_completion_date < @completion_date_input AND task_completion_status = 'On Time';";
 
             SqlCommand read_completed_OnTime_tasks_command = new SqlCommand(read_completed_OnTime_tasks_query, connection);
-            read_completed_OnTime_tasks_command.Parameters.AddWithValue("@employee_id", employee_id);
+            read_completed_OnTime_tasks_command.Parameters.AddWithValue("@employee_id", 0);
             read_completed_OnTime_tasks_command.Parameters.AddWithValue("@start_date_input", start_date_input);
             read_completed_OnTime_tasks_command.Parameters.AddWithValue("@completion_date_input", completion_date_input);
 
@@ -199,7 +199,7 @@ namespace databaseteam18
             {
                 if (completed_OnTime_tasks_reader.Read())
                 {
-                    tasksCompletedOnTime.Value = Convert.ToString(completed_OnTime_tasks_reader["tasks_completed"]);
+                    projectsCompleted.Value = Convert.ToString(completed_OnTime_tasks_reader["tasks_completed"]);
                 }
             }
 
@@ -218,7 +218,7 @@ namespace databaseteam18
                "AND task_completion_date < @completion_date_input;";
 
             SqlCommand total_hours_command = new SqlCommand(total_hours_query, connection);
-            total_hours_command.Parameters.AddWithValue("@employee_id", employee_id);
+            total_hours_command.Parameters.AddWithValue("@employee_id", 0);
             total_hours_command.Parameters.AddWithValue("@start_date_input", start_date_input);
             total_hours_command.Parameters.AddWithValue("@completion_date_input", completion_date_input);
 
@@ -233,7 +233,7 @@ namespace databaseteam18
                     string totalHoursWorkedString = totalHoursWorked.ToString("F2");
 
                     // Do something with the formatted value
-                    hoursWorked.Value = totalHoursWorkedString + " hours";
+                    totalHoursCompleted.Value = totalHoursWorkedString + " hours";
                 }
             }
             reader.Close();
@@ -241,26 +241,37 @@ namespace databaseteam18
 
          //set completion rate and progress bar class
 
-            string tasksCompletedOnTimeString = tasksCompletedOnTime.Value;
+            string tasksCompletedOnTimeString = projectsCompleted.Value;
             float tasksCompletedOnTimeFloat = float.Parse(tasksCompletedOnTimeString);
 
-            string tasksCompletedString = tasksCompleted.Value;
+            string tasksCompletedString = projectsCompleted.Value;
             float tasksCompletedFloat = float.Parse(tasksCompletedString);
             // Do something with tasksCompletedOnTimeInt
 
             double tasksCompletionRate = (tasksCompletedOnTimeFloat / tasksCompletedFloat) * 100; // Replace with your actual value
             string tasksCompletionRateString = tasksCompletionRate.ToString("F2");
             // Set the value of tasksCompletionRateValue to this value
-            tasksCompletionRateValue.Value = tasksCompletionRateString;
+            projectsCompleted.Value = tasksCompletionRateString;
 
 
-            //progress bar color;
-            if (tasksCompletionRate < 50)
-                progressBarColor.Value = "bg-danger";
-            else if (tasksCompletionRate >= 50 && tasksCompletionRate < 75)
-                progressBarColor.Value = "bg-warning";
-            else
-                progressBarColor.Value = "";
+            ////progress bar color;
+            //if (tasksCompletionRate < 50)
+            //    progressBarColor.Value = "bg-danger";
+            //else if (tasksCompletionRate >= 50 && tasksCompletionRate < 75)
+            //    progressBarColor.Value = "bg-warning";
+            //else
+            //    progressBarColor.Value = "";
+
+
+            // PIE CHART CONTROL
+            string[] labels = { "Red", "Blue", "Yellow", "Green", "Purple", "Orange" };
+            int[] values = { 12, 19, 3, 5, 2, 3 };
+
+            var data = new List<object>();
+            for (int i = 0; i < labels.Length; i++)
+            {
+                data.Add(new { label = labels[i], value = values[i] });
+            }
 
 
 

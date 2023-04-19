@@ -15,15 +15,6 @@ namespace databaseteam18
     {
 
         /// <summary>
-        /// department_employees control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList department_employees;
-
-        /// <summary>
         /// report_start_date control.
         /// </summary>
         /// <remarks>
@@ -51,58 +42,31 @@ namespace databaseteam18
         protected global::System.Web.UI.HtmlControls.HtmlButton submitButton;
 
         /// <summary>
-        /// tasksCompleted control.
+        /// projectsCompleted control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField tasksCompleted;
+        protected global::System.Web.UI.WebControls.HiddenField projectsCompleted;
 
         /// <summary>
-        /// tasksCompletedOnTime control.
+        /// totalHoursCompleted control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField tasksCompletedOnTime;
+        protected global::System.Web.UI.WebControls.HiddenField totalHoursCompleted;
 
         /// <summary>
-        /// tasksCompletedLate control.
+        /// ProjectsHoursValues control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField tasksCompletedLate;
-
-        /// <summary>
-        /// progressBarColor control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField progressBarColor;
-
-        /// <summary>
-        /// tasksCompletionRateValue control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField tasksCompletionRateValue;
-
-        /// <summary>
-        /// hoursWorked control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hoursWorked;
+        protected global::System.Web.UI.WebControls.HiddenField ProjectsHoursValues;
 
         /// <summary>
         /// errorMessage control.

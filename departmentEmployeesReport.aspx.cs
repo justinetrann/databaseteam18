@@ -67,6 +67,15 @@ namespace databaseteam18
                 //read_employees_command.Dispose();
                 ////da.Dispose();
             }
+            // PIE CHART CONTROL
+            string[] labels = { "Red", "Blue", "Yellow", "Green", "Purple", "Orange" };
+            int[] values = { 12, 19, 3, 5, 2, 3 };
+
+            var data = new List<object>();
+            for (int i = 0; i < labels.Length; i++)
+            {
+                data.Add(new { label = labels[i], value = values[i] });
+            }
 
         }
 

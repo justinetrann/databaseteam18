@@ -36,8 +36,8 @@
             <p class="col-form-label" style="text-align: center;">Department Cost Summery</p><br/>
             <div class="row">
                 <label for="departmentName" class="col-sm-4 col-form-label">Department Name: <b style="color: #2461BF"><%= departmentName.Value %></b></label>
-                <label for="estProjectCost" class="col-sm-4 col-form-label">Project Estimated Cost: <b style="color: #2461BF"><%= estProjectCost.Value %></b>    </label>
-                <label for="projectCostVariance" class="col-sm-4 col-form-label">Project Cost variance: <b style="color: #2461BF"><%= projectCostVariance.Value %> </b></label>
+                <label for="estProjectCost" class="col-sm-4 col-form-label">Department Estimated Cost: <b style="color: #2461BF"><%= estProjectCost.Value %></b>    </label>
+                <label for="projectCostVariance" class="col-sm-4 col-form-label">Department Cost variance: <b style="color: #2461BF"><%= projectCostVariance.Value %> </b></label>
 
             </div>
             <br />
@@ -56,8 +56,8 @@
             </div>
 
             <div class="row">
-                <asp:HiddenField runat="server" ID="hoursWorked" />
-                <label for="hoursWorked" class="col-sm-4 col-form-label">Project Actual Cost: <b style="color: #2461BF"><%= hoursWorked.Value %></b> </label>
+                <asp:HiddenField runat="server" ID="actualProjectCost" />
+                <label for="actualProjectCost" class="col-sm-4 col-form-label">Project Actual Cost: <b style="color: #2461BF"><%= actualProjectCost.Value %></b> </label>
             </div>
         </div>
 

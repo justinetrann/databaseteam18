@@ -8,17 +8,7 @@
     <main aria-labelledby="project_form">
         <div class="containerNew">
             <div>
-                <h2>Project Cost Report</h2>
-                <!-- Report Employee_ID -->
-                <div class="form-group text-left">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <label for="department-project">Project Name</label>
-                            <asp:DropDownList ID="department_project" runat="server"  CssClass="form-control bi bi-chevron-down"></asp:DropDownList>
-                            
-                        </div>
-                    </div>
-                </div>
+                <h2>Department Cost Report</h2><br/>
                 <!-- Start Date and End Date inputs -->
                 <div class="form-group">
                     <div class="row">
@@ -43,11 +33,11 @@
             <asp:HiddenField runat="server" ID="tasksCompletedLate" />
             <asp:HiddenField runat="server" ID="progressBarColor" />
 
-            <p class="col-form-label" style="text-align: center;">Project Cost Summery</p></br>
+            <p class="col-form-label" style="text-align: center;">Department Cost Summery</p><br/>
             <div class="row">
-                <label for="projectName" class="col-sm-4 col-form-label">Project Name: <b style="color: #2461BF"><%  %></b></label>
-                <label for="tasksCompleted" class="col-sm-4 col-form-label">Project Estimated Cost: <b style="color: #2461BF"><%= tasksCompleted.Value %></b>    </label>
-                <label for="tasksCompletedOnTime" class="col-sm-4 col-form-label">Project Cost variance: <b style="color: #2461BF"><%= tasksCompletedOnTime.Value %> </b></label>
+                <label for="departmentName" class="col-sm-4 col-form-label">Department Name: <b style="color: #2461BF"><% %></b></label>
+                <label for="tasksCompleted" class="col-sm-4 col-form-label">Department Estimated Cost: <b style="color: #2461BF"><%= tasksCompleted.Value %></b>    </label>
+                <label for="tasksCompletedOnTime" class="col-sm-4 col-form-label">Department Cost variance: <b style="color: #2461BF"><%= tasksCompletedOnTime.Value %> </b></label>
                 <!--<label for="tasksCompletedLate" class="col-sm-4 col-form-label">tasksCompletedLate <b style="color: #2461BF"><%= tasksCompletedLate.Value %></b> </label>-->
 
             </div>
@@ -55,7 +45,7 @@
             <div class="row align-items-start">
                 <div class="col-sm-3">
                     <asp:HiddenField runat="server" ID="tasksCompletionRateValue" />
-                    <label for="tasksCompletionRate" class="col-form-label">Project Cost Variance Percentage: </label>
+                    <label for="tasksCompletionRate" class="col-form-label">Department Cost Variance Percentage: </label>
                 </div>
                 <div class="col-sm-4">
                     <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="<%= tasksCompletionRateValue.Value %>" aria-valuemin="0" aria-valuemax="100">
@@ -68,7 +58,7 @@
 
             <div class="row">
                 <asp:HiddenField runat="server" ID="hoursWorked" />
-                <label for="hoursWorked" class="col-sm-4 col-form-label">Project Actual Cost: <b style="color: #2461BF"><%= hoursWorked.Value %></b> </label>
+                <label for="hoursWorked" class="col-sm-4 col-form-label">Department Actual Cost: <b style="color: #2461BF"><%= hoursWorked.Value %></b> </label>
             </div>
         </div>
 

@@ -21,6 +21,8 @@ namespace databaseteam18
         {
             if (!IsPostBack)
                 BindGridView();
+            successMessage.Style.Add("display","none");
+            errorMessage.Style.Add("display", "none");
 
 
         }
@@ -234,7 +236,8 @@ namespace databaseteam18
                     // Display a personalized error message to the user
 
                     Console.WriteLine("An error occurred: " + ex.Message);
-                    errorMessage.InnerHtml = ex.Message;
+                    //errorMessage.InnerHtml = ex.Message;
+                    errorMessage.InnerHtml = "Please complete any predecessor tasks before starting this task.";
                     errorMessage.Style.Remove("display");
                 }
                 else

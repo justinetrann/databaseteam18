@@ -100,7 +100,7 @@
 
                     <asp:TemplateField HeaderText="Deadline">
                         <ItemTemplate>
-                            <asp:Label ID="DeadlineDateLabel" runat="server" Text='<%# Eval("Deadline","{0:MM/dd/yyyy hh:mm:ss tt}") %>'></asp:Label>
+                            <asp:Label ID="DeadlineDateLabel" runat="server" Text='<%# Eval("Deadline","{0:MM/dd/yyyy}") %>'></asp:Label>
                         </ItemTemplate>
                         <EditItemTemplate>
                             <asp:TextBox ID="DeadlineTextBox" runat="server" Text='<%# Bind("Deadline","{0:MM/dd/yyyy hh:mm:ss tt}") %>'></asp:TextBox>
@@ -119,7 +119,7 @@
                         </EditItemTemplate>
                     </asp:TemplateField>
 
-                    <asp:TemplateField HeaderText="Task Priority">
+                    <asp:TemplateField HeaderText=" Priority">
                         <ItemTemplate>
                             <asp:Label ID="TaskPriorityLabel" runat="server" Text='<%# Eval("Task Priority") %>'></asp:Label>
                         </ItemTemplate>

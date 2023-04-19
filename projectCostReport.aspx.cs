@@ -116,25 +116,7 @@ namespace databaseteam18
              " AND COMPANY.projects.Department_ID = @department_id " +
              "ORDER BY COMPANY.projects.Name;";
 
-            //         var queryString = "SELECT " +
-            //    "COMPANY.projects.Name AS 'Project', " +
-            //    "SUM(DISTINCT(COMPANY.projects.Estimated_Cost)) AS 'Total Estimated Cost' " +
-            //"FROM " +
-            //    "COMPANY.tasks " +
-            //    "INNER JOIN COMPANY.task_assignment " +
-            //        "ON COMPANY.task_assignment.task_id = COMPANY.tasks.task_ID " +
-            //    "INNER JOIN COMPANY.employees " +
-            //        "ON COMPANY.employees.employee_id = COMPANY.task_assignment.employee_ID " +
-            //    "INNER JOIN COMPANY.projects " +
-            //        "ON COMPANY.projects.ID = COMPANY.task_assignment.project_ID " +
-            //"WHERE " +
-            //    "COMPANY.task_assignment.task_status = 'Completed' " +
-            //    "AND COMPANY.tasks.deleted = 0 " +
-            //    "AND task_start_date > @start_date_input " +
-            //    "AND task_completion_date < @completion_date_input " +
-            //    "AND COMPANY.projects.Department_ID = @department_id " +
-            //"GROUP BY " +
-            //    "COMPANY.projects.Name;";
+            
             
 
 
@@ -296,61 +278,7 @@ namespace databaseteam18
 
 
 
-            //       //total hours
-            //       string total_hours_query = "SELECT SUM(DATEDIFF(second, task_start_date, task_completion_date)) / 3600.0 as total_hours_worked " +
-            //          "FROM COMPANY.tasks " +
-            //          "INNER JOIN COMPANY.task_assignment ON COMPANY.task_assignment.task_id = COMPANY.tasks.task_ID " +
-            //          "WHERE COMPANY.task_assignment.task_status = 'Completed' " +
-            //          "AND COMPANY.tasks.deleted = 0 " +
-            //          "AND COMPANY.task_assignment.employee_ID = @employee_id " +
-            //          "AND task_start_date > @start_date_input " +
-            //          "AND task_completion_date < @completion_date_input;";
-
-            //       SqlCommand total_hours_command = new SqlCommand(total_hours_query, connection);
-            //       total_hours_command.Parameters.AddWithValue("@employee_id", employee_id);
-            //       total_hours_command.Parameters.AddWithValue("@start_date_input", start_date_input);
-            //       total_hours_command.Parameters.AddWithValue("@completion_date_input", completion_date_input);
-
-            //       connection.Open();
-            //       SqlDataReader reader = total_hours_command.ExecuteReader();
-
-            //       if (reader.HasRows)
-            //       {
-            //           while (reader.Read())
-            //           {
-            //               double totalHoursWorked = Convert.ToDouble(reader["total_hours_worked"]);
-            //               string totalHoursWorkedString = totalHoursWorked.ToString("F2");
-
-            //               // Do something with the formatted value
-            //               hoursWorked.Value = totalHoursWorkedString + " hours";
-            //           }
-            //       }
-            //       reader.Close();
-            //       connection.Close();
-
-            //       //set completion rate and progress bar class
-
-            //       string tasksCompletedOnTimeString = tasksCompletedOnTime.Value;
-            //       float tasksCompletedOnTimeFloat = float.Parse(tasksCompletedOnTimeString);
-
-            //       string tasksCompletedString = tasksCompleted.Value;
-            //       float tasksCompletedFloat = float.Parse(tasksCompletedString);
-            //       // Do something with tasksCompletedOnTimeInt
-
-            //       double tasksCompletionRate = (tasksCompletedOnTimeFloat / tasksCompletedFloat) * 100; // Replace with your actual value
-            //       string tasksCompletionRateString = tasksCompletionRate.ToString("F2");
-            //       // Set the value of tasksCompletionRateValue to this value
-            //       tasksCompletionRateValue.Value = tasksCompletionRateString;
-
-
-            //       //progress bar color;
-            //       if (tasksCompletionRate < 50)
-            //           progressBarColor.Value = "bg-danger";
-            //       else if (tasksCompletionRate >= 50 && tasksCompletionRate < 75)
-            //           progressBarColor.Value = "bg-warning";
-            //       else
-            //           progressBarColor.Value = "";
-
+            
 
 
         }
@@ -358,9 +286,4 @@ namespace databaseteam18
 }
 
 
-////< asp:HiddenField runat = "server" ID="departmentName" />
-////<asp:HiddenField runat = "server" ID="estProjectCost" />
-////<asp:HiddenField runat = "server" ID="projectCostVariance" />
-//< asp:HiddenField runat = "server" ID="projectCostVariancePercentage" />
-//< asp:HiddenField runat = "server" ID="actualProjectCost" />
 

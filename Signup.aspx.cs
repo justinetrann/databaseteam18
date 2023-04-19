@@ -157,7 +157,7 @@ namespace databaseteam18
                 Session["employee_id"] = employee_ID;
                 Session["role_id"] = default_role;
                 //assign default value of -1 to user department_id and project_id
-                Session["employee_id"] = -1;
+                Session["department_id"] = -1;
                 Session["project_id"] = -1;
 
                 //Response.Redirect("~/Default.aspx");
@@ -194,11 +194,6 @@ namespace databaseteam18
             }
 
         }
-
-
-
-
-
 
     }
 

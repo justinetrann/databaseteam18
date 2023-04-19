@@ -11,7 +11,7 @@ namespace databaseteam18
 {
 
 
-    public partial class employeeReport
+    public partial class projectCostReport
     {
 
         /// <summary>

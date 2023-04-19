@@ -164,7 +164,7 @@ namespace databaseteam18
 
 
             //get the count of projects completed and store it in a reader
-            string read_completed_projects_query = "SELECT COUNT(*) as projects_completed FROM (SELECT COUNT(*) as project_count" +
+            string read_completed_projects_query = "SELECT ISNULL(COUNT(*), 0) as projects_completed FROM (SELECT COUNT(*) as project_count" +
                 " FROM COMPANY.projects P INNER JOIN COMPANY.task_assignment TA ON P.ID = TA.project_ID" +
                 " WHERE P.Deleted = 0 AND TA.Deleted = 0 AND Department_ID = @department_id AND TA.task_status = 'Completed' " +
                 "AND task_start_date > @start_date_input AND task_completion_date < @completion_date_input  GROUP BY TA.project_ID) AS project_counts;";
@@ -193,7 +193,7 @@ namespace databaseteam18
 
 
             //total hours
-            string total_hours_query = "SELECT SUM(DATEDIFF(second, task_start_date, task_completion_date)) / 3600.0 as total_hours_worked " +
+            string total_hours_query = "SELECT ISNULL(SUM(DATEDIFF(second, task_start_date, task_completion_date)) / 3600.0,0) as total_hours_worked " +
                "FROM COMPANY.tasks " +
                "INNER JOIN COMPANY.task_assignment ON COMPANY.task_assignment.task_id = COMPANY.tasks.task_ID INNER JOIN COMPANY.projects P on P.ID = COMPANY.task_assignment.project_ID" +
                " WHERE COMPANY.task_assignment.task_status = 'Completed' " +

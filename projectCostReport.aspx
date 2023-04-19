@@ -41,6 +41,7 @@
 
             </div>
             <br />
+
             <div class="row align-items-start">
                 <div class="col-sm-3">
                     <asp:HiddenField runat="server" ID="projectCostVariancePercentage" />
@@ -48,12 +49,13 @@
                 </div>
                 <div class="col-sm-4">
                     <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="<%= projectCostVariancePercentage.Value %>" aria-valuemin="0" aria-valuemax="100">
-                        <div class="progress-bar progress-bar-striped progress-bar-animated <%= progressBarColor.Value %>% " style="width: <%= projectCostVariancePercentage.Value %>%">
+                        <div class="progress-bar <%= progressBarColor.Value %>" style="width: <%= projectCostVariancePercentage.Value %>%;">
                             <%= projectCostVariancePercentage.Value %>%
                         </div>
                     </div>
                 </div>
             </div>
+
 
             <div class="row">
                 <asp:HiddenField runat="server" ID="actualProjectCost" />

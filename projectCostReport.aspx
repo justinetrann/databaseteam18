@@ -33,9 +33,9 @@
             <asp:HiddenField runat="server" ID="projectCostVariance" />
             <asp:HiddenField runat="server" ID="progressBarColor" />
 
-            <p class="col-form-label" style="text-align: center;">Department Cost Summery</p><br/>
+            <p class="col-form-label" style="text-align: center;">Department Cost Summery</p>
+            <p for="departmentName" class="col-form-label">Department Name: <b style="color: #2461BF"><%= departmentName.Value %></b></p>
             <div class="row">
-                <label for="departmentName" class="col-sm-4 col-form-label">Department Name: <b style="color: #2461BF"><%= departmentName.Value %></b></label>
                 <label for="estProjectCost" class="col-sm-4 col-form-label">Department Estimated Cost: <b style="color: #2461BF"><%= estProjectCost.Value %></b>    </label>
                 <label for="projectCostVariance" class="col-sm-4 col-form-label">Department Cost variance: <b style="color: #2461BF"><%= projectCostVariance.Value %> </b></label>
 
@@ -45,7 +45,7 @@
             <div class="row align-items-start">
                 <div class="col-sm-3">
                     <asp:HiddenField runat="server" ID="projectCostVariancePercentage" />
-                    <label for="projectCostVariancePercentage" class="col-form-label">Project Cost Variance Percentage: </label>
+                    <label for="projectCostVariancePercentage" class="col-form-label">Department Cost Variance Percentage: </label>
                 </div>
                 <div class="col-sm-4">
                     <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="<%= projectCostVariancePercentage.Value %>" aria-valuemin="0" aria-valuemax="100">
@@ -59,7 +59,7 @@
 
             <div class="row">
                 <asp:HiddenField runat="server" ID="actualProjectCost" />
-                <label for="actualProjectCost" class="col-sm-4 col-form-label">Project Actual Cost: <b style="color: #2461BF"><%= actualProjectCost.Value %></b> </label>
+                <label for="actualProjectCost" class="col-sm-4 col-form-label">Department Actual Cost: <b style="color: #2461BF"><%= actualProjectCost.Value %></b> </label>
             </div>
         </div>
 

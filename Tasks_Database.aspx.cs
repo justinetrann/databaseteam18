@@ -231,22 +231,25 @@ namespace databaseteam18
             catch (SqlException ex)
 
             {
-                if (ex.Message.Contains("dependent"))
-                {
-                    // Display a personalized error message to the user
+                //if (ex.Message.Contains("dependent"))
+                //{
+                //    // Display a personalized error message to the user
 
-                    Console.WriteLine("An error occurred: " + ex.Message);
-                    //errorMessage.InnerHtml = ex.Message;
-                    errorMessage.InnerHtml = "Please complete any predecessor tasks before starting this task.";
-                    errorMessage.Style.Remove("display");
-                }
-                else
-                {
-                    // If the error was caused by something else, display a generic error message
-                    Console.WriteLine("An error occurred: " + ex.Message);
-                    errorMessage.InnerHtml = "A Database error occurred: " + ex.Message;
-                    errorMessage.Style.Remove("display");
-                }
+                //    Console.WriteLine("An error occurred: " + ex.Message);
+                //    //errorMessage.InnerHtml = ex.Message;
+                //    errorMessage.InnerHtml = "Please complete any predecessor tasks before starting this task.";
+                //    errorMessage.Style.Remove("display");
+                //}
+                //else
+                //{
+                //    // If the error was caused by something else, display a generic error message
+                //    Console.WriteLine("An error occurred: " + ex.Message);
+                //    errorMessage.InnerHtml = "A Database error occurred: " + ex.Message;
+                //    errorMessage.Style.Remove("display");
+                //}
+                Console.WriteLine("An error occurred: " + ex.Message);
+                errorMessage.InnerHtml = ex.Message;
+                errorMessage.Style.Remove("display");
 
                 // Handle the error in some way, such as displaying an error message to the user or logging the error for later analysis
 

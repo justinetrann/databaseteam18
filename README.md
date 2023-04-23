@@ -5,6 +5,7 @@ Using ASP.NET and Microsoft SQL, Team 18 has developed a project management syst
 **Installation**
 
 **Prequisites:**
+
 1) .NET SDK
 	a) Visual Studio Installer (2022)
 		i) Modify: ASP.NET and Web Development, .NET desktop development, Data storage and processing
@@ -12,6 +13,7 @@ Using ASP.NET and Microsoft SQL, Team 18 has developed a project management syst
 	a) Microsoft Azure SQL Database
 
 **Installation Steps**
+
 1. Clone the repository
 	git clone https://github.com/justinetrann/databaseteam18.git
 2. Use of Visual Studio 2022
@@ -28,6 +30,7 @@ Using ASP.NET and Microsoft SQL, Team 18 has developed a project management syst
 		i) Open in Visual Studio 2022
 
 **Usage**
+
 There are two ways for deployment:
 1. Open your web browser and navigate to https://projectmanagementsystem123.azurewebsites.net/
 2. Use the application
@@ -36,6 +39,7 @@ _Web Site connected to the Database should deploy_
 
 
 **Contact**
+
 University of Houston Texas College of Natural Sciences and Mathematics - Department of Computer Science
 2023SP-16097-COSC3380: Design of File and Database System
 
@@ -46,4 +50,5 @@ If you have any questions or suggestions, please contact us at:
 - Justine Tran: jytran2@cougarnet.uh.edu
 
 **Acknowledgments**
+
 Professor Uma Ramamurthy

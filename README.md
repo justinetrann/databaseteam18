@@ -2,6 +2,29 @@
 
 Using ASP.NET and Microsoft SQL, Team 18 has developed a project management system that allows its users to manage projects across departments, track of team members' hours on projects, manage tasks within projects, monitor project status, and generate reports on departmental efforts, costs, and employee productivity. By assigning our users to one of three roles - admin, manager, or employee - we can ensure the success of managing the company.
 
+**File Structure and Usage**
+
+When an ASP.NET file is created, it usually includes three files: a .aspx file, a .aspx.cs file, and a .aspx.designer.cs file. Additionally, .MASTER files are often created and used to provide a consistent layout and design for the .aspx pages that connect to them.
+
+Our Website contains the following files:
+
+default_site.Master
+
+homepage (.aspx, .aspx.cs, aspx.designer.cs): Displays a Video (databaseteam18/video/homepage.mpg4), it's intended to give a brief explanation about the project management system. 
+
+Login (.aspx, .aspx.cs, aspx.designer.cs): Used to authenticarte a user's identity and provide access to three different roles: Admin, Manager, Employee
+
+Input: Email and Password
+
+Output: Access to different restricted areas or functionality within a website or application. 
+
+Signup (.aspx, .aspx.cs, aspx.designer.cs): Allows users to create a new account
+
+Input: First Name, Last Name, SSN, Phone Number, Email, Password, Verify Password
+
+Output: Access to Employee Webpage
+
+
 **Installation**
 
 **Prequisites:**

@@ -40,10 +40,10 @@ University of Houston Texas College of Natural Sciences and Mathematics - Depart
 2023SP-16097-COSC3380: Design of File and Database System
 
 If you have any questions or suggestions, please contact us at:
-Demba Diallo: dmdiallo@cougarnet.uh.edu
-James Graham: jdgraha2@cougarnet.uh.edu
-Ahmed Mohammed: ammoha21@cougarnet.uh.edu
-Justine Tran: jytran2@cougarnet.uh.edu
+- Demba Diallo: dmdiallo@cougarnet.uh.edu
+- James Graham: jdgraha2@cougarnet.uh.edu
+- Ahmed Mohammed: ammoha21@cougarnet.uh.edu
+- Justine Tran: jytran2@cougarnet.uh.edu
 
 **Acknowledgments**
 Professor Uma Ramamurthy

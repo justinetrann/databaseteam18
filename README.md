@@ -24,23 +24,23 @@ Using ASP.NET and Microsoft SQL, Team 18 has developed a project management syst
 
     a. Install the following modifications:
     
-        i. ASP.NET and Web Development
+        - ASP.NET and Web Development
         
-        ii. .NET desktop development
+        - .NET desktop development
         
-        iii. Data storage and processing 
+        - Data storage and processing 
 		
 3. Set up the database by executing the SQL script in the Database folder
 
     a. Database Connection:
     
-        i. Open Microsoft SQL Server Management Studio
+        - Open Microsoft SQL Server Management Studio
         
-        ii. Connect to your SQL Server instance by entering the appropriate server name, authentication method, and credentials. (Username and Password given within email)
+        - Connect to your SQL Server instance by entering the appropriate server name, authentication method, and credentials. (Username and Password given within email)
     
     b. Locate databaseteam10.sln within the databaseteam18 folder
     
-        i. Open in Visual Studio 2022
+        - Open in Visual Studio 2022
 
 **Usage**
 

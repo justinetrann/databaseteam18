@@ -8,21 +8,21 @@ When an ASP.NET file is created, it usually includes three files: a .aspx file, 
 
 Our Website contains the following files:
 
-default_site.Master
+**default_site.Master**
 
-homepage (.aspx, .aspx.cs, aspx.designer.cs): Displays a Video (databaseteam18/video/homepage.mpg4), it's intended to give a brief explanation about the project management system. 
+**homepage (.aspx, .aspx.cs, aspx.designer.cs):** Displays a Video (databaseteam18/video/homepage.mpg4), it's intended to give a brief explanation about the project management system. 
 
-Login (.aspx, .aspx.cs, aspx.designer.cs): Used to authenticarte a user's identity and provide access to three different roles: Admin, Manager, Employee
+**Login (.aspx, .aspx.cs, aspx.designer.cs):** Used to authenticarte a user's identity and provide access to three different roles: Admin, Manager, Employee
 
-Input: Email and Password
+_Input: Email and Password
 
-Output: Access to different restricted areas or functionality within a website or application. 
+Output: Access to different restricted areas or functionality within a website or application. _
 
-Signup (.aspx, .aspx.cs, aspx.designer.cs): Allows users to create a new account
+**Signup (.aspx, .aspx.cs, aspx.designer.cs):** Allows users to create a new account
 
-Input: First Name, Last Name, SSN, Phone Number, Email, Password, Verify Password
+_Input: First Name, Last Name, SSN, Phone Number, Email, Password, Verify Password
 
-Output: Access to Employee Webpage
+Output: Access to Employee Webpage_
 
 
 **Installation**

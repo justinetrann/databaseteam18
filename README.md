@@ -12,17 +12,17 @@ Our Website contains the following files:
 
 **homepage (.aspx, .aspx.cs, aspx.designer.cs):** Displays a Video (databaseteam18/video/homepage.mpg4), it's intended to give a brief explanation about the project management system. 
 
-**Login (.aspx, .aspx.cs, aspx.designer.cs):** Used to authenticarte a user's identity and provide access to three different roles: Admin, Manager, Employee
+**Login (.aspx, .aspx.cs, aspx.designer.cs):** Used to authenticate a user's identity and provide access to three different roles: Admin, Manager, Employee
 
-_Input: Email and Password
+_Input: Email and Password_
 
-Output: Access to different restricted areas or functionality within a website or application. _
+_Output: Access to different restricted areas or functionality within a website or application. _
 
 **Signup (.aspx, .aspx.cs, aspx.designer.cs):** Allows users to create a new account
 
-_Input: First Name, Last Name, SSN, Phone Number, Email, Password, Verify Password
+_Input: First Name, Last Name, SSN, Phone Number, Email, Password, Verify Password_
 
-Output: Access to Employee Webpage_
+_Output: Access to Employee Webpage_
 
 
 **Installation**

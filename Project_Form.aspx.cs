@@ -263,6 +263,8 @@ namespace databaseteam18
 
                 }
 
+                Session["project_id"] = Convert.ToInt32(project_id);
+
             }
 
             catch (SqlException ex)

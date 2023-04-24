@@ -1,9 +1,9 @@
 ﻿body {
+    font-family: Poppins;
     font-size: 13px;
     line-height: 1.8;
     color: #222;
     background: #f8f8f8;
-    font-family: Poppins;
 }
 
 .containerNew {

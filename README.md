@@ -46,7 +46,7 @@ Using ASP.NET and Microsoft SQL, Team 18 has developed a project management syst
 
 There are two ways for deployment:
 
-1. Open your web browser and navigate to https://projectmanagementsystem123.azurewebsites.net/
+1. Open your web browser and navigate to http://project-management-system-18.us-east-1.elasticbeanstalk.com/
 2. Use the application
 	a. In Visual Studio 2022: Press 'Green Play Icon', Start Without Debugging (Ctrl+F5)
 _Web Site connected to the Database should deploy_ 
